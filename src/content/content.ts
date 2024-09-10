@@ -75,8 +75,6 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
     transform: scale(1);
   `;
 
-  let isHovered = false;
-
   const updateCountdown = () => {
     const now = new Date().getTime();
     const timeLeft = eventInfo.endTime - now;
@@ -89,16 +87,7 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      countdownElement.textContent = `${eventInfo.title}: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-    
-    // Maintain hover state
-    if (isHovered) {
-      countdownElement.style.opacity = '1';
-      countdownElement.style.transform = 'scale(1.1)';
-    } else {
-      countdownElement.style.opacity = '0.5';
-      countdownElement.style.transform = 'scale(1)';
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     console.log('Updated countdown text:', countdownElement.textContent);
@@ -107,15 +96,12 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // Hover effect
   countdownElement.addEventListener('mouseenter', () => {
-    isHovered = true;
     countdownElement.style.opacity = '1';
     countdownElement.style.transform = 'scale(1.1)';
   });
 
   countdownElement.addEventListener('mouseleave', () => {
-    isHovered = false;
     countdownElement.style.opacity = '0.5';
     countdownElement.style.transform = 'scale(1)';
   });
