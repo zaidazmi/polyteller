@@ -116,7 +116,7 @@ function parseCustomDate(dateString: string, timezone: string): Date {
   return new Date(dateString);
 }
 
-function createAndInsertCountdown(eventInfo: PolymarketEvent) {
+function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: boolean) {
   console.log('Creating and inserting countdown for event:', eventInfo);
   
   let countdownElement = document.getElementById('polyteller-countdown');
@@ -156,7 +156,13 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      if (isExtensionPopup) {
+        const endDate = new Date(eventInfo.endTime);
+        const timeZoneAbbr = getTimeZoneAbbreviation(endDate);
+        countdownElement.textContent = `Ends on ${endDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })} ${timeZoneAbbr}`;
+      } else {
+        countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
     }
 
     console.log('Updated countdown text:', countdownElement.textContent);
@@ -165,15 +171,32 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  countdownElement.addEventListener('mouseenter', () => {
-    countdownElement.style.opacity = '1';
-    countdownElement.style.transform = 'scale(1.1)';
-  });
+  if (!isExtensionPopup) {
+    countdownElement.addEventListener('mouseenter', () => {
+      countdownElement.style.opacity = '1';
+      countdownElement.style.transform = 'scale(1.1)';
+    });
 
-  countdownElement.addEventListener('mouseleave', () => {
-    countdownElement.style.opacity = '0.5';
-    countdownElement.style.transform = 'scale(1)';
-  });
+    countdownElement.addEventListener('mouseleave', () => {
+      countdownElement.style.opacity = '0.5';
+      countdownElement.style.transform = 'scale(1)';
+    });
+  }
+}
+
+function getTimeZoneAbbreviation(date: Date): string {
+  const timeZoneOffset = date.getTimezoneOffset();
+  const timeZones = [
+    { offset: -240, abbr: 'EDT' },
+    { offset: -300, abbr: 'EST' },
+    { offset: -420, abbr: 'PDT' },
+    { offset: -480, abbr: 'PST' },
+    { offset: -330, abbr: 'IST' },
+    // Add more time zones as needed
+  ];
+
+  const matchedZone = timeZones.find(zone => zone.offset === timeZoneOffset);
+  return matchedZone ? matchedZone.abbr : `GMT${date.toTimeString().slice(9, 17)}`;
 }
 
 function initializeCountdown() {
@@ -185,7 +208,7 @@ function initializeCountdown() {
   if (eventInfo) {
     console.log('Event info extracted:', eventInfo);
     debouncedSendEventInfo(eventInfo);
-    createAndInsertCountdown(eventInfo);
+    createAndInsertCountdown(eventInfo, false);
   } else {
     console.log('Failed to extract event info');
   }
