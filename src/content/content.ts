@@ -1,5 +1,7 @@
 import { PolymarketEvent } from '../types';
 
+let isInitialized = false;
+
 function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
   let timeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -13,38 +15,105 @@ function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
 
 function sendEventInfo(eventInfo: PolymarketEvent) {
   console.log('Sending event info to background:', eventInfo);
-  chrome.runtime.sendMessage({ type: 'EVENT_INFO', data: eventInfo });
+  chrome.runtime.sendMessage({ type: 'EVENT_INFO', data: eventInfo }, (response) => {
+    if (response && response.status === 'Event info stored successfully') {
+      console.log('Event info successfully stored in background');
+    } else {
+      console.error('Failed to store event info in background');
+    }
+  });
 }
 
 const debouncedSendEventInfo = debounce(sendEventInfo, 1000);
 
 function extractEventInfo(): PolymarketEvent | null {
   const scriptElement = document.querySelector('script#__NEXT_DATA__');
-  if (!scriptElement) return null;
+  if (!scriptElement) {
+    console.log('No __NEXT_DATA__ script found');
+    return null;
+  }
 
   try {
     const jsonData = JSON.parse(scriptElement.textContent || '');
     const eventData = jsonData.props?.pageProps?.dehydratedState?.queries[0]?.state?.data;
 
     if (eventData && eventData.title && eventData.endDate) {
-      console.log('Event data found:', eventData);
-      const endDate = new Date(eventData.endDate);
-      if (isNaN(endDate.getTime())) {
-        console.log('Invalid end date:', eventData.endDate);
+      console.log('Event data found:', JSON.stringify(eventData, null, 2));
+
+      let timezone = 'UTC';
+      let endDateValue = eventData.endDate;
+
+      if (eventData.markets && eventData.markets[0] && eventData.markets[0].description) {
+        const description = eventData.markets[0].description;
+        console.log('Market description:', description);
+
+        const dateTimeMatch = description.match(/(\w+ \d{1,2},? \d{4},? \d{1,2}:\d{2} [AP]M) ([A-Z]{2,3})/g);
+        console.log('Date time matches:', dateTimeMatch);
+
+        if (dateTimeMatch && dateTimeMatch.length >= 2) {
+          endDateValue = dateTimeMatch[1];
+          timezone = dateTimeMatch[1].split(' ').pop() || 'ET';
+          console.log('End date found:', endDateValue);
+          console.log('Timezone found:', timezone);
+        }
+      }
+
+      // Parse the end date
+      const parsedDate = parseCustomDate(endDateValue, timezone);
+      console.log('Original end date:', endDateValue);
+      console.log('Parsed end date (local):', parsedDate);
+      console.log('Parsed end date (UTC):', parsedDate.toUTCString());
+
+      if (isNaN(parsedDate.getTime())) {
+        console.error('Failed to parse end date:', endDateValue);
         return null;
       }
-      return {
+
+      const eventInfo = {
         id: eventData.id || `event_${Date.now()}`,
         title: eventData.title,
-        endTime: endDate.getTime(),
-        endDate: eventData.endDate
+        endTime: parsedDate.getTime(),
+        endDate: endDateValue,
+        timezone: timezone
       };
+      console.log('Extracted event info:', JSON.stringify(eventInfo, null, 2));
+      return eventInfo;
     }
   } catch (error) {
     console.error('Error processing event data:', error);
   }
 
   return null;
+}
+
+function parseCustomDate(dateString: string, timezone: string): Date {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}) ([AP]M)/);
+  
+  if (parts) {
+    const [, month, day, year, hour, minute, ampm] = parts;
+    let parsedHour = parseInt(hour);
+    if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
+    if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
+    
+    // Create a date in UTC
+    const date = new Date(Date.UTC(
+      parseInt(year),
+      months.indexOf(month),
+      parseInt(day),
+      parsedHour,
+      parseInt(minute)
+    ));
+
+    // Adjust for ET timezone
+    if (timezone === 'ET') {
+      date.setHours(date.getHours() + 4); // ET is UTC-4 (assuming EDT)
+    }
+
+    return date;
+  }
+  
+  return new Date(dateString);
 }
 
 function createAndInsertCountdown(eventInfo: PolymarketEvent) {
@@ -107,7 +176,10 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent) {
   });
 }
 
-const debouncedInitialize = debounce(() => {
+function initializeCountdown() {
+  if (isInitialized) return;
+  isInitialized = true;
+
   console.log('Initializing countdown');
   const eventInfo = extractEventInfo();
   if (eventInfo) {
@@ -117,17 +189,21 @@ const debouncedInitialize = debounce(() => {
   } else {
     console.log('Failed to extract event info');
   }
-}, 500);
+}
 
-const observer = new MutationObserver(() => {
-  debouncedInitialize();
+// Use a MutationObserver to watch for changes in the DOM
+const observer = new MutationObserver((mutations) => {
+  for (const mutation of mutations) {
+    if (mutation.type === 'childList') {
+      initializeCountdown();
+      break;
+    }
+  }
 });
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
+observer.observe(document.body, { childList: true, subtree: true });
 
-debouncedInitialize();
+// Initial call to initialize countdown
+initializeCountdown();
 
 console.log('Polyteller content script loaded');
