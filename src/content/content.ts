@@ -187,18 +187,10 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: 
 }
 
 function getTimeZoneAbbreviation(date: Date): string {
-  const timeZoneOffset = date.getTimezoneOffset();
-  const timeZones = [
-    { offset: -240, abbr: 'EDT' },
-    { offset: -300, abbr: 'EST' },
-    { offset: -420, abbr: 'PDT' },
-    { offset: -480, abbr: 'PST' },
-    { offset: -330, abbr: 'IST' },
-    // Add more time zones as needed
-  ];
-
-  const matchedZone = timeZones.find(zone => zone.offset === timeZoneOffset);
-  return matchedZone ? matchedZone.abbr : `GMT${date.toTimeString().slice(9, 17)}`;
+  return new Intl.DateTimeFormat('en', {
+    timeZoneName: 'short',
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+  }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
 }
 
 function initializeCountdown() {
