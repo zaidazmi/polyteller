@@ -1,144 +1,186 @@
 :root {
-  --primary-color: #6C5CE7;
-  --secondary-color: #00CECE;
-  --background-color: #F0F3F8;
+  --primary-color: #4A4FE4;
+  --secondary-color: #6C63FF;
+  --background-color: #F8F9FD;
   --card-background: #FFFFFF;
-  --text-color: #2D3436;
-  --text-light: #636E72;
+  --text-color: #1A1B25;
+  --text-light: #6B7280;
+  --border-color: #E5E7EB;
+  --countdown-background: #E8EAFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  width: 320px;
-  font-family: 'Inter', sans-serif;
+  width: 352px; /* Increased by 10% from 320px */
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  padding: 16px;
 }
 
-h2 {
+header {
+  margin-bottom: 16px;
+}
+
+h1 {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary-color);
-  margin: 0;
-  text-align: center;
+  text-align: center; /* Center align the main title */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .card {
-  background: var(--card-background);
+  background-color: var(--card-background);
   border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 #event-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--text-color);
-  margin: 0 0 15px 0;
+  margin-bottom: 12px;
+  text-align: center; /* Center align the title */
 }
 
 .countdown {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  justify-content: center; /* Change from space-between to center */
+  align-items: center;
+  background-color: transparent; /* Remove the background color */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 16px; /* Doubled from 8px to 16px */
 }
 
-.time-unit {
+.countdown-value {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--countdown-background); /* Use the purple background color */
+  border-radius: 8px;
+  padding: 8px 4px;
+  min-width: 60px;
+  box-shadow: none; /* Remove the shadow */
+  flex: 0 1 auto; /* Change from flex: 1 to flex: 0 1 auto */
 }
 
-.time-value {
-  font-size: 28px;
-  font-weight: 600;
+.countdown-number {
+  font-size: 24px;
+  font-weight: 700;
   color: var(--primary-color);
+  line-height: 1.2;
 }
 
-.time-label {
-  font-size: 12px;
-  color: var(--text-light);
+.countdown-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-color); /* Change to a darker color for better contrast */
   text-transform: uppercase;
+  margin-top: 4px;
 }
 
 .end-time {
   font-size: 14px;
   color: var(--text-light);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.end-time-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-color);
 }
 
 .notification-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-color);
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  font-size: 12px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  position: absolute;
+  pointer-events: none;
+  color: var(--text-light);
 }
 
 select {
-  padding: 10px;
-  border: 1px solid #DFE6E9;
-  border-radius: 6px;
+  width: 100%;
+  padding: 8px 12px;
   font-size: 14px;
-  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  appearance: none;
   background-color: var(--card-background);
-  transition: border-color 0.3s ease;
-}
-
-select:focus {
-  outline: none;
-  border-color: var(--primary-color);
+  color: var(--text-color);
 }
 
 button {
-  padding: 12px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 6px;
+  padding: 10px 16px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background-color: var(--secondary-color);
+}
+
+footer {
+  margin-top: 16px;
 }
 
 .status-message {
   font-size: 14px;
   text-align: center;
-  font-weight: 600;
-  opacity: 0;
-  transition: opacity 0.3s ease;
 }
 
-.status-message.show {
-  opacity: 1;
+.status-message.success {
+  color: #10B981;
 }
 
 .status-message.error {
-  color: #e74c3c;
+  color: #EF4444;
 }
 
 @keyframes pulse {
@@ -153,6 +195,6 @@ button:hover {
   }
 }
 
-.countdown[data-countdown="60000"] .time-value {
+.countdown[data-countdown="60000"] {
   animation: pulse 1s infinite;
 }

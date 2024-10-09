@@ -37,6 +37,8 @@ chrome.runtime.onMessage.addListener((message: Message, sender, sendResponse) =>
     log('Retrieving eventInfo for tab', message.tabId, ':', eventInfo);
     sendResponse(eventInfo || null);
   }
+  // Important: Return true to indicate that the response will be sent asynchronously
+  return true;
 });
 
 chrome.tabs.onRemoved.addListener((tabId) => {

@@ -16,10 +16,10 @@ function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
 function sendEventInfo(eventInfo: PolymarketEvent) {
   console.log('Sending event info to background:', eventInfo);
   chrome.runtime.sendMessage({ type: 'EVENT_INFO', data: eventInfo }, (response) => {
-    if (response && response.status === 'Event info stored successfully') {
-      console.log('Event info successfully stored in background');
+    if (chrome.runtime.lastError) {
+      console.error('Error sending event info to background:', chrome.runtime.lastError);
     } else {
-      console.error('Failed to store event info in background');
+      console.log('Event info sent successfully:', response);
     }
   });
 }
@@ -69,7 +69,7 @@ function extractEventInfo(): PolymarketEvent | null {
         return null;
       }
 
-      const eventInfo = {
+      const eventInfo: PolymarketEvent = {
         id: eventData.id || `event_${Date.now()}`,
         title: eventData.title,
         endTime: parsedDate.getTime(),
@@ -149,20 +149,22 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: 
     const timeLeft = eventInfo.endTime - now;
 
     if (timeLeft <= 0) {
-      countdownElement.textContent = 'Event has ended';
+      if (isExtensionPopup) {
+        const endDate = new Date(eventInfo.endTime);
+        countdownElement.innerHTML = `
+          <div>Event has ended</div>
+          <div style="font-size: 12px; margin-top: 5px;">Ended on ${endDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })} ${eventInfo.timezone}</div>
+        `;
+      } else {
+        countdownElement.textContent = 'Event has ended';
+      }
     } else {
       const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
       const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      if (isExtensionPopup) {
-        const endDate = new Date(eventInfo.endTime);
-        const timeZoneAbbr = getTimeZoneAbbreviation(endDate);
-        countdownElement.textContent = `Ends on ${endDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })} ${timeZoneAbbr}`;
-      } else {
-        countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     console.log('Updated countdown text:', countdownElement.textContent);
