@@ -224,3 +224,6 @@ observer.observe(document.body, { childList: true, subtree: true });
 initializeCountdown();
 
 console.log('Polyteller content script loaded');
+
+// Call this function when the page loads
+extractEventInfo();

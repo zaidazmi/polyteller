@@ -26,7 +26,14 @@
             <option value="15">15 minutes before</option>
             <option value="30">30 minutes before</option>
             <option value="60">1 hour before</option>
+            <option value="custom">Custom time before</option>
           </select>
+        </div>
+        <div id="custom-time-fields" style="display: none;">
+          <input type="number" id="custom-days" min="0" placeholder="Days">
+          <input type="number" id="custom-hours" min="0" max="23" placeholder="Hours">
+          <input type="number" id="custom-minutes" min="0" max="59" placeholder="Minutes">
+          <input type="number" id="custom-seconds" min="0" max="59" placeholder="Seconds">
         </div>
         <button id="set-notification">Set Notification</button>
       </div>
