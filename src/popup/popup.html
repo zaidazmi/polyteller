@@ -4,28 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Polyteller</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <h2>Polyteller</h2>
-    <div id="event-info" class="card">
-      <h3 id="event-title"></h3>
-      <div id="countdown" class="countdown"></div>
-      <div id="local-end-time" class="end-time"></div>
-    </div>
-    <div class="notification-section card">
-      <label for="notification-time">Notify me</label>
-      <select id="notification-time">
-        <option value="5">5 minutes before</option>
-        <option value="15">15 minutes before</option>
-        <option value="30">30 minutes before</option>
-        <option value="60">1 hour before</option>
-      </select>
-      <button id="set-notification">Set Notification</button>
-    </div>
-    <div id="notification-status" class="status-message"></div>
+    <header>
+      <h1>Polyteller</h1>
+    </header>
+    <main>
+      <div id="event-info" class="card">
+        <h2 id="event-title"></h2>
+        <div id="countdown" class="countdown"></div>
+        <div id="local-end-time" class="end-time"></div>
+      </div>
+      <div id="notify-section" class="notification-section card">
+        <label for="notification-time">Notify me</label>
+        <div class="select-wrapper">
+          <select id="notification-time">
+            <option value="5">5 minutes before</option>
+            <option value="15">15 minutes before</option>
+            <option value="30">30 minutes before</option>
+            <option value="60">1 hour before</option>
+          </select>
+        </div>
+        <button id="set-notification">Set Notification</button>
+      </div>
+    </main>
+    <footer>
+      <div id="notification-status" class="status-message"></div>
+    </footer>
   </div>
   <script src="popup.js"></script>
 </body>
