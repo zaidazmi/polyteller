@@ -1,5 +1,6 @@
-import { PolymarketEvent } from '../types';
+import { PolymarketEvent, NotificationSetting } from '../types';
 import '../styles/popup.css';
+import { saveNotificationSetting, getEvent } from '../utils/storageUtils';
 
 const DEBUG = true;
 
@@ -135,6 +136,75 @@ function initPopup() {
       displayError('Unable to determine the current tab.');
     }
   });
+
+  const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
+  const customTimeFields = document.getElementById('custom-time-fields');
+  const setNotificationButton = document.getElementById('set-notification');
+
+  if (notificationTimeSelect && customTimeFields && setNotificationButton) {
+    notificationTimeSelect.addEventListener('change', (event) => {
+      if ((event.target as HTMLSelectElement).value === 'custom') {
+        customTimeFields.style.display = 'block';
+      } else {
+        customTimeFields.style.display = 'none';
+      }
+    });
+
+    setNotificationButton.addEventListener('click', setNotification);
+  }
+}
+
+function setNotification() {
+  const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
+  let minutesBefore: number;
+
+  if (notificationTimeSelect.value === 'custom') {
+    const days = parseInt((document.getElementById('custom-days') as HTMLInputElement).value) || 0;
+    const hours = parseInt((document.getElementById('custom-hours') as HTMLInputElement).value) || 0;
+    const minutes = parseInt((document.getElementById('custom-minutes') as HTMLInputElement).value) || 0;
+    const seconds = parseInt((document.getElementById('custom-seconds') as HTMLInputElement).value) || 0;
+
+    minutesBefore = (days * 24 * 60) + (hours * 60) + minutes + (seconds / 60);
+  } else {
+    minutesBefore = parseInt(notificationTimeSelect.value);
+  }
+
+  // Get the current event from storage
+  getEvent().then((currentEvent) => {
+    if (currentEvent) {
+      const notificationSetting: NotificationSetting = {
+        eventId: currentEvent.id,
+        minutesBefore: minutesBefore
+      };
+
+      // Save the notification setting
+      saveNotificationSetting(notificationSetting).then(() => {
+        // Schedule the notification
+        chrome.runtime.sendMessage({
+          type: 'SCHEDULE_NOTIFICATION',
+          data: notificationSetting
+        }, (response) => {
+          if (response.success) {
+            displayStatus('Notification set successfully!');
+          } else {
+            displayStatus('Failed to set notification. Please try again.');
+          }
+        });
+      });
+    } else {
+      displayStatus('No event selected. Please select an event first.');
+    }
+  });
+}
+
+function displayStatus(message: string) {
+  const statusElement = document.getElementById('notification-status');
+  if (statusElement) {
+    statusElement.textContent = message;
+    setTimeout(() => {
+      statusElement.textContent = '';
+    }, 3000);
+  }
 }
 
 function displayError(message: string) {
