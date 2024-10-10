@@ -1,6 +1,6 @@
 import { PolymarketEvent, NotificationSetting } from '../types';
 import '../styles/popup.css';
-import { saveNotificationSetting, getEvent } from '../utils/storageUtils';
+import { saveNotificationSetting, getEvent, getNotificationSettings, deleteNotificationSetting } from '../utils/storageUtils';
 
 const DEBUG = true;
 
@@ -10,6 +10,8 @@ function log(...args: any[]) {
 
 let currentEvent: PolymarketEvent | null = null;
 let countdownInterval: NodeJS.Timeout | null = null;
+
+let currentNotifications: NotificationSetting[] = [];
 
 function displayCountdown(eventInfo: PolymarketEvent): void {
   const countdownElement = document.getElementById('countdown');
@@ -123,7 +125,7 @@ function initPopup() {
         if (chrome.runtime.lastError) {
           log('Error retrieving event info:', chrome.runtime.lastError);
           displayError('Failed to retrieve event information. Please try again.');
-        } else if (response && response.endTime) {
+        } else if (response?.endTime) {
           log('Current event:', response);
           updateUI(response);
         } else {
@@ -152,6 +154,8 @@ function initPopup() {
 
     setNotificationButton.addEventListener('click', setNotification);
   }
+
+  loadNotifications();
 }
 
 function setNotification() {
@@ -178,18 +182,24 @@ function setNotification() {
       };
 
       // Save the notification setting
-      saveNotificationSetting(notificationSetting).then(() => {
-        // Schedule the notification
-        chrome.runtime.sendMessage({
-          type: 'SCHEDULE_NOTIFICATION',
-          data: notificationSetting
-        }, (response) => {
-          if (response.success) {
-            displayStatus('Notification set successfully!');
-          } else {
-            displayStatus('Failed to set notification. Please try again.');
-          }
-        });
+      saveNotificationSetting(notificationSetting).then((saved) => {
+        if (saved) {
+          // Schedule the notification
+          chrome.runtime.sendMessage({
+            type: 'SCHEDULE_NOTIFICATION',
+            data: notificationSetting
+          }, (response) => {
+            if (response.success) {
+              currentNotifications.push(notificationSetting);
+              displayStatus('Notification set successfully!');
+              displayNotifications();
+            } else {
+              displayStatus('Failed to set notification. Please try again.');
+            }
+          });
+        } else {
+          displayStatus('A notification for this time already exists.');
+        }
       });
     } else {
       displayStatus('No event selected. Please select an event first.');
@@ -222,4 +232,57 @@ function getTimeZoneAbbreviation(date: Date): string {
     timeZoneName: 'short',
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
+}
+
+async function loadNotifications() {
+  const event = await getEvent();
+  if (event) {
+    currentNotifications = await getNotificationSettings(event.id);
+    console.log('Loaded notifications:', currentNotifications); // Add this line for debugging
+    displayNotifications();
+  }
+}
+
+function displayNotifications() {
+  const notificationsList = document.getElementById('notifications-list');
+  if (notificationsList) {
+    notificationsList.innerHTML = '';
+    currentNotifications.forEach((notification, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${formatNotificationTime(notification.minutesBefore)}
+        <button class="delete-notification" data-index="${index}">Delete</button>
+      `;
+      notificationsList.appendChild(li);
+    });
+
+    const deleteButtons = document.querySelectorAll('.delete-notification');
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', deleteNotification);
+    });
+  }
+}
+
+function formatNotificationTime(minutesBefore: number): string {
+  if (minutesBefore < 60) {
+    return `${minutesBefore} minutes before`;
+  } else if (minutesBefore < 1440) {
+    const hours = Math.floor(minutesBefore / 60);
+    return `${hours} hour${hours > 1 ? 's' : ''} before`;
+  } else {
+    const days = Math.floor(minutesBefore / 1440);
+    return `${days} day${days > 1 ? 's' : ''} before`;
+  }
+}
+
+async function deleteNotification(event: Event) {
+  const button = event.target as HTMLButtonElement;
+  const index = parseInt(button.getAttribute('data-index') || '-1');
+  if (index !== -1) {
+    const deletedNotification = currentNotifications[index];
+    currentNotifications.splice(index, 1);
+    await deleteNotificationSetting(deletedNotification);
+    displayNotifications();
+    displayStatus('Notification deleted successfully!');
+  }
 }
