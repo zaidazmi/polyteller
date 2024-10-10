@@ -198,3 +198,37 @@ footer {
 .countdown[data-countdown="60000"] {
   animation: pulse 1s infinite;
 }
+
+#custom-time-fields {
+  display: flex;
+  justify-content: space-between; /* This will push Days and Seconds to the edges */
+  margin-top: 8px;
+  width: 100%; /* Ensure it takes full width of its parent */
+}
+
+#custom-time-fields input {
+  width: 23%; /* Slightly increase width to fill the space */
+  padding: 8px 6px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Remove the margin-right from all inputs */
+#custom-time-fields input:not(:last-child) {
+  margin-right: 1.33%; /* Add a small gap between inputs */
+}
+
+#custom-time-fields input::placeholder {
+  color: var(--text-light);
+  font-size: 12px; /* Kept at 10% reduction from 14px */
+}
+
+#custom-time-fields input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 79, 228, 0.1);
+}
