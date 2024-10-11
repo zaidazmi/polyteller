@@ -1,6 +1,6 @@
 import { setupMessageListeners } from './messaging';
 import { cleanupNotifications } from './notifications';
-import { checkAlarms, triggerAlarmsManually, handleAlarm } from './alarms';
+import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms } from './alarms';
 import { log } from '../utils/logUtils';
 
 (() => {
@@ -8,6 +8,11 @@ import { log } from '../utils/logUtils';
 
   chrome.runtime.onInstalled.addListener(() => {
     log('Background', "Extension installed");
+  });
+
+  chrome.runtime.onStartup.addListener(() => {
+    log('Background', "Browser started");
+    checkMissedAlarms();
   });
 
   setupMessageListeners();

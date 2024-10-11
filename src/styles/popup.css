@@ -232,3 +232,71 @@ footer {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(74, 79, 228, 0.1);
 }
+
+/* Add these styles at the end of your existing CSS file */
+
+#notifications-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#notifications-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#notifications-list li:last-child {
+  border-bottom: none;
+}
+
+.notification-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.notification-time {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.notification-date {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.delete-notification {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Remove padding */
+  color: var(--text-light);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px; /* Set a fixed width */
+  height: 24px; /* Set a fixed height */
+}
+
+.delete-notification:hover {
+  color: #EF4444;
+  background-color: transparent;
+}
+
+.delete-notification .delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Fill the button */
+  height: 100%; /* Fill the button */
+}
+
+.delete-notification svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
