@@ -1,13 +1,13 @@
 import { setupMessageListeners } from './messaging';
 import { cleanupNotifications } from './notifications';
 import { checkAlarms, triggerAlarmsManually, handleAlarm } from './alarms';
-import { log } from './utils';
+import { log } from '../utils/logUtils';
 
 (() => {
   "use strict";
 
   chrome.runtime.onInstalled.addListener(() => {
-    console.log("Extension installed");
+    log('Background', "Extension installed");
   });
 
   setupMessageListeners();
@@ -23,5 +23,5 @@ import { log } from './utils';
   // Call this function periodically to ensure alarms are triggered
   setInterval(triggerAlarmsManually, 10000); // Check every 10 seconds
 
-  log("Background script initialized with new notification handling");
+  log('Background', "Background script initialized with new notification handling");
 })();

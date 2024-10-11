@@ -1,6 +1,6 @@
 import { Notification, EventInfo } from './types';
 import { getCurrentEvent } from './storage';
-import { log } from './utils';
+import { log } from '../utils/logUtils';
 
 let storedNotifications: Notification[] = [];
 
