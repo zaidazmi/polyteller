@@ -1,12 +1,7 @@
 import { PolymarketEvent, NotificationSetting } from '../types';
 import '../styles/popup.css';
 import { saveNotificationSetting, getEvent, getNotificationSettings, deleteNotificationSetting } from '../utils/storageUtils';
-
-const DEBUG = true;
-
-function log(...args: any[]) {
-  console.log('[Polyteller Popup]', ...args);
-}
+import { log } from '../utils/logUtils';
 
 let currentEvent: PolymarketEvent | null = null;
 let countdownInterval: NodeJS.Timeout | null = null;
@@ -19,7 +14,7 @@ function displayCountdown(eventInfo: PolymarketEvent): void {
   const notificationSection = document.getElementById('notify-section');
 
   if (!countdownElement || !localEndTimeElement || !notificationSection) {
-    console.error('Required DOM elements not found');
+    log('Popup', 'Required DOM elements not found');
     return;
   }
 
@@ -246,7 +241,7 @@ async function loadNotifications() {
   const event = await getEvent();
   if (event) {
     currentNotifications = await getNotificationSettings(event.id);
-    console.log('Loaded notifications:', currentNotifications); // Add this line for debugging
+    log('Popup', 'Loaded notifications:', currentNotifications);
     displayNotifications();
   }
 }

@@ -1,4 +1,5 @@
 import { PolymarketEvent } from '../types';
+import { log } from '../utils/logUtils';
 
 let isInitialized = false;
 
@@ -14,12 +15,12 @@ function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
 }
 
 function sendEventInfo(eventInfo: PolymarketEvent) {
-  console.log('Sending event info to background:', eventInfo);
+  log('Content', 'Sending event info to background:', eventInfo);
   chrome.runtime.sendMessage({ type: 'EVENT_INFO', data: eventInfo }, (response) => {
     if (chrome.runtime.lastError) {
-      console.error('Error sending event info to background:', chrome.runtime.lastError);
+      log('Content', 'Error sending event info to background:', chrome.runtime.lastError);
     } else {
-      console.log('Event info sent successfully:', response);
+      log('Content', 'Event info sent successfully:', response);
     }
   });
 }
@@ -29,7 +30,7 @@ const debouncedSendEventInfo = debounce(sendEventInfo, 1000);
 function extractEventInfo(): PolymarketEvent | null {
   const scriptElement = document.querySelector('script#__NEXT_DATA__');
   if (!scriptElement) {
-    console.log('No __NEXT_DATA__ script found');
+    log('Content', 'No __NEXT_DATA__ script found');
     return null;
   }
 
@@ -38,34 +39,34 @@ function extractEventInfo(): PolymarketEvent | null {
     const eventData = jsonData.props?.pageProps?.dehydratedState?.queries[0]?.state?.data;
 
     if (eventData && eventData.title && eventData.endDate) {
-      console.log('Event data found:', JSON.stringify(eventData, null, 2));
+      log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
       let timezone = 'UTC';
       let endDateValue = eventData.endDate;
 
       if (eventData.markets && eventData.markets[0] && eventData.markets[0].description) {
         const description = eventData.markets[0].description;
-        console.log('Market description:', description);
+        log('Content', 'Market description:', description);
 
         const dateTimeMatch = description.match(/(\w+ \d{1,2},? \d{4},? \d{1,2}:\d{2} [AP]M) ([A-Z]{2,3})/g);
-        console.log('Date time matches:', dateTimeMatch);
+        log('Content', 'Date time matches:', dateTimeMatch);
 
         if (dateTimeMatch && dateTimeMatch.length >= 2) {
           endDateValue = dateTimeMatch[1];
           timezone = dateTimeMatch[1].split(' ').pop() || 'ET';
-          console.log('End date found:', endDateValue);
-          console.log('Timezone found:', timezone);
+          log('Content', 'End date found:', endDateValue);
+          log('Content', 'Timezone found:', timezone);
         }
       }
 
       // Parse the end date
       const parsedDate = parseCustomDate(endDateValue, timezone);
-      console.log('Original end date:', endDateValue);
-      console.log('Parsed end date (local):', parsedDate);
-      console.log('Parsed end date (UTC):', parsedDate.toUTCString());
+      log('Content', 'Original end date:', endDateValue);
+      log('Content', 'Parsed end date (local):', parsedDate);
+      log('Content', 'Parsed end date (UTC):', parsedDate.toUTCString());
 
       if (isNaN(parsedDate.getTime())) {
-        console.error('Failed to parse end date:', endDateValue);
+        log('Content', 'Failed to parse end date:', endDateValue);
         return null;
       }
 
@@ -76,11 +77,11 @@ function extractEventInfo(): PolymarketEvent | null {
         endDate: endDateValue,
         timezone: timezone
       };
-      console.log('Extracted event info:', JSON.stringify(eventInfo, null, 2));
+      log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;
     }
   } catch (error) {
-    console.error('Error processing event data:', error);
+    log('Content', 'Error processing event data:', error);
   }
 
   return null;
@@ -117,15 +118,15 @@ function parseCustomDate(dateString: string, timezone: string): Date {
 }
 
 function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: boolean) {
-  console.log('Creating and inserting countdown for event:', eventInfo);
+  log('Content', 'Creating and inserting countdown for event:', eventInfo);
   
   let countdownElement = document.getElementById('polyteller-countdown');
   if (!countdownElement) {
-    console.log('Creating new countdown element');
+    log('Content', 'Creating new countdown element');
     countdownElement = document.createElement('div');
     countdownElement.id = 'polyteller-countdown';
     document.body.appendChild(countdownElement);
-    console.log('Countdown element appended to body');
+    log('Content', 'Countdown element appended to body');
   }
 
   countdownElement.style.cssText = `
@@ -167,7 +168,7 @@ function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: 
       countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
-    console.log('Updated countdown text:', countdownElement.textContent);
+    log('Content', 'Updated countdown text:', countdownElement.textContent);
   };
 
   updateCountdown();
@@ -197,14 +198,14 @@ function initializeCountdown() {
   if (isInitialized) return;
   isInitialized = true;
 
-  console.log('Initializing countdown');
+  log('Content', 'Initializing countdown');
   const eventInfo = extractEventInfo();
   if (eventInfo) {
-    console.log('Event info extracted:', eventInfo);
+    log('Content', 'Event info extracted:', eventInfo);
     debouncedSendEventInfo(eventInfo);
     createAndInsertCountdown(eventInfo, false);
   } else {
-    console.log('Failed to extract event info');
+    log('Content', 'Failed to extract event info');
   }
 }
 
@@ -223,7 +224,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 // Initial call to initialize countdown
 initializeCountdown();
 
-console.log('Polyteller content script loaded');
+log('Content', 'Polyteller content script loaded');
 
 // Call this function when the page loads
 extractEventInfo();
