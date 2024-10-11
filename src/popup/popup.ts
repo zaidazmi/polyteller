@@ -176,6 +176,14 @@ function setNotification() {
   // Get the current event from storage
   getEvent().then((currentEvent) => {
     if (currentEvent) {
+      const now = Date.now();
+      const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
+
+      if (notificationTime <= now) {
+        displayStatus('Cannot set notification for a time that has already passed.');
+        return;
+      }
+
       const notificationSetting: NotificationSetting = {
         eventId: currentEvent.id,
         minutesBefore: minutesBefore
