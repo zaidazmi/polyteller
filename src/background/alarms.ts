@@ -61,11 +61,9 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
     if (currentEvent && currentEvent.id === eventId) {
       const now = Date.now();
       const alarmTime = parseInt(timestamp);
-      if (alarmTime > now) {
-        log(`Alarm time is in the future, rescheduling for ${new Date(alarmTime)}`);
-        chrome.alarms.create(alarm.name, { when: alarmTime });
-        return;
-      }
+      
+      // Remove the rescheduling logic here, as we want to show the notification even if it's late
+      
       const remainingTime = currentEvent.endTime - now;
       const formattedRemainingTime = formatRemainingTime(remainingTime);
       log("Creating notification for event:", currentEvent.title);
@@ -114,4 +112,18 @@ export function checkAlarms() {
   chrome.alarms.getAll((alarms) => {
     log("Current alarms:", alarms);
   });
+}
+
+// Add this function
+export async function checkMissedAlarms() {
+  const now = Date.now();
+  const alarms = await chrome.alarms.getAll();
+  
+  for (const alarm of alarms) {
+    if (alarm.scheduledTime <= now) {
+      log('Background', `Missed alarm detected: ${alarm.name}`);
+      await handleAlarm(alarm);
+      await chrome.alarms.clear(alarm.name);
+    }
+  }
 }

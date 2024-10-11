@@ -240,21 +240,39 @@ function getTimeZoneAbbreviation(date: Date): string {
 async function loadNotifications() {
   const event = await getEvent();
   if (event) {
+    currentEvent = event;  // Set currentEvent
     currentNotifications = await getNotificationSettings(event.id);
     log('Popup', 'Loaded notifications:', currentNotifications);
     displayNotifications();
+  } else {
+    log('Popup', 'No event found when loading notifications');
   }
 }
 
 function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
-  if (notificationsList) {
+  if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
     currentNotifications.forEach((notification, index) => {
       const li = document.createElement('li');
+      // Use optional chaining and nullish coalescing to safely access currentEvent.endTime
+      const notificationTime = new Date((currentEvent?.endTime ?? Date.now()) - notification.minutesBefore * 60 * 1000);
+      
       li.innerHTML = `
-        ${formatNotificationTime(notification.minutesBefore)}
-        <button class="delete-notification" data-index="${index}">Delete</button>
+        <div class="notification-info">
+          <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
+          <span class="notification-date">${formatDate(notificationTime)}</span>
+        </div>
+        <button class="delete-notification" data-index="${index}">
+          <span class="delete-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          </span>
+        </button>
       `;
       notificationsList.appendChild(li);
     });
@@ -263,23 +281,28 @@ function displayNotifications() {
     deleteButtons.forEach(button => {
       button.addEventListener('click', deleteNotification);
     });
+  } else {
+    log('Popup', 'Unable to display notifications: currentEvent is null or notificationsList not found');
   }
 }
 
-function formatNotificationTime(minutesBefore: number): string {
-  if (minutesBefore < 60) {
-    return `${minutesBefore} minutes before`;
-  } else if (minutesBefore < 1440) {
-    const hours = Math.floor(minutesBefore / 60);
-    return `${hours} hour${hours > 1 ? 's' : ''} before`;
-  } else {
-    const days = Math.floor(minutesBefore / 1440);
-    return `${days} day${days > 1 ? 's' : ''} before`;
-  }
+function formatFullNotificationTime(minutesBefore: number): string {
+  const days = Math.floor(minutesBefore / 1440);
+  const hours = Math.floor((minutesBefore % 1440) / 60);
+  const minutes = Math.floor(minutesBefore % 60);
+  const seconds = Math.floor((minutesBefore % 1) * 60);
+
+  const parts = [];
+  if (days > 0) parts.push(`${days}d`);
+  if (hours > 0) parts.push(`${hours}h`);
+  if (minutes > 0) parts.push(`${minutes}m`);
+  if (seconds > 0) parts.push(`${seconds}s`);
+
+  return parts.join(' ') + ' before';
 }
 
 async function deleteNotification(event: Event) {
-  const button = event.target as HTMLButtonElement;
+  const button = event.currentTarget as HTMLButtonElement;
   const index = parseInt(button.getAttribute('data-index') || '-1');
   if (index !== -1) {
     const deletedNotification = currentNotifications[index];
