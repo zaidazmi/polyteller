@@ -5,9 +5,12 @@ import { log } from '../utils/logUtils';
 
 let currentEvent: PolymarketEvent | null = null;
 let countdownInterval: NodeJS.Timeout | null = null;
-
 let currentNotifications: NotificationSetting[] = [];
 
+/**
+ * Displays the countdown for the event
+ * @param eventInfo The event information
+ */
 function displayCountdown(eventInfo: PolymarketEvent): void {
   const countdownElement = document.getElementById('countdown');
   const localEndTimeElement = document.getElementById('local-end-time');
@@ -82,6 +85,11 @@ function displayCountdown(eventInfo: PolymarketEvent): void {
   }
 }
 
+/**
+ * Formats a date into a readable string
+ * @param date The date to format
+ * @returns A formatted date string
+ */
 function formatDate(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'short',
@@ -100,6 +108,10 @@ function formatDate(date: Date): string {
   return `${formattedDate} ${timeZoneAbbr}`;
 }
 
+/**
+ * Updates the UI with event information
+ * @param eventInfo The event information
+ */
 function updateUI(eventInfo: PolymarketEvent) {
   log('Updating UI with event info:', eventInfo);
   const titleElement = document.getElementById('event-title');
@@ -109,6 +121,9 @@ function updateUI(eventInfo: PolymarketEvent) {
   displayCountdown(eventInfo);
 }
 
+/**
+ * Initializes the popup
+ */
 function initPopup() {
   log('Initializing popup');
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
@@ -120,17 +135,16 @@ function initPopup() {
         if (chrome.runtime.lastError) {
           log('Error retrieving event info:', chrome.runtime.lastError);
           displayError('Failed to retrieve event information. Please try again.');
-        } else if (response?.endTime) {
-          log('Current event:', response);
+        } else if (response) {
+          currentEvent = response;
           updateUI(response);
+          loadNotifications();
         } else {
-          log('No valid event information received');
-          displayError('No event information available for this page.');
+          displayError('No event found on this page.');
         }
       });
     } else {
-      log('No current tab ID found');
-      displayError('Unable to determine the current tab.');
+      displayError('Unable to determine current tab.');
     }
   });
 
@@ -141,7 +155,7 @@ function initPopup() {
   if (notificationTimeSelect && customTimeFields && setNotificationButton) {
     notificationTimeSelect.addEventListener('change', (event) => {
       if ((event.target as HTMLSelectElement).value === 'custom') {
-        customTimeFields.style.display = 'block';
+        customTimeFields.style.display = 'flex';
       } else {
         customTimeFields.style.display = 'none';
       }
@@ -149,14 +163,14 @@ function initPopup() {
 
     setNotificationButton.addEventListener('click', setNotification);
   }
-
-  loadNotifications();
 }
 
+/**
+ * Sets a notification
+ */
 function setNotification() {
   const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
   let minutesBefore: number;
-
   if (notificationTimeSelect.value === 'custom') {
     const days = parseInt((document.getElementById('custom-days') as HTMLInputElement).value) || 0;
     const hours = parseInt((document.getElementById('custom-hours') as HTMLInputElement).value) || 0;
@@ -168,48 +182,47 @@ function setNotification() {
     minutesBefore = parseInt(notificationTimeSelect.value);
   }
 
-  // Get the current event from storage
-  getEvent().then((currentEvent) => {
-    if (currentEvent) {
-      const now = Date.now();
-      const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
+  if (currentEvent) {
+    const now = Date.now();
+    const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
 
-      if (notificationTime <= now) {
-        displayStatus('Cannot set notification for a time that has already passed.');
-        return;
-      }
-
-      const notificationSetting: NotificationSetting = {
-        eventId: currentEvent.id,
-        minutesBefore: minutesBefore
-      };
-
-      // Save the notification setting
-      saveNotificationSetting(notificationSetting).then((saved) => {
-        if (saved) {
-          // Schedule the notification
-          chrome.runtime.sendMessage({
-            type: 'SCHEDULE_NOTIFICATION',
-            data: notificationSetting
-          }, (response) => {
-            if (response.success) {
-              currentNotifications.push(notificationSetting);
-              displayStatus('Notification set successfully!');
-              displayNotifications();
-            } else {
-              displayStatus('Failed to set notification. Please try again.');
-            }
-          });
-        } else {
-          displayStatus('A notification for this time already exists.');
-        }
-      });
-    } else {
-      displayStatus('No event selected. Please select an event first.');
+    if (notificationTime <= now) {
+      displayStatus('Cannot set notification for a time that has already passed.');
+      return;
     }
-  });
+
+    const notificationSetting: NotificationSetting = {
+      eventId: currentEvent.id,
+      minutesBefore: minutesBefore
+    };
+
+    saveNotificationSetting(notificationSetting).then((saved) => {
+      if (saved) {
+        chrome.runtime.sendMessage({
+          type: 'SCHEDULE_NOTIFICATION',
+          data: notificationSetting
+        }, (response) => {
+          if (response.success) {
+            currentNotifications.push(notificationSetting);
+            displayStatus('Notification set successfully!');
+            displayNotifications();
+          } else {
+            displayStatus('Failed to set notification. Please try again.');
+          }
+        });
+      } else {
+        displayStatus('A notification for this time already exists.');
+      }
+    });
+  } else {
+    displayStatus('No event selected. Please select an event first.');
+  }
 }
 
+/**
+ * Displays a status message
+ * @param message The message to display
+ */
 function displayStatus(message: string) {
   const statusElement = document.getElementById('notification-status');
   if (statusElement) {
@@ -220,6 +233,10 @@ function displayStatus(message: string) {
   }
 }
 
+/**
+ * Displays an error message
+ * @param message The error message to display
+ */
 function displayError(message: string) {
   const countdownElement = document.getElementById('countdown');
   if (countdownElement) {
@@ -230,6 +247,11 @@ function displayError(message: string) {
 // Call initPopup when the popup is loaded
 document.addEventListener('DOMContentLoaded', initPopup);
 
+/**
+ * Gets the timezone abbreviation for a given date
+ * @param date The date to get the timezone abbreviation for
+ * @returns The timezone abbreviation
+ */
 function getTimeZoneAbbreviation(date: Date): string {
   return new Intl.DateTimeFormat('en', {
     timeZoneName: 'short',
@@ -237,6 +259,9 @@ function getTimeZoneAbbreviation(date: Date): string {
   }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
 }
 
+/**
+ * Loads notifications for the current event
+ */
 async function loadNotifications() {
   const event = await getEvent();
   if (event) {
@@ -249,13 +274,15 @@ async function loadNotifications() {
   }
 }
 
+/**
+ * Displays the current notifications
+ */
 function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
   if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
     currentNotifications.forEach((notification, index) => {
       const li = document.createElement('li');
-      // Use optional chaining and nullish coalescing to safely access currentEvent.endTime
       const notificationTime = new Date((currentEvent?.endTime ?? Date.now()) - notification.minutesBefore * 60 * 1000);
       
       li.innerHTML = `
@@ -263,7 +290,7 @@ function displayNotifications() {
           <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
           <span class="notification-date">${formatDate(notificationTime)}</span>
         </div>
-        <button class="delete-notification" data-index="${index}">
+        <button class="delete-notification" data-index="${index}" aria-label="Delete notification">
           <span class="delete-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="3 6 5 6 21 6"></polyline>
@@ -283,9 +310,17 @@ function displayNotifications() {
     });
   } else {
     log('Popup', 'Unable to display notifications: currentEvent is null or notificationsList not found');
+    if (notificationsList) {
+      notificationsList.innerHTML = '<li>No event selected or notifications available.</li>';
+    }
   }
 }
 
+/**
+ * Formats the full notification time
+ * @param minutesBefore The number of minutes before the event
+ * @returns A formatted string representing the time before the event
+ */
 function formatFullNotificationTime(minutesBefore: number): string {
   const days = Math.floor(minutesBefore / 1440);
   const hours = Math.floor((minutesBefore % 1440) / 60);
@@ -301,6 +336,10 @@ function formatFullNotificationTime(minutesBefore: number): string {
   return parts.join(' ') + ' before';
 }
 
+/**
+ * Deletes a notification
+ * @param event The click event
+ */
 async function deleteNotification(event: Event) {
   const button = event.currentTarget as HTMLButtonElement;
   const index = parseInt(button.getAttribute('data-index') || '-1');

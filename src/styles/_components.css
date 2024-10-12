@@ -1,0 +1,237 @@
+/* Countdown component styles */
+.countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.countdown-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--countdown-background);
+  border-radius: 8px;
+  padding: 8px 4px;
+  min-width: 60px;
+  box-shadow: none;
+  flex: 0 1 auto;
+}
+
+.countdown-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.countdown-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-color);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* End time display styles */
+.end-time {
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.end-time-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-color);
+}
+
+/* Notification section styles */
+.notification-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Custom select styles */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  font-size: 12px;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  position: absolute;
+  pointer-events: none;
+  color: var(--text-light);
+}
+
+select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  appearance: none;
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+/* Button styles */
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Custom time input fields */
+#custom-time-fields {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  width: 100%;
+}
+
+#custom-time-fields input {
+  width: 23%;
+  padding: 8px 6px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#custom-time-fields input:not(:last-child) {
+  margin-right: 1.33%;
+}
+
+#custom-time-fields input::placeholder {
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+#custom-time-fields input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 79, 228, 0.1);
+}
+
+#custom-time-fields input:hover {
+  border-color: var(--primary-color);
+}
+
+/* Notifications list styles */
+#notifications-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#notifications-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#notifications-list li:last-child {
+  border-bottom: none;
+}
+
+.notification-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.notification-time {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.notification-date {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Delete notification button styles */
+.delete-notification {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: var(--text-light);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.delete-notification:hover,
+.delete-notification:focus {
+  color: #EF4444;
+  background-color: rgba(239, 68, 68, 0.1);
+  outline: none;
+}
+
+.delete-notification .delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.delete-notification svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* Animation for countdown when close to end */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.countdown[data-countdown="60000"] {
+  animation: pulse 1s infinite;
+}
