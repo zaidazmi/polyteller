@@ -2,6 +2,7 @@ import { PolymarketEvent, NotificationSetting } from '../types';
 import '../styles/popup.css';
 import { saveNotificationSetting, getEvent, getNotificationSettings, deleteNotificationSetting } from '../utils/storageUtils';
 import { log } from '../utils/logUtils';
+import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
 
 let currentEvent: PolymarketEvent | null = null;
 let countdownInterval: NodeJS.Timeout | null = null;
@@ -78,9 +79,22 @@ function displayCountdown(eventInfo: PolymarketEvent): void {
     updateCountdown();
     countdownInterval = setInterval(updateCountdown, 1000);
 
+    const localTimezoneAbbr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const formattedLocalEndDate = endDate.toLocaleString('en-US', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: localTimezoneAbbr
+    });
+
     localEndTimeElement.innerHTML = `
       <span class="end-time-label">Ends on</span>
-      <span>${formatDate(endDate)}</span>
+      <span>${formattedLocalEndDate} ${localTimezoneAbbr}</span>
     `;
   }
 }
@@ -91,21 +105,15 @@ function displayCountdown(eventInfo: PolymarketEvent): void {
  * @returns A formatted date string
  */
 function formatDate(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
+  return date.toLocaleString('en-US', {
     weekday: 'short',
-    year: 'numeric',
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-    hour12: true,
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-  };
-  
-  const formattedDate = date.toLocaleString('en-US', options);
-  const timeZoneAbbr = getTimeZoneAbbreviation(date);
-  
-  return `${formattedDate} ${timeZoneAbbr}`;
+    hour12: true
+  });
 }
 
 /**
@@ -118,7 +126,12 @@ function updateUI(eventInfo: PolymarketEvent) {
   if (titleElement) {
     titleElement.textContent = eventInfo.title;
   }
-  displayCountdown(eventInfo);
+  if (isValidTimestamp(eventInfo.endTime)) {
+    displayCountdown(eventInfo);
+  } else {
+    log('Invalid endTime:', eventInfo.endTime);
+    displayStatus('Invalid event end time');
+  }
 }
 
 /**
@@ -163,6 +176,14 @@ function initPopup() {
 
     setNotificationButton.addEventListener('click', setNotification);
   }
+
+  // Add a listener for the NOTIFICATION_TRIGGERED message
+  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === 'NOTIFICATION_TRIGGERED') {
+      log('Popup received NOTIFICATION_TRIGGERED message:', message.data);
+      removeTriggeredNotificationFromList(message.data);
+    }
+  });
 }
 
 /**
@@ -248,25 +269,18 @@ function displayError(message: string) {
 document.addEventListener('DOMContentLoaded', initPopup);
 
 /**
- * Gets the timezone abbreviation for a given date
- * @param date The date to get the timezone abbreviation for
- * @returns The timezone abbreviation
- */
-function getTimeZoneAbbreviation(date: Date): string {
-  return new Intl.DateTimeFormat('en', {
-    timeZoneName: 'short',
-    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
-  }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
-}
-
-/**
  * Loads notifications for the current event
  */
 async function loadNotifications() {
   const event = await getEvent();
   if (event) {
     currentEvent = event;  // Set currentEvent
-    currentNotifications = await getNotificationSettings(event.id);
+    const allNotifications = await getNotificationSettings(event.id);
+    const now = Date.now();
+    currentNotifications = allNotifications.filter(notification => {
+      const notificationTime = event.endTime - notification.minutesBefore * 60 * 1000;
+      return notificationTime > now;
+    });
     log('Popup', 'Loaded notifications:', currentNotifications);
     displayNotifications();
   } else {
@@ -279,6 +293,7 @@ async function loadNotifications() {
  */
 function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
+  log('Popup', 'Displaying notifications:', currentNotifications);
   if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
     currentNotifications.forEach((notification, index) => {
@@ -343,11 +358,50 @@ function formatFullNotificationTime(minutesBefore: number): string {
 async function deleteNotification(event: Event) {
   const button = event.currentTarget as HTMLButtonElement;
   const index = parseInt(button.getAttribute('data-index') || '-1');
-  if (index !== -1) {
+  log('Popup', `Attempting to delete notification at index: ${index}`);
+  
+  if (index !== -1 && currentEvent) {
     const deletedNotification = currentNotifications[index];
-    currentNotifications.splice(index, 1);
-    await deleteNotificationSetting(deletedNotification);
+    log('Popup', `Notification to delete:`, deletedNotification);
+    
+    // Send a message to the background script to remove the alarm
+    chrome.runtime.sendMessage({
+      type: 'REMOVE_NOTIFICATION_ALARM',
+      data: deletedNotification
+    }, async (response) => {
+      log('Popup', `Received response from background:`, response);
+      if (response.success || response.alreadyTriggered) {
+        // Remove the notification from currentNotifications
+        currentNotifications.splice(index, 1);
+        await deleteNotificationSetting(deletedNotification);
+        displayNotifications();
+        displayStatus('Notification deleted successfully!');
+      } else {
+        displayStatus('Error deleting notification. Please try again.');
+      }
+    });
+  } else {
+    log('Popup', 'Invalid index for deletion or no current event');
+  }
+}
+
+async function reloadNotifications() {
+  if (currentEvent) {
+    currentNotifications = await getNotificationSettings(currentEvent.id);
+    log('Popup', 'Reloaded notifications:', currentNotifications);
     displayNotifications();
-    displayStatus('Notification deleted successfully!');
+  }
+}
+
+function isValidTimestamp(timestamp: number): boolean {
+  return !isNaN(timestamp) && isFinite(timestamp) && timestamp > 0;
+}
+
+function removeTriggeredNotificationFromList(triggeredNotification: { eventId: string, minutesBefore: number }) {
+  if (currentEvent && currentEvent.id === triggeredNotification.eventId) {
+    currentNotifications = currentNotifications.filter(
+      notification => notification.minutesBefore !== triggeredNotification.minutesBefore
+    );
+    displayNotifications();
   }
 }

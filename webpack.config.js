@@ -1,11 +1,13 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
     background: './src/background/background.ts',
     content: './src/content/content.ts',
     popup: './src/popup/popup.ts',
+    styles: './src/styles/popup.css',
   },
   module: {
     rules: [
@@ -16,12 +18,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
   },
   output: {
     filename: '[name].js',
@@ -32,9 +34,11 @@ module.exports = {
       patterns: [
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'src/popup/popup.html', to: 'popup.html' },
-        { from: 'src/styles/popup.css', to: 'popup.css' },
         { from: "src/icon.png", to: "icon.png" },
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
     }),
   ],
 };

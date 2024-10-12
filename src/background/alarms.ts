@@ -1,8 +1,13 @@
-import { Notification, EventInfo } from './types';
+import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { getCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
+import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
 
-let storedNotifications: Notification[] = [];
+export let storedNotifications: Notification[] = [];
+
+export function updateStoredNotifications(notifications: Notification[]) {
+  storedNotifications = notifications;
+}
 
 function formatRemainingTime(milliseconds: number): string {
     
@@ -23,73 +28,99 @@ function formatRemainingTime(milliseconds: number): string {
   return parts.join(", ");
 }
 
-export async function scheduleNotification(data: { minutesBefore: number }): Promise<void> {
+export async function scheduleNotification(notificationData: NotificationSetting): Promise<void> {
   const currentEvent = await getCurrentEvent();
-  log("Current event for scheduling:", currentEvent);
-  if (!currentEvent) throw new Error("No event found");
+  log('Current event for scheduling:', currentEvent);
 
-  const now = Date.now();
-  const notificationTime = currentEvent.endTime - data.minutesBefore * 60 * 1000;
-  const alarmName = `notification_${currentEvent.id}_${Date.now()}`;
-
-  if (notificationTime <= now) {
-    log("Notification time is in the past, triggering immediately");
-    handleAlarm({ name: alarmName, scheduledTime: now });
-  } else {
-    await chrome.alarms.create(alarmName, { when: notificationTime });
-    log(`Alarm created for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
+  if (!currentEvent) {
+    throw new Error('No current event found for scheduling notification');
   }
 
-  storedNotifications.push({
+  const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
+  const alarmName = `notification_${notificationData.eventId}_${notificationData.minutesBefore}`;
+
+  await chrome.alarms.create(alarmName, {
+    when: notificationTime,
+  });
+
+  log(`Alarm created for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
+
+  const storedNotification: Notification = {
     id: alarmName,
-    eventId: currentEvent.id,
+    eventId: notificationData.eventId,
+    minutesBefore: notificationData.minutesBefore,
     scheduledTime: notificationTime,
     triggered: false
-  });
+  };
+
+  await chrome.storage.local.set({ [alarmName]: storedNotification });
+  storedNotifications.push(storedNotification);
 
   log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
   log(`Total scheduled notifications: ${storedNotifications.length}`);
 }
 
 export async function handleAlarm(alarm: chrome.alarms.Alarm) {
-  log("Alarm triggered:", alarm);
-  if (alarm.name.startsWith("notification_")) {
-    const [_, eventId, timestamp] = alarm.name.split("_");
-    log(`Parsed alarm: eventId=${eventId}, timestamp=${timestamp}`);
+  log('Alarm triggered:', alarm);
+  const [_, eventId, minutesBeforeStr] = alarm.name.split('_');
+  const minutesBefore = parseFloat(minutesBeforeStr);
+
+  if (eventId && !isNaN(minutesBefore)) {
     const currentEvent = await getCurrentEvent();
-    log("Current event:", currentEvent);
     if (currentEvent && currentEvent.id === eventId) {
       const now = Date.now();
-      const alarmTime = parseInt(timestamp);
-      
-      // Remove the rescheduling logic here, as we want to show the notification even if it's late
-      
-      const remainingTime = currentEvent.endTime - now;
-      const formattedRemainingTime = formatRemainingTime(remainingTime);
-      log("Creating notification for event:", currentEvent.title);
-      chrome.notifications.create({
-        type: "basic",
-        iconUrl: "icon.png",
-        title: "Polymarket Event Reminder",
-        message: `"${currentEvent.title}" is ending in\n${formattedRemainingTime}`,
-        priority: 2
-      }, (notificationId) => {
-        log("Notification created with ID:", notificationId);
+      const timeLeft = currentEvent.endTime - now;
+      const formattedTimeLeft = formatRemainingTime(timeLeft);
+
+      const endDate = new Date(currentEvent.endTime);
+      const localTimezoneAbbr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+      const formattedLocalEndDate = endDate.toLocaleString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: localTimezoneAbbr
       });
-    } else {
-      log("Event mismatch or not found. Current event ID:", currentEvent?.id);
-    }
-    // Mark the notification as triggered
-    const index = storedNotifications.findIndex(n => n.id === alarm.name);
-    if (index !== -1) {
-      storedNotifications[index].triggered = true;
-      log(`Notification triggered and marked: ${alarm.name}`);
-    } else {
-      log("Notification not found in storedNotifications:", alarm.name);
+
+      // Create and show the notification
+      chrome.notifications.create({
+        type: 'basic',
+        iconUrl: 'icon.png',
+        title: 'Event Reminder',
+        message: `${currentEvent.title} is ending in ${formattedTimeLeft} at ${formattedLocalEndDate} ${localTimezoneAbbr}`
+      }, (notificationId) => {
+        log('Notification created with ID:', notificationId);
+      });
+
+      // Remove the triggered notification
+      await removeTriggeredNotification(alarm.name);
+
+      // Send a message to the popup to update its notification list
+      chrome.runtime.sendMessage({
+        type: 'NOTIFICATION_TRIGGERED',
+        data: { eventId, minutesBefore }
+      });
     }
   } else {
     log("Non-notification alarm triggered:", alarm.name);
   }
+}
+
+async function removeTriggeredNotification(alarmName: string) {
+  // Remove from storage
+  await chrome.storage.local.remove(alarmName);
+
+  // Remove from storedNotifications array
+  storedNotifications = storedNotifications.filter(n => n.id !== alarmName);
+
+  // Remove the alarm
+  await chrome.alarms.clear(alarmName);
+
+  log(`Triggered notification removed: ${alarmName}`);
 }
 
 export function triggerAlarmsManually() {
