@@ -405,3 +405,21 @@ function removeTriggeredNotificationFromList(triggeredNotification: { eventId: s
     displayNotifications();
   }
 }
+
+function toggleCustomTimeInputs(show: boolean) {
+  const customInputs = document.getElementById('custom-time-inputs');
+  if (customInputs) {
+    customInputs.style.display = show ? 'flex' : 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
+  notificationTimeSelect.addEventListener('change', (event) => {
+    const target = event.target as HTMLSelectElement;
+    toggleCustomTimeInputs(target.value === 'custom');
+  });
+
+  // Initially hide custom inputs
+  toggleCustomTimeInputs(false);
+});
