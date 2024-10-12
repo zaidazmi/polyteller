@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Polyteller",
-    "version": "1.0",
+    "version": "1.0.0",
     "description": "Countdown timer and notifications for Polymarket events",
     "permissions": ["storage", "alarms", "notifications", "tabs"],
     "host_permissions": ["https://*.polymarket.com/*"],
@@ -24,8 +24,14 @@
     },
     "web_accessible_resources": [
       {
-        "resources": ["https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"],
+        "resources": [
+          "styles.css",
+          "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+        ],
         "matches": ["<all_urls>"]
       }
-    ]
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline';"
+    }
 }
