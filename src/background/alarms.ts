@@ -4,7 +4,7 @@
  */
 
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
-import { getCurrentEvent } from './storage';
+import { getCurrentEvent as getStoredCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
 import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
 
@@ -47,7 +47,7 @@ function formatRemainingTime(milliseconds: number): string {
  * @param notificationData - The notification settings
  */
 export async function scheduleNotification(notificationData: NotificationSetting): Promise<void> {
-  const currentEvent = await getCurrentEvent();
+  const currentEvent = await getStoredCurrentEvent();
   log('Current event for scheduling:', currentEvent);
 
   if (!currentEvent) {
@@ -88,7 +88,7 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   const minutesBefore = parseFloat(minutesBeforeStr);
 
   if (eventId && !isNaN(minutesBefore)) {
-    const currentEvent = await getCurrentEvent();
+    const currentEvent = await getStoredCurrentEvent();
     if (currentEvent && currentEvent.id === eventId) {
       const now = Date.now();
       const timeLeft = currentEvent.endTime - now;
