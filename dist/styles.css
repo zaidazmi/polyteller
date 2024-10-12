@@ -199,14 +199,14 @@ button:hover {
 }
 
 /* Custom time input fields */
-#custom-time-fields {
+#custom-time-inputs {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
   width: 100%;
 }
 
-#custom-time-fields input {
+#custom-time-inputs input {
   width: 23%;
   padding: 8px 6px;
   font-size: 14px;
@@ -218,22 +218,22 @@ button:hover {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-#custom-time-fields input:not(:last-child) {
+#custom-time-inputs input:not(:last-child) {
   margin-right: 1.33%;
 }
 
-#custom-time-fields input::placeholder {
+#custom-time-inputs input::placeholder {
   color: var(--text-light);
   font-size: 12px;
 }
 
-#custom-time-fields input:focus {
+#custom-time-inputs input:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(74, 79, 228, 0.1);
 }
 
-#custom-time-fields input:hover {
+#custom-time-inputs input:hover {
   border-color: var(--primary-color);
 }
 
