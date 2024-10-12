@@ -1,3 +1,9 @@
+/**
+ * Main background script for Polyteller.
+ * This file has been split into smaller components for better organization and maintainability.
+ * It now serves as the entry point for the background processes, initializing listeners and periodic tasks.
+ */
+
 import { setupMessageListeners } from './messaging';
 import { cleanupNotifications } from './notifications';
 import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, storedNotifications, updateStoredNotifications } from './alarms';
@@ -7,10 +13,12 @@ import { NotificationSetting, Notification } from '../types';
 (() => {
   "use strict";
 
+  // Extension installation listener
   chrome.runtime.onInstalled.addListener(() => {
     log('Background', "Extension installed");
   });
 
+  // Browser startup listener
   chrome.runtime.onStartup.addListener(() => {
     log('Background', "Browser started");
     checkMissedAlarms();
@@ -67,16 +75,13 @@ import { NotificationSetting, Notification } from '../types';
     }
   });
 
+  // Alarm listener
   chrome.alarms.onAlarm.addListener(handleAlarm);
 
-  // Run cleanup periodically
-  setInterval(cleanupNotifications, 60000); // Every minute
-
-  // Call this function periodically or after scheduling notifications
+  // Periodic tasks
+  setInterval(cleanupNotifications, 60000); // Cleanup notifications every minute
   setInterval(checkAlarms, 60000); // Check alarms every minute
-
-  // Call this function periodically to ensure alarms are triggered
-  setInterval(triggerAlarmsManually, 10000); // Check every 10 seconds
+  setInterval(triggerAlarmsManually, 10000); // Manually trigger alarms every 10 seconds
 
   log('Background', "Background script initialized with new notification handling");
 })();
