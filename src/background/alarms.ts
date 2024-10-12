@@ -1,3 +1,8 @@
+/**
+ * Alarm management for Polyteller.
+ * This file contains functions for scheduling, handling, and managing alarms for event notifications.
+ */
+
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { getCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
@@ -5,10 +10,19 @@ import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
 
 export let storedNotifications: Notification[] = [];
 
+/**
+ * Updates the stored notifications array.
+ * @param notifications - The new array of notifications
+ */
 export function updateStoredNotifications(notifications: Notification[]) {
   storedNotifications = notifications;
 }
 
+/**
+ * Formats a duration in milliseconds into a human-readable string.
+ * @param milliseconds - The duration to format
+ * @returns A formatted string representation of the duration
+ */
 function formatRemainingTime(milliseconds: number): string {
     
   const seconds = Math.floor(milliseconds / 1000) % 60;
@@ -28,6 +42,10 @@ function formatRemainingTime(milliseconds: number): string {
   return parts.join(", ");
 }
 
+/**
+ * Schedules a notification for an event.
+ * @param notificationData - The notification settings
+ */
 export async function scheduleNotification(notificationData: NotificationSetting): Promise<void> {
   const currentEvent = await getCurrentEvent();
   log('Current event for scheduling:', currentEvent);
@@ -60,6 +78,10 @@ export async function scheduleNotification(notificationData: NotificationSetting
   log(`Total scheduled notifications: ${storedNotifications.length}`);
 }
 
+/**
+ * Handles a triggered alarm.
+ * @param alarm - The triggered alarm
+ */
 export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   log('Alarm triggered:', alarm);
   const [_, eventId, minutesBeforeStr] = alarm.name.split('_');
@@ -110,6 +132,10 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   }
 }
 
+/**
+ * Removes a triggered notification from storage and the stored notifications array.
+ * @param alarmName - The name of the alarm to remove
+ */
 async function removeTriggeredNotification(alarmName: string) {
   // Remove from storage
   await chrome.storage.local.remove(alarmName);
@@ -123,6 +149,9 @@ async function removeTriggeredNotification(alarmName: string) {
   log(`Triggered notification removed: ${alarmName}`);
 }
 
+/**
+ * Manually triggers alarms that should have been triggered but weren't.
+ */
 export function triggerAlarmsManually() {
   const now = Date.now();
   storedNotifications.forEach(notification => {
@@ -139,13 +168,18 @@ export function triggerAlarmsManually() {
   });
 }
 
+/**
+ * Logs all current alarms.
+ */
 export function checkAlarms() {
   chrome.alarms.getAll((alarms) => {
     log("Current alarms:", alarms);
   });
 }
 
-// Add this function
+/**
+ * Checks for and handles any alarms that were missed during browser downtime.
+ */
 export async function checkMissedAlarms() {
   const now = Date.now();
   const alarms = await chrome.alarms.getAll();
@@ -157,4 +191,18 @@ export async function checkMissedAlarms() {
       await chrome.alarms.clear(alarm.name);
     }
   }
+}
+
+/**
+ * Storage utilities for the background processes.
+ * This file contains functions for interacting with the extension's storage.
+ */
+
+/**
+ * Retrieves the current event from storage.
+ * @returns The current PolymarketEvent or null if not found
+ */
+export async function getCurrentEvent(): Promise<PolymarketEvent | null> {
+  const result = await chrome.storage.local.get("currentEvent");
+  return result.currentEvent || null;
 }

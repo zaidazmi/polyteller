@@ -1,9 +1,17 @@
+/**
+ * Message handling for the background processes.
+ * This file contains functions for setting up message listeners and handling various message types.
+ */
+
 import { EventInfo } from './types';
 import { log } from '../utils/logUtils';
 import { scheduleNotification } from './alarms';
 
 let eventInfoMap = new Map<number, EventInfo>();
 
+/**
+ * Sets up message listeners for the background script.
+ */
 export function setupMessageListeners() {
   chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => {
     log('Background', "Background received message:", request);
