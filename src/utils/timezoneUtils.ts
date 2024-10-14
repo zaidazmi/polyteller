@@ -21,3 +21,7 @@ const timezoneAbbreviations: TimezoneMap = {
   export function getTimezoneAbbreviation(timezone: string): string {
     return timezoneAbbreviations[timezone] || timezone;
   }
+
+export function getLocalTimezone(): string {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}

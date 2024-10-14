@@ -5,7 +5,8 @@
 
 import { PolymarketEvent } from '../../types';
 import { log } from '../../utils/logUtils';
-import { formatDate } from '../../utils/dateUtils';
+import { formatDate, calculateTimeRemaining, formatCountdown, formatLocalEndDate } from '../../utils/dateUtils';
+import { getLocalTimezone } from '../../utils/timezoneUtils';
 
 let countdownInterval: NodeJS.Timeout | null = null;
 
@@ -14,6 +15,7 @@ let countdownInterval: NodeJS.Timeout | null = null;
  * @param eventInfo - The event information
  */
 export function displayCountdown(eventInfo: PolymarketEvent): void {
+  // Retrieve necessary DOM elements
   const countdownElement = document.getElementById('countdown');
   const localEndTimeElement = document.getElementById('local-end-time');
   const notificationSection = document.getElementById('notify-section');
@@ -27,6 +29,7 @@ export function displayCountdown(eventInfo: PolymarketEvent): void {
   const now = new Date();
 
   if (endDate <= now) {
+    // Event has already ended
     countdownElement.textContent = 'Event has ended';
     localEndTimeElement.innerHTML = `
       <span class="end-time-label">Ended on</span>
@@ -34,11 +37,13 @@ export function displayCountdown(eventInfo: PolymarketEvent): void {
     `;
     notificationSection.style.display = 'none';
   } else {
+    // Event is still ongoing
     function updateCountdown(): void {
       const now = new Date();
       const timeLeft = endDate.getTime() - now.getTime();
 
       if (timeLeft <= 0) {
+        // Event just ended
         if (countdownElement) {
           countdownElement.textContent = 'Event has just ended';
         }
@@ -49,49 +54,20 @@ export function displayCountdown(eventInfo: PolymarketEvent): void {
           notificationSection.style.display = 'none';
         }
       } else {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
+        // Update countdown display
         if (countdownElement) {
-          countdownElement.innerHTML = `
-            <div class="countdown-value">
-              <span class="countdown-number">${days}</span>
-              <span class="countdown-label">days</span>
-            </div>
-            <div class="countdown-value">
-              <span class="countdown-number">${hours}</span>
-              <span class="countdown-label">hours</span>
-            </div>
-            <div class="countdown-value">
-              <span class="countdown-number">${minutes}</span>
-              <span class="countdown-label">mins</span>
-            </div>
-            <div class="countdown-value">
-              <span class="countdown-number">${seconds}</span>
-              <span class="countdown-label">secs</span>
-            </div>
-          `;
+          countdownElement.innerHTML = formatCountdown(timeLeft);
         }
       }
     }
 
+    // Initial update and set interval for continuous updates
     updateCountdown();
     countdownInterval = setInterval(updateCountdown, 1000);
 
-    const localTimezoneAbbr = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    const formattedLocalEndDate = endDate.toLocaleString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: localTimezoneAbbr
-    });
+    // Display local end time
+    const localTimezoneAbbr = getLocalTimezone();
+    const formattedLocalEndDate = formatLocalEndDate(endDate, localTimezoneAbbr);
 
     localEndTimeElement.innerHTML = `
       <span class="end-time-label">Ends on</span>

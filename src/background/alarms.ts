@@ -6,8 +6,8 @@
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { getCurrentEvent as getStoredCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
-import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
-import { formatRemainingTime } from '../utils/dateUtils';
+import { getTimezoneAbbreviation, getLocalTimezone } from '../utils/timezoneUtils';
+import { formatRemainingTime, formatDate } from '../utils/dateUtils';
 
 export let storedNotifications: Notification[] = [];
 
@@ -72,18 +72,10 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
       const formattedTimeLeft = formatRemainingTime(timeLeft);
 
       const endDate = new Date(currentEvent.endTime);
-      const localTimezoneAbbr = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const localTimezone = getLocalTimezone();
+      const localTimezoneAbbr = getTimezoneAbbreviation(localTimezone);
 
-      const formattedLocalEndDate = endDate.toLocaleString('en-US', {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZone: localTimezoneAbbr
-      });
+      const formattedLocalEndDate = formatDate(endDate);
 
       // Create and show the notification
       chrome.notifications.create({
