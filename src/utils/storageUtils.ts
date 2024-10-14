@@ -1,45 +1,44 @@
 import { PolymarketEvent, NotificationSetting } from '../types';
-import { log } from '../utils/logUtils';
+import { log } from './logUtils';
+import { getFromStorage, setInStorage, removeFromStorage } from './chromeUtils';
+import { STORAGE_KEYS } from './constants';
 
 export async function saveEvent(event: PolymarketEvent): Promise<void> {
-  await chrome.storage.local.set({ currentEvent: event });
+  await setInStorage(STORAGE_KEYS.CURRENT_EVENT, event);
 }
 
 export async function getEvent(): Promise<PolymarketEvent | null> {
-  const result = await chrome.storage.local.get('currentEvent');
-  return result.currentEvent || null;
+  return await getFromStorage<PolymarketEvent>(STORAGE_KEYS.CURRENT_EVENT);
 }
 
 export async function saveNotificationSetting(setting: NotificationSetting): Promise<boolean> {
   const existingSettings = await getNotificationSettings(setting.eventId);
   
-  // Check if a notification with the same minutesBefore already exists
   const duplicateNotification = existingSettings.find(
     existingSetting => existingSetting.minutesBefore === setting.minutesBefore
   );
 
   if (duplicateNotification) {
-    return false; // Notification already exists for this time
+    return false;
   }
 
-  await chrome.storage.local.set({ [`notification_${setting.eventId}_${setting.minutesBefore}`]: setting });
-  return true; // Notification was successfully saved
+  await setInStorage(`${STORAGE_KEYS.NOTIFICATION_PREFIX}${setting.eventId}_${setting.minutesBefore}`, setting);
+  return true;
 }
 
 export async function getNotificationSetting(eventId: string): Promise<NotificationSetting | null> {
-  const result = await chrome.storage.local.get(`notification_${eventId}`);
-  return result[`notification_${eventId}`] || null;
+  return await getFromStorage<NotificationSetting>(`${STORAGE_KEYS.NOTIFICATION_PREFIX}${eventId}`);
 }
 
 export async function getNotificationSettings(eventId: string): Promise<NotificationSetting[]> {
-  const result = await chrome.storage.local.get(null);
+  const result = await getFromStorage<{ [key: string]: any }>('null');
   const now = Date.now();
-  return Object.entries(result)
+  return Object.entries(result || {})
     .filter(([key, value]) => {
-      if (key.startsWith(`notification_${eventId}`)) {
+      if (key.startsWith(`${STORAGE_KEYS.NOTIFICATION_PREFIX}${eventId}`)) {
         const notification = value as NotificationSetting;
         const notificationTime = notification.scheduledTime || 0;
-        return notificationTime > now && !notification.triggered; // Only return future, non-triggered notifications
+        return notificationTime > now && !notification.triggered;
       }
       return false;
     })
@@ -48,14 +47,10 @@ export async function getNotificationSettings(eventId: string): Promise<Notifica
 
 export async function deleteNotificationSetting(notification: NotificationSetting): Promise<boolean> {
   try {
-    const settings = await getNotificationSettings(notification.eventId);
-    const updatedSettings = settings.filter(
-      setting => setting.minutesBefore !== notification.minutesBefore
-    );
-    await chrome.storage.local.set({ [`notifications_${notification.eventId}`]: updatedSettings });
+    await removeFromStorage(`${STORAGE_KEYS.NOTIFICATION_PREFIX}${notification.eventId}_${notification.minutesBefore}`);
     return true;
   } catch (error) {
-    console.error('Error deleting notification setting:', error);
+    log('StorageUtils', 'Error deleting notification setting:', error);
     return false;
   }
 }

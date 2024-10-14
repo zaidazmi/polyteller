@@ -6,7 +6,8 @@
 import { PolymarketEvent, NotificationSetting } from '../../types';
 import { saveNotificationSetting, deleteNotificationSetting } from '../../utils/storageUtils';
 import { log } from '../../utils/logUtils';
-import { formatDate, formatFullNotificationTime, displayStatus } from '../utils';
+import { formatDate, formatFullNotificationTime } from '../../utils/dateUtils';
+import { displayStatus } from '../utils';
 
 let currentEvent: PolymarketEvent | null = null;
 let currentNotifications: NotificationSetting[] = [];

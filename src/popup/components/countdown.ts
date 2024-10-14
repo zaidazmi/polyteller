@@ -5,7 +5,7 @@
 
 import { PolymarketEvent } from '../../types';
 import { log } from '../../utils/logUtils';
-import { formatDate } from '../utils';
+import { formatDate } from '../../utils/dateUtils';
 
 let countdownInterval: NodeJS.Timeout | null = null;
 

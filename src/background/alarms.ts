@@ -7,6 +7,7 @@ import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { getCurrentEvent as getStoredCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
 import { getTimezoneAbbreviation } from '../utils/timezoneUtils';
+import { formatRemainingTime } from '../utils/dateUtils';
 
 export let storedNotifications: Notification[] = [];
 
@@ -16,30 +17,6 @@ export let storedNotifications: Notification[] = [];
  */
 export function updateStoredNotifications(notifications: Notification[]) {
   storedNotifications = notifications;
-}
-
-/**
- * Formats a duration in milliseconds into a human-readable string.
- * @param milliseconds - The duration to format
- * @returns A formatted string representation of the duration
- */
-function formatRemainingTime(milliseconds: number): string {
-    
-  const seconds = Math.floor(milliseconds / 1000) % 60;
-  const minutes = Math.floor(milliseconds / (1000 * 60)) % 60;
-  const hours = Math.floor(milliseconds / (1000 * 60 * 60)) % 24;
-  const days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
-
-  const parts = [];
-  if (days > 0) parts.push(`${days} Day${days !== 1 ? 's' : ''}`);
-  if (hours > 0) parts.push(`${hours} Hr${hours !== 1 ? 's' : ''}`);
-  if (minutes > 0) parts.push(`${minutes} Min`);
-  if (seconds > 0) parts.push(`${seconds} Sec`);
-
-  // If all parts are zero (shouldn't happen, but just in case)
-  if (parts.length === 0) return "0 Sec";
-
-  return parts.join(", ");
 }
 
 /**
