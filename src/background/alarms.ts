@@ -9,11 +9,12 @@ import { log } from '../utils/logUtils';
 import { getTimezoneAbbreviation, getLocalTimezone } from '../utils/timezoneUtils';
 import { formatRemainingTime, formatDate } from '../utils/dateUtils';
 
+/** Stores the current notifications in memory. */
 export let storedNotifications: Notification[] = [];
 
 /**
  * Updates the stored notifications array.
- * @param notifications - The new array of notifications
+ * @param notifications - The new array of notifications to store
  */
 export function updateStoredNotifications(notifications: Notification[]) {
   storedNotifications = notifications;
@@ -161,11 +162,6 @@ export async function checkMissedAlarms() {
     }
   }
 }
-
-/**
- * Storage utilities for the background processes.
- * This file contains functions for interacting with the extension's storage.
- */
 
 /**
  * Retrieves the current event from storage.

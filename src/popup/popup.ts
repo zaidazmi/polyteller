@@ -1,16 +1,16 @@
 /**
  * Main popup script for Polyteller.
- * This file has been split into smaller components for better organization and maintainability.
- * It now serves as the entry point for the popup, initializing the UI and managing the overall flow.
+ * This file serves as the entry point for the popup, initializing the UI and managing the overall flow.
+ * It imports necessary components and utilities, and sets up event listeners for the popup functionality.
  */
 
 import { PolymarketEvent, NotificationSetting } from '../types';
 import '../styles/popup.css';
-import { getEvent, getNotificationSettings } from '../utils/storageUtils';
 import { log } from '../utils/logUtils';
 import { updateUI, displayError, toggleCustomTimeInputs } from './components/uiUpdates';
-import { setNotification, displayNotifications, removeTriggeredNotificationFromList, setCurrentEvent, setCurrentNotifications } from './components/notifications';
+import { setNotification, displayNotifications, removeTriggeredNotificationFromList } from './components/notifications';
 import { cleanupCountdown } from './components/countdown';
+import { useStore } from '../store/store';
 
 /**
  * Initializes the popup UI and sets up event listeners.
@@ -27,7 +27,7 @@ async function initPopup() {
           log('Error retrieving event info:', chrome.runtime.lastError);
           displayError('Failed to retrieve event information. Please try again.');
         } else if (response) {
-          setCurrentEvent(response);
+          useStore.getState().addEvent(response);
           updateUI(response);
           loadNotifications();
         } else {
@@ -61,18 +61,17 @@ async function initPopup() {
 /**
  * Loads and displays notifications for the current event.
  */
-async function loadNotifications() {
-  const event = await getEvent();
-  if (event) {
-    setCurrentEvent(event);
-    const allNotifications = await getNotificationSettings(event.id);
+function loadNotifications() {
+  const events = useStore.getState().events;
+  const notifications: NotificationSetting[] = useStore.getState().notifications;
+  if (events.length > 0) {
+    const event = events[0]; // Assuming we're working with the first event
     const now = Date.now();
-    const currentNotifications = allNotifications.filter(notification => {
+    const currentNotifications = notifications.filter(notification => {
       const notificationTime = event.endTime - notification.minutesBefore * 60 * 1000;
-      return notificationTime > now;
+      return notificationTime > now && notification.eventId === event.id;
     });
     log('Popup', 'Loaded notifications:', currentNotifications);
-    setCurrentNotifications(currentNotifications);
     displayNotifications();
   } else {
     log('Popup', 'No event found when loading notifications');

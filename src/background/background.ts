@@ -1,7 +1,7 @@
 /**
  * Main background script for Polyteller.
- * This file has been split into smaller components for better organization and maintainability.
- * It now serves as the entry point for the background processes, initializing listeners and periodic tasks.
+ * This file serves as the entry point for the background processes, initializing listeners and periodic tasks.
+ * It imports and uses various modules for handling messages, notifications, and alarms.
  */
 
 import { setupMessageListeners } from './messaging';
