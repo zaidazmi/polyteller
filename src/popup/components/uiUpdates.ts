@@ -6,7 +6,7 @@
 import { PolymarketEvent } from '../../types';
 import { log } from '../../utils/logUtils';
 import { displayCountdown } from './countdown';
-import { isValidTimestamp } from '../utils';
+import { isValidTimestamp } from '../../utils/dateUtils';
 import { displayStatus } from '../utils';
 
 /**

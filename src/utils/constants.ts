@@ -1,0 +1,14 @@
+export const STORAGE_KEYS = {
+  CURRENT_EVENT: 'currentEvent',
+  NOTIFICATION_PREFIX: 'notification_'
+};
+
+export const MESSAGE_TYPES = {
+  EVENT_INFO: 'EVENT_INFO',
+  GET_EVENT_INFO: 'GET_EVENT_INFO',
+  SCHEDULE_NOTIFICATION: 'SCHEDULE_NOTIFICATION'
+};
+
+export const DEFAULT_NOTIFICATION_TIMES = [5, 15, 30, 60];
+export const MAX_NOTIFICATIONS = 5;
+

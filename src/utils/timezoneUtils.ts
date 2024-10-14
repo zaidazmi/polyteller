@@ -1,4 +1,6 @@
-const timezoneAbbreviations: { [key: string]: string } = {
+type TimezoneMap = { [key: string]: string };
+
+const timezoneAbbreviations: TimezoneMap = {
     '-12:00': 'IDLW', '-11:00': 'SST', '-10:00': 'HST', '-09:30': 'MIT',
     '-09:00': 'AKST', '-08:00': 'PST', '-07:00': 'MST', '-06:00': 'CST',
     '-05:00': 'EST', '-04:00': 'AST', '-03:30': 'NST', '-03:00': 'BRT',
