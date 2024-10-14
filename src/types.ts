@@ -1,3 +1,6 @@
+/**
+ * Represents a Polymarket event.
+ */
 export interface PolymarketEvent {
   id: string;
   title: string;
@@ -6,6 +9,9 @@ export interface PolymarketEvent {
   timezone: string;
 }
 
+/**
+ * Represents the settings for a notification.
+ */
 export interface NotificationSetting {
   eventId: string;
   minutesBefore: number;
@@ -13,16 +19,22 @@ export interface NotificationSetting {
   triggered?: boolean;
 }
 
+/**
+ * Represents a scheduled notification, extending NotificationSetting.
+ */
 export interface Notification extends NotificationSetting {
   id: string;
   scheduledTime: number;
   triggered: boolean;
 }
 
+/**
+ * Represents the information about an event.
+ */
 export interface EventInfo {
   id: string;
   title: string;
   endTime: number;
-  timezone: string;  // Add this line
+  timezone: string;
   // ... any other properties
 }

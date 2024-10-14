@@ -24,6 +24,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.css'],
+    alias: {
+      'zustand': path.resolve(__dirname, 'node_modules/zustand'),
+    },
   },
   output: {
     filename: '[name].js',

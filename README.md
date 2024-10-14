@@ -11,8 +11,7 @@ Polyteller is a browser extension for Polymarket, a prediction market platform. 
 
 ## Browser Compatibility
 
-- Google Chrome (version 88+)
-- Mozilla Firefox (version 78+)
+- Google Chrome (version 110+)
 
 ## Installation
 
@@ -34,7 +33,6 @@ Polyteller is a browser extension for Polymarket, a prediction market platform. 
    ```
 5. Load the extension in your browser:
    - Chrome: Go to `chrome://extensions/`, enable "Developer mode", click "Load unpacked", and select the `dist` folder.
-   - Firefox: Go to `about:debugging#/runtime/this-firefox`, click "Load Temporary Add-on", and select any file in the `dist` folder.
 
 ## Usage
 
@@ -69,26 +67,6 @@ npm run dev
   - `types.ts`: TypeScript type definitions
 - `public/`: Static assets
 - `dist/`: Built extension (generated)
-
-## Testing
-
-To run the test suite:
-
-```
-npm test
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin feature/my-new-feature`
-5. Submit a pull request
-
-## License
-
-[MIT License](LICENSE)
 
 ## Contact
 

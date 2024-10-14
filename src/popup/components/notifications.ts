@@ -4,13 +4,10 @@
  */
 
 import { PolymarketEvent, NotificationSetting } from '../../types';
-import { saveNotificationSetting, deleteNotificationSetting } from '../../utils/storageUtils';
 import { log } from '../../utils/logUtils';
 import { formatDate, formatFullNotificationTime } from '../../utils/dateUtils';
 import { displayStatus } from '../utils';
-
-let currentEvent: PolymarketEvent | null = null;
-let currentNotifications: NotificationSetting[] = [];
+import { useStore } from '../../store/store';
 
 /**
  * Sets a new notification for the current event.
@@ -29,7 +26,9 @@ export function setNotification() {
     minutesBefore = parseInt(notificationTimeSelect.value);
   }
 
-  if (currentEvent) {
+  const events = useStore.getState().events;
+  if (events.length > 0) {
+    const currentEvent = events[0]; // Assuming we're working with the first event
     const now = Date.now();
     const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
 
@@ -43,22 +42,25 @@ export function setNotification() {
       minutesBefore: minutesBefore
     };
 
-    saveNotificationSetting(notificationSetting).then((saved) => {
-      if (saved) {
-        chrome.runtime.sendMessage({
-          type: 'SCHEDULE_NOTIFICATION',
-          data: notificationSetting
-        }, (response) => {
-          if (response.success) {
-            currentNotifications.push(notificationSetting);
-            displayStatus('Notification set successfully!');
-            displayNotifications();
-          } else {
-            displayStatus('Failed to set notification. Please try again.');
-          }
-        });
+    const existingNotification = useStore.getState().notifications.find(
+      (n: NotificationSetting) => n.eventId === notificationSetting.eventId && n.minutesBefore === notificationSetting.minutesBefore
+    );
+
+    if (existingNotification) {
+      displayStatus('A notification for this time already exists.');
+      return;
+    }
+
+    useStore.getState().addNotification(notificationSetting);
+    chrome.runtime.sendMessage({
+      type: 'SCHEDULE_NOTIFICATION',
+      data: notificationSetting
+    }, (response) => {
+      if (response.success) {
+        displayStatus('Notification set successfully!');
+        displayNotifications();
       } else {
-        displayStatus('A notification for this time already exists.');
+        displayStatus('Failed to set notification. Please try again.');
       }
     });
   } else {
@@ -71,12 +73,15 @@ export function setNotification() {
  */
 export function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
-  log('Popup', 'Displaying notifications:', currentNotifications);
-  if (notificationsList && currentEvent) {
+  const events = useStore.getState().events;
+  const notifications = useStore.getState().notifications;
+  log('Popup', 'Displaying notifications:', notifications);
+  if (notificationsList && events.length > 0) {
+    const currentEvent = events[0]; // Assuming we're working with the first event
     notificationsList.innerHTML = '';
-    currentNotifications.forEach((notification, index) => {
+    notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id).forEach((notification: NotificationSetting, index: number) => {
       const li = document.createElement('li');
-      const notificationTime = new Date((currentEvent?.endTime ?? Date.now()) - notification.minutesBefore * 60 * 1000);
+      const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
       
       li.innerHTML = `
         <div class="notification-info">
@@ -102,7 +107,7 @@ export function displayNotifications() {
       button.addEventListener('click', deleteNotification);
     });
   } else {
-    log('Popup', 'Unable to display notifications: currentEvent is null or notificationsList not found');
+    log('Popup', 'Unable to display notifications: no events or notificationsList not found');
     if (notificationsList) {
       notificationsList.innerHTML = '<li>No event selected or notifications available.</li>';
     }
@@ -118,8 +123,11 @@ export async function deleteNotification(event: Event) {
   const index = parseInt(button.getAttribute('data-index') || '-1');
   log('Popup', `Attempting to delete notification at index: ${index}`);
   
-  if (index !== -1 && currentEvent) {
-    const deletedNotification = currentNotifications[index];
+  const events = useStore.getState().events;
+  const notifications = useStore.getState().notifications;
+  if (index !== -1 && events.length > 0) {
+    const currentEvent = events[0]; // Assuming we're working with the first event
+    const deletedNotification = notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id)[index];
     log('Popup', `Notification to delete:`, deletedNotification);
     
     chrome.runtime.sendMessage({
@@ -128,8 +136,7 @@ export async function deleteNotification(event: Event) {
     }, async (response) => {
       log('Popup', `Received response from background:`, response);
       if (response.success || response.alreadyTriggered) {
-        currentNotifications.splice(index, 1);
-        await deleteNotificationSetting(deletedNotification);
+        useStore.getState().removeNotification(deletedNotification.eventId, deletedNotification.minutesBefore);
         displayNotifications();
         displayStatus('Notification deleted successfully!');
       } else {
@@ -146,26 +153,6 @@ export async function deleteNotification(event: Event) {
  * @param triggeredNotification - The notification that was triggered
  */
 export function removeTriggeredNotificationFromList(triggeredNotification: { eventId: string, minutesBefore: number }) {
-  if (currentEvent && currentEvent.id === triggeredNotification.eventId) {
-    currentNotifications = currentNotifications.filter(
-      notification => notification.minutesBefore !== triggeredNotification.minutesBefore
-    );
-    displayNotifications();
-  }
-}
-
-/**
- * Sets the current event for notification management.
- * @param event - The current Polymarket event
- */
-export function setCurrentEvent(event: PolymarketEvent) {
-  currentEvent = event;
-}
-
-/**
- * Sets the current list of notifications.
- * @param notifications - The list of current notifications
- */
-export function setCurrentNotifications(notifications: NotificationSetting[]) {
-  currentNotifications = notifications;
+  useStore.getState().removeNotification(triggeredNotification.eventId, triggeredNotification.minutesBefore);
+  displayNotifications();
 }
