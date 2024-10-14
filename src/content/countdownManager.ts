@@ -5,6 +5,7 @@
 
 import { PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
+import { calculateTimeRemaining, formatDate, getTimeRemaining } from '../utils/dateUtils';
 
 /**
  * Creates and inserts a countdown element for the given event.
@@ -14,6 +15,7 @@ import { log } from '../utils/logUtils';
 export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: boolean) {
   log('Content', 'Creating and inserting countdown for event:', eventInfo);
   
+  // Create or retrieve the countdown element
   let countdownElement = document.getElementById('polyteller-countdown');
   if (!countdownElement) {
     log('Content', 'Creating new countdown element');
@@ -44,26 +46,22 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
    * Updates the countdown text based on the current time and event end time.
    */
   const updateCountdown = () => {
-    const now = new Date().getTime();
-    const timeLeft = eventInfo.endTime - now;
+    const { days, hours, minutes, seconds } = calculateTimeRemaining(eventInfo.endTime);
 
-    if (timeLeft <= 0) {
+    if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
+      // Event has ended
       if (isExtensionPopup) {
         const endDate = new Date(eventInfo.endTime);
         countdownElement.innerHTML = `
           <div>Event has ended</div>
-          <div style="font-size: 12px; margin-top: 5px;">Ended on ${endDate.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} at ${endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })} ${eventInfo.timezone}</div>
+          <div style="font-size: 12px; margin-top: 5px;">Ended on ${formatDate(endDate)} ${eventInfo.timezone}</div>
         `;
       } else {
         countdownElement.textContent = 'Event has ended';
       }
     } else {
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      // Event is still ongoing
+      countdownElement.textContent = getTimeRemaining(eventInfo.endTime);
     }
 
     log('Content', 'Updated countdown text:', countdownElement.textContent);
