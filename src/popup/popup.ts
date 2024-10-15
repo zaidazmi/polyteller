@@ -103,9 +103,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initially hide custom inputs
   toggleCustomTimeInputs(false);
-});
+
+
 
 // Clean up the countdown when the popup is closed
 window.addEventListener('unload', () => {
   cleanupCountdown();
+});
+
+document.getElementById('view-all-notifications')?.addEventListener('click', () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL('allNotifications.html') });
+});
 });

@@ -1,5 +1,5 @@
 import { createStore } from 'zustand/vanilla';
-import { persist, PersistOptions, StorageValue } from 'zustand/middleware';
+import { persist, PersistOptions, StorageValue, StateStorage, PersistStorage } from 'zustand/middleware';
 import { PolymarketEvent, NotificationSetting } from '../types';
 
 /**
@@ -19,22 +19,22 @@ interface AppState {
 /**
  * Custom storage object for persisting state in Chrome's local storage.
  */
-const storage: PersistOptions<AppState>['storage'] = {
-  getItem: async (name: string): Promise<StorageValue<AppState> | null> => {
+const storage: PersistStorage<AppState> = {
+  getItem: (name: string): Promise<StorageValue<AppState> | null> => {
     return new Promise((resolve) => {
       chrome.storage.local.get([name], (result) => {
         resolve(result[name] || null);
       });
     });
   },
-  setItem: async (name: string, value: StorageValue<AppState>): Promise<void> => {
+  setItem: (name: string, value: StorageValue<AppState>): Promise<void> => {
     return new Promise((resolve) => {
-      chrome.storage.local.set({ [name]: value }, resolve);
+      chrome.storage.local.set({ [name]: value }, () => resolve());
     });
   },
-  removeItem: async (name: string): Promise<void> => {
+  removeItem: (name: string): Promise<void> => {
     return new Promise((resolve) => {
-      chrome.storage.local.remove(name, resolve);
+      chrome.storage.local.remove(name, () => resolve());
     });
   },
 };
@@ -52,21 +52,49 @@ const persistOptions: PersistOptions<AppState> = {
  */
 export const store = createStore<AppState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       events: [],
       notifications: [],
       currentEvent: null,
       addEvent: (event: PolymarketEvent) =>
-        set((state) => ({ events: [...state.events, event], currentEvent: event })),
+        set((state) => {
+          console.log('Adding/updating event:', event);
+          const existingEventIndex = state.events.findIndex(e => e.id === event.id);
+          if (existingEventIndex !== -1) {
+            // Update existing event
+            const updatedEvents = [...state.events];
+            updatedEvents[existingEventIndex] = event;
+            return { events: updatedEvents, currentEvent: event };
+          } else {
+            // Add new event
+            return { events: [...state.events, event], currentEvent: event };
+          }
+        }),
+      addNotification: (notification: NotificationSetting) =>
+        set((state) => {
+          console.log('Adding notification:', notification);
+          const existingNotificationIndex = state.notifications.findIndex(
+            n => n.eventId === notification.eventId && n.minutesBefore === notification.minutesBefore
+          );
+          if (existingNotificationIndex !== -1) {
+            // Update existing notification
+            const updatedNotifications = [...state.notifications];
+            updatedNotifications[existingNotificationIndex] = notification;
+            return { notifications: updatedNotifications };
+          } else {
+            // Add new notification
+            return { notifications: [...state.notifications, notification] };
+          }
+        }),
+      setNotifications: (notifications: NotificationSetting[]) =>
+        set((state) => {
+          console.log('Setting notifications:', notifications);
+          return { notifications };
+        }),
       removeEvent: (eventId: string) =>
         set((state) => ({
           ...state,
           events: state.events.filter((e) => e.id !== eventId),
-        })),
-      addNotification: (notification: NotificationSetting) =>
-        set((state) => ({
-          ...state,
-          notifications: [...state.notifications, notification],
         })),
       removeNotification: (eventId: string, minutesBefore: number) =>
         set((state) => ({
@@ -75,11 +103,6 @@ export const store = createStore<AppState>()(
             (n) =>
               !(n.eventId === eventId && n.minutesBefore === minutesBefore)
           ),
-        })),
-      setNotifications: (notifications: NotificationSetting[]) =>
-        set((state) => ({
-          ...state,
-          notifications: notifications,
         })),
     }),
     persistOptions

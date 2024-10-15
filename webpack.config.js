@@ -7,7 +7,9 @@ module.exports = {
     background: './src/background/background.ts',
     content: './src/content/content.ts',
     popup: './src/popup/popup.ts',
+    allNotifications: './src/popup/allNotifications.ts',
     styles: './src/styles/popup.css',
+    allNotificationsStyles: './src/styles/allNotifications.css',
   },
   module: {
     rules: [
@@ -37,6 +39,7 @@ module.exports = {
       patterns: [
         { from: 'manifest.json', to: 'manifest.json' },
         { from: 'src/popup/popup.html', to: 'popup.html' },
+        { from: 'src/popup/allNotifications.html', to: 'allNotifications.html' },
         { from: "src/icon.png", to: "icon.png" },
       ],
     }),
