@@ -7,6 +7,7 @@ export interface PolymarketEvent {
   endTime: number;
   endDate: string;
   timezone: string;
+  url: string;
 }
 
 /**
@@ -17,6 +18,8 @@ export interface NotificationSetting {
   minutesBefore: number;
   scheduledTime?: number;
   triggered?: boolean;
+  eventTitle: string;
+  eventUrl: string;
 }
 
 /**

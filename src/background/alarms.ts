@@ -46,7 +46,9 @@ export async function scheduleNotification(notificationData: NotificationSetting
     eventId: notificationData.eventId,
     minutesBefore: notificationData.minutesBefore,
     scheduledTime: notificationTime,
-    triggered: false
+    triggered: false,
+    eventTitle: notificationData.eventTitle,
+    eventUrl: notificationData.eventUrl
   };
 
   await chrome.storage.local.set({ [alarmName]: storedNotification });
