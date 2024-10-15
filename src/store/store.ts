@@ -77,7 +77,10 @@ export const store = createStore<AppState>()(
           ),
         })),
       setNotifications: (notifications: NotificationSetting[]) =>
-        set({ notifications }),
+        set((state) => ({
+          ...state,
+          notifications: notifications,
+        })),
     }),
     persistOptions
   )

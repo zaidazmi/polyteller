@@ -6,10 +6,20 @@
 
 import { setupMessageListeners } from './messaging';
 import { cleanupNotifications } from './notifications';
-import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, storedNotifications, updateStoredNotifications } from './alarms';
+import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification } from './alarms';
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification } from '../types';
 import { useStore } from '../store/store';
+
+let storedNotifications: Notification[] = [];
+
+async function loadStoredNotifications() {
+  const result = await chrome.storage.local.get('storedNotifications');
+  if (result.storedNotifications) {
+    storedNotifications = result.storedNotifications;
+    log('Background', 'Loaded stored notifications:', storedNotifications);
+  }
+}
 
 (() => {
   "use strict";
@@ -66,12 +76,19 @@ import { useStore } from '../store/store';
         return true; // Keeps the message channel open for the async response
       case 'SCHEDULE_NOTIFICATION':
         scheduleNotification(request.data)
-          .then(() => sendResponse({ success: true }))
+          .then(() => {
+            storedNotifications.push(request.data);
+            updateStoredNotifications(storedNotifications);
+            sendResponse({ success: true });
+          })
           .catch((error: Error) => {
             console.error("Error scheduling notification:", error);
             sendResponse({ success: false });
           });
         return true; // Keeps the message channel open for the async response
+      case 'GET_STORED_NOTIFICATIONS':
+        sendResponse({ notifications: storedNotifications });
+        return true;
       default:
         log('Background', 'Unknown message type:', request.type);
         sendResponse({ error: 'Unknown message type' });
@@ -87,4 +104,15 @@ import { useStore } from '../store/store';
   setInterval(triggerAlarmsManually, 10000); // Manually trigger alarms every 10 seconds
 
   log('Background', "Background script initialized with new notification handling");
+
+  loadStoredNotifications();
 })();
+
+async function updateStoredNotifications(notifications: Notification[]) {
+  storedNotifications = notifications;
+  await chrome.storage.local.set({ storedNotifications: notifications });
+  log('Background', 'Updated stored notifications:', notifications);
+  
+  // Notify the popup to update its notifications
+  chrome.runtime.sendMessage({ type: 'NOTIFICATIONS_UPDATED', data: notifications });
+}
