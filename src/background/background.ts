@@ -55,6 +55,7 @@ import { useStore } from '../store/store';
             useStore.getState().setNotifications(updatedNotifications);
             // Remove from storage
             await chrome.storage.local.remove(alarmName);
+            notifyAllTabs({ type: 'NOTIFICATIONS_UPDATED' }); // Add this line
             sendResponse({ success: true });
           } else {
             // The alarm doesn't exist, which means it was likely already triggered
@@ -100,3 +101,12 @@ import { useStore } from '../store/store';
 
   log('Background', "Background script initialized with new notification handling");
 })();
+
+// Add this function at the end of the file
+function notifyAllTabs(message: any) {
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach(tab => {
+      chrome.tabs.sendMessage(tab.id!, message);
+    });
+  });
+}
