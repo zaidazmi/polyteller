@@ -8,10 +8,12 @@ import { PolymarketEvent, NotificationSetting } from '../types';
 interface AppState {
   events: PolymarketEvent[];
   notifications: NotificationSetting[];
+  currentEvent: PolymarketEvent | null;
   addEvent: (event: PolymarketEvent) => void;
   removeEvent: (eventId: string) => void;
   addNotification: (notification: NotificationSetting) => void;
   removeNotification: (eventId: string, minutesBefore: number) => void;
+  setNotifications: (notifications: NotificationSetting[]) => void;
 }
 
 /**
@@ -53,8 +55,9 @@ export const store = createStore<AppState>()(
     (set) => ({
       events: [],
       notifications: [],
+      currentEvent: null,
       addEvent: (event: PolymarketEvent) =>
-        set((state) => ({ ...state, events: [...state.events, event] })),
+        set((state) => ({ events: [...state.events, event], currentEvent: event })),
       removeEvent: (eventId: string) =>
         set((state) => ({
           ...state,
@@ -73,6 +76,8 @@ export const store = createStore<AppState>()(
               !(n.eventId === eventId && n.minutesBefore === minutesBefore)
           ),
         })),
+      setNotifications: (notifications: NotificationSetting[]) =>
+        set({ notifications }),
     }),
     persistOptions
   )

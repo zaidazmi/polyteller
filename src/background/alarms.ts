@@ -4,7 +4,6 @@
  */
 
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
-import { getCurrentEvent as getStoredCurrentEvent } from './storage';
 import { log } from '../utils/logUtils';
 import { getTimezoneAbbreviation, getLocalTimezone } from '../utils/timezoneUtils';
 import { formatRemainingTime, formatDate } from '../utils/dateUtils';
@@ -25,7 +24,7 @@ export function updateStoredNotifications(notifications: Notification[]) {
  * @param notificationData - The notification settings
  */
 export async function scheduleNotification(notificationData: NotificationSetting): Promise<void> {
-  const currentEvent = await getStoredCurrentEvent();
+  const currentEvent = await getCurrentEvent();
   log('Current event for scheduling:', currentEvent);
 
   if (!currentEvent) {
@@ -68,7 +67,7 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   const minutesBefore = parseFloat(minutesBeforeStr);
 
   if (eventId && !isNaN(minutesBefore)) {
-    const currentEvent = await getStoredCurrentEvent();
+    const currentEvent = await getCurrentEvent();
     if (currentEvent && currentEvent.id === eventId) {
       const now = Date.now();
       const timeLeft = currentEvent.endTime - now;
@@ -170,6 +169,16 @@ export async function checkMissedAlarms() {
  * @returns The current PolymarketEvent or null if not found
  */
 export async function getCurrentEvent(): Promise<PolymarketEvent | null> {
-  const result = await chrome.storage.local.get("currentEvent");
-  return result.currentEvent || null;
+  // Get the current tab ID
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  const currentTabId = tabs[0]?.id;
+
+  if (!currentTabId) {
+    log('Alarms', 'No active tab found');
+    return null;
+  }
+
+  // Use the correct key to get the current event
+  const result = await chrome.storage.local.get(`currentEvent_${currentTabId}`);
+  return result[`currentEvent_${currentTabId}`] || null;
 }

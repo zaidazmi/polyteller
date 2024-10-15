@@ -62,14 +62,13 @@ async function initPopup() {
  * Loads and displays notifications for the current event.
  */
 function loadNotifications() {
-  const events = useStore.getState().events;
+  const currentEvent = useStore.getState().currentEvent;
   const notifications: NotificationSetting[] = useStore.getState().notifications;
-  if (events.length > 0) {
-    const event = events[0]; // Assuming we're working with the first event
+  if (currentEvent) {
     const now = Date.now();
     const currentNotifications = notifications.filter(notification => {
-      const notificationTime = event.endTime - notification.minutesBefore * 60 * 1000;
-      return notificationTime > now && notification.eventId === event.id;
+      const notificationTime = currentEvent.endTime - notification.minutesBefore * 60 * 1000;
+      return notificationTime > now && notification.eventId === currentEvent.id;
     });
     log('Popup', 'Loaded notifications:', currentNotifications);
     displayNotifications();

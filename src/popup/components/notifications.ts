@@ -26,9 +26,8 @@ export function setNotification() {
     minutesBefore = parseInt(notificationTimeSelect.value);
   }
 
-  const events = useStore.getState().events;
-  if (events.length > 0) {
-    const currentEvent = events[0]; // Assuming we're working with the first event
+  const currentEvent = useStore.getState().currentEvent;
+  if (currentEvent) {
     const now = Date.now();
     const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
 
@@ -75,11 +74,10 @@ export function setNotification() {
  */
 export function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
-  const events = useStore.getState().events;
+  const currentEvent = useStore.getState().currentEvent;
   const notifications = useStore.getState().notifications;
   log('Popup', 'Displaying notifications:', notifications);
-  if (notificationsList && events.length > 0) {
-    const currentEvent = events[0]; // Assuming we're working with the first event
+  if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
     notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id).forEach((notification: NotificationSetting, index: number) => {
       const li = document.createElement('li');
@@ -110,7 +108,7 @@ export function displayNotifications() {
       button.addEventListener('click', deleteNotification);
     });
   } else {
-    log('Popup', 'Unable to display notifications: no events or notificationsList not found');
+    log('Popup', 'Unable to display notifications: no event or notificationsList not found');
     if (notificationsList) {
       notificationsList.innerHTML = '<li>No event selected or notifications available.</li>';
     }
@@ -126,10 +124,9 @@ export async function deleteNotification(event: Event) {
   const index = parseInt(button.getAttribute('data-index') || '-1');
   log('Popup', `Attempting to delete notification at index: ${index}`);
   
-  const events = useStore.getState().events;
+  const currentEvent = useStore.getState().currentEvent;
   const notifications = useStore.getState().notifications;
-  if (index !== -1 && events.length > 0) {
-    const currentEvent = events[0]; // Assuming we're working with the first event
+  if (index !== -1 && currentEvent) {
     const deletedNotification = notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id)[index];
     log('Popup', `Notification to delete:`, deletedNotification);
     

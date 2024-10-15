@@ -9,6 +9,7 @@ import { cleanupNotifications } from './notifications';
 import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, storedNotifications, updateStoredNotifications } from './alarms';
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification } from '../types';
+import { useStore } from '../store/store';
 
 (() => {
   "use strict";
@@ -32,12 +33,14 @@ import { NotificationSetting, Notification } from '../types';
       case 'EVENT_INFO':
         if (sender.tab?.id) {
           log('Background', `Storing event info for tab ${sender.tab.id}:`, request.data);
-          chrome.storage.local.set({ currentEvent: request.data });
+          chrome.storage.local.set({ [`currentEvent_${sender.tab.id}`]: request.data });
+          // Update the store with the new event
+          useStore.getState().addEvent(request.data);
         }
         break;
       case 'GET_EVENT_INFO':
-        chrome.storage.local.get('currentEvent', (result) => {
-          sendResponse(result.currentEvent || null);
+        chrome.storage.local.get(`currentEvent_${request.tabId}`, (result) => {
+          sendResponse(result[`currentEvent_${request.tabId}`] || null);
         });
         return true; // Keep the message channel open for the async response
       case 'REMOVE_NOTIFICATION_ALARM':
