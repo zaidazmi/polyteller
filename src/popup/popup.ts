@@ -58,24 +58,36 @@ async function initPopup() {
   });
 }
 
-/**
- * Loads and displays notifications for the current event.
- */
-function loadNotifications() {
+// Export the loadNotifications function
+export async function loadNotifications() {
   const currentEvent = useStore.getState().currentEvent;
-  const notifications: NotificationSetting[] = useStore.getState().notifications;
-  if (currentEvent) {
-    const now = Date.now();
-    const currentNotifications = notifications.filter(notification => {
-      const notificationTime = currentEvent.endTime - notification.minutesBefore * 60 * 1000;
-      return notificationTime > now && notification.eventId === currentEvent.id;
-    });
-    log('Popup', 'Loaded notifications:', currentNotifications);
-    displayNotifications();
-  } else {
-    log('Popup', 'No event found when loading notifications');
-  }
+  
+  // Load notifications from chrome.storage.local
+  chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+    let notifications: NotificationSetting[] = response.notifications || [];
+
+    if (currentEvent) {
+      const now = Date.now();
+      const currentNotifications = notifications.filter(notification => {
+        return notification.eventId === currentEvent.id && 
+               (currentEvent.endTime - notification.minutesBefore * 60 * 1000) > now;
+      });
+      log('Popup', 'Loaded notifications:', currentNotifications);
+      useStore.getState().setNotifications(currentNotifications);
+      displayNotifications();
+    } else {
+      log('Popup', 'No event found when loading notifications');
+    }
+  });
 }
+
+// Add this listener to the initPopup function
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'NOTIFICATIONS_UPDATED') {
+    log('Popup received NOTIFICATIONS_UPDATED message:', message.data);
+    loadNotifications();
+  }
+});
 
 // Initialize the popup when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {

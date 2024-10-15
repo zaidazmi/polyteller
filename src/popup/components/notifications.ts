@@ -8,6 +8,7 @@ import { log } from '../../utils/logUtils';
 import { formatDate, formatFullNotificationTime } from '../../utils/dateUtils';
 import { displayStatus } from '../utils';
 import { useStore } from '../../store/store';
+import { loadNotifications } from '../popup';
 
 /**
  * Sets a new notification for the current event.
@@ -59,7 +60,7 @@ export function setNotification() {
     }, (response) => {
       if (response.success) {
         displayStatus('Notification set successfully!');
-        displayNotifications();
+        loadNotifications(); // This should now work
       } else {
         displayStatus('Failed to set notification. Please try again.');
       }
@@ -79,7 +80,7 @@ export function displayNotifications() {
   log('Popup', 'Displaying notifications:', notifications);
   if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
-    notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id).forEach((notification: NotificationSetting, index: number) => {
+    notifications.forEach((notification: NotificationSetting, index: number) => {
       const li = document.createElement('li');
       const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
       
