@@ -35,6 +35,7 @@ import { useStore } from '../store/store';
           chrome.storage.local.set({ [`currentEvent_${sender.tab.id}`]: request.data });
           // Update the store with the new event
           useStore.getState().addEvent(request.data);
+          log('Background', 'Updated events in store:', useStore.getState().events);
         }
         break;
       case 'GET_EVENT_INFO':
@@ -66,6 +67,7 @@ import { useStore } from '../store/store';
         scheduleNotification(request.data)
           .then(() => {
             useStore.getState().addNotification(request.data);
+            log('Background', 'Updated notifications in store:', useStore.getState().notifications);
             sendResponse({ success: true });
           })
           .catch((error: Error) => {
@@ -74,8 +76,10 @@ import { useStore } from '../store/store';
           });
         return true; // Keeps the message channel open for the async response
       case 'GET_STORED_NOTIFICATIONS':
-        sendResponse({ notifications: useStore.getState().notifications });
-        return true;
+        const notifications = useStore.getState().notifications;
+        log('Background', 'Sending stored notifications:', notifications);
+        sendResponse({ notifications: notifications });
+        break;
       default:
         log('Background', 'Unknown message type:', request.type);
         sendResponse({ error: 'Unknown message type' });

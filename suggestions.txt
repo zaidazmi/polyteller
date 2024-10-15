@@ -137,5 +137,6 @@
 
 
 ## Release Plan
+- Track bets across multiple events. Use a heart button to add to your watchlist.
 - Ability to set multiple notifications.
 - Make it compatible with Brave and Firefox.
