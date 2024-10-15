@@ -81,7 +81,7 @@ export function displayNotifications() {
   log('Popup', 'Displaying notifications:', notifications);
   if (notificationsList && currentEvent) {
     notificationsList.innerHTML = '';
-    notifications.forEach((notification: NotificationSetting, index: number) => {
+    notifications.forEach((notification: NotificationSetting) => {
       const li = document.createElement('li');
       const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
       
@@ -91,7 +91,10 @@ export function displayNotifications() {
           <span class="notification-date">${formatDate(notificationTime)}</span>
           <a href="${notification.eventUrl}" target="_blank" class="event-link">${notification.eventTitle}</a>
         </div>
-        <button class="delete-notification" data-index="${index}" aria-label="Delete notification">
+        <button class="delete-notification" 
+                data-event-id="${notification.eventId}" 
+                data-minutes-before="${notification.minutesBefore}" 
+                aria-label="Delete notification">
           <span class="delete-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="3 6 5 6 21 6"></polyline>
@@ -123,30 +126,35 @@ export function displayNotifications() {
  */
 export async function deleteNotification(event: Event) {
   const button = event.currentTarget as HTMLButtonElement;
-  const index = parseInt(button.getAttribute('data-index') || '-1');
-  log('Popup', `Attempting to delete notification at index: ${index}`);
+  const eventId = button.getAttribute('data-event-id');
+  const minutesBefore = parseFloat(button.getAttribute('data-minutes-before') || '0');
+  log('Popup', `Attempting to delete notification: eventId=${eventId}, minutesBefore=${minutesBefore}`);
   
-  const currentEvent = useStore.getState().currentEvent;
-  const notifications = useStore.getState().notifications;
-  if (index !== -1 && currentEvent) {
-    const deletedNotification = notifications.filter((n: NotificationSetting) => n.eventId === currentEvent.id)[index];
+  if (eventId && !isNaN(minutesBefore)) {
+    const deletedNotification = { eventId, minutesBefore };
     log('Popup', `Notification to delete:`, deletedNotification);
     
-    chrome.runtime.sendMessage({
-      type: 'REMOVE_NOTIFICATION_ALARM',
-      data: deletedNotification
-    }, async (response) => {
+    try {
+      const response = await chrome.runtime.sendMessage({
+        type: 'REMOVE_NOTIFICATION_ALARM',
+        data: deletedNotification
+      });
+      
       log('Popup', `Received response from background:`, response);
-      if (response.success || response.alreadyTriggered) {
-        useStore.getState().removeNotification(deletedNotification.eventId, deletedNotification.minutesBefore);
-        displayNotifications();
+      if (response.success) {
+        useStore.getState().removeNotification(eventId, minutesBefore);
+        await displayNotifications();
         displayStatus('Notification deleted successfully!');
       } else {
         displayStatus('Error deleting notification. Please try again.');
       }
-    });
+    } catch (error) {
+      log('Popup', 'Error sending message to background:', error);
+      displayStatus('Error communicating with background. Please try again.');
+    }
   } else {
-    log('Popup', 'Invalid index for deletion or no current event');
+    log('Popup', 'Invalid notification data for deletion');
+    displayStatus('Error: Invalid notification data');
   }
 }
 

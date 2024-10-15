@@ -2,6 +2,7 @@ import { useStore } from '../store/store';
 import { NotificationSetting, PolymarketEvent } from '../types';
 import { formatFullNotificationTime, formatDate } from '../utils/dateUtils';
 import { log } from '../utils/logUtils';
+import { displayStatus } from './utils';
 
 function displayAllNotifications() {
   const allNotificationsElement = document.getElementById('all-notifications');
@@ -46,11 +47,8 @@ function displayAllNotifications() {
         }
       });
 
-      // Add event listeners for delete buttons
-      const deleteButtons = document.querySelectorAll('.delete-notification');
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', deleteNotification);
-      });
+      // After populating the notifications
+      addDeleteEventListeners();
 
       // Start countdown timers
       startCountdowns();
@@ -105,24 +103,42 @@ function createEventElement(event: PolymarketEvent, notifications: NotificationS
   return eventElement;
 }
 
-function deleteNotification(event: Event) {
+async function deleteNotification(event: Event) {
   const target = event.target as HTMLElement;
   const button = target.closest('.delete-notification') as HTMLButtonElement;
   
   if (!button) return;
 
   const eventId = button.getAttribute('data-event-id');
-  const minutesBefore = parseInt(button.getAttribute('data-minutes-before') || '0', 10);
+  const minutesBefore = parseFloat(button.getAttribute('data-minutes-before') || '0');
 
-  if (eventId) {
-    chrome.runtime.sendMessage({
-      type: 'REMOVE_NOTIFICATION_ALARM',
-      data: { eventId, minutesBefore }
-    }, (response) => {
-      if (response.success || response.alreadyTriggered) {
-        displayAllNotifications();
+  log('All Notifications', `Attempting to delete notification: eventId=${eventId}, minutesBefore=${minutesBefore}`);
+  
+  if (eventId && !isNaN(minutesBefore)) {
+    const deletedNotification = { eventId, minutesBefore };
+    log('All Notifications', `Notification to delete:`, deletedNotification);
+    
+    try {
+      const response = await chrome.runtime.sendMessage({
+        type: 'REMOVE_NOTIFICATION_ALARM',
+        data: deletedNotification
+      });
+      
+      log('All Notifications', `Received response from background:`, response);
+      if (response.success) {
+        useStore.getState().removeNotification(eventId, minutesBefore);
+        await displayAllNotifications();
+        displayStatus('Notification deleted successfully!');
+      } else {
+        displayStatus('Error deleting notification. Please try again.');
       }
-    });
+    } catch (error) {
+      log('All Notifications', 'Error sending message to background:', error);
+      displayStatus('Error communicating with background. Please try again.');
+    }
+  } else {
+    log('All Notifications', 'Invalid notification data for deletion');
+    displayStatus('Error: Invalid notification data');
   }
 }
 
@@ -164,3 +180,10 @@ chrome.runtime.onMessage.addListener((message) => {
     displayAllNotifications();
   }
 });
+
+function addDeleteEventListeners() {
+  const deleteButtons = document.querySelectorAll('.delete-notification');
+  deleteButtons.forEach(button => {
+    button.addEventListener('click', deleteNotification);
+  });
+}
