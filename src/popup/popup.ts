@@ -59,25 +59,28 @@ async function initPopup() {
 }
 
 // Export the loadNotifications function
-export async function loadNotifications() {
-  const currentEvent = useStore.getState().currentEvent;
-  
-  // Load notifications from chrome.storage.local
-  chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
-    let notifications: NotificationSetting[] = response.notifications || [];
+export async function loadNotifications(): Promise<void> {
+  return new Promise((resolve) => {
+    const currentEvent = useStore.getState().currentEvent;
+    
+    // Load notifications from chrome.storage.local
+    chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+      let notifications: NotificationSetting[] = response.notifications || [];
 
-    if (currentEvent) {
-      const now = Date.now();
-      const currentNotifications = notifications.filter(notification => {
-        return notification.eventId === currentEvent.id && 
-               (currentEvent.endTime - notification.minutesBefore * 60 * 1000) > now;
-      });
-      log('Popup', 'Loaded notifications:', currentNotifications);
-      useStore.getState().setNotifications(currentNotifications);
-      displayNotifications();
-    } else {
-      log('Popup', 'No event found when loading notifications');
-    }
+      if (currentEvent) {
+        const now = Date.now();
+        const currentNotifications = notifications.filter(notification => {
+          return notification.eventId === currentEvent.id && 
+                 (currentEvent.endTime - notification.minutesBefore * 60 * 1000) > now;
+        });
+        log('Popup', 'Loaded notifications:', currentNotifications);
+        useStore.getState().setNotifications(currentNotifications);
+        displayNotifications();
+      } else {
+        log('Popup', 'No event found when loading notifications');
+      }
+      resolve();
+    });
   });
 }
 
