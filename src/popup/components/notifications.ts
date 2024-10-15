@@ -57,10 +57,11 @@ export function setNotification() {
     chrome.runtime.sendMessage({
       type: 'SCHEDULE_NOTIFICATION',
       data: notificationSetting
-    }, (response) => {
+    }, async (response) => {
       if (response.success) {
+        await loadNotifications();
         displayStatus('Notification set successfully!');
-        loadNotifications(); // This should now work
+        displayNotifications();
       } else {
         displayStatus('Failed to set notification. Please try again.');
       }

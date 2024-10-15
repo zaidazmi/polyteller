@@ -15,8 +15,11 @@ export let storedNotifications: Notification[] = [];
  * Updates the stored notifications array.
  * @param notifications - The new array of notifications to store
  */
-export function updateStoredNotifications(notifications: Notification[]) {
+export async function updateStoredNotifications(notifications: Notification[]) {
   storedNotifications = notifications;
+  await chrome.storage.local.set({ storedNotifications: notifications });
+  log('Alarms', 'Updated stored notifications:', notifications);
+  sendMessageToPopup({ type: 'NOTIFICATIONS_UPDATED', data: notifications });
 }
 
 /**
@@ -32,7 +35,8 @@ export async function scheduleNotification(notificationData: NotificationSetting
   }
 
   const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
-  const alarmName = `notification_${notificationData.eventId}_${notificationData.minutesBefore}`;
+  const roundedMinutesBefore = Math.round(notificationData.minutesBefore);
+  const alarmName = `notification_${notificationData.eventId}_${roundedMinutesBefore}`;
 
   await chrome.alarms.create(alarmName, {
     when: notificationTime,
@@ -43,7 +47,7 @@ export async function scheduleNotification(notificationData: NotificationSetting
   const storedNotification: Notification = {
     id: alarmName,
     eventId: notificationData.eventId,
-    minutesBefore: notificationData.minutesBefore,
+    minutesBefore: roundedMinutesBefore,
     scheduledTime: notificationTime,
     triggered: false,
     eventTitle: notificationData.eventTitle,
@@ -52,6 +56,8 @@ export async function scheduleNotification(notificationData: NotificationSetting
 
   await chrome.storage.local.set({ [alarmName]: storedNotification });
   storedNotifications.push(storedNotification);
+
+  await updateStoredNotifications(storedNotifications);
 
   log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
   log(`Total scheduled notifications: ${storedNotifications.length}`);
@@ -67,36 +73,27 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   const minutesBefore = parseFloat(minutesBeforeStr);
 
   if (eventId && !isNaN(minutesBefore)) {
-    const currentEvent = await getCurrentEvent();
-    if (currentEvent && currentEvent.id === eventId) {
-      const now = Date.now();
-      const timeLeft = currentEvent.endTime - now;
-      const formattedTimeLeft = formatRemainingTime(timeLeft);
-
-      const endDate = new Date(currentEvent.endTime);
-      const localTimezone = getLocalTimezone();
-      const localTimezoneAbbr = getTimezoneAbbreviation(localTimezone);
-
-      const formattedLocalEndDate = formatDate(endDate);
-
+    const storedNotification = storedNotifications.find(n => n.id === alarm.name);
+    if (storedNotification) {
       // Create and show the notification
       chrome.notifications.create({
         type: 'basic',
         iconUrl: 'icon.png',
         title: 'Event Reminder',
-        message: `${currentEvent.title} is ending in ${formattedTimeLeft} at ${formattedLocalEndDate} ${localTimezoneAbbr}`
+        message: `${storedNotification.eventTitle} is ending soon!`
       }, (notificationId) => {
         log('Notification created with ID:', notificationId);
       });
 
-      // Remove the triggered notification
-      await removeTriggeredNotification(alarm.name);
-
       // Send a message to the popup to update its notification list
-      chrome.runtime.sendMessage({
+      sendMessageToPopup({
         type: 'NOTIFICATION_TRIGGERED',
         data: { eventId, minutesBefore }
       });
+
+      await removeTriggeredNotification(alarm.name);
+    } else {
+      log("Stored notification not found for alarm:", alarm.name);
     }
   } else {
     log("Non-notification alarm triggered:", alarm.name);
@@ -117,6 +114,8 @@ async function removeTriggeredNotification(alarmName: string) {
   // Remove the alarm
   await chrome.alarms.clear(alarmName);
 
+  await updateStoredNotifications(storedNotifications);
+
   log(`Triggered notification removed: ${alarmName}`);
 }
 
@@ -133,6 +132,7 @@ export function triggerAlarmsManually() {
           handleAlarm(alarm);
         } else {
           log("Alarm not found for manual trigger:", notification.id);
+          removeTriggeredNotification(notification.id);
         }
       });
     }
@@ -181,4 +181,45 @@ export async function getCurrentEvent(): Promise<PolymarketEvent | null> {
   // Use the correct key to get the current event
   const result = await chrome.storage.local.get(`currentEvent_${currentTabId}`);
   return result[`currentEvent_${currentTabId}`] || null;
+}
+
+/**
+ * Cleans up expired notifications.
+ */
+export async function cleanupNotifications() {
+  const now = Date.now();
+  const expiredNotifications = storedNotifications.filter(n => n.scheduledTime <= now);
+  
+  for (const notification of expiredNotifications) {
+    await chrome.alarms.clear(notification.id);
+    await chrome.storage.local.remove(notification.id);
+  }
+
+  storedNotifications = storedNotifications.filter(n => n.scheduledTime > now);
+  await updateStoredNotifications(storedNotifications);
+
+  log('Background', `Notifications cleanup: ${expiredNotifications.length} removed, ${storedNotifications.length} remaining`);
+}
+
+/**
+ * Syncs stored notifications with actual alarms.
+ */
+export async function syncStoredNotificationsWithAlarms() {
+  const alarms = await chrome.alarms.getAll();
+  const alarmIds = new Set(alarms.map(a => a.name));
+  
+  storedNotifications = storedNotifications.filter(n => alarmIds.has(n.id));
+  await updateStoredNotifications(storedNotifications);
+}
+
+/**
+ * Sends a message to the popup with error handling.
+ * @param message - The message to send
+ */
+function sendMessageToPopup(message: any) {
+  chrome.runtime.sendMessage(message, (response) => {
+    if (chrome.runtime.lastError) {
+      log('Background', 'Error sending message to popup:', chrome.runtime.lastError.message);
+    }
+  });
 }

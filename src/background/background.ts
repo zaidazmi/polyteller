@@ -5,21 +5,10 @@
  */
 
 import { setupMessageListeners } from './messaging';
-import { cleanupNotifications } from './notifications';
-import { checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification } from './alarms';
+import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, syncStoredNotificationsWithAlarms } from './alarms';
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification } from '../types';
 import { useStore } from '../store/store';
-
-let storedNotifications: Notification[] = [];
-
-async function loadStoredNotifications() {
-  const result = await chrome.storage.local.get('storedNotifications');
-  if (result.storedNotifications) {
-    storedNotifications = result.storedNotifications;
-    log('Background', 'Loaded stored notifications:', storedNotifications);
-  }
-}
 
 (() => {
   "use strict";
@@ -56,14 +45,13 @@ async function loadStoredNotifications() {
       case 'REMOVE_NOTIFICATION_ALARM':
         const notificationToRemove = request.data as NotificationSetting;
         log('Background', `Attempting to remove alarm for notification:`, notificationToRemove);
-        const alarmName = `notification_${notificationToRemove.eventId}_${notificationToRemove.minutesBefore}`;
+        const alarmName = `notification_${notificationToRemove.eventId}_${Math.round(notificationToRemove.minutesBefore)}`;
         chrome.alarms.clear(alarmName, async (wasCleared) => {
           if (wasCleared) {
             log('Background', `Alarm ${alarmName} removed successfully`);
             // Remove the notification from storedNotifications
-            const updatedNotifications = storedNotifications.filter(n => n.id !== alarmName);
-            // Update the storedNotifications in the alarms module
-            updateStoredNotifications(updatedNotifications);
+            const updatedNotifications = useStore.getState().notifications.filter(n => n.eventId !== notificationToRemove.eventId || n.minutesBefore !== notificationToRemove.minutesBefore);
+            useStore.getState().setNotifications(updatedNotifications);
             // Remove from storage
             await chrome.storage.local.remove(alarmName);
             sendResponse({ success: true });
@@ -77,8 +65,7 @@ async function loadStoredNotifications() {
       case 'SCHEDULE_NOTIFICATION':
         scheduleNotification(request.data)
           .then(() => {
-            storedNotifications.push(request.data);
-            updateStoredNotifications(storedNotifications);
+            useStore.getState().addNotification(request.data);
             sendResponse({ success: true });
           })
           .catch((error: Error) => {
@@ -87,7 +74,7 @@ async function loadStoredNotifications() {
           });
         return true; // Keeps the message channel open for the async response
       case 'GET_STORED_NOTIFICATIONS':
-        sendResponse({ notifications: storedNotifications });
+        sendResponse({ notifications: useStore.getState().notifications });
         return true;
       default:
         log('Background', 'Unknown message type:', request.type);
@@ -96,23 +83,16 @@ async function loadStoredNotifications() {
   });
 
   // Alarm listener
-  chrome.alarms.onAlarm.addListener(handleAlarm);
+  chrome.alarms.onAlarm.addListener((alarm) => {
+    log('Alarm triggered in background:', alarm);
+    handleAlarm(alarm);
+  });
 
   // Periodic tasks
   setInterval(cleanupNotifications, 60000); // Cleanup notifications every minute
   setInterval(checkAlarms, 60000); // Check alarms every minute
   setInterval(triggerAlarmsManually, 10000); // Manually trigger alarms every 10 seconds
+  setInterval(syncStoredNotificationsWithAlarms, 60000); // Sync stored notifications with alarms every minute
 
   log('Background', "Background script initialized with new notification handling");
-
-  loadStoredNotifications();
 })();
-
-async function updateStoredNotifications(notifications: Notification[]) {
-  storedNotifications = notifications;
-  await chrome.storage.local.set({ storedNotifications: notifications });
-  log('Background', 'Updated stored notifications:', notifications);
-  
-  // Notify the popup to update its notifications
-  chrome.runtime.sendMessage({ type: 'NOTIFICATIONS_UPDATED', data: notifications });
-}
