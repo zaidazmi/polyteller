@@ -27,7 +27,18 @@ function displayAllNotifications() {
 
       const groupedNotifications = groupNotificationsByEvent(notifications, eventMap);
 
-      groupedNotifications.forEach((eventNotifications, eventId) => {
+      // Sort events by endTime
+      const sortedEvents = Array.from(groupedNotifications.entries())
+        .sort(([eventIdA, notificationsA], [eventIdB, notificationsB]) => {
+          const eventA = eventMap.get(eventIdA);
+          const eventB = eventMap.get(eventIdB);
+          if (eventA && eventB) {
+            return eventA.endTime - eventB.endTime;
+          }
+          return 0;
+        });
+
+      sortedEvents.forEach(([eventId, eventNotifications]) => {
         const event = eventMap.get(eventId);
         if (event) {
           const eventElement = createEventElement(event, eventNotifications);
@@ -64,7 +75,7 @@ function createEventElement(event: PolymarketEvent, notifications: NotificationS
   eventElement.className = 'event-notifications';
   eventElement.setAttribute('data-event-id', event.id);
   eventElement.innerHTML = `
-    <h2>${event.title}</h2>
+    <h2><a href="${event.url}" target="_blank" class="event-link">${event.title}</a></h2>
     <div class="event-countdown" data-end-time="${event.endTime}"></div>
     <ul class="notifications-list"></ul>
   `;
