@@ -58,7 +58,8 @@ export function extractEventInfo(): PolymarketEvent | null {
         title: eventData.title,
         endTime: parsedDate.getTime(),
         endDate: endDateValue,
-        timezone: timezone
+        timezone: timezone,
+        url: window.location.href // Add this line to include the current page URL
       };
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;

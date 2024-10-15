@@ -7,6 +7,8 @@ export interface Notification {
   eventId: string;
   scheduledTime: number;
   triggered: boolean;
+  eventTitle: string;
+  eventUrl: string;
 }
 
 export interface EventInfo {

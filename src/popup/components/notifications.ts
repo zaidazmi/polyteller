@@ -39,7 +39,9 @@ export function setNotification() {
 
     const notificationSetting: NotificationSetting = {
       eventId: currentEvent.id,
-      minutesBefore: minutesBefore
+      minutesBefore: minutesBefore,
+      eventTitle: currentEvent.title,
+      eventUrl: currentEvent.url
     };
 
     const existingNotification = useStore.getState().notifications.find(
@@ -87,6 +89,7 @@ export function displayNotifications() {
         <div class="notification-info">
           <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
           <span class="notification-date">${formatDate(notificationTime)}</span>
+          <a href="${notification.eventUrl}" target="_blank" class="event-link">${notification.eventTitle}</a>
         </div>
         <button class="delete-notification" data-index="${index}" aria-label="Delete notification">
           <span class="delete-icon">
@@ -101,7 +104,7 @@ export function displayNotifications() {
       `;
       notificationsList.appendChild(li);
     });
-
+    
     const deleteButtons = document.querySelectorAll('.delete-notification');
     deleteButtons.forEach(button => {
       button.addEventListener('click', deleteNotification);
