@@ -97,13 +97,14 @@ export const store = createStore<AppState>()(
           events: state.events.filter((e) => e.id !== eventId),
         })),
       removeNotification: (eventId: string, minutesBefore: number) =>
-        set((state) => ({
-          ...state,
-          notifications: state.notifications.filter(
-            (n) =>
-              !(n.eventId === eventId && n.minutesBefore === minutesBefore)
-          ),
-        })),
+        set((state) => {
+          console.log('Removing notification:', { eventId, minutesBefore });
+          const updatedNotifications = state.notifications.filter(
+            (n) => !(n.eventId === eventId && Math.abs(n.minutesBefore - minutesBefore) < 0.1)
+          );
+          console.log('Updated notifications:', updatedNotifications);
+          return { notifications: updatedNotifications };
+        }),
     }),
     persistOptions
   )

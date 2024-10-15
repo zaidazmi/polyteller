@@ -5,7 +5,7 @@
  */
 
 import { setupMessageListeners } from './messaging';
-import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, syncStoredNotificationsWithAlarms } from './alarms';
+import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, syncStoredNotificationsWithAlarms, removeTriggeredNotification } from './alarms';
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification } from '../types';
 import { useStore } from '../store/store';
@@ -44,25 +44,27 @@ import { useStore } from '../store/store';
         });
         return true; // Keep the message channel open for the async response
       case 'REMOVE_NOTIFICATION_ALARM':
-        const notificationToRemove = request.data as NotificationSetting;
-        log('Background', `Attempting to remove alarm for notification:`, notificationToRemove);
-        const alarmName = `notification_${notificationToRemove.eventId}_${Math.round(notificationToRemove.minutesBefore)}`;
-        chrome.alarms.clear(alarmName, async (wasCleared) => {
-          if (wasCleared) {
-            log('Background', `Alarm ${alarmName} removed successfully`);
-            // Remove the notification from storedNotifications
-            const updatedNotifications = useStore.getState().notifications.filter(n => n.eventId !== notificationToRemove.eventId || n.minutesBefore !== notificationToRemove.minutesBefore);
+        (async () => {
+          try {
+            const { eventId, minutesBefore } = request.data;
+            const alarmName = `notification_${eventId}_${Math.round(minutesBefore)}`;
+            log('Background', `Attempting to remove alarm for notification: ${alarmName}`);
+            
+            await chrome.alarms.clear(alarmName);
+            const updatedNotifications = useStore.getState().notifications.filter(n => 
+              !(n.eventId === eventId && Math.abs(n.minutesBefore - minutesBefore) < 0.1)
+            );
             useStore.getState().setNotifications(updatedNotifications);
-            // Remove from storage
-            await chrome.storage.local.remove(alarmName);
-            notifyAllTabs({ type: 'NOTIFICATIONS_UPDATED' }); // Add this line
+            
+            // Remove from storedNotifications in alarms.ts
+            await removeTriggeredNotification(alarmName);
+            
             sendResponse({ success: true });
-          } else {
-            // The alarm doesn't exist, which means it was likely already triggered
-            log('Background', `Alarm ${alarmName} not found, likely already triggered`);
-            sendResponse({ alreadyTriggered: true });
+          } catch (error: unknown) {
+            log('Background', 'Error removing alarm:', error);
+            sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
           }
-        });
+        })();
         return true; // Keeps the message channel open for the async response
       case 'SCHEDULE_NOTIFICATION':
         scheduleNotification(request.data)
@@ -99,6 +101,25 @@ import { useStore } from '../store/store';
   setInterval(triggerAlarmsManually, 10000); // Manually trigger alarms every 10 seconds
   setInterval(syncStoredNotificationsWithAlarms, 60000); // Sync stored notifications with alarms every minute
 
+  // Add this function
+  async function syncStoreWithBackgroundNotifications() {
+    const storeNotifications = useStore.getState().notifications;
+    const backgroundNotifications = storeNotifications.map((n: NotificationSetting) => ({
+      eventId: n.eventId,
+      minutesBefore: n.minutesBefore,
+      eventTitle: n.eventTitle,
+      eventUrl: n.eventUrl
+    }));
+    
+    if (JSON.stringify(storeNotifications) !== JSON.stringify(backgroundNotifications)) {
+      useStore.getState().setNotifications(backgroundNotifications);
+      log('Background', 'Synced store notifications with background');
+    }
+  }
+
+  // Add this to your periodic tasks
+  setInterval(syncStoreWithBackgroundNotifications, 5000); // Sync every 5 seconds
+
   log('Background', "Background script initialized with new notification handling");
 })();
 
@@ -106,7 +127,9 @@ import { useStore } from '../store/store';
 function notifyAllTabs(message: any) {
   chrome.tabs.query({}, (tabs) => {
     tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id!, message);
+      if (tab.id) {
+        chrome.tabs.sendMessage(tab.id, message);
+      }
     });
   });
 }
