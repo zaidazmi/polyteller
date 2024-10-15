@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Listen for updates from the background script
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === 'NOTIFICATIONS_UPDATED') {
+    console.log('Received NOTIFICATIONS_UPDATED message, refreshing notifications');
     displayAllNotifications();
   }
 });
