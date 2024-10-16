@@ -44,16 +44,6 @@ export function setNotification() {
       eventUrl: currentEvent.url
     };
 
-    const existingNotification = useStore.getState().notifications.find(
-      (n: NotificationSetting) => n.eventId === notificationSetting.eventId && n.minutesBefore === notificationSetting.minutesBefore
-    );
-
-    if (existingNotification) {
-      displayStatus('A notification for this time already exists.');
-      return;
-    }
-
-    useStore.getState().addNotification(notificationSetting);
     chrome.runtime.sendMessage({
       type: 'SCHEDULE_NOTIFICATION',
       data: notificationSetting
@@ -63,7 +53,7 @@ export function setNotification() {
         displayStatus('Notification set successfully!');
         displayNotifications();
       } else {
-        displayStatus('Failed to set notification. Please try again.');
+        displayStatus(`Failed to set notification: ${response.error}`);
       }
     });
   } else {
@@ -77,47 +67,67 @@ export function setNotification() {
 export function displayNotifications() {
   const notificationsList = document.getElementById('notifications-list');
   const currentEvent = useStore.getState().currentEvent;
-  const notifications = useStore.getState().notifications;
-  log('Popup', 'Displaying notifications:', notifications);
-  if (notificationsList && currentEvent) {
-    notificationsList.innerHTML = '';
-    notifications.forEach((notification: NotificationSetting) => {
-      const li = document.createElement('li');
-      const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
-      
-      li.innerHTML = `
-        <div class="notification-info">
-          <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
-          <span class="notification-date">${formatDate(notificationTime)}</span>
-          <a href="${notification.eventUrl}" target="_blank" class="event-link">${notification.eventTitle}</a>
-        </div>
-        <button class="delete-notification" 
-                data-event-id="${notification.eventId}" 
-                data-minutes-before="${notification.minutesBefore}" 
-                aria-label="Delete notification">
-          <span class="delete-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="3 6 5 6 21 6"></polyline>
-              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              <line x1="10" y1="11" x2="10" y2="17"></line>
-              <line x1="14" y1="11" x2="14" y2="17"></line>
-            </svg>
-          </span>
-        </button>
-      `;
-      notificationsList.appendChild(li);
-    });
-    
-    const deleteButtons = document.querySelectorAll('.delete-notification');
-    deleteButtons.forEach(button => {
-      button.addEventListener('click', deleteNotification);
-    });
-  } else {
-    log('Popup', 'Unable to display notifications: no event or notificationsList not found');
+  
+  if (!currentEvent) {
+    log('Popup', 'No current event found');
     if (notificationsList) {
-      notificationsList.innerHTML = '<li>No event selected or notifications available.</li>';
+      notificationsList.innerHTML = '<li>No event selected.</li>';
     }
+    return;
   }
+
+  chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+    const allNotifications = response.notifications;
+    log('Popup', 'All notifications:', allNotifications);
+    
+    // Filter notifications for the current event
+    const currentEventNotifications = allNotifications.filter(
+      (notification: NotificationSetting) => notification.eventId === currentEvent.id
+    );
+    
+    log('Popup', 'Displaying notifications for current event:', currentEventNotifications);
+    
+    if (notificationsList) {
+      notificationsList.innerHTML = '';
+      if (currentEventNotifications.length === 0) {
+        notificationsList.innerHTML = '<li>No notifications set for this event.</li>';
+      } else {
+        currentEventNotifications.forEach((notification: NotificationSetting) => {
+          const li = document.createElement('li');
+          const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
+          
+          li.innerHTML = `
+            <div class="notification-info">
+              <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
+              <span class="notification-date">${formatDate(notificationTime)}</span>
+              <a href="${notification.eventUrl}" target="_blank" class="event-link">${notification.eventTitle}</a>
+            </div>
+            <button class="delete-notification" 
+                    data-event-id="${notification.eventId}" 
+                    data-minutes-before="${notification.minutesBefore}" 
+                    aria-label="Delete notification">
+              <span class="delete-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+              </span>
+            </button>
+          `;
+          notificationsList.appendChild(li);
+        });
+        
+        const deleteButtons = document.querySelectorAll('.delete-notification');
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', deleteNotification);
+        });
+      }
+    } else {
+      log('Popup', 'Unable to display notifications: notificationsList not found');
+    }
+  });
 }
 
 /**

@@ -5,7 +5,7 @@
  */
 
 import { setupMessageListeners } from './messaging';
-import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, syncStoredNotificationsWithAlarms, removeTriggeredNotification } from './alarms';
+import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, checkMissedAlarms, scheduleNotification, syncStoredNotificationsWithAlarms, removeTriggeredNotification, getStoredNotifications } from './alarms';
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification } from '../types';
 import { useStore } from '../store/store';
@@ -47,19 +47,18 @@ import { useStore } from '../store/store';
         (async () => {
           try {
             const { eventId, minutesBefore } = request.data;
-            const alarmName = `notification_${eventId}_${Math.round(minutesBefore)}`;
-            log('Background', `Attempting to remove alarm for notification: ${alarmName}`);
-            
-            await chrome.alarms.clear(alarmName);
-            const updatedNotifications = useStore.getState().notifications.filter(n => 
-              !(n.eventId === eventId && Math.abs(n.minutesBefore - minutesBefore) < 0.1)
+            const notifications = await getStoredNotifications();
+            const notificationToRemove = notifications.find(n => 
+              n.eventId === eventId && Math.abs(n.minutesBefore - minutesBefore) < 0.1
             );
-            useStore.getState().setNotifications(updatedNotifications);
             
-            // Remove from storedNotifications in alarms.ts
-            await removeTriggeredNotification(alarmName);
-            
-            sendResponse({ success: true });
+            if (notificationToRemove) {
+              log('Background', `Attempting to remove alarm for notification: ${notificationToRemove.id}`);
+              await removeTriggeredNotification(notificationToRemove.id);
+              sendResponse({ success: true });
+            } else {
+              sendResponse({ success: false, error: 'Notification not found' });
+            }
           } catch (error: unknown) {
             log('Background', 'Error removing alarm:', error);
             sendResponse({ success: false, error: error instanceof Error ? error.message : String(error) });
@@ -69,20 +68,18 @@ import { useStore } from '../store/store';
       case 'SCHEDULE_NOTIFICATION':
         scheduleNotification(request.data)
           .then(() => {
-            useStore.getState().addNotification(request.data);
-            log('Background', 'Updated notifications in store:', useStore.getState().notifications);
             sendResponse({ success: true });
           })
           .catch((error: Error) => {
             console.error("Error scheduling notification:", error);
-            sendResponse({ success: false });
+            sendResponse({ success: false, error: error.message });
           });
         return true; // Keeps the message channel open for the async response
       case 'GET_STORED_NOTIFICATIONS':
-        const notifications = useStore.getState().notifications;
-        log('Background', 'Sending stored notifications:', notifications);
-        sendResponse({ notifications: notifications });
-        break;
+        getStoredNotifications().then(notifications => {
+          sendResponse({ notifications });
+        });
+        return true; // Keep the message channel open for the async response
       default:
         log('Background', 'Unknown message type:', request.type);
         sendResponse({ error: 'Unknown message type' });
@@ -104,13 +101,7 @@ import { useStore } from '../store/store';
   // Add this function
   async function syncStoreWithBackgroundNotifications() {
     const storeNotifications = useStore.getState().notifications;
-    const backgroundNotifications = storeNotifications.map((n: NotificationSetting) => ({
-      eventId: n.eventId,
-      minutesBefore: n.minutesBefore,
-      eventTitle: n.eventTitle,
-      eventUrl: n.eventUrl
-    }));
-    
+    const backgroundNotifications = await getStoredNotifications();
     if (JSON.stringify(storeNotifications) !== JSON.stringify(backgroundNotifications)) {
       useStore.getState().setNotifications(backgroundNotifications);
       log('Background', 'Synced store notifications with background');
