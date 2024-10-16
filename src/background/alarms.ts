@@ -36,27 +36,20 @@ export async function scheduleNotification(notificationData: NotificationSetting
 
   const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
   const roundedMinutesBefore = Math.round(notificationData.minutesBefore);
-  const alarmName = `notification_${notificationData.eventId}_${roundedMinutesBefore}`;
+  const alarmName = `notification_${notificationData.eventId}_${roundedMinutesBefore}_${Date.now()}`; // Add timestamp to make it unique
 
   await chrome.alarms.create(alarmName, {
     when: notificationTime,
   });
 
-  log(`Alarm created for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
-
-  const storedNotification: Notification = {
+  const notification: Notification = {
+    ...notificationData,
     id: alarmName,
-    eventId: notificationData.eventId,
-    minutesBefore: roundedMinutesBefore,
     scheduledTime: notificationTime,
     triggered: false,
-    eventTitle: notificationData.eventTitle,
-    eventUrl: notificationData.eventUrl
   };
 
-  await chrome.storage.local.set({ [alarmName]: storedNotification });
-  storedNotifications.push(storedNotification);
-
+  storedNotifications.push(notification);
   await updateStoredNotifications(storedNotifications);
 
   log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
@@ -69,34 +62,19 @@ export async function scheduleNotification(notificationData: NotificationSetting
  */
 export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   log('Alarm triggered:', alarm);
-  const [_, eventId, minutesBeforeStr] = alarm.name.split('_');
-  const minutesBefore = parseFloat(minutesBeforeStr);
+  const notification = storedNotifications.find(n => n.id === alarm.name);
 
-  if (eventId && !isNaN(minutesBefore)) {
-    const storedNotification = storedNotifications.find(n => n.id === alarm.name);
-    if (storedNotification) {
-      // Create and show the notification
-      chrome.notifications.create({
-        type: 'basic',
-        iconUrl: 'icon.png',
-        title: 'Event Reminder',
-        message: `${storedNotification.eventTitle} is ending soon!`
-      }, (notificationId) => {
-        log('Notification created with ID:', notificationId);
-      });
+  if (notification) {
+    // Create and show the notification
+    await chrome.notifications.create(notification.id, {
+      type: 'basic',
+      iconUrl: 'icon.png',
+      title: 'Event Reminder',
+      message: `${notification.eventTitle} is starting in ${formatRemainingTime(notification.minutesBefore)}!`,
+    });
 
-      // Send a message to the popup to update its notification list
-      sendMessageToPopup({
-        type: 'NOTIFICATION_TRIGGERED',
-        data: { eventId, minutesBefore }
-      });
-
-      await removeTriggeredNotification(alarm.name);
-    } else {
-      log("Stored notification not found for alarm:", alarm.name);
-    }
-  } else {
-    log("Non-notification alarm triggered:", alarm.name);
+    // Remove the triggered notification from storage
+    await removeTriggeredNotification(notification.id);
   }
 }
 
@@ -222,4 +200,9 @@ function sendMessageToPopup(message: any) {
       log('Background', 'Error sending message to popup:', chrome.runtime.lastError.message);
     }
   });
+}
+
+export async function getStoredNotifications(): Promise<Notification[]> {
+  const result = await chrome.storage.local.get('storedNotifications');
+  return result.storedNotifications || [];
 }
