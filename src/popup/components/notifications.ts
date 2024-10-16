@@ -53,7 +53,11 @@ export function setNotification() {
         displayStatus('Notification set successfully!');
         displayNotifications();
       } else {
-        displayStatus(`Failed to set notification: ${response.error}`);
+        if (response.isDuplicate) {
+          displayStatus('A notification for this time already exists.');
+        } else {
+          displayStatus(`Failed to set notification: ${response.error}`);
+        }
       }
     });
   } else {
@@ -77,6 +81,14 @@ export function displayNotifications() {
   }
 
   chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+    if (chrome.runtime.lastError) {
+      log('Popup', 'Error fetching notifications:', chrome.runtime.lastError);
+      if (notificationsList) {
+        notificationsList.innerHTML = '<li>Error loading notifications. Please try again.</li>';
+      }
+      return;
+    }
+
     const allNotifications = response.notifications;
     log('Popup', 'All notifications:', allNotifications);
     
