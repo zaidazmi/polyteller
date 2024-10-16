@@ -208,13 +208,23 @@ export async function syncStoredNotificationsWithAlarms() {
 }
 
 /**
- * Sends a message to the popup with error handling.
+ * Sends a message to the popup with improved error handling.
  * @param message - The message to send
  */
 function sendMessageToPopup(message: any) {
   chrome.runtime.sendMessage(message, (response) => {
     if (chrome.runtime.lastError) {
-      log('Background', 'Error sending message to popup:', chrome.runtime.lastError.message);
+      // Check if the error is due to a closed message port
+      if (chrome.runtime.lastError.message === "The message port closed before a response was received.") {
+        // This is an expected scenario when the popup is not open
+        log('Background', 'Popup is not open to receive message:', message);
+      } else {
+        // Log other unexpected errors
+        log('Background', 'Error sending message to popup:', chrome.runtime.lastError.message);
+      }
+    } else {
+      // Message sent successfully
+      log('Background', 'Message sent to popup successfully:', message);
     }
   });
 }
