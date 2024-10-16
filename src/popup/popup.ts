@@ -63,8 +63,20 @@ export async function loadNotifications(): Promise<void> {
   return new Promise((resolve) => {
     const currentEvent = useStore.getState().currentEvent;
     
-    // Load notifications from chrome.storage.local
+    const timeoutId = setTimeout(() => {
+      log('Popup', 'Timeout while loading notifications');
+      resolve();
+    }, 5000); // 5-second timeout
+
     chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+      clearTimeout(timeoutId);
+
+      if (chrome.runtime.lastError) {
+        log('Popup', 'Error loading notifications:', chrome.runtime.lastError);
+        resolve();
+        return;
+      }
+
       let notifications: NotificationSetting[] = response.notifications || [];
 
       if (currentEvent) {

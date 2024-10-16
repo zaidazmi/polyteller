@@ -34,25 +34,36 @@ export async function scheduleNotification(notificationData: NotificationSetting
     throw new Error('No current event found for scheduling notification');
   }
 
-  const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
-  const roundedMinutesBefore = Math.round(notificationData.minutesBefore);
-  const alarmName = `notification_${notificationData.eventId}_${roundedMinutesBefore}_${Date.now()}`; // Add timestamp to make it unique
+  if (!isValidNotificationTime(currentEvent.endTime, notificationData.minutesBefore)) {
+    throw new Error('Invalid notification time: The notification time has already passed');
+  }
 
-  await chrome.alarms.create(alarmName, {
-    when: notificationTime,
-  });
+  const existingNotifications = await getStoredNotifications();
+  const isDuplicate = existingNotifications.some(notification => 
+    notification.eventId === notificationData.eventId && 
+    Math.abs(notification.minutesBefore - notificationData.minutesBefore) < 0.1
+  );
+
+  if (isDuplicate) {
+    throw new Error('A notification for this event and time already exists');
+  }
+
+  const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
+  const alarmName = `notification_${notificationData.eventId}_${notificationData.minutesBefore}_${Date.now()}`;
 
   const notification: Notification = {
-    ...notificationData,
     id: alarmName,
+    ...notificationData,
     scheduledTime: notificationTime,
-    triggered: false,
+    triggered: false // Add this line
   };
+
+  await chrome.alarms.create(alarmName, { when: notificationTime });
+  log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
 
   storedNotifications.push(notification);
   await updateStoredNotifications(storedNotifications);
 
-  log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
   log(`Total scheduled notifications: ${storedNotifications.length}`);
 }
 
@@ -72,6 +83,12 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
       title: 'Event Reminder',
       message: `${notification.eventTitle} is starting in ${formatRemainingTime(notification.minutesBefore)}!`,
     });
+
+    // Set the triggered property to true
+    notification.triggered = true;
+
+    // Update the stored notifications
+    await updateStoredNotifications(storedNotifications);
 
     // Remove the triggered notification from storage
     await removeTriggeredNotification(notification.id);
@@ -206,3 +223,9 @@ export async function getStoredNotifications(): Promise<Notification[]> {
   const result = await chrome.storage.local.get('storedNotifications');
   return result.storedNotifications || [];
 }
+
+export function isValidNotificationTime(eventEndTime: number, minutesBefore: number): boolean {
+  const notificationTime = eventEndTime - minutesBefore * 60 * 1000;
+  return notificationTime > Date.now();
+}
+  
