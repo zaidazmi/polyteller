@@ -30,10 +30,13 @@
           </select>
         </div>
         <div id="custom-time-inputs" style="display: none;">
-          <input type="number" id="custom-days" placeholder="Days" min="0">
-          <input type="number" id="custom-hours" placeholder="Hours" min="0" max="23">
-          <input type="number" id="custom-minutes" placeholder="Mins" min="0" max="59">
-          <input type="number" id="custom-seconds" placeholder="Secs" min="0" max="59">
+          <div class="custom-time-inputs-wrapper">
+            <input type="number" id="custom-days" placeholder="Days" min="0">
+            <input type="number" id="custom-hours" placeholder="Hours" min="0" max="23">
+            <input type="number" id="custom-minutes" placeholder="Mins" min="0" max="59">
+            <input type="number" id="custom-seconds" placeholder="Secs" min="0" max="59">
+          </div>
+          <div id="custom-time-error" class="error-message" style="display: none;"></div>
         </div>
         <button id="set-notification">Set Notification</button>
       </div>

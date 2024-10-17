@@ -12,6 +12,7 @@ import { setNotification, displayNotifications, removeTriggeredNotificationFromL
 import { cleanupCountdown } from './components/countdown';
 import { useStore } from '../store/store';
 import { handleError, PolytellerError } from '../utils/errorUtils';
+import { validateCustomTime } from './components/customTimeValidation';
 
 /**
  * Initializes the popup UI and sets up event listeners.
@@ -48,17 +49,28 @@ async function initPopup() {
     });
 
     const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
-    const setNotificationButton = document.getElementById('set-notification');
+    const setNotificationButton = document.getElementById('set-notification') as HTMLButtonElement;
+    const customTimeInputs = document.querySelectorAll('#custom-time-inputs input');
 
     if (notificationTimeSelect && setNotificationButton) {
       notificationTimeSelect.addEventListener('change', (event) => {
-        toggleCustomTimeInputs((event.target as HTMLSelectElement).value === 'custom');
+        const isCustom = (event.target as HTMLSelectElement).value === 'custom';
+        toggleCustomTimeInputs(isCustom);
+        if (isCustom) {
+          validateCustomTime();
+        } else {
+          setNotificationButton.disabled = false;
+        }
       });
 
       setNotificationButton.addEventListener('click', setNotification);
     } else {
       throw new PolytellerError('ELEMENT_NOT_FOUND', 'Required UI elements not found.');
     }
+
+    customTimeInputs.forEach(input => {
+      input.addEventListener('input', validateCustomTime);
+    });
 
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (message.type === 'NOTIFICATION_TRIGGERED') {
