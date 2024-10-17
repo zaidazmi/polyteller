@@ -23,17 +23,16 @@ function createConfirmationDialog(): HTMLDivElement {
     color: var(--text-color, #1A1B25);
     width: 220px;
     text-align: center;
-    max-width: 90vw;
-    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
   `;
   dialog.innerHTML = `
     <div style="position: relative;">
-      <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 18px; padding: 5px;">×</button>
+      <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 18px;">×</button>
       <h2 style="margin-bottom: 10px; font-size: 16px; font-weight: 600;">Confirm Order</h2>
       <p style="margin-bottom: 15px; font-size: 14px;">Are you sure you want to place this order?</p>
       <div style="display: flex; justify-content: center; gap: 10px;">
-        <button id="confirmYes" class="polyteller-button polyteller-button-yes" style="padding: 5px 10px;">Yes</button>
-        <button id="confirmNo" class="polyteller-button polyteller-button-no" style="padding: 5px 10px;">No</button>
+        <button id="confirmYes" class="polyteller-button polyteller-button-yes">Yes</button>
+        <button id="confirmNo" class="polyteller-button polyteller-button-no">No</button>
       </div>
     </div>
   `;
@@ -48,36 +47,24 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
   
   // Force the dialog to be visible but off-screen to get its dimensions
   confirmationDialog.style.display = 'block';
-  confirmationDialog.style.visibility = 'hidden';
+  confirmationDialog.style.top = '-9999px';
+  confirmationDialog.style.left = '-9999px';
   
   // Get the updated dimensions of the dialog
   const dialogRect = confirmationDialog.getBoundingClientRect();
   
   // Calculate position
-  let topPosition = buttonRect.top + window.scrollY - dialogRect.height - 10; // 10px gap
-  let leftPosition = buttonRect.left + window.scrollX + (buttonRect.width / 2) - (dialogRect.width / 2);
+  const topPosition = buttonRect.top + window.scrollY - dialogRect.height - 10; // 10px gap above the button
+  const leftPosition = buttonRect.left + window.scrollX + (buttonRect.width / 2) - (dialogRect.width / 2);
 
-  // Adjust if the dialog would appear above the viewport
-  if (topPosition < window.scrollY) {
-    topPosition = buttonRect.bottom + window.scrollY + 10; // 10px below the button
-  }
-
-  // Adjust if the dialog would appear off the right edge of the viewport
-  if (leftPosition + dialogRect.width > window.innerWidth + window.scrollX) {
-    leftPosition = window.innerWidth + window.scrollX - dialogRect.width - 10;
-  }
-
-  // Adjust if the dialog would appear off the left edge of the viewport
-  if (leftPosition < window.scrollX) {
-    leftPosition = window.scrollX + 10;
-  }
+  // Ensure the dialog doesn't go off the top of the screen
+  const adjustedTopPosition = Math.max(window.scrollY + 10, topPosition);
 
   // Set the final position
-  confirmationDialog.style.top = `${topPosition}px`;
+  confirmationDialog.style.top = `${adjustedTopPosition}px`;
   confirmationDialog.style.left = `${leftPosition}px`;
 
   // Ensure the dialog is visible
-  confirmationDialog.style.visibility = 'visible';
   confirmationDialog.style.display = 'block';
   
   const yesButton = confirmationDialog.querySelector('#confirmYes');
@@ -89,43 +76,16 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
     yesButton!.removeEventListener('click', handleYes);
     noButton!.removeEventListener('click', handleNo);
     closeButton!.removeEventListener('click', handleClose);
-    document.removeEventListener('click', handleOutsideClick);
-    confirmationDialog!.removeEventListener('click', handleDialogClick);
     callback(confirmed);
   };
   
-  const handleYes = (e: Event) => {
-    e.stopPropagation();
-    handleResponse(true);
-  };
-  const handleNo = (e: Event) => {
-    e.stopPropagation();
-    handleResponse(false);
-  };
-  const handleClose = (e: Event) => {
-    e.stopPropagation();
-    handleResponse(false);
-  };
-  
-  const handleOutsideClick = (e: MouseEvent) => {
-    if (!confirmationDialog!.contains(e.target as Node)) {
-      handleResponse(false);
-    }
-  };
-
-  const handleDialogClick = (e: Event) => {
-    e.stopPropagation();
-  };
+  const handleYes = () => handleResponse(true);
+  const handleNo = () => handleResponse(false);
+  const handleClose = () => handleResponse(false);
   
   yesButton!.addEventListener('click', handleYes);
   noButton!.addEventListener('click', handleNo);
   closeButton!.addEventListener('click', handleClose);
-  confirmationDialog.addEventListener('click', handleDialogClick);
-  
-  // Add a slight delay before adding the outside click listener
-  setTimeout(() => {
-    document.addEventListener('click', handleOutsideClick);
-  }, 0);
 }
 
 export function interceptBuyButton() {
