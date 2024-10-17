@@ -8,8 +8,9 @@ import { PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
 import { extractEventInfo } from './eventExtractor';
 import { createAndInsertCountdown } from './countdownManager';
-import { initializeDOMObserver } from './domManipulator';
+import { initializeDOMObserver, initializeDOMManipulations } from './domManipulator';
 import { sendEventInfo } from './messageHandler';
+import '../styles/content.css';
 
 let isInitialized = false;
 
@@ -43,3 +44,6 @@ log('Content', 'Polyteller content script loaded');
 
 // Extract event info when the page loads
 extractEventInfo();
+
+// Add this at the end of the file
+initializeDOMManipulations();
