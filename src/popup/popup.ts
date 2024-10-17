@@ -11,88 +11,109 @@ import { updateUI, displayError, toggleCustomTimeInputs } from './components/uiU
 import { setNotification, displayNotifications, removeTriggeredNotificationFromList } from './components/notifications';
 import { cleanupCountdown } from './components/countdown';
 import { useStore } from '../store/store';
+import { handleError, PolytellerError } from '../utils/errorUtils';
 
 /**
  * Initializes the popup UI and sets up event listeners.
  */
 async function initPopup() {
-  log('Initializing popup');
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    const currentTabId = tabs[0]?.id;
-    log('Current tab ID:', currentTabId);
-    if (currentTabId) {
-      chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId: currentTabId }, (response: PolymarketEvent | null) => {
-        log('Popup received response:', response);
-        if (chrome.runtime.lastError) {
-          log('Error retrieving event info:', chrome.runtime.lastError);
-          displayError('Failed to retrieve event information. Please try again.');
-        } else if (response) {
-          useStore.getState().addEvent(response);
-          updateUI(response);
-          loadNotifications();
-        } else {
-          displayError('No event found on this page.');
-        }
-      });
-    } else {
-      displayError('Unable to determine current tab.');
-    }
-  });
-
-  const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
-  const setNotificationButton = document.getElementById('set-notification');
-
-  if (notificationTimeSelect && setNotificationButton) {
-    notificationTimeSelect.addEventListener('change', (event) => {
-      toggleCustomTimeInputs((event.target as HTMLSelectElement).value === 'custom');
+  try {
+    log('Initializing popup');
+    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+      const currentTabId = tabs[0]?.id;
+      log('Current tab ID:', currentTabId);
+      if (currentTabId) {
+        chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId: currentTabId }, (response: PolymarketEvent | null) => {
+          try {
+            log('Popup received response:', response);
+            if (chrome.runtime.lastError) {
+              throw new PolytellerError('GET_EVENT_INFO_ERROR', 'Failed to retrieve event information. Please try again.');
+            } else if (response) {
+              useStore.getState().addEvent(response);
+              updateUI(response);
+              loadNotifications();
+            } else {
+              throw new PolytellerError('NO_EVENT_FOUND', 'No event found on this page.');
+            }
+          } catch (error: unknown) {
+            if (error instanceof Error || error instanceof PolytellerError) {
+              handleError(error);
+              displayError(error instanceof PolytellerError ? error.message : 'An unexpected error occurred.');
+            }
+          }
+        });
+      } else {
+        throw new PolytellerError('TAB_ID_ERROR', 'Unable to determine current tab.');
+      }
     });
 
-    setNotificationButton.addEventListener('click', setNotification);
-  }
+    const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
+    const setNotificationButton = document.getElementById('set-notification');
 
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === 'NOTIFICATION_TRIGGERED') {
-      log('Popup received NOTIFICATION_TRIGGERED message:', message.data);
-      removeTriggeredNotificationFromList(message.data);
+    if (notificationTimeSelect && setNotificationButton) {
+      notificationTimeSelect.addEventListener('change', (event) => {
+        toggleCustomTimeInputs((event.target as HTMLSelectElement).value === 'custom');
+      });
+
+      setNotificationButton.addEventListener('click', setNotification);
+    } else {
+      throw new PolytellerError('ELEMENT_NOT_FOUND', 'Required UI elements not found.');
     }
-  });
+
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.type === 'NOTIFICATION_TRIGGERED') {
+        log('Popup received NOTIFICATION_TRIGGERED message:', message.data);
+        removeTriggeredNotificationFromList(message.data);
+      }
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error || error instanceof PolytellerError) {
+      handleError(error);
+      displayError(error instanceof PolytellerError ? error.message : 'An unexpected error occurred while initializing the popup.');
+    }
+  }
 }
 
 // Export the loadNotifications function
 export async function loadNotifications(): Promise<void> {
   return new Promise((resolve) => {
-    const currentEvent = useStore.getState().currentEvent;
-    
-    const timeoutId = setTimeout(() => {
-      log('Popup', 'Timeout while loading notifications');
-      resolve();
-    }, 5000); // 5-second timeout
+    try {
+      const currentEvent = useStore.getState().currentEvent;
+      
+      const timeoutId = setTimeout(() => {
+        throw new PolytellerError('LOAD_NOTIFICATIONS_TIMEOUT', 'Timeout while loading notifications');
+      }, 5000); // 5-second timeout
 
-    chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
-      clearTimeout(timeoutId);
+      chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
+        clearTimeout(timeoutId);
 
-      if (chrome.runtime.lastError) {
-        log('Popup', 'Error loading notifications:', chrome.runtime.lastError);
+        if (chrome.runtime.lastError) {
+          throw new PolytellerError('GET_STORED_NOTIFICATIONS_ERROR', 'Error loading notifications');
+        }
+
+        let notifications: NotificationSetting[] = response.notifications || [];
+
+        if (currentEvent) {
+          const now = Date.now();
+          const currentNotifications = notifications.filter(notification => {
+            return notification.eventId === currentEvent.id && 
+                   (currentEvent.endTime - notification.minutesBefore * 60 * 1000) > now;
+          });
+          log('Popup', 'Loaded notifications:', currentNotifications);
+          useStore.getState().setNotifications(currentNotifications);
+          displayNotifications();
+        } else {
+          log('Popup', 'No event found when loading notifications');
+        }
         resolve();
-        return;
-      }
-
-      let notifications: NotificationSetting[] = response.notifications || [];
-
-      if (currentEvent) {
-        const now = Date.now();
-        const currentNotifications = notifications.filter(notification => {
-          return notification.eventId === currentEvent.id && 
-                 (currentEvent.endTime - notification.minutesBefore * 60 * 1000) > now;
-        });
-        log('Popup', 'Loaded notifications:', currentNotifications);
-        useStore.getState().setNotifications(currentNotifications);
-        displayNotifications();
-      } else {
-        log('Popup', 'No event found when loading notifications');
+      });
+    } catch (error: unknown) {
+      if (error instanceof Error || error instanceof PolytellerError) {
+        handleError(error);
+        displayError(error instanceof PolytellerError ? error.message : 'An unexpected error occurred while loading notifications.');
       }
       resolve();
-    });
+    }
   });
 }
 
@@ -100,13 +121,23 @@ export async function loadNotifications(): Promise<void> {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'NOTIFICATIONS_UPDATED') {
     log('Popup received NOTIFICATIONS_UPDATED message:', message.data);
-    loadNotifications();
+    loadNotifications().catch(error => {
+      if (error instanceof Error || error instanceof PolytellerError) {
+        handleError(error);
+        displayError('Failed to load updated notifications.');
+      }
+    });
   }
 });
 
 // Initialize the popup when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  initPopup();
+  initPopup().catch(error => {
+    if (error instanceof Error || error instanceof PolytellerError) {
+      handleError(error);
+      displayError('Failed to initialize popup.');
+    }
+  });
   const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
   notificationTimeSelect.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
@@ -116,14 +147,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initially hide custom inputs
   toggleCustomTimeInputs(false);
 
+  // Clean up the countdown when the popup is closed
+  window.addEventListener('unload', () => {
+    cleanupCountdown();
+  });
 
-
-// Clean up the countdown when the popup is closed
-window.addEventListener('unload', () => {
-  cleanupCountdown();
+  document.getElementById('view-all-notifications')?.addEventListener('click', () => {
+    chrome.tabs.create({ url: chrome.runtime.getURL('allNotifications.html') });
+  });
 });
 
-document.getElementById('view-all-notifications')?.addEventListener('click', () => {
-  chrome.tabs.create({ url: chrome.runtime.getURL('allNotifications.html') });
+// Add this near the end of your file, after other event listeners
+window.addEventListener('error', (event: ErrorEvent) => {
+  if (event.error instanceof Error || event.error instanceof PolytellerError) {
+    handleError(event.error);
+    displayError('An unexpected error occurred. Please try reloading the extension.');
+  }
+  // Prevent the error from propagating
+  event.preventDefault();
 });
+
+window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => {
+  if (event.reason instanceof Error || event.reason instanceof PolytellerError) {
+    handleError(event.reason);
+    displayError('An unexpected error occurred. Please try reloading the extension.');
+  }
+  // Prevent the error from propagating
+  event.preventDefault();
 });
