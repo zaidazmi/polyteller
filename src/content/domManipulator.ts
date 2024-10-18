@@ -58,7 +58,7 @@ function createConfirmationDialog(): HTMLDivElement {
           cursor: pointer;
           border-radius: 4px;
           font-weight: bold;
-        ">No (5)</button>
+        ">No (3)</button>
       </div>
     </div>
   `;
@@ -91,6 +91,11 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
     confirmationDialog = createConfirmationDialog();
   }
   
+  // Reset the countdown and button text every time the dialog is shown
+  let countdown = 3; 
+  const noButton = confirmationDialog.querySelector('#confirmNo') as HTMLButtonElement;
+  noButton.textContent = `No (${countdown})`;
+
   // Force the dialog to be visible but off-screen to get its dimensions
   confirmationDialog.style.display = 'block';
   confirmationDialog.style.top = '-9999px';
@@ -114,10 +119,7 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
   confirmationDialog.style.display = 'block';
   
   const yesButton = confirmationDialog.querySelector('#confirmYes') as HTMLButtonElement;
-  const noButton = confirmationDialog.querySelector('#confirmNo') as HTMLButtonElement;
   const closeButton = confirmationDialog.querySelector('#closeDialog') as HTMLButtonElement;
-  
-  let countdown = 5;
 
   const handleResponse = (confirmed: boolean) => {
     confirmationDialog!.style.display = 'none';
@@ -138,6 +140,11 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
   yesButton.addEventListener('click', handleYes);
   noButton.addEventListener('click', handleNo);
   closeButton.addEventListener('click', handleClose);
+
+  // Clear any existing interval before starting a new one
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
 
   countdownInterval = window.setInterval(() => {
     countdown--;
