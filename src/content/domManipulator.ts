@@ -4,6 +4,7 @@
  */
 
 import { log } from '../utils/logUtils';
+import { MIN_WIDTH_FOR_CONFIRMATION } from '../config';
 
 let isProcessingClick = false;
 let confirmationDialog: HTMLDivElement | null = null;
@@ -41,6 +42,12 @@ function createConfirmationDialog(): HTMLDivElement {
 }
 
 function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boolean) => void) {
+  // Disable confirmation for screens smaller than MIN_WIDTH_FOR_CONFIRMATION
+  if (window.innerWidth < MIN_WIDTH_FOR_CONFIRMATION) {
+    callback(true); // Automatically confirm for small screens
+    return;
+  }
+
   if (!confirmationDialog) {
     confirmationDialog = createConfirmationDialog();
   }
