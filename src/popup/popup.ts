@@ -13,6 +13,7 @@ import { cleanupCountdown } from './components/countdown';
 import { useStore } from '../store/store';
 import { handleError, PolytellerError } from '../utils/errorUtils';
 import { validateCustomTime } from './components/customTimeValidation';
+import { getNotificationSetting, saveNotificationSetting } from '../utils/storageUtils';
 
 /**
  * Initializes the popup UI and sets up event listeners.
@@ -78,6 +79,8 @@ async function initPopup() {
         removeTriggeredNotificationFromList(message.data);
       }
     });
+
+    initTradeConfirmationToggle();
   } catch (error: unknown) {
     if (error instanceof Error || error instanceof PolytellerError) {
       handleError(error);
@@ -187,3 +190,38 @@ window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => 
   // Prevent the error from propagating
   event.preventDefault();
 });
+
+function initTradeConfirmationToggle() {
+  const toggle = document.getElementById('trade-confirmation-toggle') as HTMLInputElement;
+  
+  // Load the current setting
+  chrome.storage.local.get('enableTradeConfirmation', (result) => {
+    toggle.checked = result.enableTradeConfirmation !== false; // Default to true if not set
+    log('Popup', `Initial trade confirmation state: ${toggle.checked ? 'enabled' : 'disabled'}`);
+  });
+
+  // Add event listener for changes
+  toggle.addEventListener('change', () => {
+    const isEnabled = toggle.checked;
+    chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
+      log('Popup', `Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
+      // Notify all tabs about the change
+      chrome.tabs.query({}, (tabs) => {
+        tabs.forEach(tab => {
+          if (tab.id) {
+            chrome.tabs.sendMessage(tab.id, { 
+              action: 'updateTradeConfirmation', 
+              enabled: isEnabled 
+            }, (response) => {
+              if (chrome.runtime.lastError) {
+                console.error('Popup: Error sending message to tab:', chrome.runtime.lastError);
+              } else {
+                log('Popup', 'Message sent to tab, response:', response);
+              }
+            });
+          }
+        });
+      });
+    });
+  });
+}

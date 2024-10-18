@@ -106,19 +106,30 @@ export function interceptBuyButton() {
     while (currentElement) {
       if (currentElement.tagName === 'BUTTON' && currentElement.textContent?.toLowerCase().includes('buy')) {
         isProcessingClick = true;
-        log('DOMManipulator', 'Buy button clicked, showing confirmation');
+        log('DOMManipulator', 'Buy button clicked, checking confirmation setting');
         event.preventDefault();
         event.stopPropagation();
 
-        const buttonRect = currentElement.getBoundingClientRect();
-        showConfirmationDialog(buttonRect, (confirmed) => {
-          if (confirmed) {
-            log('DOMManipulator', 'Order confirmed, proceeding with purchase');
+        chrome.storage.local.get('enableTradeConfirmation', (result) => {
+          const isTradeConfirmationEnabled = result.enableTradeConfirmation !== false;
+          log('DOMManipulator', `Trade confirmation enabled: ${isTradeConfirmationEnabled}`);
+
+          if (!isTradeConfirmationEnabled) {
+            log('DOMManipulator', 'Trade confirmation disabled, proceeding with purchase');
             currentElement!.click();
+            isProcessingClick = false;
           } else {
-            log('DOMManipulator', 'Order cancelled by user');
+            const buttonRect = currentElement!.getBoundingClientRect();
+            showConfirmationDialog(buttonRect, (confirmed) => {
+              if (confirmed) {
+                log('DOMManipulator', 'Order confirmed, proceeding with purchase');
+                currentElement!.click();
+              } else {
+                log('DOMManipulator', 'Order cancelled by user');
+              }
+              isProcessingClick = false;
+            });
           }
-          isProcessingClick = false;
         });
         break;
       }
