@@ -34,9 +34,9 @@ function createConfirmationDialog(): HTMLDivElement {
       <p style="margin-bottom: 20px; font-size: 14px;">Are you sure you want to place this order?</p>
       <div style="display: flex; justify-content: center; gap: 10px;">
         <button id="confirmYes" style="
-          background-color: #f5f5f5;
-          border: 1px solid #e0e0e0;
-          color: #333;
+          background-color: #4A4FE4;
+          border: none;
+          color: white;
           padding: 8px 20px;
           text-align: center;
           text-decoration: none;
@@ -47,9 +47,9 @@ function createConfirmationDialog(): HTMLDivElement {
           font-weight: bold;
         ">Yes</button>
         <button id="confirmNo" style="
-          background-color: #f5f5f5;
-          border: 1px solid #e0e0e0;
-          color: #333;
+          background-color: #A41C1C;
+          border: none;
+          color: white;
           padding: 8px 20px;
           text-align: center;
           text-decoration: none;
@@ -63,15 +63,23 @@ function createConfirmationDialog(): HTMLDivElement {
     </div>
   `;
   
-  // Add hover effects
+  // Update hover effects
   const buttons = dialog.querySelectorAll('button');
   buttons.forEach(button => {
     if (button.id !== 'closeDialog') {
       button.addEventListener('mouseover', () => {
-        button.style.backgroundColor = '#e0e0e0';
+        if (button.id === 'confirmYes') {
+          button.style.backgroundColor = '#3A3FD4'; // Slightly darker purple on hover
+        } else if (button.id === 'confirmNo') {
+          button.style.backgroundColor = '#8B0000'; // Darker red on hover
+        }
       });
       button.addEventListener('mouseout', () => {
-        button.style.backgroundColor = '#f5f5f5';
+        if (button.id === 'confirmYes') {
+          button.style.backgroundColor = '#4A4FE4'; // Original purple
+        } else if (button.id === 'confirmNo') {
+          button.style.backgroundColor = '#A41C1C'; // Original Mexican red
+        }
       });
     }
   });
