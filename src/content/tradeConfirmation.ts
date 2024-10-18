@@ -1,25 +1,10 @@
 import { log } from '../utils/logUtils';
+// Remove this line
+// import { loadFromStorage } from '../utils/storageUtils';
 
 console.log('%c[Polyteller TradeConfirmation] Script loaded', 'color: red; font-size: 20px;');
 
-function createOverlay(button: HTMLElement) {
-  const overlay = document.createElement('div');
-  overlay.style.cssText = `
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 0, 0, 0.3); // More visible red background for debugging
-    cursor: pointer;
-    z-index: 1000;
-    pointer-events: auto;
-  `;
-  button.style.position = 'relative';
-  button.appendChild(overlay);
-  console.log('[Polyteller TradeConfirmation] Overlay created and appended to button');
-  return overlay;
-}
+let isTradeConfirmationEnabled = true;
 
 function createConfirmationModal() {
   const modal = document.createElement('div');
@@ -46,38 +31,45 @@ function createConfirmationModal() {
 function initTradeConfirmation(button: HTMLButtonElement) {
   console.log('[Polyteller TradeConfirmation] Initializing trade confirmation');
   
-  const buyButton = button;
-  
-  console.log('[Polyteller TradeConfirmation] Buy button query result in initTradeConfirmation:', buyButton);
-  
-  if (buyButton) {
-    console.log('[Polyteller TradeConfirmation] Buy button found:', buyButton);
-    const overlay = createOverlay(buyButton);
-    console.log('[Polyteller TradeConfirmation] Overlay created:', overlay);
-    overlay.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const modal = createConfirmationModal();
-      document.body.appendChild(modal);
+  const originalClickHandler = button.onclick;
+  button.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      document.getElementById('confirm-trade')?.addEventListener('click', () => {
-        document.body.removeChild(modal);
-        overlay.style.display = 'none';
-        buyButton.click();
-      });
-
-      document.getElementById('cancel-trade')?.addEventListener('click', () => {
-        document.body.removeChild(modal);
+    chrome.storage.local.get('enableTradeConfirmation', (result) => {
+      const isTradeConfirmationEnabled = result.enableTradeConfirmation !== false;
+      console.log(`[Polyteller TradeConfirmation] Trade confirmation enabled: ${isTradeConfirmationEnabled}`);
+      
+      if (!isTradeConfirmationEnabled) {
+        console.log('[Polyteller TradeConfirmation] Trade confirmation disabled, proceeding with original click');
+        if (originalClickHandler) {
+          originalClickHandler.call(button, e);
+        } else {
+          button.click();
+        }
+        return;
+      }
+      
+      console.log('[Polyteller TradeConfirmation] Trade confirmation enabled, showing modal');
+      showConfirmationDialog(button.getBoundingClientRect(), (confirmed) => {
+        if (confirmed) {
+          console.log('[Polyteller TradeConfirmation] Order confirmed, proceeding with purchase');
+          if (originalClickHandler) {
+            originalClickHandler.call(button, e);
+          } else {
+            button.click();
+          }
+        } else {
+          console.log('[Polyteller TradeConfirmation] Order cancelled by user');
+        }
       });
     });
-  } else {
-    console.log('[Polyteller TradeConfirmation] Buy button not found in initTradeConfirmation');
-  }
+  };
 }
 
 function checkForBuyButton() {
   console.log('[Polyteller TradeConfirmation] Checking for buy button');
   
-  // Remove the invalid :contains() selector
   const buyButtonSelectors = [
     'button[data-testid="place-order-button"]',
     'button.polymarket-buy-button',
@@ -95,21 +87,11 @@ function checkForBuyButton() {
     }
   }
   
-  console.log('[Polyteller TradeConfirmation] Buy button query result:', buyButton);
-  
   if (buyButton) {
     console.log('[Polyteller TradeConfirmation] Buy button found, initializing');
     initTradeConfirmation(buyButton);
   } else {
     console.log('[Polyteller TradeConfirmation] Buy button not found');
-    // Log all buttons on the page for debugging
-    const allButtons = document.querySelectorAll('button');
-    console.log('[Polyteller TradeConfirmation] All buttons on the page:', allButtons);
-    
-    // Log button text content
-    Array.from(allButtons).forEach((button, index) => {
-      console.log(`[Polyteller TradeConfirmation] Button ${index} text:`, button.textContent?.trim());
-    });
   }
 }
 
@@ -126,35 +108,46 @@ function observeDOMChanges() {
   console.log('[Polyteller TradeConfirmation] MutationObserver set up');
 }
 
-chrome.storage.sync.get({ enableTradeConfirmation: true }, ({ enableTradeConfirmation }) => {
-  console.log('[Polyteller TradeConfirmation] Trade confirmation enabled:', enableTradeConfirmation);
-  if (enableTradeConfirmation) {
-    // Add a delay before the initial check
-    setTimeout(() => {
-      console.log('[Polyteller TradeConfirmation] Initial check after delay');
-      checkForBuyButton();
-      observeDOMChanges();
-    }, 2000); // 2 seconds delay
+// Update the message listener
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'updateTradeConfirmation') {
+    console.log(`[Polyteller TradeConfirmation] Received update: ${message.enabled}`);
+    chrome.storage.local.set({ enableTradeConfirmation: message.enabled }, () => {
+      console.log(`[Polyteller TradeConfirmation] Saved state to storage: ${message.enabled}`);
+      sendResponse({ received: true });
+    });
+    return true; // Indicates that the response is sent asynchronously
   }
 });
 
-// Listen for changes to the enableTradeConfirmation setting
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === 'sync' && changes.enableTradeConfirmation) {
-    if (changes.enableTradeConfirmation.newValue) {
-      log('TradeConfirmation', 'Trade confirmation enabled');
-      checkForBuyButton();
-    } else {
-      log('TradeConfirmation', 'Trade confirmation disabled');
-      // Remove overlay if it exists
-      const overlay = document.querySelector('.polymarket-buy-button > div') as HTMLElement;
-      if (overlay) {
-        overlay.remove();
-      }
-    }
-  }
-});
-
-setTimeout(() => {
+// Initial setup
+chrome.storage.local.get('enableTradeConfirmation', (result) => {
+  isTradeConfirmationEnabled = result.enableTradeConfirmation !== false;
+  console.log(`[Polyteller TradeConfirmation] Initial trade confirmation state: ${isTradeConfirmationEnabled ? 'enabled' : 'disabled'}`);
   checkForBuyButton();
-}, 15000); // 15 seconds delay
+});
+
+// Always observe DOM changes
+observeDOMChanges();
+
+function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boolean) => void) {
+  const dialog = createConfirmationModal();
+  document.body.appendChild(dialog);
+
+  // Position the dialog
+  const dialogRect = dialog.getBoundingClientRect();
+  const topPosition = buttonRect.top + window.scrollY - dialogRect.height - 10;
+  const leftPosition = buttonRect.left + window.scrollX + (buttonRect.width / 2) - (dialogRect.width / 2);
+
+  dialog.style.top = `${Math.max(0, topPosition)}px`;
+  dialog.style.left = `${Math.max(0, leftPosition)}px`;
+  dialog.style.display = 'block';
+
+  const handleResponse = (confirmed: boolean) => {
+    document.body.removeChild(dialog);
+    callback(confirmed);
+  };
+
+  dialog.querySelector('#confirm-trade')?.addEventListener('click', () => handleResponse(true));
+  dialog.querySelector('#cancel-trade')?.addEventListener('click', () => handleResponse(false));
+}

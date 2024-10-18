@@ -47,3 +47,14 @@ extractEventInfo();
 
 // Add this at the end of the file
 initializeDOMManipulations();
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'updateTradeConfirmation') {
+    log('Content', `Received trade confirmation update: ${message.enabled}`);
+    chrome.storage.local.set({ enableTradeConfirmation: message.enabled }, () => {
+      log('Content', `Updated trade confirmation setting: ${message.enabled}`);
+      sendResponse({ received: true });
+    });
+    return true; // Indicates that the response is sent asynchronously
+  }
+});
