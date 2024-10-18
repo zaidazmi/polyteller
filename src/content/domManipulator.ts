@@ -9,34 +9,73 @@ import { MIN_WIDTH_FOR_CONFIRMATION } from '../config';
 let isProcessingClick = false;
 let confirmationDialog: HTMLDivElement | null = null;
 
+let countdownInterval: number | null = null;
+
 function createConfirmationDialog(): HTMLDivElement {
   const dialog = document.createElement('div');
   dialog.id = 'polyteller-confirmation-dialog';
   dialog.style.cssText = `
     position: fixed;
-    background-color: var(--card-background, #FFFFFF);
-    padding: 15px;
+    background-color: #FFFFFF;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10000;
     display: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--text-color, #1A1B25);
-    width: 220px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    color: #333333;
+    width: 280px;
     text-align: center;
-    border: 1px solid #e0e0e0;
   `;
   dialog.innerHTML = `
     <div style="position: relative;">
-      <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 18px;">×</button>
-      <h2 style="margin-bottom: 10px; font-size: 16px; font-weight: 600;">Confirm Order</h2>
-      <p style="margin-bottom: 15px; font-size: 14px;">Are you sure you want to place this order?</p>
+      <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">Confirm Order</h2>
+      <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 20px; color: #999;">×</button>
+      <p style="margin-bottom: 20px; font-size: 14px;">Are you sure you want to place this order?</p>
       <div style="display: flex; justify-content: center; gap: 10px;">
-        <button id="confirmYes" class="polyteller-button polyteller-button-yes">Yes</button>
-        <button id="confirmNo" class="polyteller-button polyteller-button-no">No</button>
+        <button id="confirmYes" style="
+          background-color: #f5f5f5;
+          border: 1px solid #e0e0e0;
+          color: #333;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 4px;
+          font-weight: bold;
+        ">Yes</button>
+        <button id="confirmNo" style="
+          background-color: #f5f5f5;
+          border: 1px solid #e0e0e0;
+          color: #333;
+          padding: 8px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 4px;
+          font-weight: bold;
+        ">No (5)</button>
       </div>
     </div>
   `;
+  
+  // Add hover effects
+  const buttons = dialog.querySelectorAll('button');
+  buttons.forEach(button => {
+    if (button.id !== 'closeDialog') {
+      button.addEventListener('mouseover', () => {
+        button.style.backgroundColor = '#e0e0e0';
+      });
+      button.addEventListener('mouseout', () => {
+        button.style.backgroundColor = '#f5f5f5';
+      });
+    }
+  });
+
   document.body.appendChild(dialog);
   return dialog;
 }
@@ -74,15 +113,21 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
   // Ensure the dialog is visible
   confirmationDialog.style.display = 'block';
   
-  const yesButton = confirmationDialog.querySelector('#confirmYes');
-  const noButton = confirmationDialog.querySelector('#confirmNo');
-  const closeButton = confirmationDialog.querySelector('#closeDialog');
+  const yesButton = confirmationDialog.querySelector('#confirmYes') as HTMLButtonElement;
+  const noButton = confirmationDialog.querySelector('#confirmNo') as HTMLButtonElement;
+  const closeButton = confirmationDialog.querySelector('#closeDialog') as HTMLButtonElement;
   
+  let countdown = 5;
+
   const handleResponse = (confirmed: boolean) => {
     confirmationDialog!.style.display = 'none';
-    yesButton!.removeEventListener('click', handleYes);
-    noButton!.removeEventListener('click', handleNo);
-    closeButton!.removeEventListener('click', handleClose);
+    yesButton.removeEventListener('click', handleYes);
+    noButton.removeEventListener('click', handleNo);
+    closeButton.removeEventListener('click', handleClose);
+    if (countdownInterval) {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+    }
     callback(confirmed);
   };
   
@@ -90,9 +135,17 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
   const handleNo = () => handleResponse(false);
   const handleClose = () => handleResponse(false);
   
-  yesButton!.addEventListener('click', handleYes);
-  noButton!.addEventListener('click', handleNo);
-  closeButton!.addEventListener('click', handleClose);
+  yesButton.addEventListener('click', handleYes);
+  noButton.addEventListener('click', handleNo);
+  closeButton.addEventListener('click', handleClose);
+
+  countdownInterval = window.setInterval(() => {
+    countdown--;
+    noButton.textContent = `No (${countdown})`;
+    if (countdown <= 0) {
+      handleNo();
+    }
+  }, 1000);
 }
 
 export function interceptBuyButton() {
