@@ -223,6 +223,12 @@ export function initTradeConfirmationToggle(): Promise<boolean> {
             console.log('Toggle changed, new state:', isEnabled);
             chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
               console.log(`Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
+              chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                const currentTabId = tabs[0]?.id;
+                if (currentTabId) {
+                  chrome.tabs.sendMessage(currentTabId, { action: 'updateTradeConfirmation', enabled: isEnabled });
+                }
+              });
             });
           };
           
