@@ -26,7 +26,8 @@ export function formatDate(date: Date): string {
     year: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-    hour12: true
+    hour12: true,
+    timeZone: 'UTC' // Add this line to ensure consistent timezone
   });
 }
 

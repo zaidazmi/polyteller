@@ -13,13 +13,21 @@ import { cleanupCountdown } from './components/countdown';
 import { useStore } from '../store/store';
 import { handleError, PolytellerError } from '../utils/errorUtils';
 import { validateCustomTime } from './components/customTimeValidation';
-import { getNotificationSetting, saveNotificationSetting } from '../utils/storageUtils';
 
 /**
  * Initializes the popup UI and sets up event listeners.
  */
-async function initPopup() {
+export async function initPopup() {
   try {
+    // Move this block to the very beginning of the function
+    const viewAllButton = document.getElementById('view-all-notifications');
+    if (viewAllButton) {
+      viewAllButton.addEventListener('click', () => {
+        const allNotificationsUrl = chrome.runtime.getURL('allNotifications.html');
+        chrome.tabs.create({ url: allNotificationsUrl });
+      });
+    }
+
     log('Initializing popup');
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       const currentTabId = tabs[0]?.id;
@@ -89,7 +97,6 @@ async function initPopup() {
   }
 }
 
-// Export the loadNotifications function
 export async function loadNotifications(): Promise<void> {
   return new Promise((resolve) => {
     try {
@@ -132,7 +139,6 @@ export async function loadNotifications(): Promise<void> {
   });
 }
 
-// Add this listener to the initPopup function
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'NOTIFICATIONS_UPDATED') {
     log('Popup received NOTIFICATIONS_UPDATED message:', message.data);
@@ -145,7 +151,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-// Initialize the popup when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   initPopup().catch(error => {
     if (error instanceof Error || error instanceof PolytellerError) {
@@ -153,32 +158,25 @@ document.addEventListener('DOMContentLoaded', () => {
       displayError('Failed to initialize popup.');
     }
   });
+
   const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
   notificationTimeSelect.addEventListener('change', (event) => {
     const target = event.target as HTMLSelectElement;
     toggleCustomTimeInputs(target.value === 'custom');
   });
 
-  // Initially hide custom inputs
   toggleCustomTimeInputs(false);
 
-  // Clean up the countdown when the popup is closed
   window.addEventListener('unload', () => {
     cleanupCountdown();
   });
-
-  document.getElementById('view-all-notifications')?.addEventListener('click', () => {
-    chrome.tabs.create({ url: chrome.runtime.getURL('allNotifications.html') });
-  });
 });
 
-// Add this near the end of your file, after other event listeners
 window.addEventListener('error', (event: ErrorEvent) => {
   if (event.error instanceof Error || event.error instanceof PolytellerError) {
     handleError(event.error);
     displayError('An unexpected error occurred. Please try reloading the extension.');
   }
-  // Prevent the error from propagating
   event.preventDefault();
 });
 
@@ -187,41 +185,26 @@ window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => 
     handleError(event.reason);
     displayError('An unexpected error occurred. Please try reloading the extension.');
   }
-  // Prevent the error from propagating
   event.preventDefault();
 });
 
-function initTradeConfirmationToggle() {
-  const toggle = document.getElementById('trade-confirmation-toggle') as HTMLInputElement;
-  
-  // Load the current setting
-  chrome.storage.local.get('enableTradeConfirmation', (result) => {
-    toggle.checked = result.enableTradeConfirmation !== false; // Default to true if not set
-    log('Popup', `Initial trade confirmation state: ${toggle.checked ? 'enabled' : 'disabled'}`);
-  });
-
-  // Add event listener for changes
-  toggle.addEventListener('change', () => {
-    const isEnabled = toggle.checked;
-    chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
-      log('Popup', `Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
-      // Notify all tabs about the change
-      chrome.tabs.query({}, (tabs) => {
-        tabs.forEach(tab => {
-          if (tab.id) {
-            chrome.tabs.sendMessage(tab.id, { 
-              action: 'updateTradeConfirmation', 
-              enabled: isEnabled 
-            }, (response) => {
-              if (chrome.runtime.lastError) {
-                console.error('Popup: Error sending message to tab:', chrome.runtime.lastError);
-              } else {
-                log('Popup', 'Message sent to tab, response:', response);
-              }
-            });
-          }
+export function initTradeConfirmationToggle(): Promise<boolean> {
+  return new Promise((resolve) => {
+    const toggle = document.getElementById('trade-confirmation-toggle') as HTMLInputElement;
+    
+    chrome.storage.local.get('enableTradeConfirmation', (result) => {
+      const initialState = result.enableTradeConfirmation !== false;
+      toggle.checked = initialState;
+      log('Popup', `Initial trade confirmation state: ${initialState ? 'enabled' : 'disabled'}`);
+      
+      toggle.addEventListener('change', () => {
+        const isEnabled = toggle.checked;
+        chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
+          log('Popup', `Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
         });
       });
+      
+      resolve(initialState);
     });
   });
 }
