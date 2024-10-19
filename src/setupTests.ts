@@ -32,7 +32,7 @@ const mockChrome = {
 global.chrome = mockChrome as unknown as typeof chrome;
 
 // Mock console.log to reduce noise in test output
-global.console.log = jest.fn();
+// global.console.log = jest.fn();
 
 // Mock chrome.runtime.getURL
 global.chrome.runtime.getURL = jest.fn((path) => `chrome-extension://fake-id/${path}`);
