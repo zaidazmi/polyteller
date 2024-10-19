@@ -123,3 +123,91 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* Set Notifications Styles */
+.set-notifications {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.notifications-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.view-all-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+#notifications-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#notifications-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#notifications-list li:last-child {
+  border-bottom: none;
+}
+
+.notification-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification-time {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.notification-date {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.delete-notification {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-light);
+  transition: color 0.2s ease;
+}
+
+.delete-notification:hover {
+  color: #EF4444;
+}
+
+.delete-notification svg {
+  width: 16px;
+  height: 16px;
+}
