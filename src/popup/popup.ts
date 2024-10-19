@@ -19,7 +19,9 @@ import { validateCustomTime } from './components/customTimeValidation';
  */
 export async function initPopup() {
   try {
-    // Move this block to the very beginning of the function
+    log('Initializing popup');
+
+    // Set up "View All" button listener
     const viewAllButton = document.getElementById('view-all-notifications');
     if (viewAllButton) {
       viewAllButton.addEventListener('click', () => {
@@ -28,7 +30,6 @@ export async function initPopup() {
       });
     }
 
-    log('Initializing popup');
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       const currentTabId = tabs[0]?.id;
       log('Current tab ID:', currentTabId);
@@ -88,7 +89,7 @@ export async function initPopup() {
       }
     });
 
-    initTradeConfirmationToggle();
+    await initTradeConfirmationToggle();
   } catch (error: unknown) {
     if (error instanceof Error || error instanceof PolytellerError) {
       handleError(error);
@@ -189,22 +190,57 @@ window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => 
 });
 
 export function initTradeConfirmationToggle(): Promise<boolean> {
+  console.log('initTradeConfirmationToggle function called');
   return new Promise((resolve) => {
-    const toggle = document.getElementById('trade-confirmation-toggle') as HTMLInputElement;
-    
-    chrome.storage.local.get('enableTradeConfirmation', (result) => {
-      const initialState = result.enableTradeConfirmation !== false;
-      toggle.checked = initialState;
-      log('Popup', `Initial trade confirmation state: ${initialState ? 'enabled' : 'disabled'}`);
+    console.log('Inside Promise constructor');
+    try {
+      const toggle = document.getElementById('trade-confirmation-toggle') as HTMLInputElement;
+      console.log('Toggle element:', toggle);
       
-      toggle.addEventListener('change', () => {
-        const isEnabled = toggle.checked;
-        chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
-          log('Popup', `Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
-        });
+      if (!chrome.storage || !chrome.storage.local || !chrome.storage.local.get) {
+        console.error('Chrome storage API not available');
+        resolve(false);
+        return;
+      }
+
+      chrome.storage.local.get('enableTradeConfirmation', (result) => {
+        console.log('Chrome storage result:', result);
+        if (chrome.runtime.lastError) {
+          console.error('Error getting from storage:', chrome.runtime.lastError);
+          resolve(false);
+          return;
+        }
+
+        const initialState = result.enableTradeConfirmation !== false;
+        console.log('Initial state calculated:', initialState);
+
+        if (toggle) {
+          toggle.checked = initialState;
+          console.log('Initial state set on toggle:', initialState);
+          
+          const changeHandler = () => {
+            const isEnabled = toggle.checked;
+            console.log('Toggle changed, new state:', isEnabled);
+            chrome.storage.local.set({ enableTradeConfirmation: isEnabled }, () => {
+              console.log(`Trade confirmation ${isEnabled ? 'enabled' : 'disabled'}`);
+            });
+          };
+          
+          toggle.addEventListener('change', changeHandler);
+          // Trigger the change handler immediately to ensure it's set up correctly
+          changeHandler();
+        } else {
+          console.error('Toggle element not found');
+          resolve(false);
+          return;
+        }
+        
+        console.log('Resolving promise with:', initialState);
+        resolve(initialState);
       });
-      
-      resolve(initialState);
-    });
+    } catch (error) {
+      console.error('Error in initTradeConfirmationToggle:', error);
+      resolve(false);
+    }
   });
 }
