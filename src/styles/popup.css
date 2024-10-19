@@ -46,12 +46,38 @@
   border-color: red;
 }
 
+/* Trade Confirmation Styles */
+#trade-confirmation-setting {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+#trade-confirmation-setting h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.trade-confirmation-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#trade-confirmation-setting span {
+  font-size: 14px;
+  color: var(--text-color);
+}
+
 /* Toggle Switch */
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 48px;
+  height: 24px;
+  margin-right: 10px;
 }
 
 .switch input {
@@ -74,24 +100,24 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: var(--primary-color);
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(24px);
 }
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 24px;
 }
 
 .slider.round:before {

@@ -33,6 +33,9 @@ export function setupMessageListeners() {
           sendResponse({ success: false });
         });
       return true;
+    } else if (request.type === "UPDATE_TRADE_CONFIRMATION") {
+      handleUpdateTradeConfirmation(request.data, sendResponse);
+      return true;
     }
     return true;
   });
@@ -40,5 +43,20 @@ export function setupMessageListeners() {
   chrome.tabs.onRemoved.addListener((tabId: number) => {
     eventInfoMap.delete(tabId);
     log('Background', "Removed event info for tab", tabId);
+  });
+}
+
+function handleUpdateTradeConfirmation(data: { enabled: boolean }, sendResponse: (response: any) => void) {
+  chrome.storage.local.set({ enableTradeConfirmation: data.enabled }, () => {
+    log('Background', `Trade confirmation ${data.enabled ? 'enabled' : 'disabled'}`);
+    sendResponse({ success: true });
+    // Notify all tabs about the change
+    chrome.tabs.query({}, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id) {
+          chrome.tabs.sendMessage(tab.id, { action: 'updateTradeConfirmation', enabled: data.enabled });
+        }
+      });
+    });
   });
 }

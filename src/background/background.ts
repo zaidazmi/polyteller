@@ -45,6 +45,9 @@ import { useStore } from '../store/store';
         case 'GET_STORED_NOTIFICATIONS':
           handleGetStoredNotifications(sendResponse);
           return true;
+        case 'UPDATE_TRADE_CONFIRMATION':
+          handleUpdateTradeConfirmation(request, sendResponse);
+          return true;
         default:
           throw new Error(`Unknown message type: ${request.type}`);
       }
@@ -145,5 +148,21 @@ function handleScheduleNotification(request: any, sendResponse: (response?: any)
 function handleGetStoredNotifications(sendResponse: (response?: any) => void) {
   getStoredNotifications().then(notifications => {
     sendResponse({ notifications });
+  });
+}
+
+function handleUpdateTradeConfirmation(request: any, sendResponse: (response?: any) => void) {
+  const { enabled } = request.data;
+  chrome.storage.local.set({ enableTradeConfirmation: enabled }, () => {
+    log('Background', `Trade confirmation ${enabled ? 'enabled' : 'disabled'}`);
+    sendResponse({ success: true });
+    // Notify all tabs about the change
+    chrome.tabs.query({}, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id) {
+          chrome.tabs.sendMessage(tab.id, { action: 'updateTradeConfirmation', enabled });
+        }
+      });
+    });
   });
 }
