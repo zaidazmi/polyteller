@@ -49,6 +49,52 @@ jest.mock('./components/uiUpdates');
 
 describe('Popup Functionality', () => {
   beforeEach(() => {
+    // Extend the Chrome API mock
+    const mockChromeAPI = {
+      tabs: {
+        query: jest.fn((queryInfo, callback) => {
+          callback([{ id: 1 }]);
+        }),
+        create: jest.fn(),
+      },
+      runtime: {
+        sendMessage: jest.fn((message, responseCallback) => {
+          if (typeof responseCallback === 'function') {
+            responseCallback({
+              id: '1',
+              title: 'Test Event',
+              endTime: Date.now() + 1000000,
+              endDate: '2023-05-01',
+              timezone: 'UTC',
+              url: 'https://example.com',
+            });
+          }
+        }),
+        getURL: jest.fn((path) => `chrome-extension://fake-id/${path}`),
+        lastError: null,
+        onMessage: {
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+        },
+      },
+      storage: {
+        local: {
+          get: jest.fn().mockImplementation((key, callback) => {
+            console.log('Mock chrome.storage.local.get called with key:', key);
+            callback({ enableTradeConfirmation: true });
+          }),
+          set: jest.fn().mockImplementation((items, callback) => {
+            console.log('Mock chrome.storage.local.set called with items:', items);
+            if (callback) callback();
+          }),
+        },
+      },
+    };
+
+    // Use the extended Chrome API mock
+    global.chrome = mockChromeAPI as unknown as typeof chrome;
+
+    // Ensure all elements exist in the DOM
     document.body.innerHTML = `
       <h2 id="event-title"></h2>
       <div id="countdown"></div>
@@ -71,6 +117,7 @@ describe('Popup Functionality', () => {
       <button id="view-all-notifications">View all</button>
       <input type="checkbox" id="trade-confirmation-toggle">
     `;
+
     jest.clearAllMocks();
 
     // Mock Chrome API
