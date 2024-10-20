@@ -1,0 +1,204 @@
+Polyteller Extension Comprehensive Testing Plan
+
+1. Event Information Extraction
+   - Test extraction from various Polymarket page layouts (single event, multiple events, different UI versions)
+   - Verify handling of different date/time formats (12h/24h, various locales)
+   - Test with events in different timezones (UTC, EST, PST, etc.)
+   - Edge case: Test with malformed event data (missing fields, incorrect formats)
+   - Test extraction of event details (title, description, odds, etc.)
+   - Verify handling of events with no end date or "TBA" end dates
+   - Test with events that have been updated or modified on Polymarket
+
+2. Countdown Functionality
+   - Verify accuracy of countdown on page and in popup (compare with system time)
+   - Test countdown behavior across midnight, date changes, and month/year transitions
+   - Edge case: Test with events ending in less than a minute
+   - Edge case: Test with very long-term events (e.g., years in the future)
+   - Verify countdown updates in real-time without page refresh
+   - Test countdown display formatting (days, hours, minutes, seconds)
+   - Verify countdown behavior when switching between tabs/windows
+   - Test countdown accuracy after system sleep/hibernate
+
+3. Notification Scheduling
+   - Test scheduling notifications at various intervals (minutes, hours, days before event)
+   - Verify notifications trigger at correct times
+   - Test scheduling multiple notifications for one event
+   - Edge case: Test scheduling notification for past time
+   - Edge case: Test maximum number of notifications per event
+   - Verify notification scheduling across browser sessions
+   - Test rescheduling notifications when event time changes
+   - Verify handling of conflicting notifications (same time, different events)
+   - Test notification scheduling near daylight saving time transitions
+
+4. Alarm Management
+   - Verify alarms are created correctly in Chrome
+   - Test alarm triggering and notification display
+   - Edge case: Test behavior when Chrome is closed/reopened
+   - Edge case: Test with system time changes (forward and backward)
+   - Verify alarm persistence across browser restarts
+   - Test alarm behavior when multiple events end simultaneously
+   - Verify alarm cleanup for expired or cancelled events
+   - Test alarm rescheduling when event times are updated
+
+5. State Persistence
+   - Verify event data and notifications persist after browser restart
+   - Test data sync between background and popup
+   - Edge case: Test with Chrome storage quota exceeded
+   - Verify state consistency across multiple tabs/windows
+   - Test state recovery after extension update
+   - Verify handling of corrupted state data
+   - Test state persistence during and after system crashes
+
+6. Timezone Handling
+   - Test events and notifications across different timezones
+   - Verify correct timezone conversion and display
+   - Edge case: Test during Daylight Saving Time transitions
+   - Test with users changing their system timezone
+   - Verify handling of events in timezones with fractional hour offsets
+   - Test display of multiple events from different timezones
+   - Verify timezone abbreviation display and accuracy
+
+7. User Interface
+   - Test responsiveness of popup UI on various screen sizes
+   - Verify all UI elements are functional (buttons, dropdowns, toggles)
+   - Test custom notification time input (validation, edge cases)
+   - Edge case: Test with very long event titles and descriptions
+   - Verify UI updates in real-time (countdown, notifications)
+   - Test UI performance with a large number of events/notifications
+   - Verify proper error message display for various scenarios
+   - Test UI behavior when rapidly switching between events
+
+8. Trade Confirmation Popup
+   - Verify toggle functionality in settings
+   - Test appearance and behavior of confirmation popup
+   - Edge case: Test with rapid trade attempts
+   - Verify confirmation popup doesn't interfere with other site functionality
+   - Test trade confirmation with various trade amounts and types
+   - Verify proper handling of cancelled confirmations
+   - Test confirmation popup on different Polymarket page layouts
+
+9. Performance
+   - Test with multiple Polymarket tabs open (10+)
+   - Verify extension performance with many scheduled notifications (100+)
+   - Edge case: Test CPU and memory usage over extended periods (24+ hours)
+   - Measure and optimize extension load time
+   - Profile background script performance
+   - Test impact on Polymarket website loading and rendering times
+   - Verify performance on low-end devices
+
+10. Error Handling
+    - Test behavior with network errors (timeout, disconnection)
+    - Verify graceful handling of API failures
+    - Edge case: Test with corrupted local storage data
+    - Verify error logging and reporting functionality
+    - Test recovery from various error states
+    - Verify user-friendly error messages are displayed
+    - Test error handling during critical operations (e.g., trade confirmation)
+
+11. Cross-browser Compatibility
+    - Test on different versions of Chrome (stable, beta, dev)
+    - Verify functionality on Chrome-based browsers (Edge, Brave, Opera)
+    - Test on different operating systems (Windows, macOS, Linux)
+    - Verify compatibility with popular Chrome extensions
+
+12. Accessibility
+    - Test keyboard navigation in popup and confirmation dialogs
+    - Verify color contrast and text readability
+    - Test with screen readers (NVDA, JAWS, VoiceOver)
+    - Verify proper ARIA attributes and roles
+    - Test with various font sizes and zoom levels
+    - Verify accessibility of notifications and alerts
+
+13. Localization
+    - Test with different system languages
+    - Verify date/time formatting across locales
+    - Test with right-to-left (RTL) languages
+    - Verify currency symbol display for different regions
+    - Test translation completeness and accuracy
+    - Verify localization of notifications and alerts
+
+14. Security
+    - Verify secure storage of user data
+    - Test for potential XSS vulnerabilities in content script
+    - Edge case: Test with malicious event data injection
+    - Verify proper use of Content Security Policy
+    - Test for potential CSRF vulnerabilities
+    - Verify secure communication between extension components
+    - Test permission usage and potential privilege escalation
+
+15. Update Process
+    - Test extension update process (minor and major versions)
+    - Verify data migration during updates
+    - Edge case: Test update from a very old version
+    - Verify update notifications to users
+    - Test rollback procedure in case of update issues
+    - Verify extension functionality immediately after update
+
+16. Edge Cases
+    - Test with extremely high volume of events (1000+)
+    - Verify behavior when Polymarket changes its DOM structure
+    - Test with unrealistically large time differences (100+ years)
+    - Verify handling of events with identical titles or end times
+    - Test with extremely short-duration events (seconds)
+    - Verify behavior with rapid creation/deletion of events
+
+17. Offline Functionality
+    - Verify countdown continues when offline
+    - Test notification triggering without internet connection
+    - Verify data persistence and recovery after extended offline period
+    - Test transition between online and offline states
+    - Verify proper error messaging for actions requiring internet
+
+18. Battery Impact
+    - Test battery usage on mobile devices (if applicable)
+    - Verify background script efficiency
+    - Measure power consumption during active use and idle states
+    - Test impact of different features on battery life
+    - Verify battery optimization techniques are effective
+
+19. Integration Tests
+    - End-to-end test of event detection to notification
+    - Test interaction between all components (background, content, popup)
+    - Verify data flow and state management across the extension
+    - Test integration with Polymarket's trading functionality
+    - Verify extension behavior during Polymarket site updates
+
+20. Stress Testing
+    - Rapid opening/closing of popup (100+ times in quick succession)
+    - Quick navigation between multiple Polymarket pages
+    - Simultaneous triggering of multiple notifications (50+)
+    - Continuous use over extended periods (48+ hours)
+    - Test with maximum allowed storage usage
+    - Verify behavior under high CPU/memory pressure
+
+21. User Settings and Preferences
+    - Test saving and loading of user preferences
+    - Verify application of user settings across sessions
+    - Test import/export functionality for settings (if applicable)
+    - Verify proper handling of invalid user inputs in settings
+
+22. Notification Interaction
+    - Test clicking on notifications (should open relevant Polymarket page)
+    - Verify clearing/dismissing notifications
+    - Test notification sound and vibration (if applicable)
+    - Verify grouping of multiple notifications
+    - Test notification behavior when Polymarket tab is already open
+
+23. Data Management
+    - Test clearing extension data (partial and complete)
+    - Verify data backup and restore functionality (if applicable)
+    - Test handling of data conflicts between devices (if sync is supported)
+    - Verify proper data sanitization when storing/retrieving
+
+24. Installation/Uninstallation
+    - Test fresh installation process
+    - Verify proper functionality after reinstallation
+    - Test complete uninstallation (including data removal)
+    - Verify extension behavior after temporary disable/enable
+
+25. Documentation and Help
+    - Verify accuracy and completeness of user documentation
+    - Test any in-extension help or onboarding features
+    - Verify all error messages are documented and helpful
+    - Test accessibility of documentation for users with disabilities
+
