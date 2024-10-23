@@ -91,7 +91,7 @@ export async function initPopup() {
     });
 
     await initTradeConfirmationToggle();
-    await initPrivacyModeToggle();
+    await initPrivacyModeToggle(); // Initialize privacy mode toggle
   } catch (error: unknown) {
     if (error instanceof Error || error instanceof PolytellerError) {
       handleError(error);
