@@ -14,8 +14,11 @@ let isPrivacyModeEnabled = false;
  */
 async function initPrivacyMode() {
   isPrivacyModeEnabled = await getPrivacyModeState();
+  log('PrivacyMode', `Initializing privacy mode. Enabled: ${isPrivacyModeEnabled}`);
   addToggleIcon();
   updatePrivacyMode();
+  setupMutationObserver();
+  retryPrivacyMode();
 }
 
 /**
@@ -23,16 +26,26 @@ async function initPrivacyMode() {
  * This function is called whenever the privacy mode state changes.
  */
 function updatePrivacyMode() {
+  log('PrivacyMode', `Updating privacy mode. Enabled: ${isPrivacyModeEnabled}`);
   const valueElements = document.querySelectorAll(VALUE_SELECTOR);
-  valueElements.forEach((element) => {
+  log('PrivacyMode', `Found ${valueElements.length} value elements`);
+  
+  valueElements.forEach((element, index) => {
     if (element instanceof HTMLElement) {
       if (isPrivacyModeEnabled) {
-        // Store the original value and display masked value
-        element.dataset.originalValue = element.textContent || '';
-        element.textContent = maskValue(element.dataset.originalValue);
+        if (!element.dataset.originalValue) {
+          element.dataset.originalValue = element.textContent || '';
+        }
+        const originalValue = element.dataset.originalValue;
+        log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
+        element.textContent = maskValue(originalValue);
+        log('PrivacyMode', `Element ${index}: Masked value: "${element.textContent}"`);
       } else {
-        // Restore the original value
-        element.textContent = element.dataset.originalValue || element.textContent;
+        const originalValue = element.dataset.originalValue || element.textContent || '';
+        log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
+        element.textContent = originalValue;
+        log('PrivacyMode', `Element ${index}: Unmasked value: "${element.textContent}"`);
+        delete element.dataset.originalValue;
       }
     }
   });
@@ -159,3 +172,54 @@ new MutationObserver(() => {
     initPrivacyMode();
   }
 }).observe(document, {subtree: true, childList: true});
+
+// Add this function for retrying privacy mode application
+function retryPrivacyMode(maxRetries = 5, delay = 1000) {
+  let retries = 0;
+  
+  function attempt() {
+    if (retries >= maxRetries) {
+      log('PrivacyMode', 'Max retries reached, privacy mode may not be fully applied');
+      return;
+    }
+    
+    const valueElements = document.querySelectorAll(VALUE_SELECTOR);
+    if (valueElements.length === 0) {
+      retries++;
+      log('PrivacyMode', `Retry attempt ${retries}: No value elements found, retrying in ${delay}ms`);
+      setTimeout(attempt, delay);
+    } else {
+      log('PrivacyMode', `Value elements found on retry ${retries}, applying privacy mode`);
+      updatePrivacyMode();
+    }
+  }
+  
+  attempt();
+}
+
+/**
+ * Sets up a mutation observer to watch for changes in the Portfolio and Cash values.
+ */
+function setupMutationObserver() {
+  const targetNode = document.body;
+  const config = { childList: true, subtree: true };
+  
+  const callback = function(mutationsList: MutationRecord[], observer: MutationObserver) {
+    for(let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        const addedNodes = Array.from(mutation.addedNodes);
+        const hasRelevantChanges = addedNodes.some(node => 
+          node instanceof HTMLElement && node.matches(VALUE_SELECTOR)
+        );
+        
+        if (hasRelevantChanges) {
+          log('PrivacyMode', 'Relevant DOM changes detected, updating privacy mode');
+          updatePrivacyMode();
+        }
+      }
+    }
+  };
+  
+  const observer = new MutationObserver(callback);
+  observer.observe(targetNode, config);
+}
