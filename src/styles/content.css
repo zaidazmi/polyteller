@@ -28,3 +28,11 @@
 .polyteller-button:hover {
   opacity: 0.9;
 }
+
+.privacy-mode-toggle-icon {
+  transition: opacity 0.3s ease;
+}
+
+.privacy-mode-toggle-icon:hover {
+  opacity: 0.8;
+}
