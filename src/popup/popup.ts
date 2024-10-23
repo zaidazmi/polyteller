@@ -13,6 +13,7 @@ import { cleanupCountdown } from './components/countdown';
 import { useStore } from '../store/store';
 import { handleError, PolytellerError } from '../utils/errorUtils';
 import { validateCustomTime } from './components/customTimeValidation';
+import { initPrivacyModeToggle } from './components/privacyModeToggle';
 
 /**
  * Initializes the popup UI and sets up event listeners.
@@ -90,6 +91,7 @@ export async function initPopup() {
     });
 
     await initTradeConfirmationToggle();
+    await initPrivacyModeToggle();
   } catch (error: unknown) {
     if (error instanceof Error || error instanceof PolytellerError) {
       handleError(error);
