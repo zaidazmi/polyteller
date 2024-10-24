@@ -12,7 +12,7 @@ let isPrivacyModeEnabled = false;
  * Initializes the privacy mode feature.
  * This function is called when the content script loads and when the URL changes.
  */
-async function initPrivacyMode() {
+export async function initPrivacyMode() {
   isPrivacyModeEnabled = await getPrivacyModeState();
   log('PrivacyMode', `Initializing privacy mode. Enabled: ${isPrivacyModeEnabled}`);
   addToggleIcon();
@@ -25,7 +25,7 @@ async function initPrivacyMode() {
  * Updates the display of sensitive information based on the privacy mode state.
  * This function is called whenever the privacy mode state changes.
  */
-function updatePrivacyMode() {
+export function updatePrivacyMode() {
   log('PrivacyMode', `Updating privacy mode. Enabled: ${isPrivacyModeEnabled}`);
   const valueElements = document.querySelectorAll(VALUE_SELECTOR);
   log('PrivacyMode', `Found ${valueElements.length} value elements`);
@@ -60,9 +60,7 @@ function addToggleIcon() {
   if (document.querySelector(`.${TOGGLE_ICON_CLASS}`)) return; // Avoid adding multiple icons
 
   const portfolioElement = document.querySelector('.c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');
-  const cashElement = portfolioElement?.nextElementSibling;
-
-  if (portfolioElement instanceof HTMLElement && cashElement instanceof HTMLElement) {
+  if (portfolioElement instanceof HTMLElement) {
     const toggleIcon = document.createElement('div');
     toggleIcon.className = TOGGLE_ICON_CLASS;
     toggleIcon.innerHTML = `
@@ -73,7 +71,7 @@ function addToggleIcon() {
     `;
     toggleIcon.style.cssText = `
       position: absolute;
-      top: 100%;
+      top: calc(100% + 5px);
       left: 50%;
       transform: translateX(-50%);
       cursor: pointer;
@@ -82,29 +80,27 @@ function addToggleIcon() {
     `;
     toggleIcon.addEventListener('click', (e) => {
       e.stopPropagation();
+      e.preventDefault();
       togglePrivacyMode();
     });
 
-    // Create a wrapper div for positioning
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = `
+    const container = document.createElement('div');
+    container.style.cssText = `
       position: absolute;
-      top: ${cashElement.offsetTop + cashElement.offsetHeight}px;
-      left: ${portfolioElement.offsetLeft}px;
-      width: ${cashElement.offsetLeft + cashElement.offsetWidth - portfolioElement.offsetLeft}px;
+      top: 100%;
+      left: 0;
+      width: 100%;
       height: 0;
       overflow: visible;
+      pointer-events: none;
     `;
-    wrapper.appendChild(toggleIcon);
+    container.appendChild(toggleIcon);
 
-    // Insert the wrapper after the cash element
-    cashElement.parentNode?.insertBefore(wrapper, cashElement.nextSibling);
-
-    updateToggleIconPosition();
-
+    portfolioElement.style.position = 'relative';
+    portfolioElement.appendChild(container);
     log('PrivacyMode', 'Toggle icon added');
   } else {
-    log('PrivacyMode', 'Target elements for toggle icon not found or are not HTMLElements');
+    log('PrivacyMode', 'Target element for toggle icon not found or is not an HTMLElement');
   }
 }
 
@@ -125,21 +121,21 @@ function updateToggleIcon() {
  */
 function updateToggleIconPosition() {
   const toggleIcon = document.querySelector(`.${TOGGLE_ICON_CLASS}`);
-  const wrapper = toggleIcon?.parentElement;
+  const container = toggleIcon?.parentElement;
   const portfolioElement = document.querySelector('.c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');
-  const cashElement = portfolioElement?.nextElementSibling;
 
-  if (wrapper instanceof HTMLElement && portfolioElement instanceof HTMLElement && cashElement instanceof HTMLElement) {
-    wrapper.style.top = `${cashElement.offsetTop + cashElement.offsetHeight}px`;
-    wrapper.style.left = `${portfolioElement.offsetLeft}px`;
-    wrapper.style.width = `${cashElement.offsetLeft + cashElement.offsetWidth - portfolioElement.offsetLeft}px`;
+  if (container instanceof HTMLElement && portfolioElement instanceof HTMLElement) {
+    const rect = portfolioElement.getBoundingClientRect();
+    container.style.top = `${rect.height}px`;
+    container.style.left = '0';
+    container.style.width = `${rect.width}px`;
   }
 }
 
 /**
  * Toggles the privacy mode state and updates the UI accordingly.
  */
-async function togglePrivacyMode() {
+export async function togglePrivacyMode() {
   isPrivacyModeEnabled = !isPrivacyModeEnabled;
   await setPrivacyModeState(isPrivacyModeEnabled);
   updatePrivacyMode();
@@ -164,14 +160,18 @@ setInterval(updateToggleIconPosition, 5000);
 initPrivacyMode();
 
 // Re-run initialization when the URL changes (for single-page applications)
-let lastUrl = location.href;
-new MutationObserver(() => {
-  const url = location.href;
-  if (url !== lastUrl) {
-    lastUrl = url;
-    initPrivacyMode();
-  }
-}).observe(document, {subtree: true, childList: true});
+if (typeof window !== 'undefined' && window.location) {
+  let lastUrl = window.location.href;
+  new MutationObserver(() => {
+    if (window.location) {
+      const url = window.location.href;
+      if (url !== lastUrl) {
+        lastUrl = url;
+        initPrivacyMode();
+      }
+    }
+  }).observe(document, {subtree: true, childList: true});
+}
 
 // Add this function for retrying privacy mode application
 function retryPrivacyMode(maxRetries = 5, delay = 1000) {
