@@ -144,6 +144,15 @@ export async function togglePrivacyMode() {
   isPrivacyModeEnabled = !isPrivacyModeEnabled;
   await setPrivacyModeState(isPrivacyModeEnabled);
   updatePrivacyMode();
+
+  // Send a message to all tabs to update the privacy mode
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach((tab) => {
+      if (tab.id) {
+        chrome.tabs.sendMessage(tab.id, { action: 'updatePrivacyMode', enabled: isPrivacyModeEnabled });
+      }
+    });
+  });
 }
 
 // Listen for messages from the popup
