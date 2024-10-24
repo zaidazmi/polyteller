@@ -19,6 +19,7 @@ export async function initPrivacyMode() {
   updatePrivacyMode();
   setupMutationObserver();
   retryPrivacyMode();
+  startContinuousMonitoring();
 }
 
 /**
@@ -32,24 +33,28 @@ export function updatePrivacyMode() {
   
   valueElements.forEach((element, index) => {
     if (element instanceof HTMLElement) {
-      if (isPrivacyModeEnabled) {
-        if (!element.dataset.originalValue) {
-          element.dataset.originalValue = element.textContent || '';
-        }
-        const originalValue = element.dataset.originalValue;
-        log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
-        element.textContent = maskValue(originalValue);
-        log('PrivacyMode', `Element ${index}: Masked value: "${element.textContent}"`);
-      } else {
-        const originalValue = element.dataset.originalValue || element.textContent || '';
-        log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
-        element.textContent = originalValue;
-        log('PrivacyMode', `Element ${index}: Unmasked value: "${element.textContent}"`);
-        delete element.dataset.originalValue;
-      }
+      updateElement(element, index);
     }
   });
   updateToggleIcon();
+}
+
+function updateElement(element: HTMLElement, index: number) {
+  if (isPrivacyModeEnabled) {
+    if (!element.dataset.originalValue) {
+      element.dataset.originalValue = element.textContent || '';
+    }
+    const originalValue = element.dataset.originalValue;
+    log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
+    element.textContent = maskValue(originalValue);
+    log('PrivacyMode', `Element ${index}: Masked value: "${element.textContent}"`);
+  } else {
+    const originalValue = element.dataset.originalValue || element.textContent || '';
+    log('PrivacyMode', `Element ${index}: Original value: "${originalValue}"`);
+    element.textContent = originalValue;
+    log('PrivacyMode', `Element ${index}: Unmasked value: "${element.textContent}"`);
+    delete element.dataset.originalValue;
+  }
 }
 
 /**
@@ -110,7 +115,7 @@ function addToggleIcon() {
 function updateToggleIcon() {
   const toggleIcon = document.querySelector(`.${TOGGLE_ICON_CLASS}`);
   if (toggleIcon instanceof HTMLElement) {
-    toggleIcon.style.opacity = isPrivacyModeEnabled ? '1' : '0.3';
+    toggleIcon.style.opacity = isPrivacyModeEnabled ? '1' : '0.1';
     toggleIcon.title = isPrivacyModeEnabled ? 'Disable Privacy Mode' : 'Enable Privacy Mode';
   }
 }
@@ -174,7 +179,7 @@ if (typeof window !== 'undefined' && window.location) {
 }
 
 // Add this function for retrying privacy mode application
-function retryPrivacyMode(maxRetries = 5, delay = 1000) {
+function retryPrivacyMode(maxRetries = 10, delay = 500) {
   let retries = 0;
   
   function attempt() {
@@ -198,19 +203,34 @@ function retryPrivacyMode(maxRetries = 5, delay = 1000) {
 }
 
 /**
+ * Starts continuous monitoring for dynamically added elements.
+ */
+function startContinuousMonitoring() {
+  setInterval(() => {
+    const valueElements = document.querySelectorAll(VALUE_SELECTOR);
+    valueElements.forEach((element, index) => {
+      if (element instanceof HTMLElement && !element.dataset.privacyManaged) {
+        updateElement(element, index);
+        element.dataset.privacyManaged = 'true';
+      }
+    });
+  }, 1000); // Check every second
+}
+
+/**
  * Sets up a mutation observer to watch for changes in the Portfolio and Cash values.
  */
 function setupMutationObserver() {
   const targetNode = document.body;
-  const config = { childList: true, subtree: true };
+  const config = { childList: true, subtree: true, characterData: true, attributes: true };
   
   const callback = function(mutationsList: MutationRecord[], observer: MutationObserver) {
     for(let mutation of mutationsList) {
-      if (mutation.type === 'childList') {
+      if (mutation.type === 'childList' || mutation.type === 'characterData' || (mutation.type === 'attributes' && mutation.attributeName === 'class')) {
         const addedNodes = Array.from(mutation.addedNodes);
         const hasRelevantChanges = addedNodes.some(node => 
-          node instanceof HTMLElement && node.matches(VALUE_SELECTOR)
-        );
+          node instanceof HTMLElement && (node.matches(VALUE_SELECTOR) || node.querySelector(VALUE_SELECTOR))
+        ) || (mutation.target instanceof HTMLElement && mutation.target.matches(VALUE_SELECTOR));
         
         if (hasRelevantChanges) {
           log('PrivacyMode', 'Relevant DOM changes detected, updating privacy mode');
