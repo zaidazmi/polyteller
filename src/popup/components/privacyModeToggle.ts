@@ -27,12 +27,13 @@ export async function initPrivacyModeToggle(): Promise<void> {
     // Update the privacy mode state
     await setPrivacyModeState(isEnabled);
     
-    // Send a message to the active tab to update the privacy mode
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      const currentTabId = tabs[0]?.id;
-      if (currentTabId) {
-        chrome.tabs.sendMessage(currentTabId, { action: 'updatePrivacyMode', enabled: isEnabled });
-      }
+    // Send a message to all tabs to update the privacy mode
+    chrome.tabs.query({}, (tabs) => {
+      tabs.forEach((tab) => {
+        if (tab.id) {
+          chrome.tabs.sendMessage(tab.id, { action: 'updatePrivacyMode', enabled: isEnabled });
+        }
+      });
     });
   });
 }
