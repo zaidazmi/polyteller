@@ -14,7 +14,9 @@
     },
     "include": [
       "src/**/*",
-      "src/popup/components/privacyModeToggle.ts"
+      "src/popup/components/privacyModeToggle.ts",
+      "src/content/privacyMode.test.ts",
+      "src/popup/components/privacyModeToggle.test.ts"
     ],
     "exclude": ["node_modules", "jest.config.js"]
 }

@@ -31,6 +31,7 @@
 
 .privacy-mode-toggle-icon {
   transition: opacity 0.3s ease;
+  pointer-events: auto;
 }
 
 .privacy-mode-toggle-icon:hover {
