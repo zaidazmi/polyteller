@@ -41,3 +41,8 @@ export interface EventInfo {
   timezone: string;
   // ... any other properties
 }
+
+/**
+ * Represents the button states for a notification.
+ */
+export type NotificationButtonState = 'default' | 'success' | 'error' | 'disabled';

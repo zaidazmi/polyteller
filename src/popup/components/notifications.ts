@@ -14,7 +14,12 @@ import { loadNotifications } from '../popup';
  * Sets a new notification for the current event.
  */
 export function setNotification() {
+  const setNotificationButton = document.getElementById('set-notification') as HTMLButtonElement;
   const notificationTimeSelect = document.getElementById('notification-time') as HTMLSelectElement;
+  
+  // Disable button during processing
+  setNotificationButton.disabled = true;
+  
   let minutesBefore: number;
   if (notificationTimeSelect.value === 'custom') {
     const days = parseInt((document.getElementById('custom-days') as HTMLInputElement).value) || 0;
@@ -33,7 +38,12 @@ export function setNotification() {
     const notificationTime = currentEvent.endTime - minutesBefore * 60 * 1000;
 
     if (notificationTime <= now) {
+      setNotificationButton.classList.add('error');
       displayStatus('Cannot set notification for a time that has already passed.');
+      setTimeout(() => {
+        setNotificationButton.classList.remove('error');
+        setNotificationButton.disabled = false;
+      }, 500);
       return;
     }
 
@@ -49,19 +59,32 @@ export function setNotification() {
       data: notificationSetting
     }, async (response) => {
       if (response.success) {
+        setNotificationButton.classList.add('success');
         await loadNotifications();
         displayStatus('Notification set successfully!');
         displayNotifications();
       } else {
+        setNotificationButton.classList.add('error');
         if (response.isDuplicate) {
           displayStatus('A notification for this time already exists.');
         } else {
           displayStatus(`Failed to set notification: ${response.error}`);
         }
       }
+
+      // Reset button state after delay
+      setTimeout(() => {
+        setNotificationButton.classList.remove('success', 'error');
+        setNotificationButton.disabled = false;
+      }, 500);
     });
   } else {
+    setNotificationButton.classList.add('error');
     displayStatus('No event selected. Please select an event first.');
+    setTimeout(() => {
+      setNotificationButton.classList.remove('error');
+      setNotificationButton.disabled = false;
+    }, 500);
   }
 }
 
