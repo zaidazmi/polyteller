@@ -6,7 +6,7 @@
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
 import { getTimezoneAbbreviation, getLocalTimezone } from '../utils/timezoneUtils';
-import { formatRemainingTime, formatDate } from '../utils/dateUtils';
+import { formatRemainingTime, formatDate, formatFullNotificationTime } from '../utils/dateUtils';
 
 /** Stores the current notifications in memory. */
 export let storedNotifications: Notification[] = [];
@@ -76,12 +76,12 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   const notification = storedNotifications.find(n => n.id === alarm.name);
 
   if (notification) {
-    // Create and show the notification
+    // Create and show the notification with the original time setting
     await chrome.notifications.create(notification.id, {
       type: 'basic',
       iconUrl: 'icon.png',
       title: 'Event Reminder',
-      message: `${notification.eventTitle} is starting in ${formatRemainingTime(notification.minutesBefore)}!`,
+      message: `${notification.eventTitle} is starting in ${formatFullNotificationTime(notification.minutesBefore)}`,
     });
 
     // Set the triggered property to true
