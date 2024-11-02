@@ -25,3 +25,42 @@ const timezoneAbbreviations: TimezoneMap = {
 export function getLocalTimezone(): string {
   return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
+
+export function isDST(date: Date): boolean {
+  // Get the first Sunday in November
+  const year = date.getFullYear();
+  const november = new Date(year, 10, 1);
+  const firstSunday = new Date(
+    november.setDate(november.getDate() + (7 - november.getDay()))
+  );
+  firstSunday.setHours(2, 0, 0, 0); // 2 AM is when DST ends
+
+  // Get second Sunday in March
+  const march = new Date(year, 2, 1);
+  const secondSunday = new Date(
+    march.setDate(march.getDate() + (14 - march.getDay()))
+  );
+  secondSunday.setHours(2, 0, 0, 0); // 2 AM is when DST starts
+
+  return date >= secondSunday && date < firstSunday;
+}
+
+export function getETOffset(date: Date): number {
+  return isDST(date) ? 4 : 5; // EDT is UTC-4, EST is UTC-5
+}
+
+export function isAmbiguousDSTTime(date: Date): boolean {
+  // Check if date is during the DST fallback hour (1-2 AM on first Sunday of November)
+  const year = date.getFullYear();
+  const november = new Date(year, 10, 1);
+  const firstSunday = new Date(
+    november.setDate(november.getDate() + (7 - november.getDay()))
+  );
+  
+  if (date.getMonth() === 10 && // November
+      date.getDate() === firstSunday.getDate() && // First Sunday
+      date.getHours() >= 1 && date.getHours() < 2) { // Between 1-2 AM
+    return true;
+  }
+  return false;
+}
