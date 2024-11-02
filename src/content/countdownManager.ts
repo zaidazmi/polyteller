@@ -6,6 +6,7 @@
 import { PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
 import { calculateTimeRemaining, formatDate, getTimeRemaining } from '../utils/dateUtils';
+import { isDST } from '../utils/timezoneUtils';
 
 /**
  * Creates and inserts a countdown element for the given event.
@@ -52,9 +53,15 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
       // Event has ended
       if (isExtensionPopup) {
         const endDate = new Date(eventInfo.endTime);
+        const timezoneSuffix = eventInfo.timezone === 'ET' ? 
+          `${isDST(endDate) ? 'EDT' : 'EST'}` : 
+          eventInfo.timezone;
+        
         countdownElement.innerHTML = `
           <div>Event has ended</div>
-          <div style="font-size: 12px; margin-top: 5px;">Ended on ${formatDate(endDate)} ${eventInfo.timezone}</div>
+          <div style="font-size: 12px; margin-top: 5px;">
+            Ended on ${formatDate(endDate)} ${timezoneSuffix}
+          </div>
         `;
       } else {
         countdownElement.textContent = 'Event has ended';
@@ -62,6 +69,22 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
     } else {
       // Event is still ongoing
       countdownElement.textContent = getTimeRemaining(eventInfo.endTime);
+      
+      // Add timezone info
+      if (eventInfo.timezone === 'ET') {
+        const now = new Date();
+        const isDuringDSTChange = Math.abs(eventInfo.endTime - now.getTime()) < 24 * 60 * 60 * 1000 && // Within 24 hours
+                                 now.getMonth() === 10 && // November
+                                 now.getDate() === 3; // First Sunday
+        
+        if (isDuringDSTChange) {
+          countdownElement.innerHTML += `
+            <div style="font-size: 10px; margin-top: 5px; color: #ff9800;">
+              Note: DST change occurs during countdown
+            </div>
+          `;
+        }
+      }
     }
 
     log('Content', 'Updated countdown text:', countdownElement.textContent);
