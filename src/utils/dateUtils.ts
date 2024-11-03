@@ -3,6 +3,8 @@
  * This file contains various functions for formatting and calculating date and time information.
  */
 
+import { isDST } from './timezoneUtils';
+
 /**
  * Formats the remaining time as a string.
  * @param endTime - The end time in milliseconds since epoch
@@ -139,4 +141,62 @@ export function formatLocalEndDate(date: Date, timeZone: string): string {
     hour12: true,
     timeZone: timeZone
   });
+}
+
+/**
+ * Parses a custom date string into a Date object.
+ * @param dateString - The date string to parse
+ * @param timezone - The timezone to use for parsing
+ * @returns A Date object parsed from the date string
+ */
+export function parseCustomDate(dateString: string, timezone: string): Date {
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                 'July', 'August', 'September', 'October', 'November', 'December'];
+    
+  // Try 12-hour format first (e.g., "December 17, 2024, 12:00 PM")
+  let parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}) ([AP]M)/);
+  
+  if (parts) {
+    const [, month, day, year, hour, minute, ampm] = parts;
+    let parsedHour = parseInt(hour);
+    if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
+    if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
+    
+    // Create date in ET
+    if (timezone === 'ET') {
+      // Use the correct ET offset (EST = UTC-5, EDT = UTC-4)
+      const date = new Date(`${year}-${months.indexOf(month) + 1}-${day}T${parsedHour.toString().padStart(2, '0')}:${minute}:00-05:00`);
+      
+      // Check if date is during DST
+      if (isDST(date)) {
+        // Adjust for EDT
+        date.setHours(date.getHours() + 1);
+      }
+      return date;
+    }
+    
+    return new Date(Date.UTC(
+      parseInt(year),
+      months.indexOf(month),
+      parseInt(day),
+      parsedHour,
+      parseInt(minute)
+    ));
+  }
+  
+  // Try ISO format with Z (UTC) (e.g., "2024-12-17T12:00:00Z")
+  if (dateString.endsWith('Z')) {
+    const date = new Date(dateString);
+    
+    // If timezone is ET, convert from UTC to ET
+    if (timezone === 'ET') {
+      // Adjust for ET (UTC-5 or UTC-4 depending on DST)
+      const offset = isDST(date) ? -4 : -5;
+      date.setHours(date.getHours() + offset);
+    }
+    return date;
+  }
+  
+  // Fallback to built-in date parsing
+  return new Date(dateString);
 }
