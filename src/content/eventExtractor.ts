@@ -25,6 +25,69 @@ const DATE_PATTERNS = [
   /([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2})(?: ?([AP]M))? ([A-Z]{2,3})/i,
 ];
 
+// Add these new patterns at the top, after existing DATE_PATTERNS
+const PRIORITY_DATE_PATTERNS = [
+  // Highest priority: Explicit end dates with time
+  {
+    pattern: /(?:and|until|by) ([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2}) ?([AP]M) ([A-Z]{2,3})/i,
+    priority: 3
+  },
+  // Medium priority: Resolution dates
+  {
+    pattern: /(?:resolves?|ends?) .*? ([A-Za-z]+ \d{1,2},? \d{4})/i,
+    priority: 2
+  },
+  // Low priority: Inauguration dates
+  {
+    pattern: /inauguration date.*?\(([A-Za-z]+ \d{1,2},? \d{4})\)/i,
+    priority: 1
+  }
+];
+
+interface DateMatch {
+  date: string;
+  time?: string;
+  ampm?: string;
+  timezone: string;
+  priority: number;
+}
+
+/**
+ * Finds all dates in the description and returns them sorted by priority
+ * @param description - The market description text
+ * @returns Array of date matches sorted by priority
+ */
+function findPriorityDates(description: string): DateMatch[] {
+  const matches: DateMatch[] = [];
+
+  // Check each priority pattern
+  PRIORITY_DATE_PATTERNS.forEach(({ pattern, priority }) => {
+    const match = description.match(pattern);
+    if (match) {
+      if (match.length >= 5) {
+        // Pattern with time
+        matches.push({
+          date: match[1],
+          time: match[2],
+          ampm: match[3],
+          timezone: match[4] || 'ET',
+          priority
+        });
+      } else {
+        // Pattern without time
+        matches.push({
+          date: match[1],
+          timezone: 'ET',
+          priority
+        });
+      }
+    }
+  });
+
+  // Sort by priority (highest first)
+  return matches.sort((a, b) => b.priority - a.priority);
+}
+
 /**
  * Extracts event information from the Polymarket page.
  * @returns The extracted event information, or null if extraction fails
@@ -52,34 +115,48 @@ export function extractEventInfo(): PolymarketEvent | null {
         const description = eventData.markets[0].description;
         log('Content', 'Market description:', description);
 
-        // Try all patterns to find a date in description
-        for (const pattern of DATE_PATTERNS) {
-          dateTimeMatch = description.match(pattern);
-          if (dateTimeMatch) {
-            log('Content', 'Date time matches:', dateTimeMatch);
-            
-            // For date range pattern
-            if (dateTimeMatch.length >= 8) {
-              const [, , , , , endDate, endTime, endAmPm, endTz] = dateTimeMatch;
-              endDateValue = `${endDate}, ${endTime} ${endAmPm}`;
-              timezone = endTz || 'ET';
-            } else {
-              // Always use the date from description
-              const [, datePart] = dateTimeMatch;
-              endDateValue = `${datePart}, 11:59 PM`;  // Set to end of day
-              timezone = 'ET';
+        // First try priority patterns
+        const priorityDates = findPriorityDates(description);
+        if (priorityDates.length > 0) {
+          const highestPriority = priorityDates[0];
+          if (highestPriority.time) {
+            endDateValue = `${highestPriority.date}, ${highestPriority.time} ${highestPriority.ampm}`;
+            timezone = highestPriority.timezone;
+          } else {
+            endDateValue = `${highestPriority.date}, 11:59 PM`;
+            timezone = 'ET';
+          }
+          log('Content', 'Using priority date:', endDateValue);
+        } else {
+          // Fall back to existing DATE_PATTERNS logic
+          for (const pattern of DATE_PATTERNS) {
+            dateTimeMatch = description.match(pattern);
+            if (dateTimeMatch) {
+              log('Content', 'Date time matches:', dateTimeMatch);
               
-              // Create date object to verify it's valid
-              const parsedDate = new Date(endDateValue);
-              if (!isNaN(parsedDate.getTime())) {
-                log('Content', 'Using date from description:', endDateValue);
+              // For date range pattern
+              if (dateTimeMatch.length >= 8) {
+                const [, , , , , endDate, endTime, endAmPm, endTz] = dateTimeMatch;
+                endDateValue = `${endDate}, ${endTime} ${endAmPm}`;
+                timezone = endTz || 'ET';
               } else {
-                // Fallback to __NEXT_DATA__ date if parsing fails
-                endDateValue = eventData.endDate;
-                log('Content', 'Failed to parse description date, using fallback:', endDateValue);
+                // Always use the date from description
+                const [, datePart] = dateTimeMatch;
+                endDateValue = `${datePart}, 11:59 PM`;  // Set to end of day
+                timezone = 'ET';
+                
+                // Create date object to verify it's valid
+                const parsedDate = new Date(endDateValue);
+                if (!isNaN(parsedDate.getTime())) {
+                  log('Content', 'Using date from description:', endDateValue);
+                } else {
+                  // Fallback to __NEXT_DATA__ date if parsing fails
+                  endDateValue = eventData.endDate;
+                  log('Content', 'Failed to parse description date, using fallback:', endDateValue);
+                }
               }
+              break;
             }
-            break;
           }
         }
       }
