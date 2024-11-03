@@ -184,17 +184,39 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
     ));
   }
   
-  // Try ISO format with Z (UTC) (e.g., "2024-12-17T12:00:00Z")
-  if (dateString.endsWith('Z')) {
-    const date = new Date(dateString);
-    
-    // If timezone is ET, convert from UTC to ET
+  // If only date is provided (no time) - default to end of day
+  if (dateString.match(/^\d{4}-\d{2}-\d{2}$/) || dateString.match(/^[A-Za-z]+ \d{1,2},? \d{4}$/)) {
+    let date;
     if (timezone === 'ET') {
-      // Adjust for ET (UTC-5 or UTC-4 depending on DST)
-      const offset = isDST(date) ? -4 : -5;
-      date.setHours(date.getHours() + offset);
+      // For ET timezone, create at 23:59:59 ET
+      date = new Date(`${dateString}T23:59:59-05:00`);
+      if (isDST(date)) {
+        date.setHours(date.getHours() + 1);
+      }
+    } else {
+      // For UTC/other timezones, create at 23:59:59 UTC
+      date = new Date(`${dateString}T23:59:59Z`);
     }
     return date;
+  }
+  
+  // Handle ISO format with Z (UTC)
+  if (dateString.endsWith('Z')) {
+    // If timezone is ET, always treat as ET and set to end of day
+    if (timezone === 'ET') {
+      const utcDate = new Date(dateString);
+      const year = utcDate.getUTCFullYear();
+      const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
+      const day = utcDate.getUTCDate().toString().padStart(2, '0');
+      
+      // Create at 23:59:59 ET with correct offset
+      const date = new Date(`${year}-${month}-${day}T23:59:59-05:00`);
+      if (isDST(date)) {
+        date.setHours(date.getHours() + 1);
+      }
+      return date;
+    }
+    return new Date(dateString);
   }
   
   // Fallback to built-in date parsing
