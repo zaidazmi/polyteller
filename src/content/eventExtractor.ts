@@ -28,11 +28,13 @@ export function extractEventInfo(): PolymarketEvent | null {
       let timezone = 'UTC';
       let endDateValue = eventData.endDate;
 
+      // Try to find ET time in description
       if (eventData.markets && eventData.markets[0] && eventData.markets[0].description) {
         const description = eventData.markets[0].description;
         log('Content', 'Market description:', description);
 
-        const dateTimeMatch = description.match(/(?:between .+ and |ends? on )([A-Za-z]+ \d{1,2}, \d{4}),? (\d{1,2}:\d{2})(?: ([AP]M))? (?:in the )?([A-Z]{2,3})/i);
+        // Updated regex to catch more date formats including those with commas
+        const dateTimeMatch = description.match(/(?:between .+ and |ends? on |by )([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2})(?: ?([AP]M))? (?:in the )?([A-Z]{2,3})/i);
         log('Content', 'Date time matches:', dateTimeMatch);
 
         if (dateTimeMatch) {
@@ -43,8 +45,20 @@ export function extractEventInfo(): PolymarketEvent | null {
             endDateValue = `${datePart}, ${timePart} ${ampm}`;
           }
           timezone = tz;
-          log('Content', 'End date found in description:', endDateValue);
-          log('Content', 'Timezone found in description:', timezone);
+        } else if (description.includes('ET') && eventData.endDate.endsWith('Z')) {
+          // If we find ET in description but date is in ISO format, use ET
+          timezone = 'ET';
+          const utcDate = new Date(eventData.endDate);
+          const month = utcDate.getUTCMonth();
+          const day = utcDate.getUTCDate();
+          const year = utcDate.getUTCFullYear();
+          const hours = utcDate.getUTCHours();
+          const minutes = utcDate.getUTCMinutes();
+          
+          // Convert to 12-hour format
+          const isPM = hours >= 12;
+          const hour12 = hours % 12 || 12;
+          endDateValue = `${months[month]} ${day}, ${year}, ${hour12}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
         }
       }
 
@@ -65,7 +79,7 @@ export function extractEventInfo(): PolymarketEvent | null {
         endTime: parsedDate.getTime(),
         endDate: endDateValue,
         timezone: timezone,
-        url: window.location.href // Add this line to include the current page URL
+        url: window.location.href
       };
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;
@@ -127,3 +141,6 @@ function createDateWithTimezone(year: number, month: number, day: number, hour: 
     
     return date;
 }
+
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+               'July', 'August', 'September', 'October', 'November', 'December'];

@@ -4,9 +4,9 @@
 export interface PolymarketEvent {
   id: string;
   title: string;
-  endTime: number;
-  endDate: string;
-  timezone: string;
+  endTime: number;      // Unix timestamp
+  endDate: string;      // Original date string
+  timezone: string;     // Timezone identifier
   url: string;
 }
 

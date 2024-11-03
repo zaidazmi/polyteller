@@ -1,0 +1,514 @@
+9The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this error
+lockdown-install.js:1 Removing unpermitted intrinsics
+316Chrome is moving towards a new experience that lets people make an informed choice with respect to third-party cookies.Understand this warning
+_app-8dcf79862ba41dfc.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+
+(anonymous) @ _app-8dcf79862ba41dfc.js:618
+391 @ _app-8dcf79862ba41dfc.js:618
+s @ _app-8dcf79862ba41dfc.js:618
+584 @ _app-8dcf79862ba41dfc.js:618
+s @ _app-8dcf79862ba41dfc.js:618
+177 @ _app-8dcf79862ba41dfc.js:618
+s @ _app-8dcf79862ba41dfc.js:618
+545 @ _app-8dcf79862ba41dfc.js:613
+s @ _app-8dcf79862ba41dfc.js:618
+167 @ _app-8dcf79862ba41dfc.js:613
+s @ _app-8dcf79862ba41dfc.js:618
+(anonymous) @ _app-8dcf79862ba41dfc.js:618
+27596 @ _app-8dcf79862ba41dfc.js:618
+f @ webpack-6f712ed95fe4e5da.js:1
+48670 @ _app-8dcf79862ba41dfc.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+22751 @ _app-8dcf79862ba41dfc.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+70442 @ _app-8dcf79862ba41dfc.js:6
+f @ webpack-6f712ed95fe4e5da.js:1
+12112 @ _app-8dcf79862ba41dfc.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+4684 @ _app-8dcf79862ba41dfc.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+204 @ _app-8dcf79862ba41dfc.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+35998 @ _app-8dcf79862ba41dfc.js:613
+f @ webpack-6f712ed95fe4e5da.js:1
+45796 @ _app-8dcf79862ba41dfc.js:613
+f @ webpack-6f712ed95fe4e5da.js:1
+90498 @ _app-8dcf79862ba41dfc.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+42603 @ _app-8dcf79862ba41dfc.js:568
+f @ webpack-6f712ed95fe4e5da.js:1
+88743 @ _app-8dcf79862ba41dfc.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+92948 @ _app-8dcf79862ba41dfc.js:611
+f @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-8dcf79862ba41dfc.js:330
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+Promise.then
+onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
+s @ main-6b4b235ae1bf0bb2.js:1
+6840 @ _app-8dcf79862ba41dfc.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+t @ _app-8dcf79862ba41dfc.js:2009
+(anonymous) @ _app-8dcf79862ba41dfc.js:2009
+f.O @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-8dcf79862ba41dfc.js:2009
+_ @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-8dcf79862ba41dfc.js:1Understand this error
+VM1274:1 
+        
+        
+       GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ VM1274:1
+(anonymous) @ VM1274:1
+m @ main-6b4b235ae1bf0bb2.js:1
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+o @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this error
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this error
+_app-8dcf79862ba41dfc.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+
+(anonymous) @ _app-8dcf79862ba41dfc.js:640
+(anonymous) @ _app-8dcf79862ba41dfc.js:640
+initializeAdapter @ _app-8dcf79862ba41dfc.js:564
+(anonymous) @ _app-8dcf79862ba41dfc.js:613
+(anonymous) @ _app-8dcf79862ba41dfc.js:613
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this error
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this error
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Event data found: {
+  "id": "13993",
+  "ticker": "elon-musk-of-tweets-nov-1-8",
+  "slug": "elon-musk-of-tweets-nov-1-8",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "description": "This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.",
+  "resolutionSource": "",
+  "startDate": "2024-11-01T17:45:15.173694Z",
+  "creationDate": "2024-11-01T17:45:15.173691Z",
+  "endDate": "2024-11-08T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "active": true,
+  "closed": false,
+  "archived": false,
+  "new": false,
+  "featured": false,
+  "restricted": true,
+  "liquidity": 39701.58274,
+  "volume": 96335.256885,
+  "openInterest": 0,
+  "createdAt": "2024-11-01T16:21:05.179428Z",
+  "updatedAt": "2024-11-03T05:35:01.147746Z",
+  "competitive": 0.938945095185559,
+  "volume24hr": 42037.539307,
+  "enableOrderBook": true,
+  "liquidityClob": 39701.58274,
+  "_sync": false,
+  "negRisk": true,
+  "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+  "commentCount": 18,
+  "markets": [
+    {
+      "id": "511643",
+      "question": "Will Elon tweet 375-399 times November 1-8?",
+      "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+      "slug": "will-elon-tweet-375-399-times-november-1-8",
+      "resolutionSource": "",
+      "endDate": "2024-11-08T12:00:00Z",
+      "liquidity": "1908.6019",
+      "startDate": "2024-11-01T17:37:15.627027Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "description": "If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to \"Yes\". Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, only main feed posts, quote posts and reposts posts will count.\n\nReplies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.\n\nDeleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).\n\nThe resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking \"Export Data\". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.05",
+        "0.95"
+      ],
+      "volume": "4703.063535",
+      "active": true,
+      "closed": false,
+      "marketMakerAddress": "",
+      "createdAt": "2024-11-01T17:17:18.131353Z",
+      "updatedAt": "2024-11-03T05:34:22.711799Z",
+      "new": false,
+      "featured": false,
+      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
+      "archived": false,
+      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "restricted": true,
+      "groupItemTitle": "375-399",
+      "groupItemThreshold": "6",
+      "questionID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af06",
+      "enableOrderBook": true,
+      "orderPriceMinTickSize": 0.01,
+      "orderMinSize": 5,
+      "volumeNum": 4703.063535,
+      "liquidityNum": 1908.6019,
+      "endDateIso": "2024-11-08",
+      "startDateIso": "2024-11-01",
+      "hasReviewedDates": true,
+      "volume24hr": 1810.519133,
+      "clobTokenIds": [
+        "107471755562416417556629352987082390272273488757365279201891662348078062635605",
+        "69092705566824768051844047845262368252721287712294057753916971399042283148007"
+      ],
+      "umaBond": "500",
+      "umaReward": "5",
+      "volume24hrClob": 1810.519133,
+      "volumeClob": 4703.063535,
+      "liquidityClob": 1908.6019,
+      "acceptingOrders": true,
+      "negRisk": true,
+      "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+      "negRiskRequestID": "0x720a7d1f5637ed642a407b7808f21e3da4bfec3d044680de647fdcd8f6303b00",
+      "_sync": false,
+      "ready": false,
+      "funded": false,
+      "acceptingOrdersTimestamp": "2024-11-01T17:36:02Z",
+      "cyom": false,
+      "competitive": 0.8316008316008316,
+      "pagerDutyNotificationEnabled": false,
+      "approved": true,
+      "clobRewards": [
+        {
+          "id": "9820",
+          "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 10,
+          "startDate": "2024
+content.js:1 [Polyteller Content] Market description: If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to "Yes". Otherwise, this market will resolve to "No".
+
+For the purposes of this market, only main feed posts, quote posts and reposts posts will count.
+
+Replies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.
+
+Deleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).
+
+The resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking "Export Data". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.
+content.js:1 [Polyteller Content] Date time matches: (5) ['between 375 (inclusive) and 399 (inclusive) times …24, 12:00 PM ET and November 8, 2024, 12:00 PM ET', 'November 8, 2024', '12:00', 'PM', 'ET', index: 32, input: 'If Elon Musk (@elonmusk), posts between 375 (inclu…elf may be used as a secondary resolution source.', groups: undefined]
+content.js:1 [Polyteller Content] Original end date: November 8, 2024, 12:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
+content.js:1 [Polyteller Content] Extracted event info: {
+  "id": "13993",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "endTime": 1731085200000,
+  "endDate": "November 8, 2024, 12:00 PM",
+  "timezone": "ET",
+  "url": "https://polymarket.com/event/elon-musk-of-tweets-nov-1-8?tid=1730612279978"
+}
+content.js:1 [Polyteller Content] Event info extracted: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating new countdown element
+content.js:1 [Polyteller Content] Countdown element appended to body
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 59s
+content.js:1 [Polyteller Content] Polyteller content script loaded
+content.js:1 [Polyteller Content] Event data found: {
+  "id": "13993",
+  "ticker": "elon-musk-of-tweets-nov-1-8",
+  "slug": "elon-musk-of-tweets-nov-1-8",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "description": "This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.",
+  "resolutionSource": "",
+  "startDate": "2024-11-01T17:45:15.173694Z",
+  "creationDate": "2024-11-01T17:45:15.173691Z",
+  "endDate": "2024-11-08T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "active": true,
+  "closed": false,
+  "archived": false,
+  "new": false,
+  "featured": false,
+  "restricted": true,
+  "liquidity": 39701.58274,
+  "volume": 96335.256885,
+  "openInterest": 0,
+  "createdAt": "2024-11-01T16:21:05.179428Z",
+  "updatedAt": "2024-11-03T05:35:01.147746Z",
+  "competitive": 0.938945095185559,
+  "volume24hr": 42037.539307,
+  "enableOrderBook": true,
+  "liquidityClob": 39701.58274,
+  "_sync": false,
+  "negRisk": true,
+  "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+  "commentCount": 18,
+  "markets": [
+    {
+      "id": "511643",
+      "question": "Will Elon tweet 375-399 times November 1-8?",
+      "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+      "slug": "will-elon-tweet-375-399-times-november-1-8",
+      "resolutionSource": "",
+      "endDate": "2024-11-08T12:00:00Z",
+      "liquidity": "1908.6019",
+      "startDate": "2024-11-01T17:37:15.627027Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "description": "If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to \"Yes\". Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, only main feed posts, quote posts and reposts posts will count.\n\nReplies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.\n\nDeleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).\n\nThe resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking \"Export Data\". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.05",
+        "0.95"
+      ],
+      "volume": "4703.063535",
+      "active": true,
+      "closed": false,
+      "marketMakerAddress": "",
+      "createdAt": "2024-11-01T17:17:18.131353Z",
+      "updatedAt": "2024-11-03T05:34:22.711799Z",
+      "new": false,
+      "featured": false,
+      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
+      "archived": false,
+      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "restricted": true,
+      "groupItemTitle": "375-399",
+      "groupItemThreshold": "6",
+      "questionID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af06",
+      "enableOrderBook": true,
+      "orderPriceMinTickSize": 0.01,
+      "orderMinSize": 5,
+      "volumeNum": 4703.063535,
+      "liquidityNum": 1908.6019,
+      "endDateIso": "2024-11-08",
+      "startDateIso": "2024-11-01",
+      "hasReviewedDates": true,
+      "volume24hr": 1810.519133,
+      "clobTokenIds": [
+        "107471755562416417556629352987082390272273488757365279201891662348078062635605",
+        "69092705566824768051844047845262368252721287712294057753916971399042283148007"
+      ],
+      "umaBond": "500",
+      "umaReward": "5",
+      "volume24hrClob": 1810.519133,
+      "volumeClob": 4703.063535,
+      "liquidityClob": 1908.6019,
+      "acceptingOrders": true,
+      "negRisk": true,
+      "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+      "negRiskRequestID": "0x720a7d1f5637ed642a407b7808f21e3da4bfec3d044680de647fdcd8f6303b00",
+      "_sync": false,
+      "ready": false,
+      "funded": false,
+      "acceptingOrdersTimestamp": "2024-11-01T17:36:02Z",
+      "cyom": false,
+      "competitive": 0.8316008316008316,
+      "pagerDutyNotificationEnabled": false,
+      "approved": true,
+      "clobRewards": [
+        {
+          "id": "9820",
+          "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 10,
+          "startDate": "2024
+content.js:1 [Polyteller Content] Market description: If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to "Yes". Otherwise, this market will resolve to "No".
+
+For the purposes of this market, only main feed posts, quote posts and reposts posts will count.
+
+Replies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.
+
+Deleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).
+
+The resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking "Export Data". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.
+content.js:1 [Polyteller Content] Date time matches: (5) ['between 375 (inclusive) and 399 (inclusive) times …24, 12:00 PM ET and November 8, 2024, 12:00 PM ET', 'November 8, 2024', '12:00', 'PM', 'ET', index: 32, input: 'If Elon Musk (@elonmusk), posts between 375 (inclu…elf may be used as a secondary resolution source.', groups: undefined]
+content.js:1 [Polyteller Content] Original end date: November 8, 2024, 12:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
+content.js:1 [Polyteller Content] Extracted event info: {
+  "id": "13993",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "endTime": 1731085200000,
+  "endDate": "November 8, 2024, 12:00 PM",
+  "timezone": "ET",
+  "url": "https://polymarket.com/event/elon-musk-of-tweets-nov-1-8?tid=1730612279978"
+}
+content.js:1 [Polyteller DOMManipulator] Buy button interception set up
+lockdown-install.js:1 Removing unpermitted intrinsics
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this error
+lockdown-install.js:1 Removing unpermitted intrinsics
+privacyMode.js:1 [Polyteller PrivacyMode] Initializing privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Value elements found on retry 0, applying privacy mode
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Initializing privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Value elements found on retry 0, applying privacy mode
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this error
+embedded-wallets-5900ec01883d8813.js:1 Warning!
+embedded-wallets-5900ec01883d8813.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+18Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this error
+framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
+_ @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oI @ framework-a667dbba83e63e79.js:9
+oD @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oO @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this error
+frame-modern.5281fa6c.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+content.js:1 [Polyteller Content] Sending event info to background: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 58s
+content.js:1 [Polyteller Content] Error sending event info to background: {message: 'The message port closed before a response was received.'}
+_app-8dcf79862ba41dfc.js:1928 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Abeacon%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=5a49328f-01d2-48a0-92cf-65a6ba2704a9' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+Lm @ _app-8dcf79862ba41dfc.js:1928
+sendOnExit @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+finish @ _app-8dcf79862ba41dfc.js:1928
+d @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+push.71822.e.notify @ _app-8dcf79862ba41dfc.js:1928
+f @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+push.71822.e.notify @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+Oo @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+n @ _app-8dcf79862ba41dfc.js:575Understand this error
+_app-8dcf79862ba41dfc.js:1928 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Abeacon%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=5a49328f-01d2-48a0-92cf-65a6ba2704a9' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+Lm @ _app-8dcf79862ba41dfc.js:1928
+sendOnExit @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+finish @ _app-8dcf79862ba41dfc.js:1928
+d @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+push.71822.e.notify @ _app-8dcf79862ba41dfc.js:1928
+f @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+push.71822.e.notify @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+Oo @ _app-8dcf79862ba41dfc.js:1928
+(anonymous) @ _app-8dcf79862ba41dfc.js:1928
+n @ _app-8dcf79862ba41dfc.js:575Understand this error
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Relevant DOM changes detected, updating privacy mode
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Relevant DOM changes detected, updating privacy mode
+privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
+privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
+privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+(anonymous) @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+subscribe @ 9635.7df19093a14523ab.js:1
+d @ 9635.7df19093a14523ab.js:1
+p @ 9635.7df19093a14523ab.js:1
+getProvider @ _app-8dcf79862ba41dfc.js:1975
+await in getProvider
+i @ _app-8dcf79862ba41dfc.js:1975Understand this error
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 57s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 56s
+_app-8dcf79862ba41dfc.js:578 initializing client with geoblock token two 
+_app-8dcf79862ba41dfc.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-8dcf79862ba41dfc.js:611:8580)
+    at _app-8dcf79862ba41dfc.js:611:16320
+postMessage @ _app-8dcf79862ba41dfc.js:611
+(anonymous) @ _app-8dcf79862ba41dfc.js:611
+Promise.then
+(anonymous) @ _app-8dcf79862ba41dfc.js:611
+Promise.then
+eS @ _app-8dcf79862ba41dfc.js:611
+postMessage @ _app-8dcf79862ba41dfc.js:611
+(anonymous) @ _app-8dcf79862ba41dfc.js:611
+(anonymous) @ _app-8dcf79862ba41dfc.js:1975
+(anonymous) @ _app-8dcf79862ba41dfc.js:1975
+batch @ _app-8dcf79862ba41dfc.js:1975
+notify @ _app-8dcf79862ba41dfc.js:1975
+(anonymous) @ _app-8dcf79862ba41dfc.js:1975
+batch @ _app-8dcf79862ba41dfc.js:1975
+#s @ _app-8dcf79862ba41dfc.js:1975
+setData @ _app-8dcf79862ba41dfc.js:1975
+onSuccess @ _app-8dcf79862ba41dfc.js:1975
+y @ _app-8dcf79862ba41dfc.js:1975
+Promise.then
+b @ _app-8dcf79862ba41dfc.js:1975
+start @ _app-8dcf79862ba41dfc.js:1975
+fetch @ _app-8dcf79862ba41dfc.js:1975
+#L @ _app-8dcf79862ba41dfc.js:1975
+setOptions @ _app-8dcf79862ba41dfc.js:1975
+(anonymous) @ _app-8dcf79862ba41dfc.js:1975
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9Understand this error
+_app-8dcf79862ba41dfc.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-8dcf79862ba41dfc.js:611:8580)
+    at _app-8dcf79862ba41dfc.js:611:16320
+postMessage @ _app-8dcf79862ba41dfc.js:611
+(anonymous) @ _app-8dcf79862ba41dfc.js:611Understand this error
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 55s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 54s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 53s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 52s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 21m 51s
