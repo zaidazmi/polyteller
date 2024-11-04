@@ -173,9 +173,13 @@ export function interceptBuyButton() {
     
     let currentElement: HTMLElement | null = target;
     while (currentElement) {
-      if (currentElement.tagName === 'BUTTON' && currentElement.textContent?.toLowerCase().includes('buy')) {
+      // Check for the specific blue button using its unique classes
+      if (currentElement.tagName === 'BUTTON' && 
+          currentElement.classList.contains('c-hDtDII') && 
+          currentElement.classList.contains('c-hDtDII-fcAbGk-color-blue')) {
+        
         isProcessingClick = true;
-        log('DOMManipulator', 'Buy button clicked, checking confirmation setting');
+        log('DOMManipulator', 'Main blue Buy button clicked, checking confirmation setting');
         event.preventDefault();
         event.stopPropagation();
 
