@@ -1,4 +1,4 @@
-import { getPrivacyModeState, setPrivacyModeState } from '../../utils/privacyUtils';
+import { PrivacyModeState, privacyModeState } from '../../content/privacyMode';
 import { log } from '../../utils/logUtils';
 
 /**
@@ -9,31 +9,33 @@ import { log } from '../../utils/logUtils';
  * @returns {Promise<void>}
  */
 export async function initPrivacyModeToggle(): Promise<void> {
-  // Get the toggle element from the popup HTML
   const toggle = document.getElementById('privacy-mode-toggle') as HTMLInputElement;
   if (!toggle) {
-    log('PrivacyModeToggle', 'Privacy mode toggle element not found');
+    log('PrivacyModeToggle', 'Toggle element not found');
     return;
   }
 
-  // Set the initial state of the toggle
-  const initialState = await getPrivacyModeState();
-  toggle.checked = initialState;
+  const privacyMode = PrivacyModeState.getInstance();
+  toggle.checked = privacyMode.isEnabled;
 
-  // Add event listener for toggle changes
   toggle.addEventListener('change', async () => {
-    const isEnabled = toggle.checked;
+    await privacyMode.toggle();
     
-    // Update the privacy mode state
-    await setPrivacyModeState(isEnabled);
-    
-    // Send a message to all tabs to update the privacy mode
+    // Notify all tabs
     chrome.tabs.query({}, (tabs) => {
-      tabs.forEach((tab) => {
+      tabs.forEach(tab => {
         if (tab.id) {
-          chrome.tabs.sendMessage(tab.id, { action: 'updatePrivacyMode', enabled: isEnabled });
+          chrome.tabs.sendMessage(tab.id, { 
+            action: 'updatePrivacyMode', 
+            enabled: privacyMode.isEnabled 
+          });
         }
       });
     });
+  });
+
+  // Listen for state changes
+  privacyMode.onStateChange((enabled: boolean) => {
+    toggle.checked = enabled;
   });
 }

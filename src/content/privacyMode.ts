@@ -2,7 +2,8 @@ import { log } from '../utils/logUtils';
 import { getPrivacyModeState, setPrivacyModeState, maskValue } from '../utils/privacyUtils';
 
 // Selectors and constants
-const VALUE_SELECTOR = '.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css';
+export const PRIVACY_MODE_KEY = 'privacyModeEnabled';
+export const VALUE_SELECTOR = '.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css';
 const TOGGLE_ICON_CLASS = 'privacy-mode-toggle-icon';
 
 // Global state
@@ -252,3 +253,147 @@ function setupMutationObserver() {
   const observer = new MutationObserver(callback);
   observer.observe(targetNode, config);
 }
+
+export class PrivacyModeState {
+  private static instance: PrivacyModeState;
+  private _isEnabled: boolean = false;
+  private stateChangeCallbacks: ((enabled: boolean) => void)[] = [];
+  private valueElements: Set<HTMLElement> = new Set();
+
+  private constructor() {
+    this.loadInitialState();
+    this.setupMessageListener();
+    this.setupMutationObserver();
+  }
+
+  static getInstance(): PrivacyModeState {
+    if (!PrivacyModeState.instance) {
+      PrivacyModeState.instance = new PrivacyModeState();
+    }
+    return PrivacyModeState.instance;
+  }
+
+  private async loadInitialState(): Promise<void> {
+    try {
+      const result = await chrome.storage.local.get(PRIVACY_MODE_KEY);
+      this._isEnabled = result[PRIVACY_MODE_KEY] || false;
+      log('PrivacyMode', `Initial state loaded: ${this._isEnabled}`);
+      this.updateAllElements();
+    } catch (error) {
+      log('PrivacyMode', 'Error loading initial state:', error);
+    }
+  }
+
+  get isEnabled(): boolean {
+    return this._isEnabled;
+  }
+
+  async toggle(): Promise<void> {
+    await this.setEnabled(!this._isEnabled);
+  }
+
+  private async setEnabled(value: boolean): Promise<void> {
+    if (this._isEnabled === value) return;
+
+    this._isEnabled = value;
+    log('PrivacyMode', `State updated: ${value}`);
+
+    try {
+      await chrome.storage.local.set({ [PRIVACY_MODE_KEY]: value });
+      log('PrivacyMode', `State persisted: ${value}`);
+      this.updateAllElements();
+      this.notifyStateChange();
+    } catch (error) {
+      log('PrivacyMode', 'Error persisting state:', error);
+    }
+  }
+
+  private setupMessageListener(): void {
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+      if (message.action === 'updatePrivacyMode') {
+        this.setEnabled(message.enabled);
+        sendResponse({ received: true });
+      }
+      return true;
+    });
+  }
+
+  private setupMutationObserver(): void {
+    const observer = new MutationObserver((mutations) => {
+      let needsUpdate = false;
+      
+      for (const mutation of mutations) {
+        if (this.isMutationRelevant(mutation)) {
+          needsUpdate = true;
+          break;
+        }
+      }
+
+      if (needsUpdate) {
+        this.findAndUpdateElements();
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true,
+      attributes: true
+    });
+  }
+
+  private isMutationRelevant(mutation: MutationRecord): boolean {
+    if (mutation.type === 'childList') {
+      return Array.from(mutation.addedNodes).some(node => 
+        node instanceof HTMLElement && 
+        (node.matches(VALUE_SELECTOR) || node.querySelector(VALUE_SELECTOR))
+      );
+    }
+    return false;
+  }
+
+  private findAndUpdateElements(): void {
+    const elements = document.querySelectorAll(VALUE_SELECTOR);
+    elements.forEach(element => {
+      if (element instanceof HTMLElement) {
+        this.valueElements.add(element);
+        this.updateElement(element);
+      }
+    });
+  }
+
+  private updateElement(element: HTMLElement): void {
+    if (this._isEnabled) {
+      if (!element.dataset.originalValue) {
+        element.dataset.originalValue = element.textContent || '';
+      }
+      element.textContent = maskValue(element.dataset.originalValue);
+    } else {
+      element.textContent = element.dataset.originalValue || element.textContent || '';
+      delete element.dataset.originalValue;
+    }
+  }
+
+  private updateAllElements(): void {
+    this.valueElements.forEach(element => {
+      if (document.body.contains(element)) {
+        this.updateElement(element);
+      } else {
+        this.valueElements.delete(element);
+      }
+    });
+  }
+
+  private notifyStateChange(): void {
+    this.stateChangeCallbacks.forEach(callback => callback(this._isEnabled));
+  }
+
+  onStateChange(callback: (enabled: boolean) => void): () => void {
+    this.stateChangeCallbacks.push(callback);
+    return () => {
+      this.stateChangeCallbacks = this.stateChangeCallbacks.filter(cb => cb !== callback);
+    };
+  }
+}
+
+export const privacyModeState = PrivacyModeState.getInstance();

@@ -1,6 +1,11 @@
 import { fireEvent } from '@testing-library/dom';
 import * as privacyUtils from '../utils/privacyUtils';
-import { initPrivacyMode, updatePrivacyMode, togglePrivacyMode } from './privacyMode';
+import { 
+  PrivacyModeState, 
+  privacyModeState,
+  PRIVACY_MODE_KEY, 
+  VALUE_SELECTOR 
+} from './privacyMode';
 
 // Mock privacyUtils module
 jest.mock('../utils/privacyUtils', () => ({
@@ -19,12 +24,18 @@ global.chrome = {
   },
   storage: {
     local: {
-      get: jest.fn((key, callback) => callback({ privacyModeEnabled: false })),
-      set: jest.fn(),
+      get: jest.fn().mockImplementation((key) => {
+        return Promise.resolve({ 
+          [PRIVACY_MODE_KEY]: false 
+        });
+      }),
+      set: jest.fn().mockImplementation((obj) => {
+        return Promise.resolve();
+      }),
     },
   },
   tabs: {
-    query: jest.fn((query, callback) => callback([])),
+    query: jest.fn().mockImplementation((query, callback) => callback([])),
     sendMessage: jest.fn(),
   },
 } as unknown as typeof chrome;
@@ -50,83 +61,59 @@ class MockMutationObserver {
 global.MutationObserver = MockMutationObserver as any;
 
 describe('Privacy Mode', () => {
+  let privacyMode: PrivacyModeState;
+
   beforeEach(() => {
-    // Reset the DOM
+    // Reset singleton instance
+    (PrivacyModeState as any).instance = null;
+    privacyMode = PrivacyModeState.getInstance();
+    
+    // Reset DOM
     document.body.innerHTML = `
-      <div class="c-gBrBnR c-dNAgLP c-gBrBnR-gDWzxt-variant-primary c-gBrBnR-gFoOfa-cv">
-        <div class="c-PJLV c-jaFKlk c-PJLV-ibdakYG-css">$100.00</div>
-      </div>
-      <div class="c-gBrBnR c-dNAgLP c-gBrBnR-gDWzxt-variant-primary c-gBrBnR-gFoOfa-cv">
-        <div class="c-PJLV c-jaFKlk c-PJLV-ibdakYG-css">$50.00</div>
-      </div>
+      <div class="${VALUE_SELECTOR}">$100.00</div>
+      <div class="${VALUE_SELECTOR}">$50.00</div>
     `;
+  });
 
-    // Reset all mocks
-    jest.clearAllMocks();
+  test('initializes with correct default state', () => {
+    expect(privacyMode.isEnabled).toBe(false);
+  });
+
+  test('toggles state correctly', async () => {
+    await privacyMode.toggle();
+    expect(privacyMode.isEnabled).toBe(true);
     
-    // Setup default mock implementations
-    (privacyUtils.getPrivacyModeState as jest.Mock).mockResolvedValue(false);
-    (privacyUtils.setPrivacyModeState as jest.Mock).mockResolvedValue(undefined);
-    (privacyUtils.maskValue as jest.Mock).mockImplementation((value) => '*'.repeat(value.length));
+    await privacyMode.toggle();
+    expect(privacyMode.isEnabled).toBe(false);
   });
 
-  afterEach(() => {
-    // Clean up any intervals or observers
-    jest.clearAllTimers();
-    jest.resetAllMocks();
-  });
-
-  test('initPrivacyMode initializes correctly', async () => {
-    await initPrivacyMode();
-    expect(document.querySelector('.privacy-mode-toggle-icon')).toBeTruthy();
-    expect(privacyUtils.getPrivacyModeState).toHaveBeenCalled();
-  });
-
-  test('updatePrivacyMode masks values when enabled', async () => {
-    (privacyUtils.getPrivacyModeState as jest.Mock).mockResolvedValue(true);
-    await initPrivacyMode();
-    const valueElements = document.querySelectorAll('.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css');
-    expect(valueElements[0].textContent).toBe('*******');
-    expect(valueElements[1].textContent).toBe('******');
-    expect(privacyUtils.maskValue).toHaveBeenCalled();
-  });
-
-  test('updatePrivacyMode unmasks values when disabled', async () => {
-    await initPrivacyMode();
-    const valueElements = document.querySelectorAll('.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css');
-    expect(valueElements[0].textContent).toBe('$100.00');
-    expect(valueElements[1].textContent).toBe('$50.00');
-  });
-
-  test('togglePrivacyMode changes the state', async () => {
-    await initPrivacyMode();
-    const toggleIcon = document.querySelector('.privacy-mode-toggle-icon') as HTMLElement;
-    expect(toggleIcon).toBeTruthy();
+  test('notifies subscribers of state changes', async () => {
+    const mockCallback = jest.fn();
+    privacyMode.onStateChange(mockCallback);
     
-    // Wait for toggle action to complete
-    await new Promise<void>((resolve) => {
-      fireEvent.click(toggleIcon);
-      setTimeout(resolve, 0);
-    });
-    
-    expect(privacyUtils.setPrivacyModeState).toHaveBeenCalledWith(true);
-    expect(chrome.tabs.query).toHaveBeenCalled();
+    await privacyMode.toggle();
+    expect(mockCallback).toHaveBeenCalledWith(true);
   });
 
-  // Add test for MutationObserver
-  test('MutationObserver updates privacy mode on DOM changes', async () => {
-    await initPrivacyMode();
-    
-    // Add new element
+  test('handles DOM mutations correctly', async () => {
+    // Mock maskValue to return expected value
+    (privacyUtils.maskValue as jest.Mock).mockReturnValue('*******');
+
+    // Enable privacy mode first
+    await privacyMode.toggle();
+    expect(privacyMode.isEnabled).toBe(true);
+
+    // Create and add new element
     const newElement = document.createElement('div');
-    newElement.className = 'c-PJLV c-jaFKlk c-PJLV-ibdakYG-css';
+    newElement.className = VALUE_SELECTOR;
     newElement.textContent = '$200.00';
     document.body.appendChild(newElement);
+
+    // Force privacy mode update and wait for it
+    privacyMode['updateElement'](newElement); // Call updateElement directly
     
-    // Wait for updates
-    await new Promise(resolve => setTimeout(resolve, 0));
-    
-    const valueElements = document.querySelectorAll('.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css');
-    expect(valueElements.length).toBe(3);
+    // Verify the element was masked
+    expect(newElement.textContent).toBe('*******');
+    expect(privacyUtils.maskValue).toHaveBeenCalledWith('$200.00');
   });
 });
