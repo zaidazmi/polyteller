@@ -5,6 +5,7 @@
 
 import { log } from '../utils/logUtils';
 import { MIN_WIDTH_FOR_CONFIRMATION } from '../config';
+import { tradeConfirmationState } from './tradeConfirmation';
 
 let isProcessingClick = false;
 let confirmationDialog: HTMLDivElement | null = null;
@@ -178,27 +179,25 @@ export function interceptBuyButton() {
         event.preventDefault();
         event.stopPropagation();
 
-        chrome.storage.local.get('enableTradeConfirmation', (result) => {
-          const isTradeConfirmationEnabled = result.enableTradeConfirmation !== false;
-          log('DOMManipulator', `Trade confirmation enabled: ${isTradeConfirmationEnabled}`);
+        const isTradeConfirmationEnabled = tradeConfirmationState.isEnabled;
+        log('DOMManipulator', `Trade confirmation enabled: ${isTradeConfirmationEnabled}`);
 
-          if (!isTradeConfirmationEnabled) {
-            log('DOMManipulator', 'Trade confirmation disabled, proceeding with purchase');
-            currentElement!.click();
+        if (!isTradeConfirmationEnabled) {
+          log('DOMManipulator', 'Trade confirmation disabled, proceeding with purchase');
+          currentElement!.click();
+          isProcessingClick = false;
+        } else {
+          const buttonRect = currentElement!.getBoundingClientRect();
+          showConfirmationDialog(buttonRect, (confirmed) => {
+            if (confirmed) {
+              log('DOMManipulator', 'Order confirmed, proceeding with purchase');
+              currentElement!.click();
+            } else {
+              log('DOMManipulator', 'Order cancelled by user');
+            }
             isProcessingClick = false;
-          } else {
-            const buttonRect = currentElement!.getBoundingClientRect();
-            showConfirmationDialog(buttonRect, (confirmed) => {
-              if (confirmed) {
-                log('DOMManipulator', 'Order confirmed, proceeding with purchase');
-                currentElement!.click();
-              } else {
-                log('DOMManipulator', 'Order cancelled by user');
-              }
-              isProcessingClick = false;
-            });
-          }
-        });
+          });
+        }
         break;
       }
       currentElement = currentElement.parentElement;
