@@ -11,19 +11,17 @@ const mockChrome = {
     getURL: jest.fn((path: string) => `chrome-extension://fake-id/${path}`),
   },
   tabs: {
-    query: jest.fn((queryInfo, callback) => {
-      callback([{ id: 1 }]);
-    }),
+    query: jest.fn().mockImplementation((query, callback) => callback([{ id: 1 }])),
     create: jest.fn(),
     sendMessage: jest.fn(),
   },
   storage: {
     local: {
-      get: jest.fn((key, callback) => {
-        callback({ [key]: true });
+      get: jest.fn().mockImplementation((key) => {
+        return Promise.resolve({ [key]: true });
       }),
-      set: jest.fn((obj, callback) => {
-        if (callback) callback();
+      set: jest.fn().mockImplementation((obj) => {
+        return Promise.resolve();
       }),
     },
   },
@@ -31,8 +29,23 @@ const mockChrome = {
 
 global.chrome = mockChrome as unknown as typeof chrome;
 
-// Mock console.log to reduce noise in test output
-// global.console.log = jest.fn();
+// Mock window.location for JSDOM
+Object.defineProperty(window, 'location', {
+  value: {
+    href: 'http://test.com',
+    pathname: '/',
+  },
+  writable: true,
+});
+
+// Mock MutationObserver
+class MockMutationObserver {
+  constructor(private callback: MutationCallback) {}
+  observe() {}
+  disconnect() {}
+}
+
+global.MutationObserver = MockMutationObserver as any;
 
 // Mock chrome.runtime.getURL
 global.chrome.runtime.getURL = jest.fn((path) => `chrome-extension://fake-id/${path}`);
