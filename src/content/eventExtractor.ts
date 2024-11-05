@@ -9,6 +9,9 @@ import { isDST } from '../utils/timezoneUtils';
 
 // Add these date patterns at the top of the file
 const DATE_PATTERNS = [
+  // Highest priority: Match "08 Nov '24 12:00 in the ET timezone" format
+  /(\d{1,2}) Nov '(\d{2}) (\d{1,2}):(\d{2}) in the ([A-Z]{2}) timezone/i,
+  
   // New pattern for "Dec 1, 3 AM ET" format (highest priority)
   /(\b[A-Za-z]{3,} \d{1,2}), (\d{1,2}) ([AP]M) ([A-Z]{2,3})/i,
   
@@ -127,14 +130,15 @@ export function extractEventInfo(): PolymarketEvent | null {
         const description = eventData.markets[0].description;
         log('Content', 'Market description:', description);
 
-        // Try to find exact time pattern first
-        const exactTimeMatch = description.match(/by.*?(\w+ \d{1,2}, \d{4}),? (\d{1,2}:\d{2}:\d{2}) ([AP]M) ([A-Z]{2,3})/i);
+        // Try to match the specific format first
+        const specificMatch = description.match(/(\d{1,2}) Nov '(\d{2}) (\d{1,2}):(\d{2}) in the ([A-Z]{2}) timezone/i);
         
-        if (exactTimeMatch) {
-          const [, datePart, time, ampm, tz] = exactTimeMatch;
-          endDateValue = `${datePart}, ${time} ${ampm}`;
-          timezone = tz || 'ET';
-          log('Content', 'Using exact time match:', endDateValue);
+        if (specificMatch) {
+          const [, day, year, hour, minute, tz] = specificMatch;
+          // Format the date string properly
+          endDateValue = `November ${day}, 20${year}, ${hour}:${minute}:00`;
+          timezone = tz;
+          log('Content', 'Using specific time format match:', endDateValue);
         } else {
           // First try priority patterns
           const priorityDates = findPriorityDates(description);
@@ -242,10 +246,27 @@ export function extractEventInfo(): PolymarketEvent | null {
 }
 
 function parseCustomDate(dateString: string, timezone: string): Date {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                   'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    // Try to parse the specific format first
+    let parts = dateString.match(/November (\d{1,2}), (\d{4}), (\d{1,2}):(\d{2}):(\d{2})/);
+    
+    if (parts) {
+        const [, day, year, hour, minute, second] = parts;
+        return createDateWithTimezone(
+            parseInt(year),
+            10, // November
+            parseInt(day),
+            parseInt(hour),
+            parseInt(minute),
+            parseInt(second),
+            timezone
+        );
+    }
     
     // Try short format with year (Dec 1, 2024, 3 AM ET)
-    let parts = dateString.match(/(\w+) (\d{1,2}), (\d{4}), (\d{1,2}):(\d{2}) ([AP]M)/);
+    parts = dateString.match(/(\w+) (\d{1,2}), (\d{4}), (\d{1,2}):(\d{2}) ([AP]M)/);
     
     if (parts) {
         const [, month, day, year, hour, minute, ampm] = parts;
@@ -332,6 +353,7 @@ function createDateWithTimezone(
     second: number = 0,  // Add seconds parameter
     timezone: string
 ): Date {
+    // Create date in UTC
     const date = new Date(Date.UTC(year, month, day, hour, minute, second));
     
     if (timezone === 'ET') {
