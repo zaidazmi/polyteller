@@ -8,16 +8,31 @@
     const style = document.createElement('style');
     style.id = 'polyteller-privacy-early';
     style.textContent = `
-        /* Only apply styles when privacy mode is enabled */
+        /* Initially hide all value elements */
+        .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
+        [class*="jaFKlk"],
+        [class*="ibdakYG"] {
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        /* Show values when privacy mode is disabled */
+        body:not(.privacy-enabled) .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
+        body:not(.privacy-enabled) [class*="jaFKlk"],
+        body:not(.privacy-enabled) [class*="ibdakYG"] {
+            opacity: 1;
+            color: inherit !important;
+            text-shadow: none !important;
+        }
+
+        /* Show masked values when privacy mode is enabled */
         body.privacy-enabled .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         body.privacy-enabled [class*="jaFKlk"],
         body.privacy-enabled [class*="ibdakYG"] {
+            opacity: 1;
             color: transparent !important;
             text-shadow: 0 0 8px rgba(0,0,0,0.5) !important;
-            transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
         }
-
-        /* No styles for disabled state - let Polymarket's styles take over */
     `;
 
     // Function to inject style
@@ -30,44 +45,40 @@
     // Inject immediately
     injectStyle();
 
-    // Check initial state
-    const checkInitialState = () => {
+    // Check initial state and show values
+    const checkInitialState = async () => {
         try {
-            chrome.storage.local.get('privacyModeEnabled', (result) => {
-                if (result.privacyModeEnabled) {
-                    document.body?.classList.add('privacy-enabled');
-                }
-            });
+            const result = await chrome.storage.local.get('privacyModeEnabled');
+            if (result.privacyModeEnabled) {
+                document.body?.classList.add('privacy-enabled');
+            } else {
+                document.body?.classList.remove('privacy-enabled');
+            }
+            // Add ready class to show values
+            document.body?.classList.add('privacy-ready');
         } catch (error) {
             console.error('Error checking initial privacy state:', error);
         }
     };
 
     // Wait for body to be available
-    if (document.body) {
-        checkInitialState();
-    } else {
-        const observer = new MutationObserver(() => {
-            if (document.body) {
-                checkInitialState();
-                observer.disconnect();
-            }
-        });
-        observer.observe(document.documentElement, { childList: true });
-    }
+    const waitForBody = () => {
+        if (document.body) {
+            checkInitialState();
+        } else {
+            requestAnimationFrame(waitForBody);
+        }
+    };
+    waitForBody();
 
     // Listen for privacy mode updates
-    try {
-        chrome.runtime.onMessage.addListener((message) => {
-            if (message.action === 'updatePrivacyMode') {
-                if (message.enabled) {
-                    document.body?.classList.add('privacy-enabled');
-                } else {
-                    document.body?.classList.remove('privacy-enabled');
-                }
+    chrome.runtime.onMessage.addListener((message) => {
+        if (message.action === 'updatePrivacyMode') {
+            if (message.enabled) {
+                document.body?.classList.add('privacy-enabled');
+            } else {
+                document.body?.classList.remove('privacy-enabled');
             }
-        });
-    } catch (error) {
-        console.error('Error setting up privacy mode listener:', error);
-    }
+        }
+    });
 })(); 
