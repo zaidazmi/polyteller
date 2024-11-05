@@ -10,7 +10,8 @@ module.exports = {
     allNotifications: './src/popup/allNotifications.ts',
     styles: './src/styles/popup.css',
     allNotificationsStyles: './src/styles/allNotifications.css',
-    privacyMode: './src/content/privacyMode.ts',  // Add this line
+    privacyMode: './src/content/privacyMode.ts',
+    privacyModeEarly: './src/content/privacyModeEarly.ts',
   },
   module: {
     rules: [

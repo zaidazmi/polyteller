@@ -1,489 +1,269 @@
-lockdown-install.js:1 Removing unpermitted intrinsics
-15The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-6589ebd7329e3f5d.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+ Removing unpermitted intrinsics
+13The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+ [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
 
-(anonymous) @ _app-6589ebd7329e3f5d.js:618Understand this errorAI
-static.ads-twitter.com/uwt.js:1 
-        
-        
-       Failed to load resource: net::ERR_BLOCKED_BY_CLIENTUnderstand this errorAI
+(anonymous) @ _app-3e9844eb2f12bb55.js:618Understand this errorAI
+static.ads-twitter.com/uwt.js:1  Failed to load resource: net::ERR_BLOCKED_BY_CLIENTUnderstand this errorAI
 5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-6589ebd7329e3f5d.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+ [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
 
-(anonymous) @ _app-6589ebd7329e3f5d.js:640Understand this errorAI
-frame-modern.5281fa6c.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Event data found: {
-  "id": "13697",
-  "ticker": "october-2024-temperature-increase-c",
-  "slug": "october-2024-temperature-increase-c",
-  "title": "October 2024 Temperature Increase (ºC)",
-  "description": "This is a market group over the temperature increase the Global Land-Ocean Temperature Index for October 2024.",
-  "resolutionSource": "",
-  "startDate": "2024-10-23T19:59:33.202692Z",
-  "creationDate": "2024-10-23T19:59:33.202689Z",
-  "endDate": "2024-10-31T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
+(anonymous) @ _app-3e9844eb2f12bb55.js:640Understand this errorAI
+ [Polyteller Content] Initializing countdown
+ [Polyteller Content] Event data found: {
+  "id": "14105",
+  "ticker": "who-will-win-young-men",
+  "slug": "who-will-win-young-men",
+  "title": "Who will win young men?",
+  "description": "This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.\n\nThis market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.\n\nThis market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.\n\nThis market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.\n\nThe resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.\n\nThis market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.\n\nNote: Slight changes in terminology used by the poll will not affect resolution.",
+  "startDate": "2024-11-05T00:01:20.413398Z",
+  "creationDate": "2024-11-05T00:01:20.413396Z",
+  "endDate": "2024-11-05T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
   "active": true,
   "closed": false,
   "archived": false,
   "new": false,
   "featured": false,
   "restricted": true,
-  "liquidity": 57805.23727,
-  "volume": 170332.818634,
+  "liquidity": 10050.4781,
+  "volume": 9256.758045,
   "openInterest": 0,
-  "createdAt": "2024-10-22T18:13:11.964659Z",
-  "updatedAt": "2024-11-04T06:01:06.358267Z",
-  "competitive": 0.865033195648883,
-  "volume24hr": 7665.859427,
+  "createdAt": "2024-11-04T23:43:27.59408Z",
+  "updatedAt": "2024-11-05T05:55:08.61756Z",
+  "competitive": 0.9880446596186148,
+  "volume24hr": 9256.758045,
   "enableOrderBook": true,
-  "liquidityClob": 57805.23727,
+  "liquidityClob": 10050.4781,
   "_sync": false,
-  "negRisk": true,
-  "negRiskMarketID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-  "commentCount": 23,
+  "commentCount": 7,
   "markets": [
     {
-      "id": "510605",
-      "question": "Will the October 2024 temperature increase be less than 1.17°C?",
-      "conditionId": "0x9acf4f48c618ceca367f4a602e5be5762b3796ff38e572d2cfc1a8a0d83835c2",
-      "slug": "will-the-october-2024-temperature-increase-be-less-than-1pt17c",
+      "id": "511982",
+      "question": "Who will win young men?",
+      "conditionId": "0x61901a00627cab401cc807d44b3fdadc66561ee821bfda5754b90f593d7fd677",
+      "slug": "who-will-win-young-men",
       "resolutionSource": "",
-      "endDate": "2024-10-31T12:00:00Z",
-      "liquidity": "25092.7901",
-      "startDate": "2024-10-23T19:56:02.61128Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-      "description": "This market will resolve to \"Yes\" if the data for the Global Land-Ocean Temperature Index for October 2024 shows an increase of less than 1.17°C when it is released. Otherwise, this market will resolve to \"No\".\n\nAn anomaly of less than 1.17°C for October 2024 is necessary and sufficient to resolve this market to \"Yes\" immediately once the data becomes available regardless of whether the figure for October 2024 is later revised.\n\nThe primary resolution source for this market will be the figure found in the table titled \"GLOBAL Land-Ocean Temperature Index in 0.01 degrees Celsius\" under the column \"October\" in the row \"2024\" (https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.txt). If NASA's \"Global Temperature Index\" is rendered permanently unavailable, other information from NASA may be used. If no information for October 2024 is provided by NASA by February 1, 2025, 11:59 PM ET, this market will resolve \"Yes\".",
+      "endDate": "2024-11-05T12:00:00Z",
+      "liquidity": "10050.4781",
+      "startDate": "2024-11-04T23:59:30.538941Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+      "description": "This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.\n\nThis market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.\n\nThis market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.\n\nThis market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.\n\nThe resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.\n\nThis market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.\n\nNote: Slight changes in terminology used by the poll will not affect resolution.",
       "outcomes": [
-        "Yes",
-        "No"
+        "Harris",
+        "Trump"
       ],
       "outcomePrices": [
-        "0.0255",
-        "0.9745"
+        "0.61",
+        "0.39"
       ],
-      "volume": "25975.90688",
+      "volume": "9256.758045",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
-      "createdAt": "2024-10-22T18:16:01.403027Z",
-      "updatedAt": "2024-11-04T06:00:24.629801Z",
+      "createdAt": "2024-11-04T23:43:28.883957Z",
+      "updatedAt": "2024-11-05T05:54:46.504247Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
-      "archived": false,
-      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
-      "restricted": true,
-      "groupItemTitle": "<1.17",
-      "groupItemThreshold": "0",
-      "questionID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-      "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.001,
-      "orderMinSize": 5,
-      "volumeNum": 25975.90688,
-      "liquidityNum": 25092.7901,
-      "endDateIso": "2024-10-31",
-      "startDateIso": "2024-10-23",
-      "hasReviewedDates": true,
-      "volume24hr": 952.361084,
-      "clobTokenIds": [
-        "57795331495811822872133393377305035166645211754171707540254054543487093498336",
-        "94776743405935303391189346000648809375560013624714886471626384391444564220298"
-      ],
-      "umaBond": "500",
-      "umaReward": "5",
-      "volume24hrClob": 952.361084,
-      "volumeClob": 25975.90688,
-      "liquidityClob": 25092.7901,
-      "acceptingOrders": true,
-      "negRisk": true,
-      "negRiskMarketID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-      "negRiskRequestID": "0x7284170549ac082cd1bc2b40ac8ce86ecd29bec16f381728c87d1673487df6c1",
-      "_sync": false,
-      "ready": false,
-      "funded": false,
-      "acceptingOrdersTimestamp": "2024-10-23T19:54:51Z",
-      "cyom": false,
-      "competitive": 0.8162264179434318,
-      "pagerDutyNotificationEnabled": false,
-      "approved": true,
-      "clobRewards": [
-        {
-          "id": "9212",
-          "conditionId": "0x9acf4f48c618ceca367f4a602e5be5762b3796ff38e572d2cfc1a8a0d83835c2",
-          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-          "rewardsAmount": 0,
-          "rewardsDailyRate": 30,
-          "startDate": "2024-10-23",
-  
-content.js:1 [Polyteller Content] Market description: This market will resolve to "Yes" if the data for the Global Land-Ocean Temperature Index for October 2024 shows an increase of less than 1.17°C when it is released. Otherwise, this market will resolve to "No".
+      "arc
+ [Polyteller Content] Market description: This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.
 
-An anomaly of less than 1.17°C for October 2024 is necessary and sufficient to resolve this market to "Yes" immediately once the data becomes available regardless of whether the figure for October 2024 is later revised.
+This market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.
 
-The primary resolution source for this market will be the figure found in the table titled "GLOBAL Land-Ocean Temperature Index in 0.01 degrees Celsius" under the column "October" in the row "2024" (https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.txt). If NASA's "Global Temperature Index" is rendered permanently unavailable, other information from NASA may be used. If no information for October 2024 is provided by NASA by February 1, 2025, 11:59 PM ET, this market will resolve "Yes".
-content.js:1 [Polyteller Content] Using priority date: February 1, 2025, 11:59 PM
-content.js:1 [Polyteller Content] Original end date: February 1, 2025, 11:59 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Sun Feb 02 2025 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Sun, 02 Feb 2025 04:59:00 GMT
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "13697",
-  "title": "October 2024 Temperature Increase (ºC)",
-  "endTime": 1738472340000,
-  "endDate": "February 1, 2025, 11:59 PM",
+This market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.
+
+This market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.
+
+The resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.
+
+This market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.
+
+Note: Slight changes in terminology used by the poll will not affect resolution.
+ [Polyteller Content] Using priority date: November 10, 2024, 12:00 PM
+ [Polyteller Content] Original end date: November 10, 2024, 12:00 PM
+ [Polyteller Content] Parsed end date (local): Sun Nov 10 2024 22:30:00 GMT+0530 (India Standard Time)
+ [Polyteller Content] Parsed end date (UTC): Sun, 10 Nov 2024 17:00:00 GMT
+ [Polyteller Content] Extracted event info: {
+  "id": "14105",
+  "title": "Who will win young men?",
+  "endTime": 1731258000000,
+  "endDate": "November 10, 2024, 12:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/october-2024-temperature-increase-c?tid=1730697668341"
+  "url": "https://polymarket.com/event/who-will-win-young-men?tid=1730786295847"
 }
-content.js:1 [Polyteller Content] Event info extracted: Object
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: Object
-content.js:1 [Polyteller Content] Creating new countdown element
-content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 50s
-content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller Content] Event data found: {
-  "id": "13697",
-  "ticker": "october-2024-temperature-increase-c",
-  "slug": "october-2024-temperature-increase-c",
-  "title": "October 2024 Temperature Increase (ºC)",
-  "description": "This is a market group over the temperature increase the Global Land-Ocean Temperature Index for October 2024.",
-  "resolutionSource": "",
-  "startDate": "2024-10-23T19:59:33.202692Z",
-  "creationDate": "2024-10-23T19:59:33.202689Z",
-  "endDate": "2024-10-31T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
+ [Polyteller Content] Event info extracted: Object
+ [Polyteller Content] Creating and inserting countdown for event: Object
+ [Polyteller Content] Creating new countdown element
+ [Polyteller Content] Countdown element appended to body
+ [Polyteller Content] Updated countdown text: 5d 11h 1m 44s
+ [Polyteller Content] Polyteller content script loaded
+ [Polyteller Content] Event data found: {
+  "id": "14105",
+  "ticker": "who-will-win-young-men",
+  "slug": "who-will-win-young-men",
+  "title": "Who will win young men?",
+  "description": "This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.\n\nThis market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.\n\nThis market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.\n\nThis market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.\n\nThe resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.\n\nThis market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.\n\nNote: Slight changes in terminology used by the poll will not affect resolution.",
+  "startDate": "2024-11-05T00:01:20.413398Z",
+  "creationDate": "2024-11-05T00:01:20.413396Z",
+  "endDate": "2024-11-05T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
   "active": true,
   "closed": false,
   "archived": false,
   "new": false,
   "featured": false,
   "restricted": true,
-  "liquidity": 57805.23727,
-  "volume": 170332.818634,
+  "liquidity": 10050.4781,
+  "volume": 9256.758045,
   "openInterest": 0,
-  "createdAt": "2024-10-22T18:13:11.964659Z",
-  "updatedAt": "2024-11-04T06:01:06.358267Z",
-  "competitive": 0.865033195648883,
-  "volume24hr": 7665.859427,
+  "createdAt": "2024-11-04T23:43:27.59408Z",
+  "updatedAt": "2024-11-05T05:55:08.61756Z",
+  "competitive": 0.9880446596186148,
+  "volume24hr": 9256.758045,
   "enableOrderBook": true,
-  "liquidityClob": 57805.23727,
+  "liquidityClob": 10050.4781,
   "_sync": false,
-  "negRisk": true,
-  "negRiskMarketID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-  "commentCount": 23,
+  "commentCount": 7,
   "markets": [
     {
-      "id": "510605",
-      "question": "Will the October 2024 temperature increase be less than 1.17°C?",
-      "conditionId": "0x9acf4f48c618ceca367f4a602e5be5762b3796ff38e572d2cfc1a8a0d83835c2",
-      "slug": "will-the-october-2024-temperature-increase-be-less-than-1pt17c",
+      "id": "511982",
+      "question": "Who will win young men?",
+      "conditionId": "0x61901a00627cab401cc807d44b3fdadc66561ee821bfda5754b90f593d7fd677",
+      "slug": "who-will-win-young-men",
       "resolutionSource": "",
-      "endDate": "2024-10-31T12:00:00Z",
-      "liquidity": "25092.7901",
-      "startDate": "2024-10-23T19:56:02.61128Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/earth+on+fire.png",
-      "description": "This market will resolve to \"Yes\" if the data for the Global Land-Ocean Temperature Index for October 2024 shows an increase of less than 1.17°C when it is released. Otherwise, this market will resolve to \"No\".\n\nAn anomaly of less than 1.17°C for October 2024 is necessary and sufficient to resolve this market to \"Yes\" immediately once the data becomes available regardless of whether the figure for October 2024 is later revised.\n\nThe primary resolution source for this market will be the figure found in the table titled \"GLOBAL Land-Ocean Temperature Index in 0.01 degrees Celsius\" under the column \"October\" in the row \"2024\" (https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.txt). If NASA's \"Global Temperature Index\" is rendered permanently unavailable, other information from NASA may be used. If no information for October 2024 is provided by NASA by February 1, 2025, 11:59 PM ET, this market will resolve \"Yes\".",
+      "endDate": "2024-11-05T12:00:00Z",
+      "liquidity": "10050.4781",
+      "startDate": "2024-11-04T23:59:30.538941Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/who-will-win-young-men-Ush0DHAkZVuy.jpg",
+      "description": "This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.\n\nThis market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.\n\nThis market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.\n\nThis market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.\n\nThe resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.\n\nThis market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.\n\nNote: Slight changes in terminology used by the poll will not affect resolution.",
       "outcomes": [
-        "Yes",
-        "No"
+        "Harris",
+        "Trump"
       ],
       "outcomePrices": [
-        "0.0255",
-        "0.9745"
+        "0.61",
+        "0.39"
       ],
-      "volume": "25975.90688",
+      "volume": "9256.758045",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
-      "createdAt": "2024-10-22T18:16:01.403027Z",
-      "updatedAt": "2024-11-04T06:00:24.629801Z",
+      "createdAt": "2024-11-04T23:43:28.883957Z",
+      "updatedAt": "2024-11-05T05:54:46.504247Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
-      "archived": false,
-      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
-      "restricted": true,
-      "groupItemTitle": "<1.17",
-      "groupItemThreshold": "0",
-      "questionID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-      "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.001,
-      "orderMinSize": 5,
-      "volumeNum": 25975.90688,
-      "liquidityNum": 25092.7901,
-      "endDateIso": "2024-10-31",
-      "startDateIso": "2024-10-23",
-      "hasReviewedDates": true,
-      "volume24hr": 952.361084,
-      "clobTokenIds": [
-        "57795331495811822872133393377305035166645211754171707540254054543487093498336",
-        "94776743405935303391189346000648809375560013624714886471626384391444564220298"
-      ],
-      "umaBond": "500",
-      "umaReward": "5",
-      "volume24hrClob": 952.361084,
-      "volumeClob": 25975.90688,
-      "liquidityClob": 25092.7901,
-      "acceptingOrders": true,
-      "negRisk": true,
-      "negRiskMarketID": "0x4669bcb1f153c9e96ad784b281412e2ab1deedc343c611cf5ecb2237ae9e7900",
-      "negRiskRequestID": "0x7284170549ac082cd1bc2b40ac8ce86ecd29bec16f381728c87d1673487df6c1",
-      "_sync": false,
-      "ready": false,
-      "funded": false,
-      "acceptingOrdersTimestamp": "2024-10-23T19:54:51Z",
-      "cyom": false,
-      "competitive": 0.8162264179434318,
-      "pagerDutyNotificationEnabled": false,
-      "approved": true,
-      "clobRewards": [
-        {
-          "id": "9212",
-          "conditionId": "0x9acf4f48c618ceca367f4a602e5be5762b3796ff38e572d2cfc1a8a0d83835c2",
-          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-          "rewardsAmount": 0,
-          "rewardsDailyRate": 30,
-          "startDate": "2024-10-23",
-  
-content.js:1 [Polyteller Content] Market description: This market will resolve to "Yes" if the data for the Global Land-Ocean Temperature Index for October 2024 shows an increase of less than 1.17°C when it is released. Otherwise, this market will resolve to "No".
+      "arc
+ [Polyteller Content] Market description: This market refers to the CNN release of the National Election Pool exit poll for the 2024 U.S. Presidential election conducted by Edison research.
 
-An anomaly of less than 1.17°C for October 2024 is necessary and sufficient to resolve this market to "Yes" immediately once the data becomes available regardless of whether the figure for October 2024 is later revised.
+This market will resolve to “Harris” if Kamala Harris wins a greater share of men aged 18-29 than Donald Trump in the 2024 US presidential election.
 
-The primary resolution source for this market will be the figure found in the table titled "GLOBAL Land-Ocean Temperature Index in 0.01 degrees Celsius" under the column "October" in the row "2024" (https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.txt). If NASA's "Global Temperature Index" is rendered permanently unavailable, other information from NASA may be used. If no information for October 2024 is provided by NASA by February 1, 2025, 11:59 PM ET, this market will resolve "Yes".
-content.js:1 [Polyteller Content] Using priority date: February 1, 2025, 11:59 PM
-content.js:1 [Polyteller Content] Original end date: February 1, 2025, 11:59 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Sun Feb 02 2025 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Sun, 02 Feb 2025 04:59:00 GMT
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "13697",
-  "title": "October 2024 Temperature Increase (ºC)",
-  "endTime": 1738472340000,
-  "endDate": "February 1, 2025, 11:59 PM",
+This market will resolve to “Trump” if Donald Trump wins a greater share of men aged 18-29 than Kamala Harris in the 2024 US presidential election.
+
+This market will resolve to 50-50 if neither Donald Trump nor Kamala Harris win the plurality of men aged 18-29 men in the 2024 US presidential election.
+
+The resolution source for this market will be the CNN release of the Edison research exit poll. If CNN does not release the National Election Pool/Edison research exit poll by November 10, 2024, 12:00 PM ET, the polling numbers from the CBS release of the National Election Pool will be used. If CBS also has not released the poll, alternate releases of the of the National Election Pool will be used. If the National Election Pool/Edison research exit poll for the 2024 U.S. Presidential election is not conducted/released by November 20, 2024, 12:00 PM, or if the poll does not provide data on men aged 18-29 this market will resolve to 50-50.
+
+This market will resolve based on the full release of the Election Pool Exit Poll data from CNN. Initial or incomplete data will not be considered.
+
+Note: Slight changes in terminology used by the poll will not affect resolution.
+ [Polyteller Content] Using priority date: November 10, 2024, 12:00 PM
+ [Polyteller Content] Original end date: November 10, 2024, 12:00 PM
+ [Polyteller Content] Parsed end date (local): Sun Nov 10 2024 22:30:00 GMT+0530 (India Standard Time)
+ [Polyteller Content] Parsed end date (UTC): Sun, 10 Nov 2024 17:00:00 GMT
+ [Polyteller Content] Extracted event info: {
+  "id": "14105",
+  "title": "Who will win young men?",
+  "endTime": 1731258000000,
+  "endDate": "November 10, 2024, 12:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/october-2024-temperature-increase-c?tid=1730697668341"
+  "url": "https://polymarket.com/event/who-will-win-young-men?tid=1730786295847"
 }
-content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-lockdown-install.js:1 Removing unpermitted intrinsics
-lockdown-install.js:1 Removing unpermitted intrinsics
-content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:1 [Polyteller PrivacyMode] Initializing privacy mode. Enabled: true
-privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
-privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
-privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
-privacyMode.js:1 [Polyteller PrivacyMode] Value elements found on retry 0, applying privacy mode
-privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: true
-privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
+ [Polyteller DOMManipulator] Buy button interception set up
+ [Polyteller TradeConfirmation] Initial state loaded: true
+ Removing unpermitted intrinsics
+ [Polyteller PrivacyMode] Initial state loaded: false
+ [Polyteller PrivacyMode] Toggle icon added
+ [Intercom] Launcher is disabled in settings or current page does not match display conditions
+ Removing unpermitted intrinsics
 framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
 Understand this errorAI
-embedded-wallets-5900ec01883d8813.js:1 Warning!
-embedded-wallets-5900ec01883d8813.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
-19Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
-framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
-_ @ framework-a667dbba83e63e79.js:9Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: Object
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 49s
-content.js:1 [Polyteller Content] Error sending event info to background: Object
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Masked value: "*****"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Masked value: "*****"
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 48s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy Yes 4.2¢
-9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ 9635.7df19093a14523ab.js:1Understand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 47s
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN -  No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 46s
-_app-6589ebd7329e3f5d.js:578 initializing client with geoblock token two 
-2_app-6589ebd7329e3f5d.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
-    at Object.postMessage (_app-6589ebd7329e3f5d.js:611:8580)
-    at _app-6589ebd7329e3f5d.js:611:16320Understand this errorAI
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN -  Yes 4.2¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 45s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 44s
-content.js:1 [Polyteller DOMManipulator] Order confirmed, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 43s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 42s
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 41s
-privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: false
-privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Unmasked value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Unmasked value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Relevant DOM changes detected, updating privacy mode
-privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: false
-privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Unmasked value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Unmasked value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Relevant DOM changes detected, updating privacy mode
-privacyMode.js:1 [Polyteller PrivacyMode] Updating privacy mode. Enabled: false
-privacyMode.js:1 [Polyteller PrivacyMode] Found 2 value elements
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Original value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 0: Unmasked value: "$0.03"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Original value: "$0.00"
-privacyMode.js:1 [Polyteller PrivacyMode] Element 1: Unmasked value: "$0.00"
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 40s
-content.js:1 [Polyteller TradeConfirmation] State updated: false
-content.js:1 [Polyteller Content] Received trade confirmation update: false
-content.js:1 [Polyteller TradeConfirmation] State persisted: false
-content.js:1 [Polyteller Content] Updated trade confirmation setting: false
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 39s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV -  No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 38s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 37s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy Yes 4.2¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 36s
-content.js:1 [Polyteller DOMManipulator] Element clicked: INPUT - 
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 35s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 34s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy Yes 4.2¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 33s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - 3%
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 32s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy Yes 4.1¢
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 31s
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN -  No 96.9¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 30s
-content.js:1 [Polyteller DOMManipulator] Element clicked: INPUT - 
-content.js:1 [Polyteller Content] Received trade confirmation update: false
-content.js:1 [Polyteller Content] Updated trade confirmation setting: false
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 29s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 28s
-content.js:1 [Polyteller TradeConfirmation] State updated: true
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller TradeConfirmation] State persisted: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 27s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 26s
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+ Warning!
+ You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+ [Polyteller Content] Sending event info to background: Object
+2 [Polyteller Content] Updated countdown text: 5d 11h 1m 42s
+7[Report Only] Refused to connect to '<URL>' because it violates the following Content Security Policy directive: "connect-src 'self' <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> data:".
+Understand this errorAI
+2 [Polyteller Content] Updated countdown text: 5d 11h 1m 40s
+ initializing client with geoblock token two 
+2_app-3e9844eb2f12bb55.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-3e9844eb2f12bb55.js:611:8580)
+    at _app-3e9844eb2f12bb55.js:611:16320Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 38s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 37s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 36s
+privacyMode.js:1 [Polyteller PrivacyMode] State updated: true
+privacyMode.js:1 [Polyteller PrivacyMode] State persisted: true
+2content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 35s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 33s
+privacyMode.js:1 [Polyteller PrivacyMode] State updated: false
+privacyMode.js:1 [Polyteller PrivacyMode] State persisted: false
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 32s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 31s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 30s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 29s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 28s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 27s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 26s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 25s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 24s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 23s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 22s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 21s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 20s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 19s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 18s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 17s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 16s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 15s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 14s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 13s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 12s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 11s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 10s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 9s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 8s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 7s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 6s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 5s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 4s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 3s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 2s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 1s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 1m 0s
+2content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 59s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 58s
 content.js:1 [Polyteller DOMManipulator] Element clicked: svg - 
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: true
-content.js:1 [Polyteller DOMManipulator] Order confirmed, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 25s
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN -  Yes 4.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 24s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy No 96.9¢
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 23s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - Buy Yes 4.2¢
+        
+        
+      
+privacyMode.js:1 [Polyteller PrivacyMode] State updated: true
+privacyMode.js:1 [Polyteller PrivacyMode] State persisted: true
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 57s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 56s
 content.js:1 [Polyteller DOMManipulator] Element clicked: svg - 
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 22s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 21s
-_app-6589ebd7329e3f5d.js:578 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Afetch%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=7adf03f7-c575-41a5-88ad-6bf0aff175bf' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ _app-6589ebd7329e3f5d.js:578Understand this errorAI
-_app-6589ebd7329e3f5d.js:578 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Afetch%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=7adf03f7-c575-41a5-88ad-6bf0aff175bf' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ _app-6589ebd7329e3f5d.js:578Understand this errorAI
-content.js:1 [Polyteller DOMManipulator] Order confirmed, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 20s
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 19s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 18s
-content.js:1 [Polyteller TradeConfirmation] State updated: false
-content.js:1 [Polyteller Content] Received trade confirmation update: false
-content.js:1 [Polyteller TradeConfirmation] State persisted: false
-content.js:1 [Polyteller Content] Updated trade confirmation setting: false
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 17s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - AmountBalance $0.00MaxAmount too low
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 16s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV -  No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 15s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN - Outcome
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 14s
-content.js:1 [Polyteller DOMManipulator] Element clicked: SPAN -  Yes 4.2¢
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 13s
-content.js:1 [Polyteller Content] Received trade confirmation update: false
-content.js:1 [Polyteller Content] Updated trade confirmation setting: false
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 12s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 11s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 10s
-content.js:1 [Polyteller TradeConfirmation] State updated: true
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller TradeConfirmation] State persisted: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 9s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 8s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV -  No 99.1¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 7s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 6s
-content.js:1 [Polyteller DOMManipulator] Order confirmed, proceeding with purchase
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 5s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 4s
-content.js:1 [Polyteller TradeConfirmation] State updated: false
-content.js:1 [Polyteller Content] Received trade confirmation update: false
-content.js:1 [Polyteller TradeConfirmation] State persisted: false
-content.js:1 [Polyteller Content] Updated trade confirmation setting: false
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 3s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV -  Yes 4.2¢
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 2s
-content.js:1 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 1s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV -  No 99.1¢
-content.js:1 [Polyteller DOMManipulator] Element clicked: svg - 
-content.js:1 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
-content.js:1 [Polyteller DOMManipulator] Trade confirmation enabled: false
-content.js:1 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 49m 0s
-content.js:1 [Polyteller DOMManipulator] Element clicked: DIV - October 2024 Temperature Increase (ºC)$170,333 Vol.Oct 31, 2024<1.17 2.6%1.17-1.22 3.6%1.23-1.28 11%1.29-1.34 69%Oct 25Oct 28Oct 31Nov 1Nov 40%20%40%60%80%Source: Polymarket.com1H6H1D1W1MALLOUTCOME% CHANCE<1.17$25,976 Vol.3%Buy Yes 4.2¢Buy No 99.1¢Order BookGraphResolutionRewardsTrade NoPriceSharesTotal99.7¢333.00$7,018.4399.6¢20.00$6,686.4399.4¢689.63$6,666.5199.2¢854.07$5,981.0299.1¢5,180.40$5,133.78BidsAsksLast: 89.1¢Spread:3.3¢  95.8¢540.00$517.3295.5¢1,500.00$1,949.8295.4¢118.94$2,063.2995.0¢1,988.43$3,952.3094.8¢30.00$3,980.7494.0¢2,000.00$5,860.741.17-1.22$28,913 Vol.4%Buy Yes 4.1¢Buy No 96.9¢1.23-1.28$25,191 Vol.11%Buy Yes 11¢Buy No 90¢1.29-1.34$21,401 Vol.69%Buy Yes 80¢Buy No 42¢1.35-1.40$26,351 Vol.14%Buy Yes 24¢Buy No 97¢>1.40$42,501 Vol.6%Buy Yes 7.0¢Buy No 95.0¢Market SummaryGenerateRulesThis market will resolve to "Yes" if the data for the Global Land-Ocean Temperature Index for October 2024 shows an increase of less than 1.17°C when it is released. Otherwise, this market will resolve to "No".An anomaly of less than 1.17°C for October 2024 is necessary and sufficient to resolve this market to "Yes" immediately once the data becomes available regardless of whether the figure for October 2024 is later revised.The primary resolution source for this market will be the figure found in the table titled "GLOBAL Land-Ocean Temperature Index in 0.01 degrees Celsius" under the column "October" in the row "2024" (https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.txt). If NASA's "Global Temperature Index" is rendered permanently unavailable, other information from NASA may be used. If no information for October 2024 is provided by NASA by February 1, 2025, 11:59 PM ET, this market will resolve "Yes".Volume$170,333End DateOct 31, 2024Resolver0x2F5e3684cb...Propose resolutionShow moreComments (23)Top Holders Activity Related PostBeware of external links, they may be phishing attacks.newestHoldersMr.Z1h agotemprature increase compared to what??? sept 2024 or october 2023???????????????????????????????????????????????????????1Replyitsari👻16h ago[1.30, 1.46], 1.38 at 95% confidence interval. chances of greater than 1.4 is going down.1ReplyShow  3 Repliespetre19h ago1.29-1.340Replyraspberry17451 1.29-1.342d agoHow often does era5 update?0ReplyHide  1 Repliesraspberry17451 1.29-1.342d agohttps://pulse.climate.copernicus.eu/1Reply0xkaka360 >1.403d agoBruv there no snow on mount fiji, take a hint. Warmest year on record 2024 & increasing day by day due to El Nino. 3Replyitsari👻5d ago[1.33 1.55], 1.44 1ReplyShow  4 RepliesepicRNG10.3K >1.409d agoInstead of writing in the Title "Increase" can you replace it with "Change" to make the wording more neutral?1ReplyShow  5 RepliesepicRNG10.3K >1.409d agogl everyone 0Replyvi.6.1K <1.1710d agoWhy is 1.23-1.28 so low?1Replyraspberry17451 1.29-1.3411d agoThe brackets are wrong, they are a copy-paste from last month. Also, please add CSV file to rules0Reply<1.17BuySellMarketOutcome Yes 4.2¢ No 99.1¢AmountBalance $0.00MaxAmount too lowBuySuccessAvg price0.0¢Shares0.00Potential return$0.00 (0.00%)By trading, you agree to the Terms of Use.More 
-688Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 48m 59s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 48m 58s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 48m 57s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 48m 56s
-content.js:1 [Polyteller Content] Updated countdown text: 89d 22h 48m 55s
+        
+        
+      
+privacyMode.js:1 [Polyteller PrivacyMode] State updated: false
+privacyMode.js:1 [Polyteller PrivacyMode] State persisted: false
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 55s
+659Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 54s
+content.js:1 [Polyteller Content] Updated countdown text: 5d 11h 0m 53s

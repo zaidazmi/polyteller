@@ -12,6 +12,12 @@
     "content_scripts": [
       {
         "matches": ["https://*.polymarket.com/*"],
+        "js": ["privacyModeEarly.js"],
+        "run_at": "document_start",
+        "all_frames": true
+      },
+      {
+        "matches": ["https://*.polymarket.com/*"],
         "js": ["content.js", "privacyMode.js"],
         "css": ["content.css"]
       }

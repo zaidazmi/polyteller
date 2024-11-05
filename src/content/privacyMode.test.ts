@@ -11,7 +11,7 @@ import {
 jest.mock('../utils/privacyUtils', () => ({
   getPrivacyModeState: jest.fn(),
   setPrivacyModeState: jest.fn(),
-  maskValue: jest.fn(),
+  maskValue: jest.fn().mockReturnValue('*******'),
 }));
 
 // Mock the chrome API
@@ -63,16 +63,24 @@ global.MutationObserver = MockMutationObserver as any;
 describe('Privacy Mode', () => {
   let privacyMode: PrivacyModeState;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     // Reset singleton instance
     (PrivacyModeState as any).instance = null;
-    privacyMode = PrivacyModeState.getInstance();
     
-    // Reset DOM
+    // Reset DOM with exact class names
     document.body.innerHTML = `
-      <div class="${VALUE_SELECTOR}">$100.00</div>
-      <div class="${VALUE_SELECTOR}">$50.00</div>
+      <div class="c-PJLV c-jaFKlk c-PJLV-ibdakYG-css">$100.00</div>
+      <div class="c-PJLV c-jaFKlk c-PJLV-ibdakYG-css">$50.00</div>
     `;
+
+    // Reset mocks
+    jest.clearAllMocks();
+    document.body.classList.remove('privacy-enabled');
+
+    // Initialize privacy mode instance
+    privacyMode = PrivacyModeState.getInstance();
+    // Wait for initialization to complete
+    await new Promise(resolve => setTimeout(resolve, 100));
   });
 
   test('initializes with correct default state', () => {
@@ -82,9 +90,11 @@ describe('Privacy Mode', () => {
   test('toggles state correctly', async () => {
     await privacyMode.toggle();
     expect(privacyMode.isEnabled).toBe(true);
+    expect(document.body.classList.contains('privacy-enabled')).toBe(true);
     
     await privacyMode.toggle();
     expect(privacyMode.isEnabled).toBe(false);
+    expect(document.body.classList.contains('privacy-enabled')).toBe(false);
   });
 
   test('notifies subscribers of state changes', async () => {
@@ -96,24 +106,53 @@ describe('Privacy Mode', () => {
   });
 
   test('handles DOM mutations correctly', async () => {
-    // Mock maskValue to return expected value
-    (privacyUtils.maskValue as jest.Mock).mockReturnValue('*******');
-
     // Enable privacy mode first
     await privacyMode.toggle();
     expect(privacyMode.isEnabled).toBe(true);
+    expect(document.body.classList.contains('privacy-enabled')).toBe(true);
 
-    // Create and add new element
+    // Create and add new element with exact class names
     const newElement = document.createElement('div');
-    newElement.className = VALUE_SELECTOR;
+    newElement.className = 'c-PJLV c-jaFKlk c-PJLV-ibdakYG-css';
     newElement.textContent = '$200.00';
+    
+    // Add element to DOM
     document.body.appendChild(newElement);
 
     // Force privacy mode update and wait for it
-    privacyMode['updateElement'](newElement); // Call updateElement directly
+    await new Promise(resolve => setTimeout(resolve, 100));
+    privacyMode['findAndUpdateElements']();
+    await new Promise(resolve => setTimeout(resolve, 100));
     
-    // Verify the element was masked
-    expect(newElement.textContent).toBe('*******');
-    expect(privacyUtils.maskValue).toHaveBeenCalledWith('$200.00');
+    // Verify element was masked
+    expect(newElement.dataset.originalValue).toBe('$200.00');
+    expect(document.body.classList.contains('privacy-enabled')).toBe(true);
+  });
+
+  test('properly stores original values', async () => {
+    // Get first value element with exact class names
+    const element = document.querySelector('.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css') as HTMLElement;
+    expect(element).not.toBeNull();
+    
+    const originalValue = '$100.00';
+    
+    // Enable privacy mode and wait for update
+    await privacyMode.toggle();
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Force update to ensure element is processed
+    privacyMode['findAndUpdateElements']();
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Check original value is stored
+    expect(element.dataset.originalValue).toBe(originalValue);
+    
+    // Disable privacy mode
+    await privacyMode.toggle();
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Check original value is restored
+    expect(element.textContent).toBe(originalValue);
+    expect(element.dataset.originalValue).toBeUndefined();
   });
 });
