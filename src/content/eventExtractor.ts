@@ -9,6 +9,18 @@ import { isDST } from '../utils/timezoneUtils';
 
 // Add these date patterns at the top of the file
 const DATE_PATTERNS = [
+  // New pattern for "Dec 1, 3 AM ET" format (highest priority)
+  /(\b[A-Za-z]{3,} \d{1,2}), (\d{1,2}) ([AP]M) ([A-Z]{2,3})/i,
+  
+  // Specific pattern for "by [date], [time] [AM/PM] ET" format
+  /by.*?(\w+ \d{1,2}, \d{4}),? (\d{1,2}:\d{2}:\d{2}) ([AP]M) ([A-Z]{2,3})/i,
+  
+  // Exact time pattern for "2:59:59 AM ET" format (highest priority)
+  /([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}):(\d{2}):(\d{2}) ([AP]M) ([A-Z]{2,3})/i,
+  
+  // Specific pattern for "2:59:59 AM ET" format
+  /(\d{1,2}):(\d{2}):(\d{2}) ?([AP]M) ([A-Z]{2,3})/i,
+  
   // Date range pattern (highest priority)
   /between ([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2}) ?([AP]M)? ?([A-Z]{2,3})? and ([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2}) ?([AP]M)? ?([A-Z]{2,3})?/i,
   
@@ -115,47 +127,76 @@ export function extractEventInfo(): PolymarketEvent | null {
         const description = eventData.markets[0].description;
         log('Content', 'Market description:', description);
 
-        // First try priority patterns
-        const priorityDates = findPriorityDates(description);
-        if (priorityDates.length > 0) {
-          const highestPriority = priorityDates[0];
-          if (highestPriority.time) {
-            endDateValue = `${highestPriority.date}, ${highestPriority.time} ${highestPriority.ampm}`;
-            timezone = highestPriority.timezone;
-          } else {
-            endDateValue = `${highestPriority.date}, 11:59 PM`;
-            timezone = 'ET';
-          }
-          log('Content', 'Using priority date:', endDateValue);
+        // Try to find exact time pattern first
+        const exactTimeMatch = description.match(/by.*?(\w+ \d{1,2}, \d{4}),? (\d{1,2}:\d{2}:\d{2}) ([AP]M) ([A-Z]{2,3})/i);
+        
+        if (exactTimeMatch) {
+          const [, datePart, time, ampm, tz] = exactTimeMatch;
+          endDateValue = `${datePart}, ${time} ${ampm}`;
+          timezone = tz || 'ET';
+          log('Content', 'Using exact time match:', endDateValue);
         } else {
-          // Fall back to existing DATE_PATTERNS logic
-          for (const pattern of DATE_PATTERNS) {
-            dateTimeMatch = description.match(pattern);
-            if (dateTimeMatch) {
-              log('Content', 'Date time matches:', dateTimeMatch);
-              
-              // For date range pattern
-              if (dateTimeMatch.length >= 8) {
-                const [, , , , , endDate, endTime, endAmPm, endTz] = dateTimeMatch;
-                endDateValue = `${endDate}, ${endTime} ${endAmPm}`;
-                timezone = endTz || 'ET';
-              } else {
-                // Always use the date from description
-                const [, datePart] = dateTimeMatch;
-                endDateValue = `${datePart}, 11:59 PM`;  // Set to end of day
-                timezone = 'ET';
+          // First try priority patterns
+          const priorityDates = findPriorityDates(description);
+          if (priorityDates.length > 0) {
+            const highestPriority = priorityDates[0];
+            if (highestPriority.time) {
+              endDateValue = `${highestPriority.date}, ${highestPriority.time} ${highestPriority.ampm}`;
+              timezone = highestPriority.timezone;
+            } else {
+              endDateValue = `${highestPriority.date}, 11:59 PM`;
+              timezone = 'ET';
+            }
+            log('Content', 'Using priority date:', endDateValue);
+          } else {
+            // Fall back to existing DATE_PATTERNS logic
+            for (const pattern of DATE_PATTERNS) {
+              dateTimeMatch = description.match(pattern);
+              if (dateTimeMatch) {
+                log('Content', 'Date time matches:', dateTimeMatch);
                 
-                // Create date object to verify it's valid
-                const parsedDate = new Date(endDateValue);
-                if (!isNaN(parsedDate.getTime())) {
-                  log('Content', 'Using date from description:', endDateValue);
+                // Handle "Dec 1, 3 AM ET" format
+                if (dateTimeMatch[1] && dateTimeMatch[2] && dateTimeMatch[3]) {
+                  const [, datePart, hour, ampm, tz] = dateTimeMatch;
+                  const currentYear = new Date().getFullYear();
+                  const nextYear = currentYear + 1;
+                  
+                  endDateValue = `${datePart}, ${nextYear}, ${hour}:00 ${ampm}`;
+                  timezone = tz || 'ET';
+                  log('Content', 'Using short date format with next year:', endDateValue);
                 } else {
-                  // Fallback to __NEXT_DATA__ date if parsing fails
-                  endDateValue = eventData.endDate;
-                  log('Content', 'Failed to parse description date, using fallback:', endDateValue);
+                  // For exact time with seconds format (2:59:59 AM ET)
+                  if (dateTimeMatch[2] && dateTimeMatch[3] && dateTimeMatch[4]) {
+                    const [, datePart, hour, minute, second, ampm, tz] = dateTimeMatch;
+                    endDateValue = `${datePart}, ${hour}:${minute}:${second} ${ampm}`;
+                    timezone = tz || 'ET';
+                    log('Content', 'Using exact time with seconds:', endDateValue);
+                  } else {
+                    // For date range pattern
+                    if (dateTimeMatch.length >= 8) {
+                      const [, , , , , endDate, endTime, endAmPm, endTz] = dateTimeMatch;
+                      endDateValue = `${endDate}, ${endTime} ${endAmPm}`;
+                      timezone = endTz || 'ET';
+                    } else {
+                      // Always use the date from description
+                      const [, datePart] = dateTimeMatch;
+                      endDateValue = `${datePart}, 11:59 PM`;  // Set to end of day
+                      timezone = 'ET';
+                      
+                      // Create date object to verify it's valid
+                      const parsedDate = new Date(endDateValue);
+                      if (!isNaN(parsedDate.getTime())) {
+                        log('Content', 'Using date from description:', endDateValue);
+                      } else {
+                        // Fallback to __NEXT_DATA__ date if parsing fails
+                        endDateValue = eventData.endDate;
+                        log('Content', 'Failed to parse description date, using fallback:', endDateValue);
+                      }
+                    }
+                  }
+                  break;
                 }
               }
-              break;
             }
           }
         }
@@ -203,8 +244,8 @@ export function extractEventInfo(): PolymarketEvent | null {
 function parseCustomDate(dateString: string, timezone: string): Date {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     
-    // Try 12-hour format first
-    let parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}) ([AP]M)/);
+    // Try short format with year (Dec 1, 2024, 3 AM ET)
+    let parts = dateString.match(/(\w+) (\d{1,2}), (\d{4}), (\d{1,2}):(\d{2}) ([AP]M)/);
     
     if (parts) {
         const [, month, day, year, hour, minute, ampm] = parts;
@@ -218,6 +259,47 @@ function parseCustomDate(dateString: string, timezone: string): Date {
             parseInt(day),
             parsedHour,
             parseInt(minute),
+            0,
+            timezone
+        );
+    }
+    
+    // Try 12-hour format with seconds first
+    parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)/);
+    
+    if (parts) {
+        const [, month, day, year, hour, minute, second, ampm] = parts;
+        let parsedHour = parseInt(hour);
+        if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
+        if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
+        
+        return createDateWithTimezone(
+            parseInt(year),
+            months.indexOf(month),
+            parseInt(day),
+            parsedHour,
+            parseInt(minute),
+            parseInt(second),
+            timezone
+        );
+    }
+    
+    // Try 12-hour format first
+    parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}) ([AP]M)/);
+    
+    if (parts) {
+        const [, month, day, year, hour, minute, ampm] = parts;
+        let parsedHour = parseInt(hour);
+        if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
+        if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
+        
+        return createDateWithTimezone(
+            parseInt(year),
+            months.indexOf(month),
+            parseInt(day),
+            parsedHour,
+            parseInt(minute),
+            0,  // Add seconds parameter as 0
             timezone
         );
     }
@@ -233,6 +315,7 @@ function parseCustomDate(dateString: string, timezone: string): Date {
             parseInt(day),
             parseInt(hour),
             parseInt(minute),
+            0,  // Add seconds parameter as 0
             timezone
         );
     }
@@ -240,8 +323,16 @@ function parseCustomDate(dateString: string, timezone: string): Date {
     return new Date(dateString);
 }
 
-function createDateWithTimezone(year: number, month: number, day: number, hour: number, minute: number, timezone: string): Date {
-    const date = new Date(Date.UTC(year, month, day, hour, minute));
+function createDateWithTimezone(
+    year: number, 
+    month: number, 
+    day: number, 
+    hour: number, 
+    minute: number, 
+    second: number = 0,  // Add seconds parameter
+    timezone: string
+): Date {
+    const date = new Date(Date.UTC(year, month, day, hour, minute, second));
     
     if (timezone === 'ET') {
         const offset = isDST(date) ? 4 : 5; // EDT = UTC-4, EST = UTC-5
