@@ -8,28 +8,16 @@
     const style = document.createElement('style');
     style.id = 'polyteller-privacy-early';
     style.textContent = `
-        /* Initial state for all value elements */
-        .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
-        [class*="jaFKlk"],
-        [class*="ibdakYG"] {
-            transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
-        }
-
-        /* Default state (unmasked) - Force original green color */
-        body:not(.privacy-enabled) .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
-        body:not(.privacy-enabled) [class*="jaFKlk"],
-        body:not(.privacy-enabled) [class*="ibdakYG"] {
-            color: rgb(34, 197, 94) !important; /* Force Polymarket's green color */
-            text-shadow: none !important;
-        }
-
-        /* Masked state */
+        /* Only apply styles when privacy mode is enabled */
         body.privacy-enabled .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         body.privacy-enabled [class*="jaFKlk"],
         body.privacy-enabled [class*="ibdakYG"] {
             color: transparent !important;
             text-shadow: 0 0 8px rgba(0,0,0,0.5) !important;
+            transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
         }
+
+        /* No styles for disabled state - let Polymarket's styles take over */
     `;
 
     // Function to inject style
