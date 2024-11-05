@@ -166,3 +166,24 @@ function handleUpdateTradeConfirmation(request: any, sendResponse: (response?: a
     });
   });
 }
+
+// Add this to your existing background.ts
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'broadcastPrivacyMode') {
+    // Broadcast to all Polymarket tabs
+    chrome.tabs.query({ url: "https://*.polymarket.com/*" }, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id && sender.tab?.id !== tab.id) {
+          chrome.tabs.sendMessage(tab.id, {
+            action: 'updatePrivacyMode',
+            enabled: message.enabled
+          }).catch(error => {
+            console.log('Error sending message to tab:', error);
+          });
+        }
+      });
+    });
+    sendResponse({ success: true });
+  }
+  return true;
+});
