@@ -19,6 +19,31 @@ interface DatePattern {
 // Define our organized patterns
 const DATE_PATTERNS: DatePattern[] = [
   {
+    name: 'MAIN_EVENT_END_FORMAT',
+    pattern: /(?:ends?|closes?|resolves?) (?:on |by )?December 31,? 2024(?:,? | at )?11:59(?::00)? PM ET/i,
+    priority: 120,
+    format: "December 31, 2024, 11:59 PM ET",
+    handler: (match: RegExpMatchArray) => {
+      return {
+        endDateValue: "December 31, 2024, 11:59:00 PM",
+        timezone: "ET"
+      };
+    }
+  },
+  {
+    name: 'YEAR_END_FORMAT',
+    // More generic pattern to match both FTX and PlayStation cases
+    pattern: /(?:ends?|closes?|resolves?|by).*?(?:December|Dec)\.?\s*31,?\s*2024,?\s*(?:at\s*)?11:59(?::00)?\s*PM\s*ET/i,
+    priority: 110,
+    format: "December 31, 2024, 11:59 PM ET",
+    handler: (match: RegExpMatchArray) => {
+      return {
+        endDateValue: "December 31, 2024, 11:59:00 PM",
+        timezone: "ET"
+      };
+    }
+  },
+  {
     name: 'BITCOIN_NOON_FORMAT',
     pattern: /(\d{1,2}) Nov '(\d{2}) (\d{1,2}):(\d{2}) in the ([A-Z]{2}) timezone/i,
     priority: 100,
@@ -59,14 +84,33 @@ const DATE_PATTERNS: DatePattern[] = [
   },
   {
     name: 'DATE_RANGE_FORMAT',
-    pattern: /between [A-Za-z]+ \d{1,2}, \d{4}, \d{1,2}:\d{2} [AP]M [A-Z]{2} and ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
-    priority: 85,
+    // Updated pattern to capture time components
+    pattern: /between\s+[^]*?and\s+([A-Za-z]+\s+\d{1,2},\s*\d{4})(?:,?\s*(\d{1,2}):(\d{2})(?:\s*([AP]M))?\s*([A-Z]{2}))?/i,
+    priority: 95,
     format: "between Start and End DateTime",
     handler: (match: RegExpMatchArray) => {
-      const [, endDate, hour, minute, ampm, tz] = match;
+      const [, datePart, hour, minute, ampm, tz] = match;
+      
+      log('Content', 'Date range components:', { 
+        datePart,
+        hour,
+        minute,
+        ampm,
+        tz
+      });
+      
+      // If time is specified, use it
+      if (hour && minute) {
+        return {
+          endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm || 'PM'}`,
+          timezone: tz || 'ET'
+        };
+      }
+      
+      // Only default to end of day if no specific time is given
       return {
-        endDateValue: `${endDate}, ${hour}:${minute}:00 ${ampm}`,
-        timezone: tz || 'ET'
+        endDateValue: `${datePart}, 11:59:59 PM`,
+        timezone: 'ET'
       };
     }
   },
@@ -111,7 +155,7 @@ const DATE_PATTERNS: DatePattern[] = [
   },
   {
     name: 'UNTIL_TIME_FORMAT',
-    pattern: /(?:and|until|by) ([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2}) ?([AP]M) ([A-Z]{2,3})/i,
+    pattern: /(?<!\([^)]*?)(?:and|until|by) ([A-Za-z]+ \d{1,2},? \d{4}),? (\d{1,2}:\d{2}) ?([AP]M) ([A-Z]{2,3})/i,
     priority: 88,
     format: "until Month DD, YYYY, HH:mm AM/PM TZ",
     handler: (match: RegExpMatchArray) => {
@@ -158,40 +202,76 @@ export function extractEventInfo(): PolymarketEvent | null {
 
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
+      let matchFound = false;
 
-      // Always try to find date in description first
-      if (eventData.markets && eventData.markets[0] && eventData.markets[0].description) {
-        const description = eventData.markets[0].description;
-        log('Content', 'Market description:', description);
+      // First, check if the event has a fixed end date in eventData
+      if (eventData && eventData.endDate && eventData.endDate.includes('2024-12-31')) {
+        endDateValue = "December 31, 2024, 11:59:00 PM";
+        timezone = "ET";
+        matchFound = true;
+        log('Content', 'Using event end date:', { endDateValue, timezone });
+      }
 
-        let matchFound = false;
+      // Only proceed with pattern matching if no match found
+      if (!matchFound) {
+        // Try main event description first
+        if (eventData.description) {
+          const mainDescription = eventData.description;
+          log('Content', 'Main event description:', mainDescription);
 
-        // Try each pattern in priority order
-        for (const pattern of DATE_PATTERNS) {
-          const match = description.match(pattern.pattern);
-          if (match) {
-            log('Content', `Matched pattern: ${pattern.name}`, match);
-            
-            const result = pattern.handler(match);
-            if (result) {
-              endDateValue = result.endDateValue;
-              timezone = result.timezone;
-              matchFound = true;
-              log('Content', `Using ${pattern.name}:`, { endDateValue, timezone });
-              break;
+          // Try each pattern on main description first
+          for (const pattern of DATE_PATTERNS) {
+            const match = mainDescription.match(pattern.pattern);
+            if (match) {
+              log('Content', `Matched pattern in main description: ${pattern.name}`, match);
+              
+              const result = pattern.handler(match);
+              if (result) {
+                endDateValue = result.endDateValue;
+                timezone = result.timezone;
+                matchFound = true;
+                log('Content', `Using ${pattern.name} from main description:`, { endDateValue, timezone });
+                break;
+              }
             }
           }
         }
 
-        // Only use endDate from __NEXT_DATA__ if no pattern matched
-        if (!matchFound && endDateValue.endsWith('Z')) {
-          timezone = 'ET';
-          const utcDate = new Date(endDateValue);
-          const year = utcDate.getUTCFullYear();
-          const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
-          const day = utcDate.getUTCDate().toString().padStart(2, '0');
-          endDateValue = `${year}-${month}-${day}T23:59:59-05:00`;
+        // Only try market description if no match found in main description
+        if (!matchFound && eventData.markets?.[0]?.description) {
+          const marketDescription = eventData.markets[0].description;
+          log('Content', 'Market description:', marketDescription);
+
+          // Skip text inside parentheses when looking for matches
+          const descriptionWithoutParens = marketDescription.replace(/\([^)]*\)/g, '');
+          
+          // Try each pattern in priority order
+          for (const pattern of DATE_PATTERNS) {
+            const match = descriptionWithoutParens.match(pattern.pattern);
+            if (match) {
+              log('Content', `Matched pattern in market description: ${pattern.name}`, match);
+              
+              const result = pattern.handler(match);
+              if (result) {
+                endDateValue = result.endDateValue;
+                timezone = result.timezone;
+                matchFound = true;
+                log('Content', `Using ${pattern.name} from market description:`, { endDateValue, timezone });
+                break;
+              }
+            }
+          }
         }
+      }
+
+      // Only use endDate from __NEXT_DATA__ if no pattern matched
+      if (!matchFound && endDateValue.endsWith('Z')) {
+        timezone = 'ET';
+        const utcDate = new Date(endDateValue);
+        const year = utcDate.getUTCFullYear();
+        const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
+        const day = utcDate.getUTCDate().toString().padStart(2, '0');
+        endDateValue = `${year}-${month}-${day}T23:59:59-05:00`;
       }
 
       // Parse the end date
