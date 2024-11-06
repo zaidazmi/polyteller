@@ -28,6 +28,6 @@ export function displayStatus(message: string, isSuccess: boolean = true) {
             if (toastContainer.contains(toast)) {
                 toastContainer.removeChild(toast);
             }
-        }, 300); // Wait for fade out animation
-    }, 1000); // Show for 1 second
+        }, 300); // Keep fade out animation time
+    }, 2000); // Changed from 1000 to 2000 to show for 2 seconds
 }

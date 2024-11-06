@@ -38,32 +38,77 @@ function createConfirmationDialog(): HTMLDivElement {
           background-color: #4A4FE4;
           border: none;
           color: white;
-          padding: 8px 20px;
+          padding: 12px;
           text-align: center;
           text-decoration: none;
-          display: inline-block;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
           font-size: 14px;
           cursor: pointer;
           border-radius: 4px;
-          font-weight: bold;
-        ">Yes</button>
+          width: 100px;
+          height: 64px;
+          justify-content: center;
+        ">
+          <span style="font-weight: bold; font-size: 16px;">Yes</span>
+          <span style="font-size: 12px; opacity: 0.8;">Enter</span>
+        </button>
         <button id="confirmNo" style="
           background-color: #A41C1C;
           border: none;
           color: white;
-          padding: 8px 20px;
+          padding: 12px;
           text-align: center;
           text-decoration: none;
-          display: inline-block;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
           font-size: 14px;
           cursor: pointer;
           border-radius: 4px;
-          font-weight: bold;
-        ">No (3)</button>
+          width: 100px;
+          height: 64px;
+          justify-content: center;
+        ">
+          <span id="noButtonCountdown" style="font-weight: bold; font-size: 16px;">No (3)</span>
+          <span style="font-size: 12px; opacity: 0.8;">Esc</span>
+        </button>
       </div>
     </div>
   `;
-  
+
+  // Add keyboard event listeners
+  const handleKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const yesButton = dialog.querySelector('#confirmYes') as HTMLButtonElement;
+      if (yesButton) yesButton.click();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      const noButton = dialog.querySelector('#confirmNo') as HTMLButtonElement;
+      if (noButton) noButton.click();
+    }
+  };
+
+  // Add keyboard listener when dialog is shown
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+        const isVisible = dialog.style.display !== 'none';
+        if (isVisible) {
+          document.addEventListener('keydown', handleKeydown);
+        } else {
+          document.removeEventListener('keydown', handleKeydown);
+        }
+      }
+    });
+  });
+
+  observer.observe(dialog, { attributes: true });
+
   // Update hover effects
   const buttons = dialog.querySelectorAll('button');
   buttons.forEach(button => {
@@ -86,6 +131,29 @@ function createConfirmationDialog(): HTMLDivElement {
   });
 
   document.body.appendChild(dialog);
+
+  // Define countdown and handleNo in this scope
+  let countdown = 3;
+  const handleNo = () => {
+    if (countdownInterval) {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+    }
+    dialog.style.display = 'none';
+  };
+
+  // Update the countdown interval
+  countdownInterval = window.setInterval(() => {
+    countdown--;
+    const countdownSpan = dialog.querySelector('#noButtonCountdown');
+    if (countdownSpan) {
+      countdownSpan.textContent = `No (${countdown})`;
+    }
+    if (countdown <= 0) {
+      handleNo();
+    }
+  }, 1000);
+
   return dialog;
 }
 
@@ -100,10 +168,16 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
     confirmationDialog = createConfirmationDialog();
   }
   
+  // Null check for confirmationDialog
+  if (!confirmationDialog) return;
+  
   // Reset the countdown and button text every time the dialog is shown
-  let countdown = 3; 
+  let countdown = 3;
   const noButton = confirmationDialog.querySelector('#confirmNo') as HTMLButtonElement;
-  noButton.textContent = `No (${countdown})`;
+  const countdownSpan = confirmationDialog.querySelector('#noButtonCountdown');
+  if (countdownSpan) {
+    countdownSpan.textContent = `No (${countdown})`;
+  }
 
   // Force the dialog to be visible but off-screen to get its dimensions
   confirmationDialog.style.display = 'block';
@@ -157,7 +231,11 @@ function showConfirmationDialog(buttonRect: DOMRect, callback: (confirmed: boole
 
   countdownInterval = window.setInterval(() => {
     countdown--;
-    noButton.textContent = `No (${countdown})`;
+    // Add null check for confirmationDialog
+    const countdownSpan = confirmationDialog?.querySelector('#noButtonCountdown');
+    if (countdownSpan) {
+      countdownSpan.textContent = `No (${countdown})`;
+    }
     if (countdown <= 0) {
       handleNo();
     }

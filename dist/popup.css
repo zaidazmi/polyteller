@@ -285,27 +285,28 @@ button:disabled {
 
 /* Delete notification button styles */
 .delete-notification {
-  background: none;
+  background: none !important;
   border: none;
   cursor: pointer;
   padding: 10px;
   color: var(--text-light);
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
+  border-radius: 8px;
 }
 
 .delete-notification:hover,
 .delete-notification:focus {
-  color: #EF4444;
-  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444 !important;
+  background-color: rgba(239, 68, 68, 0.08) !important;
   outline: none;
 }
 
-.delete-notification .delete-icon {
+.delete-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -478,13 +479,15 @@ button#set-notification.error {
 
 .trade-confirmation-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
-#trade-confirmation-setting span {
-  font-size: 14px;
+#trade-confirmation-setting span,
+#privacy-mode-setting span {
+  font-size: 16px;
   color: var(--text-color);
+  font-weight: 500;
 }
 
 /* Toggle Switch */
@@ -626,5 +629,38 @@ input:checked + .slider:before {
 .delete-notification svg {
   width: 16px;
   height: 16px;
+}
+
+/* Privacy Mode Setting */
+#privacy-mode-setting {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.privacy-mode-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Setting info styles */
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.setting-title {
+  font-size: 16px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.setting-description {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 400;
 }
 

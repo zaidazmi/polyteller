@@ -62,13 +62,15 @@
 
 .trade-confirmation-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
-#trade-confirmation-setting span {
-  font-size: 14px;
+#trade-confirmation-setting span,
+#privacy-mode-setting span {
+  font-size: 16px;
   color: var(--text-color);
+  font-weight: 500;
 }
 
 /* Toggle Switch */
@@ -210,4 +212,37 @@ input:checked + .slider:before {
 .delete-notification svg {
   width: 16px;
   height: 16px;
+}
+
+/* Privacy Mode Setting */
+#privacy-mode-setting {
+  background-color: var(--card-background);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.privacy-mode-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* Setting info styles */
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.setting-title {
+  font-size: 16px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.setting-description {
+  font-size: 12px;
+  color: var(--text-light);
+  font-weight: 400;
 }
