@@ -11,10 +11,12 @@ const MUTATION_DEBOUNCE_TIME = 100;
  * Adds the privacy mode toggle icon to the page.
  */
 function addToggleIcon() {
-  if (document.querySelector(`.${TOGGLE_ICON_CLASS}`)) return; // Avoid adding multiple icons
+  const findAndAddIcon = () => {
+    if (document.querySelector(`.${TOGGLE_ICON_CLASS}`)) return true;
 
-  const portfolioElement = document.querySelector('.c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');
-  if (portfolioElement instanceof HTMLElement) {
+    const portfolioElement = document.querySelector('a[href="/portfolio"].c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');
+    if (!(portfolioElement instanceof HTMLElement)) return false;
+
     const toggleIcon = document.createElement('div');
     toggleIcon.className = TOGGLE_ICON_CLASS;
     toggleIcon.innerHTML = `
@@ -23,6 +25,7 @@ function addToggleIcon() {
         <circle cx="12" cy="12" r="3"></circle>
       </svg>
     `;
+
     toggleIcon.style.cssText = `
       position: absolute;
       top: calc(100% + 5px);
@@ -30,14 +33,33 @@ function addToggleIcon() {
       transform: translateX(-50%);
       cursor: pointer;
       z-index: 1000;
-      padding: 5px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out;
     `;
+
+    toggleIcon.addEventListener('mouseenter', () => {
+      toggleIcon.style.transform = 'translateX(-50%) scale(1.1)';
+      toggleIcon.style.opacity = '1';
+    });
+
+    toggleIcon.addEventListener('mouseleave', () => {
+      toggleIcon.style.transform = 'translateX(-50%) scale(1)';
+      toggleIcon.style.opacity = '0.25';
+    });
+
     toggleIcon.addEventListener('click', async (e) => {
       e.stopPropagation();
       e.preventDefault();
       await privacyModeState.toggle();
 
-      // Send message to background script to handle tab updates
+      toggleIcon.style.transform = 'translateX(-50%) scale(0.95)';
+      setTimeout(() => {
+        toggleIcon.style.transform = 'translateX(-50%) scale(1)';
+      }, 100);
+
       chrome.runtime.sendMessage({
         action: 'broadcastPrivacyMode',
         enabled: privacyModeState.isEnabled
@@ -58,9 +80,38 @@ function addToggleIcon() {
 
     portfolioElement.style.position = 'relative';
     portfolioElement.appendChild(container);
+    
+    const updateIconColor = (enabled: boolean) => {
+      toggleIcon.style.color = enabled ? '#4A4FE4' : '#666666';
+      toggleIcon.style.opacity = '0.25';
+    };
+
+    updateIconColor(privacyModeState.isEnabled);
+    privacyModeState.onStateChange(updateIconColor);
+
     log('PrivacyMode', 'Toggle icon added');
+    return true;
+  };
+
+  // Initialize with retries
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!findAndAddIcon()) {
+        setTimeout(() => {
+          if (!findAndAddIcon()) {
+            setTimeout(findAndAddIcon, 1000);
+          }
+        }, 500);
+      }
+    });
   } else {
-    log('PrivacyMode', 'Target element for toggle icon not found or is not an HTMLElement');
+    if (!findAndAddIcon()) {
+      setTimeout(() => {
+        if (!findAndAddIcon()) {
+          setTimeout(findAndAddIcon, 1000);
+        }
+      }, 500);
+    }
   }
 }
 
