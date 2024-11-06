@@ -16,16 +16,16 @@
             transition: opacity 0.2s ease-in-out;
         }
 
-        /* Show values when privacy mode is disabled */
+        /* When privacy mode is OFF - remove our overrides completely */
         body:not(.privacy-enabled) .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         body:not(.privacy-enabled) [class*="jaFKlk"],
         body:not(.privacy-enabled) [class*="ibdakYG"] {
             opacity: 1;
-            color: inherit !important;
-            text-shadow: none !important;
+            /* No color override */
+            /* No text-shadow override */
         }
 
-        /* Show masked values when privacy mode is enabled */
+        /* When privacy mode is ON - mask values */
         body.privacy-enabled .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         body.privacy-enabled [class*="jaFKlk"],
         body.privacy-enabled [class*="ibdakYG"] {
