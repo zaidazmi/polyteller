@@ -76,12 +76,12 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
   const notification = storedNotifications.find(n => n.id === alarm.name);
 
   if (notification) {
-    // Create and show the notification with the original time setting
+    // Create and show the notification with updated text
     await chrome.notifications.create(notification.id, {
       type: 'basic',
       iconUrl: 'icon.png',
       title: 'Event Reminder',
-      message: `${notification.eventTitle} is starting in ${formatFullNotificationTime(notification.minutesBefore)}`,
+      message: `${notification.eventTitle} ends in ${formatRemainingTime(notification.minutesBefore * 60 * 1000)}`,
     });
 
     // Set the triggered property to true

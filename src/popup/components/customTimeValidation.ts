@@ -1,5 +1,8 @@
 import { useStore } from '../../store/store';
 
+// Add type for validation fields
+type ValidationFields = 'days' | 'hours' | 'minutes' | 'seconds';
+
 export function validateCustomTime() {
   const daysInput = document.getElementById('custom-days') as HTMLInputElement;
   const hoursInput = document.getElementById('custom-hours') as HTMLInputElement;
@@ -9,14 +12,8 @@ export function validateCustomTime() {
   const errorMessage = document.getElementById('custom-time-error') as HTMLDivElement;
 
   const inputs = [daysInput, hoursInput, minutesInput, secondsInput];
-
-  const totalMilliseconds = 
-    (parseInt(daysInput.value) || 0) * 86400000 +
-    (parseInt(hoursInput.value) || 0) * 3600000 +
-    (parseInt(minutesInput.value) || 0) * 60000 +
-    (parseInt(secondsInput.value) || 0) * 1000;
-
   const currentEvent = useStore.getState().currentEvent;
+  
   if (!currentEvent) {
     setNotificationButton.disabled = true;
     errorMessage.textContent = 'No event selected.';
@@ -24,25 +21,66 @@ export function validateCustomTime() {
     return;
   }
 
+  // Get remaining time in days/hours/minutes/seconds
   const remainingTime = currentEvent.endTime - Date.now();
+  const remainingDays = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
 
-  // Only validate if user has entered some value
-  if (totalMilliseconds > 0) {
-    const isValid = totalMilliseconds < remainingTime;
+  // Individual field validations
+  const days = parseInt(daysInput.value) || 0;
+  const hours = parseInt(hoursInput.value) || 0;
+  const minutes = parseInt(minutesInput.value) || 0;
+  const seconds = parseInt(secondsInput.value) || 0;
 
-    inputs.forEach(input => {
-      input.style.borderColor = isValid ? '' : 'red';
-    });
+  // More permissive individual validation rules
+  const isValid: Record<ValidationFields, boolean> = {
+    days: days >= 0 && days <= remainingDays,
+    hours: hours >= 0 && hours <= 24,
+    minutes: minutes >= 0 && minutes <= 60,
+    seconds: seconds >= 0 && seconds <= 60
+  };
 
-    setNotificationButton.disabled = !isValid;
-    errorMessage.textContent = isValid ? '' : 'Notification time cannot exceed the remaining time.';
-    errorMessage.style.display = isValid ? 'none' : 'block';
-  } else {
-    // Reset styles if no value entered
-    inputs.forEach(input => {
-      input.style.borderColor = '';
-    });
-    setNotificationButton.disabled = true;
-    errorMessage.style.display = 'none';
+  // Total time validation
+  const totalMilliseconds = 
+    days * 86400000 +
+    hours * 3600000 +
+    minutes * 60000 +
+    seconds * 1000;
+
+  const isTotalTimeValid = totalMilliseconds > 0 && totalMilliseconds < remainingTime;
+
+  // Show appropriate error messages
+  let errorText = '';
+  if (!isTotalTimeValid) {
+    if (totalMilliseconds === 0) {
+      errorText = 'Please enter a notification time.';
+    } else if (totalMilliseconds >= remainingTime) {
+      errorText = 'Total notification time cannot exceed the remaining time.';
+    }
+  } else if (!isValid.days) {
+    errorText = `Days cannot exceed ${remainingDays}`;
+  } else if (!isValid.hours) {
+    errorText = 'Hours must be between 0 and 24';
+  } else if (!isValid.minutes) {
+    errorText = 'Minutes must be between 0 and 60';
+  } else if (!isValid.seconds) {
+    errorText = 'Seconds must be between 0 and 60';
   }
+
+  // Update UI
+  const isAllValid = isTotalTimeValid && Object.values(isValid).every(v => v);
+  
+  inputs.forEach((input, index) => {
+    const fieldName = ['days', 'hours', 'minutes', 'seconds'][index] as ValidationFields;
+    // More explicit border handling
+    if (isValid[fieldName]) {
+      input.style.removeProperty('border-color');  // Remove the border color completely
+      input.style.border = '1px solid #e2e8f0';  // Reset to default border
+    } else {
+      input.style.border = '1px solid red';
+    }
+  });
+
+  setNotificationButton.disabled = !isAllValid || totalMilliseconds === 0;
+  errorMessage.textContent = errorText;
+  errorMessage.style.display = errorText ? 'block' : 'none';
 }

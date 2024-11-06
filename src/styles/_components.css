@@ -192,27 +192,28 @@ button:disabled {
 
 /* Delete notification button styles */
 .delete-notification {
-  background: none;
+  background: none !important;
   border: none;
   cursor: pointer;
   padding: 10px;
   color: var(--text-light);
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
+  border-radius: 8px;
 }
 
 .delete-notification:hover,
 .delete-notification:focus {
-  color: #EF4444;
-  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444 !important;
+  background-color: rgba(239, 68, 68, 0.08) !important;
   outline: none;
 }
 
-.delete-notification .delete-icon {
+.delete-icon {
   display: flex;
   align-items: center;
   justify-content: center;
