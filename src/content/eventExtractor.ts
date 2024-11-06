@@ -31,8 +31,21 @@ const DATE_PATTERNS: DatePattern[] = [
     }
   },
   {
+    name: 'TIME_BEFORE_DATE_FORMAT',
+    // New pattern to match "11:59 PM ET on November 5, 2024"
+    pattern: /(\d{1,2}):(\d{2}) ([AP]M) ET on ([A-Za-z]+ \d{1,2}, \d{4})/i,
+    priority: 115, // High priority but below MAIN_EVENT_END_FORMAT
+    format: "HH:mm AM/PM ET on Month DD, YYYY",
+    handler: (match: RegExpMatchArray) => {
+      const [, hour, minute, ampm, datePart] = match;
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: 'ET'
+      };
+    }
+  },
+  {
     name: 'YEAR_END_FORMAT',
-    // More generic pattern to match both FTX and PlayStation cases
     pattern: /(?:ends?|closes?|resolves?|by).*?(?:December|Dec)\.?\s*31,?\s*2024,?\s*(?:at\s*)?11:59(?::00)?\s*PM\s*ET/i,
     priority: 110,
     format: "December 31, 2024, 11:59 PM ET",
@@ -204,12 +217,13 @@ export function extractEventInfo(): PolymarketEvent | null {
       let endDateValue = eventData.endDate;
       let matchFound = false;
 
-      // First, check if the event has a fixed end date in eventData
-      if (eventData && eventData.endDate && eventData.endDate.includes('2024-12-31')) {
+      // Check for year-end dates (both Dec 30 and 31 due to timezone differences)
+      if (eventData && eventData.endDate && 
+          (eventData.endDate.includes('2024-12-31') || eventData.endDate.includes('2024-12-30'))) {
         endDateValue = "December 31, 2024, 11:59:00 PM";
         timezone = "ET";
         matchFound = true;
-        log('Content', 'Using event end date:', { endDateValue, timezone });
+        log('Content', 'Using year end date:', { endDateValue, timezone });
       }
 
       // Only proceed with pattern matching if no match found
@@ -262,16 +276,6 @@ export function extractEventInfo(): PolymarketEvent | null {
             }
           }
         }
-      }
-
-      // Only use endDate from __NEXT_DATA__ if no pattern matched
-      if (!matchFound && endDateValue.endsWith('Z')) {
-        timezone = 'ET';
-        const utcDate = new Date(endDateValue);
-        const year = utcDate.getUTCFullYear();
-        const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
-        const day = utcDate.getUTCDate().toString().padStart(2, '0');
-        endDateValue = `${year}-${month}-${day}T23:59:59-05:00`;
       }
 
       // Parse the end date
