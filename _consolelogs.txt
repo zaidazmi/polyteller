@@ -1,64 +1,66 @@
 9The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 lockdown-install.js:1 Removing unpermitted intrinsics
-_app-4b8b73a666c1579b.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+180Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+_app-29d156b444936cf9.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
 
-(anonymous) @ _app-4b8b73a666c1579b.js:618
-391 @ _app-4b8b73a666c1579b.js:618
-s @ _app-4b8b73a666c1579b.js:618
-584 @ _app-4b8b73a666c1579b.js:618
-s @ _app-4b8b73a666c1579b.js:618
-177 @ _app-4b8b73a666c1579b.js:618
-s @ _app-4b8b73a666c1579b.js:618
-545 @ _app-4b8b73a666c1579b.js:613
-s @ _app-4b8b73a666c1579b.js:618
-167 @ _app-4b8b73a666c1579b.js:613
-s @ _app-4b8b73a666c1579b.js:618
-(anonymous) @ _app-4b8b73a666c1579b.js:618
-27596 @ _app-4b8b73a666c1579b.js:618
+(anonymous) @ _app-29d156b444936cf9.js:618
+391 @ _app-29d156b444936cf9.js:618
+s @ _app-29d156b444936cf9.js:618
+584 @ _app-29d156b444936cf9.js:618
+s @ _app-29d156b444936cf9.js:618
+177 @ _app-29d156b444936cf9.js:618
+s @ _app-29d156b444936cf9.js:618
+545 @ _app-29d156b444936cf9.js:613
+s @ _app-29d156b444936cf9.js:618
+167 @ _app-29d156b444936cf9.js:613
+s @ _app-29d156b444936cf9.js:618
+(anonymous) @ _app-29d156b444936cf9.js:618
+27596 @ _app-29d156b444936cf9.js:618
 f @ webpack-6f712ed95fe4e5da.js:1
-48670 @ _app-4b8b73a666c1579b.js:330
+48670 @ _app-29d156b444936cf9.js:330
 f @ webpack-6f712ed95fe4e5da.js:1
-22751 @ _app-4b8b73a666c1579b.js:330
+22751 @ _app-29d156b444936cf9.js:330
 f @ webpack-6f712ed95fe4e5da.js:1
-70442 @ _app-4b8b73a666c1579b.js:6
+70442 @ _app-29d156b444936cf9.js:6
 f @ webpack-6f712ed95fe4e5da.js:1
-12112 @ _app-4b8b73a666c1579b.js:564
+12112 @ _app-29d156b444936cf9.js:564
 f @ webpack-6f712ed95fe4e5da.js:1
-4684 @ _app-4b8b73a666c1579b.js:564
+4684 @ _app-29d156b444936cf9.js:564
 f @ webpack-6f712ed95fe4e5da.js:1
-204 @ _app-4b8b73a666c1579b.js:330
+47243 @ _app-29d156b444936cf9.js:330
 f @ webpack-6f712ed95fe4e5da.js:1
-35998 @ _app-4b8b73a666c1579b.js:613
+35998 @ _app-29d156b444936cf9.js:613
 f @ webpack-6f712ed95fe4e5da.js:1
-45796 @ _app-4b8b73a666c1579b.js:613
+45796 @ _app-29d156b444936cf9.js:613
 f @ webpack-6f712ed95fe4e5da.js:1
-90498 @ _app-4b8b73a666c1579b.js:564
+90498 @ _app-29d156b444936cf9.js:564
 f @ webpack-6f712ed95fe4e5da.js:1
-42603 @ _app-4b8b73a666c1579b.js:568
+42603 @ _app-29d156b444936cf9.js:568
 f @ webpack-6f712ed95fe4e5da.js:1
-88743 @ _app-4b8b73a666c1579b.js:330
+88743 @ _app-29d156b444936cf9.js:330
 f @ webpack-6f712ed95fe4e5da.js:1
-92948 @ _app-4b8b73a666c1579b.js:611
+92948 @ _app-29d156b444936cf9.js:611
 f @ webpack-6f712ed95fe4e5da.js:1
-(anonymous) @ _app-4b8b73a666c1579b.js:330
+(anonymous) @ _app-29d156b444936cf9.js:330
 (anonymous) @ main-6b4b235ae1bf0bb2.js:1
 Promise.then
 onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
 s @ main-6b4b235ae1bf0bb2.js:1
-6840 @ _app-4b8b73a666c1579b.js:330
+6840 @ _app-29d156b444936cf9.js:330
 f @ webpack-6f712ed95fe4e5da.js:1
-t @ _app-4b8b73a666c1579b.js:2009
-(anonymous) @ _app-4b8b73a666c1579b.js:2009
+t @ _app-29d156b444936cf9.js:2009
+(anonymous) @ _app-29d156b444936cf9.js:2009
 f.O @ webpack-6f712ed95fe4e5da.js:1
-(anonymous) @ _app-4b8b73a666c1579b.js:2009
+(anonymous) @ _app-29d156b444936cf9.js:2009
 _ @ webpack-6f712ed95fe4e5da.js:1
-(anonymous) @ _app-4b8b73a666c1579b.js:1Understand this errorAI
-VM537:1 
+(anonymous) @ _app-29d156b444936cf9.js:1Understand this errorAI
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+VM2816:1 
         
         
        GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
-(anonymous) @ VM537:1
-(anonymous) @ VM537:1
+(anonymous) @ VM2816:1
+(anonymous) @ VM2816:1
 m @ main-6b4b235ae1bf0bb2.js:1
 (anonymous) @ main-6b4b235ae1bf0bb2.js:1
 uU @ framework-a667dbba83e63e79.js:9
@@ -67,15 +69,13 @@ o @ framework-a667dbba83e63e79.js:9
 x @ framework-a667dbba83e63e79.js:17
 T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-129Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-4b8b73a666c1579b.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+_app-29d156b444936cf9.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
 
-(anonymous) @ _app-4b8b73a666c1579b.js:640
-(anonymous) @ _app-4b8b73a666c1579b.js:640
-initializeAdapter @ _app-4b8b73a666c1579b.js:564
-(anonymous) @ _app-4b8b73a666c1579b.js:613
-(anonymous) @ _app-4b8b73a666c1579b.js:613
+(anonymous) @ _app-29d156b444936cf9.js:640
+(anonymous) @ _app-29d156b444936cf9.js:640
+initializeAdapter @ _app-29d156b444936cf9.js:564
+(anonymous) @ _app-29d156b444936cf9.js:613
+(anonymous) @ _app-29d156b444936cf9.js:613
 uU @ framework-a667dbba83e63e79.js:9
 oV @ framework-a667dbba83e63e79.js:9
 oP @ framework-a667dbba83e63e79.js:9
@@ -103,15 +103,15 @@ content.js:1 [Polyteller Content] Event data found: {
   "new": false,
   "featured": false,
   "restricted": true,
-  "liquidity": 36034.4448,
-  "volume": 212214.398495,
+  "liquidity": 49393.2072,
+  "volume": 262828.924924,
   "openInterest": 0,
   "createdAt": "2024-11-01T16:57:37.047952Z",
-  "updatedAt": "2024-11-05T19:31:24.580488Z",
-  "competitive": 0.9957927755234136,
-  "volume24hr": 67227.621609,
+  "updatedAt": "2024-11-06T03:03:16.615057Z",
+  "competitive": 0.9296920395119117,
+  "volume24hr": 111538.477423,
   "enableOrderBook": true,
-  "liquidityClob": 36034.4448,
+  "liquidityClob": 49393.2072,
   "_sync": false,
   "commentCount": 6,
   "markets": [
@@ -122,7 +122,7 @@ content.js:1 [Polyteller Content] Event data found: {
       "slug": "bitcoin-above-70000-on-november-8",
       "resolutionSource": "",
       "endDate": "2024-11-08T12:00:00Z",
-      "liquidity": "36574.8738",
+      "liquidity": "49393.2072",
       "startDate": "2024-11-01T17:57:28.749586Z",
       "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
       "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
@@ -132,15 +132,15 @@ content.js:1 [Polyteller Content] Event data found: {
         "No"
       ],
       "outcomePrices": [
-        "0.56",
-        "0.44"
+        "0.775",
+        "0.225"
       ],
-      "volume": "212214.398495",
+      "volume": "262828.924924",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
       "createdAt": "2024-11-01T16:57:37.897928Z",
-      "updatedAt": "2024-11-05T19:32:07.04016Z",
+      "updatedAt": "2024-11-06T03:02:41.320305Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
@@ -153,37 +153,37 @@ content.js:1 [Polyteller Content] Event data found: {
       "enableOrderBook": true,
       "orderPriceMinTickSize": 0.01,
       "orderMinSize": 5,
-      "volumeNum": 212214.398495,
-      "liquidityNum": 36574.8738,
+      "volumeNum": 262828.924924,
+      "liquidityNum": 49393.2072,
       "endDateIso": "2024-11-08",
       "startDateIso": "2024-11-01",
       "hasReviewedDates": true,
-      "volume24hr": 67227.621609,
+      "volume24hr": 111538.477423,
       "clobTokenIds": [
         "25096316898111955238275255971673488799995970414132315964179309925773450412772",
         "101355235681899876397988127554924952457323231900015109089602577161517228440407"
       ],
       "umaBond": "500",
       "umaReward": "5",
-      "volume24hrClob": 67227.621609,
-      "volumeClob": 212214.398495,
-      "liquidityClob": 36574.8738,
+      "volume24hrClob": 111538.477423,
+      "volumeClob": 262828.924924,
+      "liquidityClob": 49393.2072,
       "acceptingOrders": true,
       "_sync": false,
       "ready": false,
       "funded": false,
       "acceptingOrdersTimestamp": "2024-11-01T17:56:20Z",
       "cyom": false,
-      "competitive": 0.9964129135113591,
+      "competitive": 0.9296920395119117,
       "pagerDutyNotificationEnabled": false,
       "approved": true,
       "rewardsMinSize": 0,
       "rewardsMaxSpread": 0,
-      "spread": 0.02,
-      "oneDayPriceChange": 0.15,
-      "lastTradePrice": 0.57,
-      "bestBid": 0.55,
-      "bestAsk": 0.57,
+      "spread": 0.01,
+      "oneDayPriceChange": 0.355,
+      "lastTradePrice": 0.77,
+      "bestBid": 0.77,
+      "bestAsk": 0.78,
       "automaticallyActive": true,
       "clearBookOnStart": true,
       "lower_bound_date": null,
@@ -199,11 +199,11 @@ content.js:1 [Polyteller Content] Event data found: {
       "upper_bound": null,
       "lower_bound": null,
       "created_at": "2024-11-01T16:57:37.897928Z",
-      "updated_at": "2024-11-05T19:32:07.04016Z",
+      "updated_at": "2024-11-06T03:02:41.320305Z",
       "closed_time": null,
       "wide_format": null,
-      "volume_num": 212214.398495,
-      "liquidity_num": 36574.8738,
+      "volume_num": 262828.924924,
+      "liquidity_num": 49393.2072,
       "image_raw": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
       "events": [
         {
@@ -280,7 +280,8 @@ The resolution source for this market is Binance, specifically the BTCUSDT "Clos
 
 Please note that this market is about the price according to Binance BTCUSDT, not according to other sources or spot markets.
 
-content.js:1 [Polyteller Content] Using specific time format match: November 08, 2024, 12:00:00
+content.js:1 [Polyteller Content] Matched pattern: BITCOIN_NOON_FORMAT (6) ["08 Nov '24 12:00 in the ET timezone", '08', '24', '12', '00', 'ET', index: 77, input: 'This market will resolve to "Yes" if the Binance 1… not according to other sources or spot markets.\n', groups: undefined]
+content.js:1 [Polyteller Content] Using BITCOIN_NOON_FORMAT: {endDateValue: 'November 08, 2024, 12:00:00', timezone: 'ET'}
 content.js:1 [Polyteller Content] Original end date: November 08, 2024, 12:00:00
 content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
 content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
@@ -290,13 +291,13 @@ content.js:1 [Polyteller Content] Extracted event info: {
   "endTime": 1731085200000,
   "endDate": "November 08, 2024, 12:00:00",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/bitcoin-above-70000-on-november-8?tid=1730834375834"
+  "url": "https://polymarket.com/event/bitcoin-above-70000-on-november-8?tid=1730862278602"
 }
 content.js:1 [Polyteller Content] Event info extracted: {id: '13997', title: 'Bitcoin above $70,000 on November 8?', endTime: 1731085200000, endDate: 'November 08, 2024, 12:00:00', timezone: 'ET', …}
 content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '13997', title: 'Bitcoin above $70,000 on November 8?', endTime: 1731085200000, endDate: 'November 08, 2024, 12:00:00', timezone: 'ET', …}
 content.js:1 [Polyteller Content] Creating new countdown element
 content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 26m 2s
+content.js:1 [Polyteller Content] Updated countdown text: 2d 13h 55m 21s
 content.js:1 [Polyteller Content] Polyteller content script loaded
 content.js:1 [Polyteller Content] Event data found: {
   "id": "13997",
@@ -315,15 +316,15 @@ content.js:1 [Polyteller Content] Event data found: {
   "new": false,
   "featured": false,
   "restricted": true,
-  "liquidity": 36034.4448,
-  "volume": 212214.398495,
+  "liquidity": 49393.2072,
+  "volume": 262828.924924,
   "openInterest": 0,
   "createdAt": "2024-11-01T16:57:37.047952Z",
-  "updatedAt": "2024-11-05T19:31:24.580488Z",
-  "competitive": 0.9957927755234136,
-  "volume24hr": 67227.621609,
+  "updatedAt": "2024-11-06T03:03:16.615057Z",
+  "competitive": 0.9296920395119117,
+  "volume24hr": 111538.477423,
   "enableOrderBook": true,
-  "liquidityClob": 36034.4448,
+  "liquidityClob": 49393.2072,
   "_sync": false,
   "commentCount": 6,
   "markets": [
@@ -334,7 +335,7 @@ content.js:1 [Polyteller Content] Event data found: {
       "slug": "bitcoin-above-70000-on-november-8",
       "resolutionSource": "",
       "endDate": "2024-11-08T12:00:00Z",
-      "liquidity": "36574.8738",
+      "liquidity": "49393.2072",
       "startDate": "2024-11-01T17:57:28.749586Z",
       "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
       "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
@@ -344,15 +345,15 @@ content.js:1 [Polyteller Content] Event data found: {
         "No"
       ],
       "outcomePrices": [
-        "0.56",
-        "0.44"
+        "0.775",
+        "0.225"
       ],
-      "volume": "212214.398495",
+      "volume": "262828.924924",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
       "createdAt": "2024-11-01T16:57:37.897928Z",
-      "updatedAt": "2024-11-05T19:32:07.04016Z",
+      "updatedAt": "2024-11-06T03:02:41.320305Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
@@ -365,37 +366,37 @@ content.js:1 [Polyteller Content] Event data found: {
       "enableOrderBook": true,
       "orderPriceMinTickSize": 0.01,
       "orderMinSize": 5,
-      "volumeNum": 212214.398495,
-      "liquidityNum": 36574.8738,
+      "volumeNum": 262828.924924,
+      "liquidityNum": 49393.2072,
       "endDateIso": "2024-11-08",
       "startDateIso": "2024-11-01",
       "hasReviewedDates": true,
-      "volume24hr": 67227.621609,
+      "volume24hr": 111538.477423,
       "clobTokenIds": [
         "25096316898111955238275255971673488799995970414132315964179309925773450412772",
         "101355235681899876397988127554924952457323231900015109089602577161517228440407"
       ],
       "umaBond": "500",
       "umaReward": "5",
-      "volume24hrClob": 67227.621609,
-      "volumeClob": 212214.398495,
-      "liquidityClob": 36574.8738,
+      "volume24hrClob": 111538.477423,
+      "volumeClob": 262828.924924,
+      "liquidityClob": 49393.2072,
       "acceptingOrders": true,
       "_sync": false,
       "ready": false,
       "funded": false,
       "acceptingOrdersTimestamp": "2024-11-01T17:56:20Z",
       "cyom": false,
-      "competitive": 0.9964129135113591,
+      "competitive": 0.9296920395119117,
       "pagerDutyNotificationEnabled": false,
       "approved": true,
       "rewardsMinSize": 0,
       "rewardsMaxSpread": 0,
-      "spread": 0.02,
-      "oneDayPriceChange": 0.15,
-      "lastTradePrice": 0.57,
-      "bestBid": 0.55,
-      "bestAsk": 0.57,
+      "spread": 0.01,
+      "oneDayPriceChange": 0.355,
+      "lastTradePrice": 0.77,
+      "bestBid": 0.77,
+      "bestAsk": 0.78,
       "automaticallyActive": true,
       "clearBookOnStart": true,
       "lower_bound_date": null,
@@ -411,11 +412,11 @@ content.js:1 [Polyteller Content] Event data found: {
       "upper_bound": null,
       "lower_bound": null,
       "created_at": "2024-11-01T16:57:37.897928Z",
-      "updated_at": "2024-11-05T19:32:07.04016Z",
+      "updated_at": "2024-11-06T03:02:41.320305Z",
       "closed_time": null,
       "wide_format": null,
-      "volume_num": 212214.398495,
-      "liquidity_num": 36574.8738,
+      "volume_num": 262828.924924,
+      "liquidity_num": 49393.2072,
       "image_raw": "https://polymarket-upload.s3.us-east-2.amazonaws.com/bitcoin+neon+red+green.png",
       "events": [
         {
@@ -492,7 +493,8 @@ The resolution source for this market is Binance, specifically the BTCUSDT "Clos
 
 Please note that this market is about the price according to Binance BTCUSDT, not according to other sources or spot markets.
 
-content.js:1 [Polyteller Content] Using specific time format match: November 08, 2024, 12:00:00
+content.js:1 [Polyteller Content] Matched pattern: BITCOIN_NOON_FORMAT (6) ["08 Nov '24 12:00 in the ET timezone", '08', '24', '12', '00', 'ET', index: 77, input: 'This market will resolve to "Yes" if the Binance 1… not according to other sources or spot markets.\n', groups: undefined]
+content.js:1 [Polyteller Content] Using BITCOIN_NOON_FORMAT: {endDateValue: 'November 08, 2024, 12:00:00', timezone: 'ET'}
 content.js:1 [Polyteller Content] Original end date: November 08, 2024, 12:00:00
 content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
 content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
@@ -502,110 +504,21 @@ content.js:1 [Polyteller Content] Extracted event info: {
   "endTime": 1731085200000,
   "endDate": "November 08, 2024, 12:00:00",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/bitcoin-above-70000-on-november-8?tid=1730834375834"
+  "url": "https://polymarket.com/event/bitcoin-above-70000-on-november-8?tid=1730862278602"
 }
 content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-lockdown-install.js:1 Removing unpermitted intrinsics
 frame-modern.532e6112.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+lockdown-install.js:1 Removing unpermitted intrinsics
 content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
+privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: true
 privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
 framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
 Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
 framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
 Understand this errorAI
-lockdown-install.js:1 Removing unpermitted intrinsics
 embedded-wallets-33c02280408495ff.js:1 Warning!
 embedded-wallets-33c02280408495ff.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
 content.js:1 [Polyteller Content] Sending event info to background: {id: '13997', title: 'Bitcoin above $70,000 on November 8?', endTime: 1731085200000, endDate: 'November 08, 2024, 12:00:00', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 26m 1s
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 26m 0s
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 25m 59s
-_app-4b8b73a666c1579b.js:581 
-        
-        
-       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
-i @ _app-4b8b73a666c1579b.js:581
-l @ _app-4b8b73a666c1579b.js:581
-i @ _app-4b8b73a666c1579b.js:581
-a @ _app-4b8b73a666c1579b.js:581
-_sendEnvelope @ _app-4b8b73a666c1579b.js:581
-sendEvent @ _app-4b8b73a666c1579b.js:580
-(anonymous) @ _app-4b8b73a666c1579b.js:580
-(anonymous) @ _app-4b8b73a666c1579b.js:10
-(anonymous) @ _app-4b8b73a666c1579b.js:10
-(anonymous) @ _app-4b8b73a666c1579b.js:10
-(anonymous) @ _app-4b8b73a666c1579b.js:10
-s @ _app-4b8b73a666c1579b.js:10
-then @ _app-4b8b73a666c1579b.js:10
-_processEvent @ _app-4b8b73a666c1579b.js:580
-_captureEvent @ _app-4b8b73a666c1579b.js:580
-captureEvent @ _app-4b8b73a666c1579b.js:580
-captureEvent @ _app-4b8b73a666c1579b.js:10
-captureEvent @ _app-4b8b73a666c1579b.js:6
-end @ _app-4b8b73a666c1579b.js:581
-end @ _app-4b8b73a666c1579b.js:581
-(anonymous) @ _app-4b8b73a666c1579b.js:581
-n @ _app-4b8b73a666c1579b.js:575
-setTimeout
-push.19020.t @ _app-4b8b73a666c1579b.js:578
-_restartIdleTimeout @ _app-4b8b73a666c1579b.js:581
-_popActivity @ _app-4b8b73a666c1579b.js:581
-r @ _app-4b8b73a666c1579b.js:581
-e.end @ _app-4b8b73a666c1579b.js:581
-aR @ _app-4b8b73a666c1579b.js:585
-aP @ _app-4b8b73a666c1579b.js:585
-(anonymous) @ _app-4b8b73a666c1579b.js:585
-eU @ _app-4b8b73a666c1579b.js:575
-e.apply.then.eU @ _app-4b8b73a666c1579b.js:578
-Promise.then
-(anonymous) @ _app-4b8b73a666c1579b.js:578
-s @ _app-4b8b73a666c1579b.js:1928
-(anonymous) @ _app-4b8b73a666c1579b.js:613
-a @ _app-4b8b73a666c1579b.js:613
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-u @ _app-4b8b73a666c1579b.js:2
-c @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-d @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-y @ _app-4b8b73a666c1579b.js:2
-g @ _app-4b8b73a666c1579b.js:2
-send @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-o @ _app-4b8b73a666c1579b.js:2
-Promise.then
-l @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-j @ _app-4b8b73a666c1579b.js:2
-_uncachedDetectNetwork @ _app-4b8b73a666c1579b.js:2
-detectNetwork @ _app-4b8b73a666c1579b.js:2
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-n @ _app-4b8b73a666c1579b.js:575
-setTimeout
-push.19020.t @ _app-4b8b73a666c1579b.js:578
-(anonymous) @ _app-4b8b73a666c1579b.js:2
-Y @ _app-4b8b73a666c1579b.js:2
-o @ _app-4b8b73a666c1579b.js:613
-w @ _app-4b8b73a666c1579b.js:564
-await in w
-queryFn @ _app-4b8b73a666c1579b.js:564
-o @ _app-4b8b73a666c1579b.js:1975
-b @ _app-4b8b73a666c1579b.js:1975
-start @ _app-4b8b73a666c1579b.js:1975
-fetch @ _app-4b8b73a666c1579b.js:1975
-(anonymous) @ _app-4b8b73a666c1579b.js:1975
-(anonymous) @ _app-4b8b73a666c1579b.js:1975
-batch @ _app-4b8b73a666c1579b.js:1975
-refetchQueries @ _app-4b8b73a666c1579b.js:1975
-(anonymous) @ _app-4b8b73a666c1579b.js:1975
-batch @ _app-4b8b73a666c1579b.js:1975
-invalidateQueries @ _app-4b8b73a666c1579b.js:1975
-(anonymous) @ 2222-bde64858231af209.js:1
-(anonymous) @ _app-4b8b73a666c1579b.js:564
-n @ _app-4b8b73a666c1579b.js:1979
-n @ _app-4b8b73a666c1579b.js:575Understand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 25m 58s
-content.js:1 [Polyteller Content] Updated countdown text: 2d 21h 25m 57s
+content.js:1 [Polyteller Content] Updated countdown text: 2d 13h 55m 20s
+content.js:1 [Polyteller Content] Updated countdown text: 2d 13h 55m 19s
