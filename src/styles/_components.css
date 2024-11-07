@@ -62,8 +62,15 @@
 }
 
 label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+}
+
+/* Set Notifications header styles */
+.notifications-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
 }
 
 /* Custom select styles */

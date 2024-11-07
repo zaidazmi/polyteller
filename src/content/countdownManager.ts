@@ -8,6 +8,8 @@ import { log } from '../utils/logUtils';
 import { calculateTimeRemaining, formatDate, getTimeRemaining } from '../utils/dateUtils';
 import { isDST } from '../utils/timezoneUtils';
 
+let countdownInterval: number | null = null;
+
 /**
  * Creates and inserts a countdown element for the given event.
  * @param eventInfo - The event information
@@ -16,6 +18,12 @@ import { isDST } from '../utils/timezoneUtils';
 export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: boolean) {
   log('Content', 'Creating and inserting countdown for event:', eventInfo);
   
+  // Clear any existing interval
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+  }
+
   // Create or retrieve the countdown element
   let countdownElement = document.getElementById('polyteller-countdown');
   if (!countdownElement) {
@@ -92,10 +100,75 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
 
   // Initial update and set interval for continuous updates
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  countdownInterval = window.setInterval(updateCountdown, 1000);
 
   // Add hover effects for non-popup countdown
   if (!isExtensionPopup) {
+    countdownElement.addEventListener('mouseenter', () => {
+      countdownElement.style.opacity = '1';
+      countdownElement.style.transform = 'scale(1.1)';
+    });
+
+    countdownElement.addEventListener('mouseleave', () => {
+      countdownElement.style.opacity = '0.5';
+      countdownElement.style.transform = 'scale(1)';
+    });
+  }
+}
+
+// Add new function to clear countdown
+export function clearCountdown() {
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+  }
+  
+  const countdownElement = document.getElementById('polyteller-countdown');
+  if (countdownElement) {
+    // Apply same styling as regular countdown but make it clickable
+    countdownElement.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      z-index: 9999;
+      transition: all 0.3s ease-in-out;
+      opacity: 0.5;
+      transform: scale(1);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    `;
+
+    countdownElement.innerHTML = `
+      <svg 
+        style="width: 14px; height: 14px;" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      >
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+      </svg>
+      <div style="color: white; font-size: 14px;">
+        Refresh page to update
+      </div>
+    `;
+
+    // Add click handler for refresh
+    countdownElement.addEventListener('click', () => {
+      window.location.reload();
+    });
+
+    // Keep the hover effects
     countdownElement.addEventListener('mouseenter', () => {
       countdownElement.style.opacity = '1';
       countdownElement.style.transform = 'scale(1.1)';

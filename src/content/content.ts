@@ -7,12 +7,13 @@
 import { PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
 import { extractEventInfo } from './eventExtractor';
-import { createAndInsertCountdown } from './countdownManager';
+import { createAndInsertCountdown, clearCountdown } from './countdownManager';
 import { initializeDOMObserver, initializeDOMManipulations } from './domManipulator';
 import { sendEventInfo } from './messageHandler';
 import '../styles/content.css';
 
 let isInitialized = false;
+let currentUrl = window.location.href;
 
 /**
  * Initializes the countdown for the current Polymarket event.
@@ -58,3 +59,34 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Indicates that the response is sent asynchronously
   }
 });
+
+// Function to handle URL changes
+function handleUrlChange() {
+  const newUrl = window.location.href;
+  if (currentUrl !== newUrl) {
+    log('Content', `Route changed from ${new URL(currentUrl).pathname} to ${new URL(newUrl).pathname}`);
+    currentUrl = newUrl;
+    
+    // Clear the countdown and show refresh message
+    clearCountdown();
+    isInitialized = false; // Reset initialization flag
+
+    // Notify background script to clear current event
+    chrome.runtime.sendMessage({ 
+      type: 'CLEAR_CURRENT_EVENT'
+    });
+  }
+}
+
+// Set up URL change detection
+const urlObserver = new MutationObserver(() => {
+  handleUrlChange();
+});
+
+urlObserver.observe(document.body, {
+  subtree: true,
+  childList: true
+});
+
+// Also handle popstate events for browser back/forward
+window.addEventListener('popstate', handleUrlChange);

@@ -22,10 +22,12 @@
         <label for="notification-time">Notify me</label>
         <div class="select-wrapper">
           <select id="notification-time">
-            <option value="5">5 minutes before</option>
-            <option value="15">15 minutes before</option>
+            <option value="10">10 minutes before</option>
             <option value="30">30 minutes before</option>
-            <option value="60">1 hour before</option>
+            <option value="60" selected>1 hour before</option>
+            <option value="180">3 hours before</option>
+            <option value="480">8 hours before</option>
+            <option value="1440">1 day before</option>
             <option value="custom">Custom time before</option>
           </select>
         </div>
@@ -49,17 +51,26 @@
       </div>
       <div id="trade-confirmation-setting" class="card">
         <div class="trade-confirmation-content">
-          <span>Trade Confirmations</span>
+          <div class="setting-info">
+            <div>
+              <div>Trade Confirmations</div>
+              <div>Get a confirmation popup before executing trades</div>
+            </div>
+          </div>
           <label class="switch">
             <input type="checkbox" id="trade-confirmation-toggle">
             <span class="slider round"></span>
           </label>
         </div>
       </div>
-      <!-- Add the privacy mode toggle -->
       <div id="privacy-mode-setting" class="card">
         <div class="privacy-mode-content">
-          <span>Privacy mode</span>
+          <div class="setting-info">
+            <div>
+              <div>Privacy mode</div>
+              <div>Hide your portfolio and cash balances</div>
+            </div>
+          </div>
           <label class="switch">
             <input type="checkbox" id="privacy-mode-toggle">
             <span class="slider round"></span>
