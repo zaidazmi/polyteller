@@ -9,6 +9,7 @@ import { calculateTimeRemaining, formatDate, getTimeRemaining } from '../utils/d
 import { isDST } from '../utils/timezoneUtils';
 
 let countdownInterval: number | null = null;
+let countdownElement: HTMLElement | null = null;
 
 /**
  * Creates and inserts a countdown element for the given event.
@@ -19,13 +20,10 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
   log('Content', 'Creating and inserting countdown for event:', eventInfo);
   
   // Clear any existing interval
-  if (countdownInterval) {
-    clearInterval(countdownInterval);
-    countdownInterval = null;
-  }
+  clearCountdownInterval();
 
   // Create or retrieve the countdown element
-  let countdownElement = document.getElementById('polyteller-countdown');
+  countdownElement = document.getElementById('polyteller-countdown');
   if (!countdownElement) {
     log('Content', 'Creating new countdown element');
     countdownElement = document.createElement('div');
@@ -55,6 +53,8 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
    * Updates the countdown text based on the current time and event end time.
    */
   const updateCountdown = () => {
+    if (!countdownElement) return;
+
     const { days, hours, minutes, seconds } = calculateTimeRemaining(eventInfo.endTime);
 
     if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
@@ -105,27 +105,42 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
   // Add hover effects for non-popup countdown
   if (!isExtensionPopup) {
     countdownElement.addEventListener('mouseenter', () => {
-      countdownElement.style.opacity = '1';
-      countdownElement.style.transform = 'scale(1.1)';
+      if (countdownElement) {
+        countdownElement.style.opacity = '1';
+        countdownElement.style.transform = 'scale(1.1)';
+      }
     });
 
     countdownElement.addEventListener('mouseleave', () => {
-      countdownElement.style.opacity = '0.5';
-      countdownElement.style.transform = 'scale(1)';
+      if (countdownElement) {
+        countdownElement.style.opacity = '0.5';
+        countdownElement.style.transform = 'scale(1)';
+      }
     });
   }
 }
 
-// Add new function to clear countdown
-export function clearCountdown() {
+/**
+ * Clears the countdown interval and element.
+ */
+function clearCountdownInterval() {
   if (countdownInterval) {
     clearInterval(countdownInterval);
     countdownInterval = null;
   }
+}
+
+/**
+ * Clears the countdown and shows refresh hint.
+ */
+export function clearCountdown() {
+  clearCountdownInterval();
   
-  const countdownElement = document.getElementById('polyteller-countdown');
+  if (!countdownElement) {
+    countdownElement = document.getElementById('polyteller-countdown');
+  }
+
   if (countdownElement) {
-    // Apply same styling as regular countdown but make it clickable
     countdownElement.style.cssText = `
       position: fixed;
       bottom: 20px;
@@ -170,13 +185,13 @@ export function clearCountdown() {
 
     // Keep the hover effects
     countdownElement.addEventListener('mouseenter', () => {
-      countdownElement.style.opacity = '1';
-      countdownElement.style.transform = 'scale(1.1)';
+      countdownElement!.style.opacity = '1';
+      countdownElement!.style.transform = 'scale(1.1)';
     });
 
     countdownElement.addEventListener('mouseleave', () => {
-      countdownElement.style.opacity = '0.5';
-      countdownElement.style.transform = 'scale(1)';
+      countdownElement!.style.opacity = '0.5';
+      countdownElement!.style.transform = 'scale(1)';
     });
   }
 }

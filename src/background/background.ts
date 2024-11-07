@@ -49,7 +49,14 @@ import { useStore } from '../store/store';
           handleUpdateTradeConfirmation(request, sendResponse);
           return true;
         case 'CLEAR_CURRENT_EVENT':
-          handleClearCurrentEvent(sender.tab?.id);
+          if (sender.tab?.id) {
+            cleanupTabEventData(sender.tab.id);
+            // Notify popup to update its display
+            chrome.runtime.sendMessage({ 
+              type: 'EVENT_CLEARED',
+              data: { tabId: sender.tab.id }
+            });
+          }
           break;
         default:
           throw new Error(`Unknown message type: ${request.type}`);
@@ -202,3 +209,18 @@ function handleClearCurrentEvent(tabId: number | undefined) {
     });
   }
 }
+
+// Add these functions to background.ts
+
+// Handle tab-specific event data cleanup
+async function cleanupTabEventData(tabId: number) {
+  await chrome.storage.local.remove(`currentEvent_${tabId}`);
+  log('Background', `Cleaned up event data for tab ${tabId}`);
+}
+
+// Add tab removal listener
+chrome.tabs.onRemoved.addListener((tabId: number) => {
+  cleanupTabEventData(tabId);
+});
+
+
