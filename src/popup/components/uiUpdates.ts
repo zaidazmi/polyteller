@@ -28,14 +28,25 @@ export function updateUI(eventInfo: PolymarketEvent) {
 }
 
 /**
- * Displays an error message in the countdown element.
+ * Displays an error message in the popup.
  * @param message - The error message to display
  */
 export function displayError(message: string) {
-  const countdownElement = document.getElementById('countdown');
-  if (countdownElement) {
-    countdownElement.textContent = message;
+  const eventTitle = document.getElementById('event-title');
+  if (eventTitle) {
+    eventTitle.innerHTML = `
+      <div style="color: var(--text-color);">${message}</div>
+      <div style="color: var(--text-light); font-size: 14px; margin-top: 8px;">
+        If you are on a valid Polymarket event page, try refreshing the page
+      </div>
+    `;
   }
+
+  // Hide countdown and notification sections
+  const countdown = document.getElementById('countdown');
+  const notifySection = document.getElementById('notify-section');
+  if (countdown) countdown.style.display = 'none';
+  if (notifySection) notifySection.style.display = 'none';
 }
 
 /**
