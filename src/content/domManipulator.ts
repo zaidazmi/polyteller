@@ -30,9 +30,9 @@ function createConfirmationDialog(): HTMLDivElement {
   `;
   dialog.innerHTML = `
     <div style="position: relative;">
-      <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">Confirm Order</h2>
+      <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">Trade Confirmation!</h2>
       <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 20px; color: #999;">×</button>
-      <p style="margin-bottom: 20px; font-size: 14px;">Are you sure you want to place this order?</p>
+      <p style="margin-bottom: 20px; font-size: 14px;">Are you sure you want to make this trade?</p>
       <div style="display: flex; justify-content: center; gap: 10px;">
         <button id="confirmYes" style="
           background-color: #4A4FE4;
@@ -49,11 +49,11 @@ function createConfirmationDialog(): HTMLDivElement {
           cursor: pointer;
           border-radius: 4px;
           width: 100px;
-          height: 64px;
+          height: 50px;
           justify-content: center;
         ">
           <span style="font-weight: bold; font-size: 16px;">Yes</span>
-          <span style="font-size: 12px; opacity: 0.8;">Enter</span>
+          <span style="font-size: 10px; opacity: 0.8;">Enter</span>
         </button>
         <button id="confirmNo" style="
           background-color: #A41C1C;
@@ -70,11 +70,11 @@ function createConfirmationDialog(): HTMLDivElement {
           cursor: pointer;
           border-radius: 4px;
           width: 100px;
-          height: 64px;
+          height: 50px;
           justify-content: center;
         ">
           <span id="noButtonCountdown" style="font-weight: bold; font-size: 16px;">No (3)</span>
-          <span style="font-size: 12px; opacity: 0.8;">Esc</span>
+          <span style="font-size: 10px; opacity: 0.8;">Esc</span>
         </button>
       </div>
     </div>
