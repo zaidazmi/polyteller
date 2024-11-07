@@ -48,6 +48,9 @@ import { useStore } from '../store/store';
         case 'UPDATE_TRADE_CONFIRMATION':
           handleUpdateTradeConfirmation(request, sendResponse);
           return true;
+        case 'CLEAR_CURRENT_EVENT':
+          handleClearCurrentEvent(sender.tab?.id);
+          break;
         default:
           throw new Error(`Unknown message type: ${request.type}`);
       }
@@ -187,3 +190,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
   return true;
 });
+
+// Add this function
+function handleClearCurrentEvent(tabId: number | undefined) {
+  if (tabId) {
+    chrome.storage.local.remove(`currentEvent_${tabId}`);
+    // Notify popup to clear its display
+    chrome.runtime.sendMessage({ 
+      type: 'EVENT_CLEARED',
+      data: { tabId }
+    });
+  }
+}

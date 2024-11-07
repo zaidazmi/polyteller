@@ -30,7 +30,7 @@ function createConfirmationDialog(): HTMLDivElement {
   `;
   dialog.innerHTML = `
     <div style="position: relative;">
-      <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">Trade Confirmation!</h2>
+      <h2 style="margin: 0 0 15px 0; font-size: 18px; font-weight: bold;">Trade Confirmation</h2>
       <button id="closeDialog" style="position: absolute; top: -10px; right: -10px; background: none; border: none; cursor: pointer; font-size: 20px; color: #999;">×</button>
       <p style="margin-bottom: 20px; font-size: 14px;">Are you sure you want to make this trade?</p>
       <div style="display: flex; justify-content: center; gap: 10px;">

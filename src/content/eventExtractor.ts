@@ -200,6 +200,13 @@ const DATE_PATTERNS: DatePattern[] = [
  * @returns The extracted event information, or null if extraction fails
  */
 export function extractEventInfo(): PolymarketEvent | null {
+  // First check if we're on an event page
+  const currentPath = window.location.pathname;
+  if (!currentPath.startsWith('/event/')) {
+    log('Content', 'Not an event page, skipping countdown');
+    return null;
+  }
+
   const scriptElement = document.querySelector('script#__NEXT_DATA__');
   if (!scriptElement) {
     log('Content', 'No __NEXT_DATA__ script found');
@@ -213,77 +220,18 @@ export function extractEventInfo(): PolymarketEvent | null {
     if (eventData && eventData.title && eventData.endDate) {
       log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
+      // Verify the event data matches current URL
+      if (!window.location.pathname.includes(eventData.slug)) {
+        log('Content', 'Event data does not match current URL');
+        return null;
+      }
+
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
-      let matchFound = false;
-
-      // Check for year-end dates (both Dec 30 and 31 due to timezone differences)
-      if (eventData && eventData.endDate && 
-          (eventData.endDate.includes('2024-12-31') || eventData.endDate.includes('2024-12-30'))) {
-        endDateValue = "December 31, 2024, 11:59:00 PM";
-        timezone = "ET";
-        matchFound = true;
-        log('Content', 'Using year end date:', { endDateValue, timezone });
-      }
-
-      // Only proceed with pattern matching if no match found
-      if (!matchFound) {
-        // Try main event description first
-        if (eventData.description) {
-          const mainDescription = eventData.description;
-          log('Content', 'Main event description:', mainDescription);
-
-          // Try each pattern on main description first
-          for (const pattern of DATE_PATTERNS) {
-            const match = mainDescription.match(pattern.pattern);
-            if (match) {
-              log('Content', `Matched pattern in main description: ${pattern.name}`, match);
-              
-              const result = pattern.handler(match);
-              if (result) {
-                endDateValue = result.endDateValue;
-                timezone = result.timezone;
-                matchFound = true;
-                log('Content', `Using ${pattern.name} from main description:`, { endDateValue, timezone });
-                break;
-              }
-            }
-          }
-        }
-
-        // Only try market description if no match found in main description
-        if (!matchFound && eventData.markets?.[0]?.description) {
-          const marketDescription = eventData.markets[0].description;
-          log('Content', 'Market description:', marketDescription);
-
-          // Skip text inside parentheses when looking for matches
-          const descriptionWithoutParens = marketDescription.replace(/\([^)]*\)/g, '');
-          
-          // Try each pattern in priority order
-          for (const pattern of DATE_PATTERNS) {
-            const match = descriptionWithoutParens.match(pattern.pattern);
-            if (match) {
-              log('Content', `Matched pattern in market description: ${pattern.name}`, match);
-              
-              const result = pattern.handler(match);
-              if (result) {
-                endDateValue = result.endDateValue;
-                timezone = result.timezone;
-                matchFound = true;
-                log('Content', `Using ${pattern.name} from market description:`, { endDateValue, timezone });
-                break;
-              }
-            }
-          }
-        }
-      }
 
       // Parse the end date
       const parsedDate = parseCustomDate(endDateValue, timezone);
-      log('Content', 'Original end date:', endDateValue);
-      log('Content', 'Parsed end date (local):', parsedDate);
-      log('Content', 'Parsed end date (UTC):', parsedDate.toUTCString());
-
+      
       if (isNaN(parsedDate.getTime())) {
         log('Content', 'Failed to parse end date:', endDateValue);
         return null;
@@ -297,6 +245,7 @@ export function extractEventInfo(): PolymarketEvent | null {
         timezone: timezone,
         url: window.location.href
       };
+      
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;
     }

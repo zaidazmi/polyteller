@@ -155,8 +155,15 @@ footer {
 }
 
 label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+}
+
+/* Set Notifications header styles */
+.notifications-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
 }
 
 /* Custom select styles */
@@ -479,15 +486,16 @@ button#set-notification.error {
 
 .trade-confirmation-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  padding: 4px 0;
 }
 
 #trade-confirmation-setting span,
 #privacy-mode-setting span {
   font-size: 16px;
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* Toggle Switch */
@@ -641,26 +649,59 @@ input:checked + .slider:before {
 
 .privacy-mode-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
+  padding: 4px 0;
 }
 
 /* Setting info styles */
 .setting-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex: 1;
+  padding-right: 16px;
 }
 
 .setting-title {
   font-size: 16px;
   color: var(--text-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .setting-description {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-light);
   font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Add this new style for the empty notifications message */
+#notifications-list li:only-child {
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: left;
+  padding: 12px 0;
+  font-weight: 400;
+}
+
+.setting-info > div > div:first-child {
+  font-size: 16px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.setting-info > div > div:last-child {
+  font-size: 14px;
+  color: rgb(107, 114, 128);
+  margin-top: 4px;
+  max-width: 240px;
+  line-height: 1.4;
+}
+
+/* Ensure the toggle switch stays aligned */
+.trade-confirmation-content,
+.privacy-mode-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 4px 0;
 }
 
