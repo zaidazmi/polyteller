@@ -10,29 +10,111 @@
 .event-notifications {
   background-color: #f0f0f0;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   height: fit-content;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-width: 350px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .event-notifications h2 {
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-size: 1.4em;
-  color: #333;
+  text-align: center;
+}
+
+.event-notifications h2 a {
+  color: #4A4FE4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: all 0.2s ease;
+  display: inline-block;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.event-notifications h2 a:hover {
+  color: #3A3FD4;
+  text-decoration-thickness: 2px;
+  opacity: 0.9;
 }
 
 .event-countdown {
-  font-size: 1.1em;
-  font-weight: bold;
+  font-size: 1.2em;
+  font-weight: 600;
   margin-bottom: 20px;
-  color: #4a4af4;
+  color: #4A4FE4;
+  background-color: #F8F9FD;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(74, 79, 228, 0.1);
+  box-shadow: 0 2px 4px rgba(74, 79, 228, 0.05);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.event-countdown:hover {
+  background-color: #F3F4FF;
+  border-color: rgba(74, 79, 228, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(74, 79, 228, 0.1);
+}
+
+.countdown-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  min-width: auto;
+  flex: 1;
+  background: none;
+  box-shadow: none;
+}
+
+.countdown-number {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #1A1B25;
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.65em;
+  font-weight: 500;
+  color: #6B7280;
+  text-transform: uppercase;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+.countdown-separator {
+  color: #4A4FE4;
+  font-weight: 600;
+  padding-bottom: 16px;
+  font-size: 1.2em;
+}
+
+.event-countdown::-webkit-scrollbar {
+  display: none;
+}
+
+.event-countdown {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .notifications-list {
   list-style-type: none;
   padding: 0;
+  width: 100%;
 }
 
 .notifications-list li {

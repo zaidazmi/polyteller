@@ -161,11 +161,53 @@ function updateCountdown(element: HTMLElement, endTime: number) {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-    element.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    // Create a more structured countdown display
+    element.innerHTML = `
+      <div class="countdown-segment">
+        <span class="countdown-number">${days.toString().padStart(2, '0')}</span>
+        <span class="countdown-label">days</span>
+      </div>
+      <span class="countdown-separator">:</span>
+      <div class="countdown-segment">
+        <span class="countdown-number">${hours.toString().padStart(2, '0')}</span>
+        <span class="countdown-label">hours</span>
+      </div>
+      <span class="countdown-separator">:</span>
+      <div class="countdown-segment">
+        <span class="countdown-number">${minutes.toString().padStart(2, '0')}</span>
+        <span class="countdown-label">mins</span>
+      </div>
+      <span class="countdown-separator">:</span>
+      <div class="countdown-segment">
+        <span class="countdown-number">${seconds.toString().padStart(2, '0')}</span>
+        <span class="countdown-label">secs</span>
+      </div>
+    `;
+
+    // Add a pulsing effect when time is running low (less than 1 hour)
+    if (timeLeft < 3600000) { // 1 hour in milliseconds
+      element.style.animation = 'pulse 2s infinite';
+    }
   } else {
-    element.textContent = 'Event ended';
+    element.innerHTML = `
+      <div class="countdown-segment" style="background-color: #FEE2E2; color: #991B1B;">
+        <span class="countdown-number" style="color: #991B1B;">00:00</span>
+        <span class="countdown-label">Event ended</span>
+      </div>
+    `;
   }
 }
+
+// Add this to the existing CSS animations
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+`;
+document.head.appendChild(style);
 
 // Make sure to call displayAllNotifications when the page loads
 document.addEventListener('DOMContentLoaded', () => {
@@ -187,3 +229,4 @@ function addDeleteEventListeners() {
     button.addEventListener('click', deleteNotification);
   });
 }
+
