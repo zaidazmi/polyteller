@@ -1,15 +1,19 @@
 .all-notifications-list {
-  max-width: 600px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(350px, 1fr));
+  gap: 24px;
 }
 
 .event-notifications {
   background-color: #f0f0f0;
   border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 30px;
+  padding: 24px;
+  height: fit-content;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 350px;
 }
 
 .event-notifications h2 {
@@ -74,14 +78,21 @@
 }
 
 /* Add some responsive adjustments */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .all-notifications-list {
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-notifications-list {
+    grid-template-columns: 1fr;
     padding: 10px;
   }
 
   .event-notifications {
-    padding: 15px;
-    margin-bottom: 20px;
+    min-width: unset;
   }
 
   .notifications-list li {
