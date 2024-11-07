@@ -200,7 +200,7 @@ const DATE_PATTERNS: DatePattern[] = [
  * @returns The extracted event information, or null if extraction fails
  */
 export function extractEventInfo(): PolymarketEvent | null {
-  // First check if we're on an event page
+  // Keep this check from current version for refresh hint functionality
   const currentPath = window.location.pathname;
   if (!currentPath.startsWith('/event/')) {
     log('Content', 'Not an event page, skipping countdown');
@@ -220,18 +220,77 @@ export function extractEventInfo(): PolymarketEvent | null {
     if (eventData && eventData.title && eventData.endDate) {
       log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
-      // Verify the event data matches current URL
-      if (!window.location.pathname.includes(eventData.slug)) {
-        log('Content', 'Event data does not match current URL');
-        return null;
-      }
-
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
+      let matchFound = false;
+
+      // Special handling for year-end dates (from old version)
+      if (eventData && eventData.endDate && 
+          (eventData.endDate.includes('2024-12-31') || eventData.endDate.includes('2024-12-30'))) {
+        endDateValue = "December 31, 2024, 11:59:00 PM";
+        timezone = "ET";
+        matchFound = true;
+        log('Content', 'Using year end date:', { endDateValue, timezone });
+      }
+
+      // Only proceed with pattern matching if no match found
+      if (!matchFound) {
+        // Try main event description first
+        if (eventData.description) {
+          const mainDescription = eventData.description;
+          log('Content', 'Main event description:', mainDescription);
+
+          // Try each pattern on main description first
+          for (const pattern of DATE_PATTERNS) {
+            const match = mainDescription.match(pattern.pattern);
+            if (match) {
+              log('Content', `Matched pattern in main description: ${pattern.name}`, match);
+              
+              const result = pattern.handler(match);
+              if (result) {
+                endDateValue = result.endDateValue;
+                timezone = result.timezone;
+                matchFound = true;
+                log('Content', `Using ${pattern.name} from main description:`, { endDateValue, timezone });
+                break;
+              }
+            }
+          }
+        }
+
+        // Only try market description if no match found in main description
+        if (!matchFound && eventData.markets?.[0]?.description) {
+          const marketDescription = eventData.markets[0].description;
+          log('Content', 'Market description:', marketDescription);
+
+          // Skip text inside parentheses when looking for matches
+          const descriptionWithoutParens = marketDescription.replace(/\([^)]*\)/g, '');
+          
+          // Try each pattern in priority order
+          for (const pattern of DATE_PATTERNS) {
+            const match = descriptionWithoutParens.match(pattern.pattern);
+            if (match) {
+              log('Content', `Matched pattern in market description: ${pattern.name}`, match);
+              
+              const result = pattern.handler(match);
+              if (result) {
+                endDateValue = result.endDateValue;
+                timezone = result.timezone;
+                matchFound = true;
+                log('Content', `Using ${pattern.name} from market description:`, { endDateValue, timezone });
+                break;
+              }
+            }
+          }
+        }
+      }
 
       // Parse the end date
       const parsedDate = parseCustomDate(endDateValue, timezone);
-      
+      log('Content', 'Original end date:', endDateValue);
+      log('Content', 'Parsed end date (local):', parsedDate);
+      log('Content', 'Parsed end date (UTC):', parsedDate.toUTCString());
+
       if (isNaN(parsedDate.getTime())) {
         log('Content', 'Failed to parse end date:', endDateValue);
         return null;
@@ -256,6 +315,7 @@ export function extractEventInfo(): PolymarketEvent | null {
   return null;
 }
 
+// Copy all helper functions from old version
 function parseCustomDate(dateString: string, timezone: string): Date {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                    'July', 'August', 'September', 'October', 'November', 'December'];
@@ -336,6 +396,17 @@ function parseCustomDate(dateString: string, timezone: string): Date {
         );
     }
     
+    // Try ISO format (e.g., "2024-11-08T12:00:00Z")
+    if (dateString.endsWith('Z')) {
+        const date = new Date(dateString);
+        if (timezone === 'ET') {
+            // Convert UTC to ET
+            const offset = isDST(date) ? 4 : 5;
+            date.setHours(date.getHours() + offset);
+        }
+        return date;
+    }
+    
     // Fallback: return new Date from string
     return new Date(dateString);
 }
@@ -346,7 +417,7 @@ function createDateWithTimezone(
     day: number, 
     hour: number, 
     minute: number, 
-    second: number = 0,  // Add seconds parameter
+    second: number = 0,
     timezone: string
 ): Date {
     // Create date in UTC
@@ -361,16 +432,23 @@ function createDateWithTimezone(
 }
 
 function formatDateToCustomString(date: Date): string {
-  const month = months[date.getUTCMonth()];
-  const day = date.getUTCDate();
-  const year = date.getUTCFullYear();
-  const hours = date.getUTCHours();
-  const minutes = date.getUTCMinutes();
-  
-  const isPM = hours >= 12;
-  const hour12 = hours % 12 || 12;
-  return `${month} ${day}, ${year}, ${hour12}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
+    const month = months[date.getUTCMonth()];
+    const day = date.getUTCDate();
+    const year = date.getUTCFullYear();
+    const hours = date.getUTCHours();
+    const minutes = date.getUTCMinutes();
+    
+    const isPM = hours >= 12;
+    const hour12 = hours % 12 || 12;
+    return `${month} ${day}, ${year}, ${hour12}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
 }
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Add a new helper function to extract end time from description
+function extractEndTimeFromDescription(description: string): string | null {
+    const pattern = /between.*?and\s+([A-Za-z]+ \d{1,2}, \d{4}, \d{1,2}:\d{2} [AP]M ET)/i;
+    const match = description.match(pattern);
+    return match ? match[1] : null;
+}
