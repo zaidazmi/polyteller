@@ -195,12 +195,30 @@ const DATE_PATTERNS: DatePattern[] = [
   }
 ].sort((a, b) => b.priority - a.priority);
 
+// Add this function at the top level
+function verifyEventDataMatchesUrl(eventData: any): boolean {
+  // Get current slug from URL
+  const currentSlug = window.location.pathname.split('/').pop()?.split('?')[0];
+  
+  // Get event slug from data
+  const eventSlug = eventData.slug;
+  
+  // Log for debugging
+  log('Content', 'Verifying event data match:', { 
+    currentSlug, 
+    eventSlug, 
+    urlPath: window.location.pathname 
+  });
+
+  return currentSlug === eventSlug;
+}
+
 /**
  * Extracts event information from the Polymarket page.
  * @returns The extracted event information, or null if extraction fails
  */
 export function extractEventInfo(): PolymarketEvent | null {
-  // Keep this check from current version for refresh hint functionality
+  // Keep URL path check
   const currentPath = window.location.pathname;
   if (!currentPath.startsWith('/event/')) {
     log('Content', 'Not an event page, skipping countdown');
@@ -217,7 +235,13 @@ export function extractEventInfo(): PolymarketEvent | null {
     const jsonData = JSON.parse(scriptElement.textContent || '');
     const eventData = jsonData.props?.pageProps?.dehydratedState?.queries[0]?.state?.data;
 
+    // Add verification before processing event data
     if (eventData && eventData.title && eventData.endDate) {
+      if (!verifyEventDataMatchesUrl(eventData)) {
+        log('Content', 'Event data does not match current URL');
+        return null;
+      }
+
       log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
       let timezone = 'ET';
