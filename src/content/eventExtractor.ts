@@ -7,7 +7,7 @@ import { PolymarketEvent } from '../types';
 import { log } from '../utils/logUtils';
 import { isDST } from '../utils/timezoneUtils';
 
-// First, define interfaces for our patterns
+// Define interfaces for our patterns
 interface DatePattern {
   name: string;
   pattern: RegExp;
