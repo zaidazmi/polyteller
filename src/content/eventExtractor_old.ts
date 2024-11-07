@@ -200,13 +200,6 @@ const DATE_PATTERNS: DatePattern[] = [
  * @returns The extracted event information, or null if extraction fails
  */
 export function extractEventInfo(): PolymarketEvent | null {
-  // Keep this check from current version for refresh hint functionality
-  const currentPath = window.location.pathname;
-  if (!currentPath.startsWith('/event/')) {
-    log('Content', 'Not an event page, skipping countdown');
-    return null;
-  }
-
   const scriptElement = document.querySelector('script#__NEXT_DATA__');
   if (!scriptElement) {
     log('Content', 'No __NEXT_DATA__ script found');
@@ -224,7 +217,7 @@ export function extractEventInfo(): PolymarketEvent | null {
       let endDateValue = eventData.endDate;
       let matchFound = false;
 
-      // Special handling for year-end dates (from old version)
+      // Check for year-end dates (both Dec 30 and 31 due to timezone differences)
       if (eventData && eventData.endDate && 
           (eventData.endDate.includes('2024-12-31') || eventData.endDate.includes('2024-12-30'))) {
         endDateValue = "December 31, 2024, 11:59:00 PM";
@@ -304,7 +297,6 @@ export function extractEventInfo(): PolymarketEvent | null {
         timezone: timezone,
         url: window.location.href
       };
-      
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;
     }
@@ -315,7 +307,6 @@ export function extractEventInfo(): PolymarketEvent | null {
   return null;
 }
 
-// Copy all helper functions from old version
 function parseCustomDate(dateString: string, timezone: string): Date {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                    'July', 'August', 'September', 'October', 'November', 'December'];
@@ -396,17 +387,6 @@ function parseCustomDate(dateString: string, timezone: string): Date {
         );
     }
     
-    // Try ISO format (e.g., "2024-11-08T12:00:00Z")
-    if (dateString.endsWith('Z')) {
-        const date = new Date(dateString);
-        if (timezone === 'ET') {
-            // Convert UTC to ET
-            const offset = isDST(date) ? 4 : 5;
-            date.setHours(date.getHours() + offset);
-        }
-        return date;
-    }
-    
     // Fallback: return new Date from string
     return new Date(dateString);
 }
@@ -417,7 +397,7 @@ function createDateWithTimezone(
     day: number, 
     hour: number, 
     minute: number, 
-    second: number = 0,
+    second: number = 0,  // Add seconds parameter
     timezone: string
 ): Date {
     // Create date in UTC
@@ -432,23 +412,16 @@ function createDateWithTimezone(
 }
 
 function formatDateToCustomString(date: Date): string {
-    const month = months[date.getUTCMonth()];
-    const day = date.getUTCDate();
-    const year = date.getUTCFullYear();
-    const hours = date.getUTCHours();
-    const minutes = date.getUTCMinutes();
-    
-    const isPM = hours >= 12;
-    const hour12 = hours % 12 || 12;
-    return `${month} ${day}, ${year}, ${hour12}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
+  const month = months[date.getUTCMonth()];
+  const day = date.getUTCDate();
+  const year = date.getUTCFullYear();
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
+  
+  const isPM = hours >= 12;
+  const hour12 = hours % 12 || 12;
+  return `${month} ${day}, ${year}, ${hour12}:${minutes.toString().padStart(2, '0')} ${isPM ? 'PM' : 'AM'}`;
 }
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                'July', 'August', 'September', 'October', 'November', 'December'];
-
-// Add a new helper function to extract end time from description
-function extractEndTimeFromDescription(description: string): string | null {
-    const pattern = /between.*?and\s+([A-Za-z]+ \d{1,2}, \d{4}, \d{1,2}:\d{2} [AP]M ET)/i;
-    const match = description.match(pattern);
-    return match ? match[1] : null;
-}
