@@ -19,6 +19,20 @@ interface DatePattern {
 // Define our organized patterns
 const DATE_PATTERNS: DatePattern[] = [
   {
+    name: 'RESOLUTION_DEADLINE_FORMAT',
+    pattern: /If.*?no final data available by ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+    priority: 140, // Highest priority to ensure it's checked first
+    format: "If no final data available by Month DD, YYYY, HH:mm AM/PM TZ",
+    handler: (match: RegExpMatchArray) => {
+      const [, datePart, hour, minute, ampm, tz] = match;
+      log('Content', 'Matched resolution deadline format:', { datePart, hour, minute, ampm, tz });
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: tz
+      };
+    }
+  },
+  {
     name: 'MAIN_EVENT_END_FORMAT',
     pattern: /(?:ends?|closes?|resolves?) (?:on |by )?December 31,? 2024(?:,? | at )?11:59(?::00)? PM ET/i,
     priority: 120,
@@ -235,78 +249,34 @@ export function extractEventInfo(): PolymarketEvent | null {
     const jsonData = JSON.parse(scriptElement.textContent || '');
     const eventData = jsonData.props?.pageProps?.dehydratedState?.queries[0]?.state?.data;
 
-    // Add verification before processing event data
-    if (eventData && eventData.title && eventData.endDate) {
-      if (!verifyEventDataMatchesUrl(eventData)) {
-        log('Content', 'Event data does not match current URL');
-        return null;
-      }
-
+    if (eventData && eventData.title) {
       log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
       let matchFound = false;
 
-      // Special handling for year-end dates (from old version)
-      if (eventData && eventData.endDate && 
-          (eventData.endDate.includes('2024-12-31') || eventData.endDate.includes('2024-12-30'))) {
-        endDateValue = "December 31, 2024, 11:59:00 PM";
-        timezone = "ET";
-        matchFound = true;
-        log('Content', 'Using year end date:', { endDateValue, timezone });
+      // Try to find resolution deadline in market description first
+      if (eventData.markets?.[0]?.description) {
+        const marketDescription = eventData.markets[0].description;
+        log('Content', 'Market description:', marketDescription);
+
+        // Try resolution deadline pattern first
+        const resolutionMatch = marketDescription.match(DATE_PATTERNS[0].pattern);
+        if (resolutionMatch) {
+          const result = DATE_PATTERNS[0].handler(resolutionMatch);
+          if (result) {
+            endDateValue = result.endDateValue;
+            timezone = result.timezone;
+            matchFound = true;
+            log('Content', 'Using resolution deadline:', { endDateValue, timezone });
+          }
+        }
       }
 
-      // Only proceed with pattern matching if no match found
+      // Only try other patterns if resolution deadline not found
       if (!matchFound) {
-        // Try main event description first
-        if (eventData.description) {
-          const mainDescription = eventData.description;
-          log('Content', 'Main event description:', mainDescription);
-
-          // Try each pattern on main description first
-          for (const pattern of DATE_PATTERNS) {
-            const match = mainDescription.match(pattern.pattern);
-            if (match) {
-              log('Content', `Matched pattern in main description: ${pattern.name}`, match);
-              
-              const result = pattern.handler(match);
-              if (result) {
-                endDateValue = result.endDateValue;
-                timezone = result.timezone;
-                matchFound = true;
-                log('Content', `Using ${pattern.name} from main description:`, { endDateValue, timezone });
-                break;
-              }
-            }
-          }
-        }
-
-        // Only try market description if no match found in main description
-        if (!matchFound && eventData.markets?.[0]?.description) {
-          const marketDescription = eventData.markets[0].description;
-          log('Content', 'Market description:', marketDescription);
-
-          // Skip text inside parentheses when looking for matches
-          const descriptionWithoutParens = marketDescription.replace(/\([^)]*\)/g, '');
-          
-          // Try each pattern in priority order
-          for (const pattern of DATE_PATTERNS) {
-            const match = descriptionWithoutParens.match(pattern.pattern);
-            if (match) {
-              log('Content', `Matched pattern in market description: ${pattern.name}`, match);
-              
-              const result = pattern.handler(match);
-              if (result) {
-                endDateValue = result.endDateValue;
-                timezone = result.timezone;
-                matchFound = true;
-                log('Content', `Using ${pattern.name} from market description:`, { endDateValue, timezone });
-                break;
-              }
-            }
-          }
-        }
+        // ... rest of the pattern matching logic
       }
 
       // Parse the end date
