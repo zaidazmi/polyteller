@@ -5,6 +5,8 @@ import { log } from '../utils/logUtils';
 import { displayStatus } from './utils';
 import { convertToLocalTime, formatLocalTime } from '../utils/timezoneUtils';
 
+let countdownIntervals: number[] = [];
+
 function displayAllNotifications() {
   const allNotificationsElement = document.getElementById('all-notifications');
   
@@ -147,11 +149,16 @@ async function deleteNotification(event: Event) {
 }
 
 function startCountdowns() {
+  // Clear any existing intervals
+  countdownIntervals.forEach(clearInterval);
+  countdownIntervals = [];
+
   const countdownElements = document.querySelectorAll('.event-countdown');
   countdownElements.forEach(element => {
     const endTime = parseInt(element.getAttribute('data-end-time') || '0', 10);
     updateCountdown(element as HTMLElement, endTime);
-    setInterval(() => updateCountdown(element as HTMLElement, endTime), 1000);
+    const interval = window.setInterval(() => updateCountdown(element as HTMLElement, endTime), 1000);
+    countdownIntervals.push(interval);
   });
 }
 
@@ -233,4 +240,13 @@ function addDeleteEventListeners() {
     button.addEventListener('click', deleteNotification);
   });
 }
+
+// Add cleanup function
+function cleanup() {
+  countdownIntervals.forEach(clearInterval);
+  countdownIntervals = [];
+}
+
+// Add cleanup on unload
+window.addEventListener('unload', cleanup);
 
