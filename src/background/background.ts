@@ -73,8 +73,13 @@ import { useStore } from '../store/store';
     handleAlarm(alarm);
   });
 
-  let periodicTasks: ReturnType<typeof setInterval>[] = [];
+  // Periodic tasks
+  setInterval(cleanupNotifications, 60000); // Cleanup notifications every minute
+  setInterval(checkAlarms, 60000); // Check alarms every minute
+  setInterval(triggerAlarmsManually, 10000); // Manually trigger alarms every 10 seconds
+  setInterval(syncStoredNotificationsWithAlarms, 60000); // Sync stored notifications with alarms every minute
 
+  // Add this function
   async function syncStoreWithBackgroundNotifications() {
     const storeNotifications = useStore.getState().notifications;
     const backgroundNotifications = await getStoredNotifications();
@@ -84,27 +89,8 @@ import { useStore } from '../store/store';
     }
   }
 
-  function setupPeriodicTasks() {
-    cleanup(); // Clear existing tasks first
-    
-    periodicTasks.push(setInterval(cleanupNotifications, 60000));
-    periodicTasks.push(setInterval(checkAlarms, 60000));
-    periodicTasks.push(setInterval(triggerAlarmsManually, 10000));
-    periodicTasks.push(setInterval(syncStoredNotificationsWithAlarms, 60000));
-    periodicTasks.push(setInterval(syncStoreWithBackgroundNotifications, 5000));
-  }
-
-  // Add cleanup function
-  function cleanup() {
-    periodicTasks.forEach(clearInterval);
-    periodicTasks = [];
-  }
-
-  // Add cleanup on extension suspend
-  chrome.runtime.onSuspend.addListener(cleanup);
-
-  // Initialize tasks
-  setupPeriodicTasks();
+  // Add this to your periodic tasks
+  setInterval(syncStoreWithBackgroundNotifications, 5000); // Sync every 5 seconds
 
   log('Background', "Background script initialized with new notification handling");
 })();

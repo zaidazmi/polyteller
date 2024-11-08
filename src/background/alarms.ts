@@ -27,58 +27,54 @@ export async function updateStoredNotifications(notifications: Notification[]) {
  * @param notificationData - The notification settings
  */
 export async function scheduleNotification(notificationData: NotificationSetting): Promise<void> {
-  try {
-    const currentEvent = await getCurrentEvent();
-    log('Current event for scheduling:', currentEvent);
+  const currentEvent = await getCurrentEvent();
+  log('Current event for scheduling:', currentEvent);
 
-    if (!currentEvent) {
-      throw new Error('No current event found for scheduling notification');
-    }
-
-    if (!isValidNotificationTime(currentEvent.endTime, notificationData.minutesBefore)) {
-      throw new Error('Invalid notification time: The notification time has already passed');
-    }
-
-    const existingNotifications = await getStoredNotifications();
-    
-    // Check for notifications within 10 seconds
-    const MIN_GAP_SECONDS = 10;
-    const isDuplicate = existingNotifications.some(notification => 
-      notification.eventId === notificationData.eventId && 
-      Math.abs(notification.minutesBefore - notificationData.minutesBefore) * 60 < MIN_GAP_SECONDS
-    );
-
-    if (isDuplicate) {
-      throw new Error(`Notifications must be at least ${MIN_GAP_SECONDS} seconds apart`);
-    }
-
-    const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
-    
-    // Validate notification time is in the future
-    if (notificationTime <= Date.now()) {
-      throw new Error('Cannot set notification in the past');
-    }
-
-    const alarmName = `notification_${notificationData.eventId}_${notificationData.minutesBefore}_${Date.now()}`;
-
-    const notification: Notification = {
-      id: alarmName,
-      ...notificationData,
-      scheduledTime: notificationTime,
-      triggered: false
-    };
-
-    await chrome.alarms.create(alarmName, { when: notificationTime });
-    log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
-
-    storedNotifications.push(notification);
-    await updateStoredNotifications(storedNotifications);
-
-    log(`Total scheduled notifications: ${storedNotifications.length}`);
-  } catch (error) {
-    log('Error scheduling notification:', error);
-    throw error;
+  if (!currentEvent) {
+    throw new Error('No current event found for scheduling notification');
   }
+
+  if (!isValidNotificationTime(currentEvent.endTime, notificationData.minutesBefore)) {
+    throw new Error('Invalid notification time: The notification time has already passed');
+  }
+
+  const existingNotifications = await getStoredNotifications();
+  
+  // Update duplicate check to use 10 seconds threshold
+  const isDuplicate = existingNotifications.some(notification => {
+    if (notification.eventId !== notificationData.eventId) return false;
+    
+    // Calculate time difference in seconds
+    const timeDiff = Math.abs(notification.minutesBefore * 60 - notificationData.minutesBefore * 60);
+    
+    if (timeDiff < 10) { // Less than 10 seconds apart
+      log('Alarms', `Notification too close to existing one. Time difference: ${timeDiff} seconds`);
+      return true;
+    }
+    return false;
+  });
+
+  if (isDuplicate) {
+    throw new Error('New notifications must be at least 10 seconds apart.');
+  }
+
+  const notificationTime = currentEvent.endTime - notificationData.minutesBefore * 60 * 1000;
+  const alarmName = `notification_${notificationData.eventId}_${notificationData.minutesBefore}_${Date.now()}`;
+
+  const notification: Notification = {
+    id: alarmName,
+    ...notificationData,
+    scheduledTime: notificationTime,
+    triggered: false
+  };
+
+  await chrome.alarms.create(alarmName, { when: notificationTime });
+  log(`Notification scheduled for ${new Date(notificationTime)}, alarm name: ${alarmName}`);
+
+  storedNotifications.push(notification);
+  await updateStoredNotifications(storedNotifications);
+
+  log(`Total scheduled notifications: ${storedNotifications.length}`);
 }
 
 /**

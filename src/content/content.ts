@@ -15,35 +15,13 @@ import '../styles/content.css';
 let isInitialized = false;
 let currentUrl = window.location.href;
 let lastEventSlug: string | null = null;
-let urlObserver: MutationObserver | null = null;
-
-// Add retry mechanism for sending event info
-async function sendEventInfoWithRetry(eventInfo: PolymarketEvent, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    try {
-      await new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage({ type: 'EVENT_INFO', data: eventInfo }, response => {
-          if (chrome.runtime.lastError) {
-            reject(chrome.runtime.lastError);
-          } else {
-            resolve(response);
-          }
-        });
-      });
-      return;
-    } catch (error) {
-      if (i === retries - 1) throw error;
-      await new Promise(resolve => setTimeout(resolve, 1000));
-    }
-  }
-}
 
 /**
  * Initializes the countdown for the current Polymarket event.
  * This function extracts event information, sends it to the background script,
  * and creates the countdown element if not already initialized.
  */
-async function initializeCountdown() {
+function initializeCountdown() {
   if (isInitialized) return;
 
   log('Content', 'Initializing countdown');
@@ -58,12 +36,8 @@ async function initializeCountdown() {
       log('Content', 'Event info extracted:', eventInfo);
       lastEventSlug = currentSlug;
       isInitialized = true;
-      try {
-        await sendEventInfoWithRetry(eventInfo);
-        createAndInsertCountdown(eventInfo, false);
-      } catch (error) {
-        log('Content', 'Error sending event info:', error);
-      }
+      sendEventInfo(eventInfo);
+      createAndInsertCountdown(eventInfo, false);
     } else {
       log('Content', 'Event data mismatch with URL, showing refresh hint');
       clearCountdown();
@@ -109,37 +83,14 @@ initializeDOMObserver(initializeCountdown);
 log('Content', 'Polyteller content script loaded');
 
 // Set up URL change detection
-function setupUrlObserver() {
-  if (urlObserver) {
-    urlObserver.disconnect();
-  }
+const urlObserver = new MutationObserver(() => {
+  handleUrlChange();
+});
 
-  urlObserver = new MutationObserver(() => {
-    handleUrlChange();
-  });
-
-  urlObserver.observe(document.body, {
-    subtree: true,
-    childList: true
-  });
-}
-
-// Add cleanup function
-function cleanup() {
-  if (urlObserver) {
-    urlObserver.disconnect();
-    urlObserver = null;
-  }
-  clearCountdown();
-  window.removeEventListener('popstate', handleUrlChange);
-}
-
-// Add cleanup on unload
-window.addEventListener('unload', cleanup);
-
-// Update initialization
-setupUrlObserver();
-window.addEventListener('popstate', handleUrlChange);
+urlObserver.observe(document.body, {
+  subtree: true,
+  childList: true
+});
 
 // Also handle popstate events for browser back/forward
 window.addEventListener('popstate', handleUrlChange);
