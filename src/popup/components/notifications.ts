@@ -9,6 +9,7 @@ import { formatDate, formatFullNotificationTime } from '../../utils/dateUtils';
 import { displayStatus } from '../utils';
 import { useStore } from '../../store/store';
 import { loadNotifications } from '../popup';
+import { convertToLocalTime, formatLocalTime } from '../../utils/timezoneUtils';
 
 /**
  * Sets a new notification for the current event.
@@ -129,12 +130,14 @@ export function displayNotifications() {
       } else {
         currentEventNotifications.forEach((notification: NotificationSetting) => {
           const li = document.createElement('li');
-          const notificationTime = new Date(currentEvent.endTime - notification.minutesBefore * 60 * 1000);
+          li.className = 'notification-item';
+          const notificationTime = currentEvent.endTime - notification.minutesBefore * 60 * 1000;
+          const localNotificationTime = convertToLocalTime(notificationTime);
           
           li.innerHTML = `
             <div class="notification-info">
               <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
-              <span class="notification-date">${formatDate(notificationTime)}</span>
+              <span class="notification-date">${formatLocalTime(localNotificationTime)}</span>
             </div>
             <button class="delete-notification" 
                     data-event-id="${notification.eventId}" 

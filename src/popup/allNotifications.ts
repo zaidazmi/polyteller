@@ -3,6 +3,7 @@ import { NotificationSetting, PolymarketEvent } from '../types';
 import { formatFullNotificationTime, formatDate } from '../utils/dateUtils';
 import { log } from '../utils/logUtils';
 import { displayStatus } from './utils';
+import { convertToLocalTime, formatLocalTime } from '../utils/timezoneUtils';
 
 function displayAllNotifications() {
   const allNotificationsElement = document.getElementById('all-notifications');
@@ -81,11 +82,14 @@ function createEventElement(event: PolymarketEvent, notifications: NotificationS
   const notificationsList = eventElement.querySelector('.notifications-list');
   if (notificationsList) {
     notifications.forEach(notification => {
+      const notificationTime = event.endTime - notification.minutesBefore * 60 * 1000;
+      const localNotificationTime = convertToLocalTime(notificationTime);
+      
       const li = document.createElement('li');
       li.innerHTML = `
         <div class="notification-info">
           <span class="notification-time">${formatFullNotificationTime(notification.minutesBefore)}</span>
-          <span class="notification-date">${formatDate(new Date(event.endTime - notification.minutesBefore * 60 * 1000))}</span>
+          <span class="notification-date">${formatLocalTime(localNotificationTime)}</span>
         </div>
         <button class="delete-notification" data-event-id="${event.id}" data-minutes-before="${notification.minutesBefore}" aria-label="Delete notification">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

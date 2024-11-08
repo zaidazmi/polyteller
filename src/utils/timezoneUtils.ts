@@ -64,3 +64,22 @@ export function isAmbiguousDSTTime(date: Date): boolean {
   }
   return false;
 }
+
+export function convertToLocalTime(utcTime: number): Date {
+  const date = new Date(utcTime);
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return new Date(date.toLocaleString('en-US', { timeZone: userTimezone }));
+}
+
+export function formatLocalTime(date: Date): string {
+  return date.toLocaleString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+    timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+  });
+}
