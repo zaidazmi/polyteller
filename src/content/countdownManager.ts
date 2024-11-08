@@ -10,6 +10,7 @@ import { isDST } from '../utils/timezoneUtils';
 
 let countdownInterval: number | null = null;
 let countdownElement: HTMLElement | null = null;
+let eventListeners: Array<{ element: HTMLElement; type: string; listener: EventListener }> = [];
 
 /**
  * Creates and inserts a countdown element for the given event.
@@ -19,8 +20,8 @@ let countdownElement: HTMLElement | null = null;
 export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtensionPopup: boolean) {
   log('Content', 'Creating and inserting countdown for event:', eventInfo);
   
-  // Clear any existing interval
-  clearCountdownInterval();
+  // Clean up any existing countdown
+  cleanupCountdown();
 
   // Create or retrieve the countdown element
   countdownElement = document.getElementById('polyteller-countdown');
@@ -102,21 +103,24 @@ export function createAndInsertCountdown(eventInfo: PolymarketEvent, isExtension
   updateCountdown();
   countdownInterval = window.setInterval(updateCountdown, 1000);
 
-  // Add hover effects for non-popup countdown
-  if (!isExtensionPopup) {
-    countdownElement.addEventListener('mouseenter', () => {
+  // Update hover effects with tracked listeners
+  if (!isExtensionPopup && countdownElement) {
+    const mouseEnterListener = () => {
       if (countdownElement) {
         countdownElement.style.opacity = '1';
         countdownElement.style.transform = 'scale(1.1)';
       }
-    });
+    };
 
-    countdownElement.addEventListener('mouseleave', () => {
+    const mouseLeaveListener = () => {
       if (countdownElement) {
         countdownElement.style.opacity = '0.5';
         countdownElement.style.transform = 'scale(1)';
       }
-    });
+    };
+
+    addEventListenerWithTracking(countdownElement, 'mouseenter', mouseEnterListener);
+    addEventListenerWithTracking(countdownElement, 'mouseleave', mouseLeaveListener);
   }
 }
 
@@ -134,7 +138,7 @@ function clearCountdownInterval() {
  * Clears the countdown and shows refresh hint.
  */
 export function clearCountdown() {
-  clearCountdownInterval();
+  cleanupCountdown();
   
   if (!countdownElement) {
     countdownElement = document.getElementById('polyteller-countdown');
@@ -193,5 +197,28 @@ export function clearCountdown() {
       countdownElement!.style.opacity = '0.5';
       countdownElement!.style.transform = 'scale(1)';
     });
+  }
+}
+
+// Add function to track event listeners
+function addEventListenerWithTracking(element: HTMLElement, type: string, listener: EventListener) {
+  element.addEventListener(type, listener);
+  eventListeners.push({ element, type, listener });
+}
+
+// Update cleanup function
+export function cleanupCountdown() {
+  clearCountdownInterval();
+  
+  // Remove all event listeners
+  eventListeners.forEach(({ element, type, listener }) => {
+    element.removeEventListener(type, listener);
+  });
+  eventListeners = [];
+
+  // Remove element
+  if (countdownElement) {
+    countdownElement.remove();
+    countdownElement = null;
   }
 }
