@@ -1,229 +1,268 @@
- [Polyteller Background] Background script initialized with new notification handling
- [Polyteller Background] Extension installed
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Storing event info for tab 1129345372: Object
- Adding/updating event: Object
- [Polyteller Background] Updated events in store: Array(78)
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Current alarms:] Array(126)
- [Polyteller Alarms] Updated stored notifications: Array(0)
- [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
- [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
- Setting notifications: Array(0)
- [Polyteller Background] Synced store notifications with background
- [Polyteller Alarms] Updated stored notifications: Array(0)
- [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Current alarms:] Array(117)
- [Polyteller Alarms] Updated stored notifications: Array(0)
- [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
- [Polyteller Alarms] Updated stored notifications: Array(0)
-2 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Alarm triggered in background:] Object
- [Polyteller Alarm triggered:] Object
- [Polyteller Current alarms:] Array(115)
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
-background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
-2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
-background.js:1 [Polyteller Current alarms:] Array(115)
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
-background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
-2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
-background.js:1 [Polyteller Current alarms:] Array(115)
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
-background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
-2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Storing event info for tab 1129345375: Object
-background.js:1 Adding/updating event: Object
-background.js:1 [Polyteller Background] Updated events in store: Array(78)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-allNotifications.js:1 DOM content loaded, displaying notifications
-background.js:1 [Polyteller Background] Background received message: Object
-allNotifications.js:1 Displaying all notifications: Array(0)
-allNotifications.js:1 Events: Array(78)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Cleaned up event data for tab 1129345382
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Storing event info for tab 1129345382: Object
-background.js:1 Adding/updating event: Object
-background.js:1 [Polyteller Background] Updated events in store: Array(78)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 18:30:50 GMT+0530 (India Standard Time), alarm name: notification_13993_239.16666666666666_1731070825400]
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
-background.js:1 [Polyteller Total scheduled notifications: 1]
-allNotifications.js:1 Received NOTIFICATIONS_UPDATED message, refreshing notifications
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-allNotifications.js:1 Displaying all notifications: Array(1)
-allNotifications.js:1 Events: Array(78)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:7447
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:7447
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 Setting notifications: Array(1)
-background.js:1 [Polyteller Background] Synced store notifications with background
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:7447
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 18:30:57 GMT+0530 (India Standard Time), alarm name: notification_13993_239.05_1731070830792]
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
-background.js:1 [Polyteller Total scheduled notifications: 2]
-allNotifications.js:1 Received NOTIFICATIONS_UPDATED message, refreshing notifications
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-allNotifications.js:1 Displaying all notifications: Array(2)
-allNotifications.js:1 Events: Array(78)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 Setting notifications: Array(2)
-background.js:1 [Polyteller Background] Synced store notifications with background
-2background.js:1 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+lockdown-install.js:1 Removing unpermitted intrinsics
+13The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+_app-b9e263835e1a5642.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+
+(anonymous) @ _app-b9e263835e1a5642.js:618Understand this errorAI
+static.ads-twitter.com/uwt.js:1 
+        
+        
+       Failed to load resource: net::ERR_BLOCKED_BY_CLIENTUnderstand this errorAI
+_app-b9e263835e1a5642.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+
+(anonymous) @ _app-b9e263835e1a5642.js:640Understand this errorAI
+frame-modern.6b2e1eb9.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Verifying event data match: Object
+content.js:1 [Polyteller Content] Event data found: {
+  "id": "903378",
+  "ticker": "highest-grossing-movie-in-2024",
+  "slug": "highest-grossing-movie-in-2024",
+  "title": "Highest grossing movie in 2024?",
+  "description": "This is a market on predicting which film will have the highest box office earnings in 2024.",
+  "resolutionSource": "https://www.boxofficemojo.com/year/2024/?grossesOption=calendarGrosses",
+  "startDate": "2024-01-31T23:47:00Z",
+  "creationDate": "2024-01-31T23:49:53.257Z",
+  "endDate": "2024-12-30T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
+  "active": true,
+  "closed": false,
+  "archived": false,
+  "new": false,
+  "featured": false,
+  "restricted": true,
+  "liquidity": 1606195.57411,
+  "volume": 41575364.404187,
+  "openInterest": 0,
+  "sortBy": "price",
+  "published_at": "2024-01-31 22:05:51.564+00",
+  "updatedBy": "15",
+  "createdAt": "2024-01-31T22:05:51.752Z",
+  "updatedAt": "2024-11-08T14:09:00.845454Z",
+  "commentsEnabled": false,
+  "competitive": 0.8470089994706194,
+  "volume24hr": 597294.951836,
+  "featuredImage": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
+  "enableOrderBook": true,
+  "liquidityClob": 1606195.57411,
+  "_sync": false,
+  "negRisk": true,
+  "negRiskMarketID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459200",
+  "negRiskFeeBips": 0,
+  "commentCount": 675,
+  "markets": [
+    {
+      "id": "254248",
+      "question": "Will 'Deadpool 3' gross most in 2024?",
+      "conditionId": "0xbce0ff6f8ee396ec39e76c8b60d747272e8bf4bd65f31d0e131b64aceb0be3b5",
+      "slug": "will-deadpool-3-gross-most-in-2024",
+      "resolutionSource": "",
+      "endDate": "2024-12-29T00:00:00Z",
+      "liquidity": "193531.34011",
+      "startDate": "2024-01-31T23:47:00Z",
+      "fee": "20000000000000000",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/deadpool.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/deadpool.png",
+      "description": "This market will resolve to \"Yes\" if the \"Gross\" column on https://www.boxofficemojo.com/year/2024/?grossesOption=calendarGrosses shows 'Deadpool 3' (2024) as the film with the highest 2024 gross once data for December 31 is made available. Otherwise, this market will resolve to \"No\".\n\nNote: This market is about the movie's domestic calendar gross in 2024 - dates outside of 2024 will not count toward this movie's gross. \n\nIn the event of an exact tie the film that comes first alphabetically will be considered the winner.\n\nIf there is no final data available by January 7, 2025, 11:59 PM ET, another credible resolution source will be chosen.",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.003",
+        "0.997"
+      ],
+      "volume": "1562448.960259",
+      "active": true,
+      "marketType": "normal",
+      "closed": false,
+      "marketMakerAddress": "",
+      "createdAt": "2024-01-31T22:05:51.691Z",
+      "updatedAt": "2024-11-08T14:08:13.295234Z",
+      "wideFormat": false,
+      "new": false,
+      "featured": false,
+      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
+      "archived": false,
+      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "restricted": true,
+      "groupItemTitle": "Deadpool 3",
+      "groupItemThreshold": "3",
+      "questionID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459202",
+      "enableOrderBook": true,
+      "orderPriceMinTickSize": 0.001,
+      "orderMinSize": 5,
+      "volumeNum": 1562448.960259,
+      "liquidityNum": 193531.34011,
+      "endDateIso": "2024-12-29",
+      "startDateIso": "2024-01-31",
+      "hasReviewedDates": true,
+      "commentsEnabled": false,
+      "volume24hr": 27821.20175,
+      "secondsDelay": 0,
+      "clobTokenIds": [
+        "10121150820228421248893179951676281814158596154979528998074907576296371458438",
+        "61111845596144826019799073782298606899058648885167941219160994016138099600108"
+      ],
+      "umaBond": "500.0",
+      "umaReward": "5.0",
+      "fpmmLive": true,
+      "volume24hrClob": 27821.20175,
+      "volumeClob": 1562448.960259,
+      "liquidityClob": 193531.34011,
+      "makerBaseFee": 0,
+      "takerBaseFee": 0,
+      "customLiveness": 0,
+      "acceptingOrders": true,
+      "negRisk": true,
+      "negRiskMarketID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459200",
+      "negRiskRequestID": "0x4387722600154f2e4903295cd6d2a1f3ad0475420dbc791d7a7dad2e4f3045cf",
+      "notificationsEnabled": true,
+      "_sync": false,
+      "creator": "",
+      "ready": false,
+      "funded": false,
+      "cyom": false,
+      "competitive": 0.8019188313797254,
+      "pagerDutyNotificationEnabled": false,
+      "approved": true,
+      "clobRewards": [
+        {
+          "id": "300",
+          "conditionId": "0xbce0ff6f8ee396ec39e76c8b60d747272e8bf4bd65f31d0e131b64aceb0be3b5",
+          "assetAddress":
+content.js:1 [Polyteller Content] Using year end date: Object
+content.js:1 [Polyteller Content] Original end date: December 31, 2024, 11:59:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Wed Jan 01 2025 10:29:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Wed, 01 Jan 2025 04:59:00 GMT
+content.js:1 [Polyteller Content] Extracted event info: {
+  "id": "903378",
+  "title": "Highest grossing movie in 2024?",
+  "endTime": 1735707540000,
+  "endDate": "December 31, 2024, 11:59:00 PM",
+  "timezone": "ET",
+  "url": "https://polymarket.com/event/highest-grossing-movie-in-2024"
+}
+content.js:1 [Polyteller Content] Event info extracted: Object
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: Object
+content.js:1 [Polyteller Content] Creating new countdown element
+content.js:1 [Polyteller Content] Countdown element appended to body
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 49m 1s
+content.js:1 [Polyteller Content] Polyteller content script loaded
+content.js:1 [Polyteller DOMManipulator] Buy button interception set up
+lockdown-install.js:1 Removing unpermitted intrinsics
+content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
+privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
+privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
+embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+25Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
+framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
+_ @ framework-a667dbba83e63e79.js:9Understand this errorAI
+content.js:1 [Polyteller Content] Sending event info to background: Object
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 49m 0s
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 59s
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 58s
+270Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+(anonymous) @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+subscribe @ 9635.7df19093a14523ab.js:1
+d @ 9635.7df19093a14523ab.js:1
+p @ 9635.7df19093a14523ab.js:1
+getProvider @ _app-b9e263835e1a5642.js:1975
+await in getProvider
+i @ _app-b9e263835e1a5642.js:1975
+setTimeout
+(anonymous) @ _app-b9e263835e1a5642.js:578
+(anonymous) @ inpage.js:12
+write @ inpage.js:12
+M @ inpage.js:12
+(anonymous) @ inpage.js:12
+I.write @ inpage.js:12
+d @ inpage.js:12
+a.emit @ inpage.js:10
+R @ inpage.js:12
+M @ inpage.js:12
+I.push @ inpage.js:12
+_write @ inpage.js:1
+M @ inpage.js:12
+(anonymous) @ inpage.js:12
+I.write @ inpage.js:12
+d @ inpage.js:12
+a.emit @ inpage.js:10
+R @ inpage.js:12
+M @ inpage.js:12
+I.push @ inpage.js:12
+_onData @ inpage.js:1
+_onMessage @ inpage.js:1
+postMessage
+_postMessage @ contentscript.js:1
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+h @ contentscript.js:61
+a.emit @ contentscript.js:37
+T @ contentscript.js:61
+k @ contentscript.js:61
+A.push @ contentscript.js:61
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+h @ contentscript.js:61
+a.emit @ contentscript.js:37
+T @ contentscript.js:61
+k @ contentscript.js:61
+A.push @ contentscript.js:61
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+d @ contentscript.js:37
+a.emit @ contentscript.js:37
+$ @ contentscript.js:37
+F @ contentscript.js:37
+D.push @ contentscript.js:37
+_onMessage @ contentscript.js:37
+(anonymous) @ contentscript.js:37
+Show 30 more frames
+Show lessUnderstand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 57s
+_app-b9e263835e1a5642.js:578 initializing client with geoblock token two 
+_app-b9e263835e1a5642.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-b9e263835e1a5642.js:611:8580)
+    at _app-b9e263835e1a5642.js:611:16320
+postMessage @ _app-b9e263835e1a5642.js:611
+(anonymous) @ _app-b9e263835e1a5642.js:611
+Promise.then
+(anonymous) @ _app-b9e263835e1a5642.js:611
+Promise.then
+eS @ _app-b9e263835e1a5642.js:611
+postMessage @ _app-b9e263835e1a5642.js:611
+(anonymous) @ _app-b9e263835e1a5642.js:611
+(anonymous) @ _app-b9e263835e1a5642.js:1975
+(anonymous) @ _app-b9e263835e1a5642.js:1975
+batch @ _app-b9e263835e1a5642.js:1975
+notify @ _app-b9e263835e1a5642.js:1975
+(anonymous) @ _app-b9e263835e1a5642.js:1975
+batch @ _app-b9e263835e1a5642.js:1975
+#s @ _app-b9e263835e1a5642.js:1975
+setData @ _app-b9e263835e1a5642.js:1975
+onSuccess @ _app-b9e263835e1a5642.js:1975
+y @ _app-b9e263835e1a5642.js:1975Understand this errorAI
+_app-b9e263835e1a5642.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-b9e263835e1a5642.js:611:8580)
+    at _app-b9e263835e1a5642.js:611:16320
+postMessage @ _app-b9e263835e1a5642.js:611
+(anonymous) @ _app-b9e263835e1a5642.js:611Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 56s
