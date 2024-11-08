@@ -100,11 +100,14 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
  * @param alarmName - The name of the alarm to remove
  */
 export async function removeTriggeredNotification(alarmName: string) {
+  // First, get the current stored notifications
+  const currentNotifications = await getStoredNotifications();
+  
   // Remove from storage
   await chrome.storage.local.remove(alarmName);
 
-  // Remove from storedNotifications array
-  storedNotifications = storedNotifications.filter(n => n.id !== alarmName);
+  // Update storedNotifications with current state before filtering
+  storedNotifications = currentNotifications.filter(n => n.id !== alarmName);
 
   // Remove the alarm
   await chrome.alarms.clear(alarmName);
