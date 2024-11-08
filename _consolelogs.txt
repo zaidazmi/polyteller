@@ -1,204 +1,229 @@
  [Polyteller Background] Background script initialized with new notification handling
  [Polyteller Background] Extension installed
  [Polyteller Background] Background received message: Object
- [Polyteller Background] Storing event info for tab 1129345334: Object
+ [Polyteller Background] Storing event info for tab 1129345372: Object
  Adding/updating event: Object
- [Polyteller Background] Updated events in store: Array(72)
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Storing event info for tab 1129345334: Object
- Adding/updating event: Object
- [Polyteller Background] Updated events in store: Array(72)
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Alarms] Updated stored notifications: Array(1)
- [Polyteller Triggered notification removed: notification_13997_244.06666666666666_1731058009182]
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
+ [Polyteller Background] Updated events in store: Array(78)
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Current alarms:] Array(126)
+ [Polyteller Alarms] Updated stored notifications: Array(0)
+ [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
+ [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
  Setting notifications: Array(0)
  [Polyteller Background] Synced store notifications with background
- [Polyteller Background] Background received message: Object
- [Polyteller Current event for scheduling:] Object
- [Polyteller Notification scheduled for Fri Nov 08 2024 18:25:56 GMT+0530 (India Standard Time), alarm name: notification_13997_244.06666666666666_1731058054138]
- [Polyteller Alarms] Updated stored notifications: Array(1)
- [Polyteller Total scheduled notifications: 1]
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Current event for scheduling:] Object
- [Polyteller Error scheduling notification:] 
- Error scheduling notification: 
-(anonymous) @ background.js:1Understand this errorAI
- Setting notifications: Array(1)
- [Polyteller Background] Synced store notifications with background
-2 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
- [Polyteller Current alarms:] Array(121)
- [Polyteller Alarms] Updated stored notifications: Array(1)
- [Polyteller Background] Notifications cleanup: 0 removed, 1 remaining
- [Polyteller Alarms] Updated stored notifications: Array(1)
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Storing event info for tab 1129345334: Object
- Adding/updating event: Object
- [Polyteller Background] Updated events in store: Array(72)
-2 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Background received message: Object
- [Polyteller Background] Storing event info for tab 1129345334: Object
- Adding/updating event: Object
- [Polyteller Background] Updated events in store: Array(72)
- [Polyteller Initializing popup]
- initTradeConfirmationToggle function called
- Inside Promise constructor
- Toggle element: 
- [Polyteller Current tab ID:] 1129345334
- [Polyteller Background] Background received message: Object
- [Polyteller PrivacyMode] Initial state loaded: true
- Chrome storage result: Object
- Initial state calculated: true
- Initial state set on toggle: true
- Toggle changed, new state: true
- Resolving promise with: true
- [Polyteller Popup received response:] Object
- Adding/updating event: Object
- [Polyteller Updating UI with event info:] Object
- [Polyteller Background] Background received message: Object
- Trade confirmation enabled
-popup.js:1 [Polyteller Popup] Loaded notifications: Array(1)
-popup.js:1 Setting notifications: Array(1)
-background.js:1 [Polyteller Background] Background received message: Object
-popup.js:1 [Polyteller Popup] All notifications: Array(1)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(1)
-background.js:1 [Polyteller Current alarms:] Array(121)
-background.js:1 [Polyteller Alarms] Updated stored notifications: Array(1)
-background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 1 remaining
+ [Polyteller Alarms] Updated stored notifications: Array(0)
+ [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Current alarms:] Array(117)
+ [Polyteller Alarms] Updated stored notifications: Array(0)
+ [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
+ [Polyteller Alarms] Updated stored notifications: Array(0)
+2 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Alarm triggered in background:] Object
+ [Polyteller Alarm triggered:] Object
+ [Polyteller Current alarms:] Array(115)
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
+background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
+2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
+background.js:1 [Polyteller Current alarms:] Array(115)
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
+background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
+2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
+background.js:1 [Polyteller Current alarms:] Array(115)
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(0)
+background.js:1 [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
 background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
-popup.js:1 [Polyteller Popup received NOTIFICATIONS_UPDATED message:] Array(1)
-popup.js:1 [Polyteller Popup received NOTIFICATIONS_UPDATED message:] Array(1)
+2background.js:1 [Polyteller Background] Error sending message to popup: Could not establish connection. Receiving end does not exist.
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Storing event info for tab 1129345375: Object
+background.js:1 Adding/updating event: Object
+background.js:1 [Polyteller Background] Updated events in store: Array(78)
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Background] Background received message: Object
-popup.js:1 [Polyteller Popup] Loaded notifications: Array(1)
-popup.js:1 Setting notifications: Array(1)
-popup.js:1 [Polyteller Popup] Loaded notifications: Array(1)
-popup.js:1 Setting notifications: Array(1)
+background.js:1 [Polyteller Background] Background received message: Object
+allNotifications.js:1 DOM content loaded, displaying notifications
+background.js:1 [Polyteller Background] Background received message: Object
+allNotifications.js:1 Displaying all notifications: Array(0)
+allNotifications.js:1 Events: Array(78)
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Cleaned up event data for tab 1129345382
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Background] Background received message: Object
-popup.js:1 [Polyteller Popup] All notifications: Array(1)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(1)
-popup.js:1 [Polyteller Popup] All notifications: Array(1)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(1)
+background.js:1 [Polyteller Background] Storing event info for tab 1129345382: Object
+background.js:1 Adding/updating event: Object
+background.js:1 [Polyteller Background] Updated events in store: Array(78)
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-2background.js:1 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 18:25:47 GMT+0530 (India Standard Time), alarm name: notification_13997_244.21666666666667_1731058160503]
+background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 18:30:50 GMT+0530 (India Standard Time), alarm name: notification_13993_239.16666666666666_1731070825400]
 background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
-background.js:1 [Polyteller Total scheduled notifications: 2]
-popup.js:1 [Polyteller Popup received NOTIFICATIONS_UPDATED message:] Array(2)
-background.js:1 [Polyteller Background] Background received message: Object
-background.js:1 [Polyteller Background] Background received message: Object
-popup.js:1 [Polyteller Popup] Loaded notifications: Array(2)
-popup.js:1 Setting notifications: Array(2)
-popup.js:1 [Polyteller Popup] Loaded notifications: Array(2)
-popup.js:1 Setting notifications: Array(2)
+background.js:1 [Polyteller Total scheduled notifications: 1]
+allNotifications.js:1 Received NOTIFICATIONS_UPDATED message, refreshing notifications
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Background] Background received message: Object
-popup.js:1 [Polyteller Popup] All notifications: Array(2)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(2)
-popup.js:1 [Polyteller Popup] All notifications: Array(2)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(2)
-popup.js:1 [Polyteller Popup] All notifications: Array(2)
-popup.js:1 [Polyteller Popup] Displaying notifications for current event: Array(2)
-background.js:1 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
-background.js:1 Setting notifications: Array(2)
+allNotifications.js:1 Displaying all notifications: Array(1)
+allNotifications.js:1 Events: Array(78)
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Current event for scheduling:] Object
+background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
+    at background.js:1:7447
+(anonymous) @ background.js:1Understand this errorAI
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Current event for scheduling:] Object
+background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
+    at background.js:1:7447
+(anonymous) @ background.js:1Understand this errorAI
+background.js:1 Setting notifications: Array(1)
 background.js:1 [Polyteller Background] Synced store notifications with background
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
 background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
+    at background.js:1:7447
 (anonymous) @ background.js:1Understand this errorAI
 background.js:1 [Polyteller Background] Background received message: Object
 background.js:1 [Polyteller Current event for scheduling:] Object
-background.js:1 [Polyteller Error scheduling notification:] Error: A notification for this event and time already exists
-    at background.js:1:8149
-background.js:1 Error scheduling notification: Error: A notification for this event and time already exists
-    at background.js:1:8149
-(anonymous) @ background.js:1Understand this errorAI
+background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 18:30:57 GMT+0530 (India Standard Time), alarm name: notification_13993_239.05_1731070830792]
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(2)
+background.js:1 [Polyteller Total scheduled notifications: 2]
+allNotifications.js:1 Received NOTIFICATIONS_UPDATED message, refreshing notifications
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+allNotifications.js:1 Displaying all notifications: Array(2)
+allNotifications.js:1 Events: Array(78)
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 Setting notifications: Array(2)
+background.js:1 [Polyteller Background] Synced store notifications with background
+2background.js:1 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
