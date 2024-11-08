@@ -426,6 +426,35 @@ button#set-notification.error {
     border-left: 4px solid #B91C1B;
 }
 
+/* Update notification list styles */
+#notifications-list li:only-child:not(.notification-item) {
+  font-size: 14px;
+  color: var(--text-light);
+  text-align: left;
+  padding: 12px 0;
+  font-weight: 400;
+}
+
+/* Add specific styles for notification items */
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notification-item .notification-time {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-color); /* Ensure this is always black/dark */
+}
+
+.notification-item .notification-date {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
 /* Any additional styles specific to popup that don't fit in the other files */
 
 .event-link {

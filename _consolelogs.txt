@@ -1,504 +1,412 @@
+Logs from extension popup
+========================================
+
+background.js:1 [Polyteller Background] Background script initialized with new notification handling
+background.js:1 [Polyteller Background] Extension installed
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Cleaned up event data for tab 1129344913
+background.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.Understand this errorAI
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Storing event info for tab 1129344913: Object
+background.js:1 Adding/updating event: Object
+background.js:1 [Polyteller Background] Updated events in store: Array(72)
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Current event for scheduling:] Object
+background.js:1 [Polyteller Notification scheduled for Fri Nov 08 2024 21:30:00 GMT+0530 (India Standard Time), alarm name: notification_13993_60_1731047506431]
+background.js:1 [Polyteller Alarms] Updated stored notifications: Array(1)
+background.js:1 [Polyteller Total scheduled notifications: 1]
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Background received message: Object
+background.js:1 [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+allNotifications.js:1 DOM content loaded, displaying notifications
+background.js:1 [Polyteller Background] Background received message: Object
+allNotifications.js:1 Displaying all notifications: Array(1)
+allNotifications.js:1 Events: Array(72)
+background.js:1 Setting notifications: Array(1)
+background.js:1 [Polyteller Background] Synced store notifications with background
+
+Logs from console
+========================================
+11The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 lockdown-install.js:1 Removing unpermitted intrinsics
-17The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-f1f7bf0e40786d98.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+784Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+_app-1df8d973d846d167.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
 
-(anonymous) @ _app-f1f7bf0e40786d98.js:618Understand this errorAI
-static.ads-twitter.com/uwt.js:1 
+(anonymous) @ _app-1df8d973d846d167.js:618
+391 @ _app-1df8d973d846d167.js:618
+s @ _app-1df8d973d846d167.js:618
+584 @ _app-1df8d973d846d167.js:618
+s @ _app-1df8d973d846d167.js:618
+177 @ _app-1df8d973d846d167.js:618
+s @ _app-1df8d973d846d167.js:618
+545 @ _app-1df8d973d846d167.js:613
+s @ _app-1df8d973d846d167.js:618
+167 @ _app-1df8d973d846d167.js:613
+s @ _app-1df8d973d846d167.js:618
+(anonymous) @ _app-1df8d973d846d167.js:618
+27596 @ _app-1df8d973d846d167.js:618
+f @ webpack-6f712ed95fe4e5da.js:1
+48670 @ _app-1df8d973d846d167.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+22751 @ _app-1df8d973d846d167.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+70442 @ _app-1df8d973d846d167.js:6
+f @ webpack-6f712ed95fe4e5da.js:1
+12112 @ _app-1df8d973d846d167.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+4684 @ _app-1df8d973d846d167.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+47243 @ _app-1df8d973d846d167.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+35998 @ _app-1df8d973d846d167.js:613
+f @ webpack-6f712ed95fe4e5da.js:1
+45796 @ _app-1df8d973d846d167.js:613
+f @ webpack-6f712ed95fe4e5da.js:1
+90498 @ _app-1df8d973d846d167.js:564
+f @ webpack-6f712ed95fe4e5da.js:1
+42603 @ _app-1df8d973d846d167.js:568
+f @ webpack-6f712ed95fe4e5da.js:1
+88743 @ _app-1df8d973d846d167.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+92948 @ _app-1df8d973d846d167.js:611
+f @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-1df8d973d846d167.js:330
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+Promise.then
+onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
+s @ main-6b4b235ae1bf0bb2.js:1
+6840 @ _app-1df8d973d846d167.js:330
+f @ webpack-6f712ed95fe4e5da.js:1
+t @ _app-1df8d973d846d167.js:2009
+(anonymous) @ _app-1df8d973d846d167.js:2009
+f.O @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-1df8d973d846d167.js:2009
+_ @ webpack-6f712ed95fe4e5da.js:1
+(anonymous) @ _app-1df8d973d846d167.js:1Understand this errorAI
+VM258:1 
         
         
-       Failed to load resource: net::ERR_BLOCKED_BY_CLIENTUnderstand this errorAI
+       GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ VM258:1
+(anonymous) @ VM258:1
+m @ main-6b4b235ae1bf0bb2.js:1
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+o @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 frame-modern.be744b3c.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
-_app-f1f7bf0e40786d98.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+_app-1df8d973d846d167.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
 
-(anonymous) @ _app-f1f7bf0e40786d98.js:640Understand this errorAI
-7The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
+(anonymous) @ _app-1df8d973d846d167.js:640
+(anonymous) @ _app-1df8d973d846d167.js:640
+initializeAdapter @ _app-1df8d973d846d167.js:564
+(anonymous) @ _app-1df8d973d846d167.js:613
+(anonymous) @ _app-1df8d973d846d167.js:613
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'elon-musk-of-tweets-nov-1-8', eventSlug: 'elon-musk-of-tweets-nov-1-8', urlPath: '/event/elon-musk-of-tweets-nov-1-8'}
 content.js:1 [Polyteller Content] Event data found: {
-  "id": "11827",
-  "ticker": "fed-interest-rates-november-2024",
-  "slug": "fed-interest-rates-november-2024",
-  "title": "Fed Interest Rates: November 2024",
-  "description": "This is a market on the anticipated Federal Reserve interest rate decision for November 2024.",
+  "id": "13993",
+  "ticker": "elon-musk-of-tweets-nov-1-8",
+  "slug": "elon-musk-of-tweets-nov-1-8",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "description": "This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.",
   "resolutionSource": "",
-  "startDate": "2024-08-02T21:51:01.99825Z",
-  "creationDate": "2024-08-02T21:51:01.998243Z",
-  "endDate": "2024-11-07T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+  "startDate": "2024-11-01T17:45:15.173694Z",
+  "creationDate": "2024-11-01T17:45:15.173691Z",
+  "endDate": "2024-11-08T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
   "active": true,
   "closed": false,
   "archived": false,
   "new": false,
-  "featured": true,
+  "featured": false,
   "restricted": true,
-  "liquidity": 5088416.76907,
-  "volume": 189489800.537586,
-  "createdAt": "2024-08-02T19:25:14.775346Z",
-  "updatedAt": "2024-11-07T21:17:10.237851Z",
-  "competitive": 0.8003199679231757,
-  "volume24hr": 9827083.287419,
+  "liquidity": 76351.3012,
+  "volume": 434038.017557,
+  "openInterest": 0,
+  "createdAt": "2024-11-01T16:21:05.179428Z",
+  "updatedAt": "2024-11-08T06:29:05.486311Z",
+  "competitive": 0.9990399226343484,
+  "volume24hr": 107334.119585,
   "enableOrderBook": true,
-  "liquidityClob": 5088416.76907,
+  "liquidityClob": 76351.3012,
   "_sync": false,
   "negRisk": true,
-  "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-  "commentCount": 386,
+  "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+  "commentCount": 119,
   "markets": [
     {
-      "id": "504494",
-      "question": "Fed increases interest rates by 25+ bps after November 2024 meeting?",
-      "conditionId": "0x1fc1e5595adab4d8160b2fe72cfed61131e3d5e61b5c334160d1729d7380ab16",
-      "slug": "fed-increases-interest-rates-by-25-bps-after-november-2024-meeting",
+      "id": "511643",
+      "question": "Will Elon tweet 375-399 times November 1-8?",
+      "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+      "slug": "will-elon-tweet-375-399-times-november-1-8",
       "resolutionSource": "",
-      "endDate": "2024-11-07T12:00:00Z",
-      "liquidity": "668704.38517",
-      "startDate": "2024-08-02T19:36:17.448261Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the \"No change\" bracket.",
+      "endDate": "2024-11-08T12:00:00Z",
+      "liquidity": "2739.12237",
+      "startDate": "2024-11-01T17:37:15.627027Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "description": "If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to \"Yes\". Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, only main feed posts, quote posts and reposts posts will count.\n\nReplies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.\n\nDeleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).\n\nThe resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking \"Export Data\". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.",
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        "0.0005",
-        "0.9995"
+        "0.463",
+        "0.537"
       ],
-      "volume": "133953369.249666",
+      "volume": "27728.144905",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
-      "createdAt": "2024-08-02T19:36:17.448261Z",
-      "updatedAt": "2024-11-07T21:16:36.135643Z",
+      "createdAt": "2024-11-01T17:17:18.131353Z",
+      "updatedAt": "2024-11-08T06:30:18.347377Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
       "archived": false,
       "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
       "restricted": true,
-      "groupItemTitle": "25+ bps increase",
-      "groupItemThreshold": "4",
-      "questionID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d003",
+      "groupItemTitle": "375-399",
+      "groupItemThreshold": "6",
+      "questionID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af06",
       "enableOrderBook": true,
       "orderPriceMinTickSize": 0.001,
       "orderMinSize": 5,
-      "umaResolutionStatus": "proposed",
-      "volumeNum": 133953369.249666,
-      "liquidityNum": 668704.38517,
-      "endDateIso": "2024-11-07",
-      "startDateIso": "2024-08-02",
+      "volumeNum": 27728.144905,
+      "liquidityNum": 2739.12237,
+      "endDateIso": "2024-11-08",
+      "startDateIso": "2024-11-01",
       "hasReviewedDates": true,
-      "volume24hr": 1125018.709586,
+      "volume24hr": 14930.92158,
       "clobTokenIds": [
-        "37607087749772082751516356212488395841221931637322106913544914381521802317192",
-        "62906346854843026600780466242595591879256731166107167021180309597980343523177"
+        "107471755562416417556629352987082390272273488757365279201891662348078062635605",
+        "69092705566824768051844047845262368252721287712294057753916971399042283148007"
       ],
       "umaBond": "500",
       "umaReward": "5",
-      "volume24hrClob": 1125018.709586,
-      "volumeClob": 133953369.249666,
-      "liquidityClob": 668704.38517,
+      "volume24hrClob": 14930.92158,
+      "volumeClob": 27728.144905,
+      "liquidityClob": 2739.12237,
       "acceptingOrders": true,
       "negRisk": true,
-      "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-      "negRiskRequestID": "0x6dd4e02306e433e6c938aa193a46d6e76305be5f3d4c9b535a888f4ef5ae20eb",
+      "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+      "negRiskRequestID": "0x720a7d1f5637ed642a407b7808f21e3da4bfec3d044680de647fdcd8f6303b00",
       "_sync": false,
       "ready": false,
       "funded": false,
-      "acceptingOrdersTimestamp": "2024-08-02T20:57:40Z",
+      "acceptingOrdersTimestamp": "2024-11-01T17:36:02Z",
       "cyom": false,
-      "competitive": 0.8003199679231757,
+      "competitive": 0.9986328715987813,
       "pagerDutyNotificationEnabled": false,
       "approved": true,
       "clobRewards": [
         {
-          "id": "3923",
-          "conditi
-content.js:1 [Polyteller Content] Main event description: This is a market on the anticipated Federal Reserve interest rate decision for November 2024.
-content.js:1 [Polyteller Content] Market description: The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.
+          "id": "9820",
+          "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 50,
+          "startD
+content.js:1 [Polyteller Content] Main event description: This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.
+content.js:1 [Polyteller Content] Market description: If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to "Yes". Otherwise, this market will resolve to "No".
 
-This market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”
+For the purposes of this market, only main feed posts, quote posts and reposts posts will count.
 
-The resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.
+Replies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.
 
-The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.
+Deleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).
 
-This market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the "No change" bracket.
-content.js:1 [Polyteller Content] Matched pattern in market description: UNTIL_TIME_FORMAT Array(5)
-content.js:1 [Polyteller Content] Using UNTIL_TIME_FORMAT from market description: Object
-content.js:1 [Polyteller Content] Original end date: December 18, 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Thu Dec 19 2024 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Thu, 19 Dec 2024 04:59:00 GMT
+The resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking "Export Data". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.
+content.js:1 [Polyteller Content] Matched pattern in market description: DATE_RANGE_FORMAT (6) ['between 375  and 399  times on X between November …24, 12:00 PM ET and November 8, 2024, 12:00 PM ET', 'November 8, 2024', '12', '00', 'PM', 'ET', index: 21, input: 'If Elon Musk , posts between 375  and 399  times o…elf may be used as a secondary resolution source.', groups: undefined]
+content.js:1 [Polyteller Content] Date range components: {datePart: 'November 8, 2024', hour: '12', minute: '00', ampm: 'PM', tz: 'ET'}
+content.js:1 [Polyteller Content] Using DATE_RANGE_FORMAT from market description: {endDateValue: 'November 8, 2024, 12:00:00 PM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Original end date: November 8, 2024, 12:00:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
 content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "11827",
-  "title": "Fed Interest Rates: November 2024",
-  "endTime": 1734584340000,
-  "endDate": "December 18, 2024, 11:59:00 PM",
+  "id": "13993",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "endTime": 1731085200000,
+  "endDate": "November 8, 2024, 12:00:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/fed-interest-rates-november-2024?tid=1731014340493"
+  "url": "https://polymarket.com/event/elon-musk-of-tweets-nov-1-8?tid=1731047502191"
 }
-content.js:1 [Polyteller Content] Event info extracted: Object
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: Object
+content.js:1 [Polyteller Content] Event info extracted: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00:00 PM', timezone: 'ET', …}
 content.js:1 [Polyteller Content] Creating new countdown element
 content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 58s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 17s
 content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller Content] Event data found: {
-  "id": "11827",
-  "ticker": "fed-interest-rates-november-2024",
-  "slug": "fed-interest-rates-november-2024",
-  "title": "Fed Interest Rates: November 2024",
-  "description": "This is a market on the anticipated Federal Reserve interest rate decision for November 2024.",
-  "resolutionSource": "",
-  "startDate": "2024-08-02T21:51:01.99825Z",
-  "creationDate": "2024-08-02T21:51:01.998243Z",
-  "endDate": "2024-11-07T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-  "active": true,
-  "closed": false,
-  "archived": false,
-  "new": false,
-  "featured": true,
-  "restricted": true,
-  "liquidity": 5088416.76907,
-  "volume": 189489800.537586,
-  "createdAt": "2024-08-02T19:25:14.775346Z",
-  "updatedAt": "2024-11-07T21:17:10.237851Z",
-  "competitive": 0.8003199679231757,
-  "volume24hr": 9827083.287419,
-  "enableOrderBook": true,
-  "liquidityClob": 5088416.76907,
-  "_sync": false,
-  "negRisk": true,
-  "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-  "commentCount": 386,
-  "markets": [
-    {
-      "id": "504494",
-      "question": "Fed increases interest rates by 25+ bps after November 2024 meeting?",
-      "conditionId": "0x1fc1e5595adab4d8160b2fe72cfed61131e3d5e61b5c334160d1729d7380ab16",
-      "slug": "fed-increases-interest-rates-by-25-bps-after-november-2024-meeting",
-      "resolutionSource": "",
-      "endDate": "2024-11-07T12:00:00Z",
-      "liquidity": "668704.38517",
-      "startDate": "2024-08-02T19:36:17.448261Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the \"No change\" bracket.",
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        "0.0005",
-        "0.9995"
-      ],
-      "volume": "133953369.249666",
-      "active": true,
-      "closed": false,
-      "marketMakerAddress": "",
-      "createdAt": "2024-08-02T19:36:17.448261Z",
-      "updatedAt": "2024-11-07T21:16:36.135643Z",
-      "new": false,
-      "featured": false,
-      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
-      "archived": false,
-      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
-      "restricted": true,
-      "groupItemTitle": "25+ bps increase",
-      "groupItemThreshold": "4",
-      "questionID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d003",
-      "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.001,
-      "orderMinSize": 5,
-      "umaResolutionStatus": "proposed",
-      "volumeNum": 133953369.249666,
-      "liquidityNum": 668704.38517,
-      "endDateIso": "2024-11-07",
-      "startDateIso": "2024-08-02",
-      "hasReviewedDates": true,
-      "volume24hr": 1125018.709586,
-      "clobTokenIds": [
-        "37607087749772082751516356212488395841221931637322106913544914381521802317192",
-        "62906346854843026600780466242595591879256731166107167021180309597980343523177"
-      ],
-      "umaBond": "500",
-      "umaReward": "5",
-      "volume24hrClob": 1125018.709586,
-      "volumeClob": 133953369.249666,
-      "liquidityClob": 668704.38517,
-      "acceptingOrders": true,
-      "negRisk": true,
-      "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-      "negRiskRequestID": "0x6dd4e02306e433e6c938aa193a46d6e76305be5f3d4c9b535a888f4ef5ae20eb",
-      "_sync": false,
-      "ready": false,
-      "funded": false,
-      "acceptingOrdersTimestamp": "2024-08-02T20:57:40Z",
-      "cyom": false,
-      "competitive": 0.8003199679231757,
-      "pagerDutyNotificationEnabled": false,
-      "approved": true,
-      "clobRewards": [
-        {
-          "id": "3923",
-          "conditi
-content.js:1 [Polyteller Content] Main event description: This is a market on the anticipated Federal Reserve interest rate decision for November 2024.
-content.js:1 [Polyteller Content] Market description: The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.
-
-This market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”
-
-The resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.
-
-The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.
-
-This market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the "No change" bracket.
-content.js:1 [Polyteller Content] Matched pattern in market description: UNTIL_TIME_FORMAT Array(5)
-content.js:1 [Polyteller Content] Using UNTIL_TIME_FORMAT from market description: Object
-content.js:1 [Polyteller Content] Original end date: December 18, 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Thu Dec 19 2024 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Thu, 19 Dec 2024 04:59:00 GMT
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "11827",
-  "title": "Fed Interest Rates: November 2024",
-  "endTime": 1734584340000,
-  "endDate": "December 18, 2024, 11:59:00 PM",
-  "timezone": "ET",
-  "url": "https://polymarket.com/event/fed-interest-rates-november-2024?tid=1731014340493"
-}
 content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-lockdown-install.js:1 Removing unpermitted intrinsics
-lockdown-install.js:1 Removing unpermitted intrinsics
-embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
-embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
 privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: true
 privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-35Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
-framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
-_ @ framework-a667dbba83e63e79.js:9Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: Object
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 57s
-9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ 9635.7df19093a14523ab.js:1Understand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 56s
-413Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 54s
-_app-f1f7bf0e40786d98.js:578 initializing client with geoblock token two 
-_app-f1f7bf0e40786d98.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
-    at Object.postMessage (_app-f1f7bf0e40786d98.js:611:8580)
-    at _app-f1f7bf0e40786d98.js:611:16320
-postMessage @ _app-f1f7bf0e40786d98.js:611
-(anonymous) @ _app-f1f7bf0e40786d98.js:611
-Promise.then
-(anonymous) @ _app-f1f7bf0e40786d98.js:611
-Promise.then
-eS @ _app-f1f7bf0e40786d98.js:611
-postMessage @ _app-f1f7bf0e40786d98.js:611
-(anonymous) @ _app-f1f7bf0e40786d98.js:611
-(anonymous) @ _app-f1f7bf0e40786d98.js:1975
-(anonymous) @ _app-f1f7bf0e40786d98.js:1975
-batch @ _app-f1f7bf0e40786d98.js:1975
-notify @ _app-f1f7bf0e40786d98.js:1975
-(anonymous) @ _app-f1f7bf0e40786d98.js:1975
-batch @ _app-f1f7bf0e40786d98.js:1975
-#s @ _app-f1f7bf0e40786d98.js:1975
-setData @ _app-f1f7bf0e40786d98.js:1975
-onSuccess @ _app-f1f7bf0e40786d98.js:1975
-y @ _app-f1f7bf0e40786d98.js:1975Understand this errorAI
-_app-f1f7bf0e40786d98.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
-    at Object.postMessage (_app-f1f7bf0e40786d98.js:611:8580)
-    at _app-f1f7bf0e40786d98.js:611:16320
-postMessage @ _app-f1f7bf0e40786d98.js:611
-(anonymous) @ _app-f1f7bf0e40786d98.js:611Understand this errorAI
-_app-f1f7bf0e40786d98.js:581 
-        
-        
-       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
-i @ _app-f1f7bf0e40786d98.js:581
-l @ _app-f1f7bf0e40786d98.js:581
-i @ _app-f1f7bf0e40786d98.js:581
-a @ _app-f1f7bf0e40786d98.js:581
-_sendEnvelope @ _app-f1f7bf0e40786d98.js:581
-sendEvent @ _app-f1f7bf0e40786d98.js:580
-(anonymous) @ _app-f1f7bf0e40786d98.js:580
-(anonymous) @ _app-f1f7bf0e40786d98.js:10
-(anonymous) @ _app-f1f7bf0e40786d98.js:10
-_executeHandlers @ _app-f1f7bf0e40786d98.js:10
-(anonymous) @ _app-f1f7bf0e40786d98.js:10
-s @ _app-f1f7bf0e40786d98.js:10
-then @ _app-f1f7bf0e40786d98.js:10
-_processEvent @ _app-f1f7bf0e40786d98.js:580
-_captureEvent @ _app-f1f7bf0e40786d98.js:580
-captureEvent @ _app-f1f7bf0e40786d98.js:580
-captureEvent @ _app-f1f7bf0e40786d98.js:10
-captureEvent @ _app-f1f7bf0e40786d98.js:6
-end @ _app-f1f7bf0e40786d98.js:581
-end @ _app-f1f7bf0e40786d98.js:581
-(anonymous) @ _app-f1f7bf0e40786d98.js:581
-n @ _app-f1f7bf0e40786d98.js:575Understand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 54s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 53s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 52s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 51s
-content.js:1 [Polyteller DOMManipulator] Element clicked: A - Business
-content.js:1 [Polyteller Content] Route changed from /event/fed-interest-rates-november-2024 to /markets/business
+content.js:1 [Polyteller Content] Route changed from /event/elon-musk-of-tweets-nov-1-8 to /event/elon-musk-of-tweets-nov-1-8
 content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Not an event page, skipping countdown
-content.js:1 [Polyteller Content] Failed to extract event info
-_app-f1f7bf0e40786d98.js:581 
-        
-        
-       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
-i @ _app-f1f7bf0e40786d98.js:581
-l @ _app-f1f7bf0e40786d98.js:581
-i @ _app-f1f7bf0e40786d98.js:581
-a @ _app-f1f7bf0e40786d98.js:581
-dU @ _app-f1f7bf0e40786d98.js:586
-await in dU
-d$ @ _app-f1f7bf0e40786d98.js:586
-_runFlush @ _app-f1f7bf0e40786d98.js:586
-await in _runFlush
-_flush @ _app-f1f7bf0e40786d98.js:586
-_debouncedFlush.dR.maxWait @ _app-f1f7bf0e40786d98.js:586
-s @ _app-f1f7bf0e40786d98.js:585
-n @ _app-f1f7bf0e40786d98.js:575Understand this errorAI
-content.js:1 [Polyteller DOMManipulator] Element clicked: P - Fed Interest Rates: December 2024
-content.js:1 [Polyteller Content] Route changed from /markets/business to /event/fed-interest-rates-december-2024
-content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'elon-musk-of-tweets-nov-1-8', eventSlug: 'elon-musk-of-tweets-nov-1-8', urlPath: '/event/elon-musk-of-tweets-nov-1-8'}
 content.js:1 [Polyteller Content] Event data found: {
-  "id": "11827",
-  "ticker": "fed-interest-rates-november-2024",
-  "slug": "fed-interest-rates-november-2024",
-  "title": "Fed Interest Rates: November 2024",
-  "description": "This is a market on the anticipated Federal Reserve interest rate decision for November 2024.",
+  "id": "13993",
+  "ticker": "elon-musk-of-tweets-nov-1-8",
+  "slug": "elon-musk-of-tweets-nov-1-8",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "description": "This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.",
   "resolutionSource": "",
-  "startDate": "2024-08-02T21:51:01.99825Z",
-  "creationDate": "2024-08-02T21:51:01.998243Z",
-  "endDate": "2024-11-07T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
+  "startDate": "2024-11-01T17:45:15.173694Z",
+  "creationDate": "2024-11-01T17:45:15.173691Z",
+  "endDate": "2024-11-08T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
   "active": true,
   "closed": false,
   "archived": false,
   "new": false,
-  "featured": true,
+  "featured": false,
   "restricted": true,
-  "liquidity": 5088416.76907,
-  "volume": 189489800.537586,
-  "createdAt": "2024-08-02T19:25:14.775346Z",
-  "updatedAt": "2024-11-07T21:17:10.237851Z",
-  "competitive": 0.8003199679231757,
-  "volume24hr": 9827083.287419,
+  "liquidity": 76351.3012,
+  "volume": 434038.017557,
+  "openInterest": 0,
+  "createdAt": "2024-11-01T16:21:05.179428Z",
+  "updatedAt": "2024-11-08T06:29:05.486311Z",
+  "competitive": 0.9990399226343484,
+  "volume24hr": 107334.119585,
   "enableOrderBook": true,
-  "liquidityClob": 5088416.76907,
+  "liquidityClob": 76351.3012,
   "_sync": false,
   "negRisk": true,
-  "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-  "commentCount": 386,
+  "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+  "commentCount": 119,
   "markets": [
     {
-      "id": "504494",
-      "question": "Fed increases interest rates by 25+ bps after November 2024 meeting?",
-      "conditionId": "0x1fc1e5595adab4d8160b2fe72cfed61131e3d5e61b5c334160d1729d7380ab16",
-      "slug": "fed-increases-interest-rates-by-25-bps-after-november-2024-meeting",
+      "id": "511643",
+      "question": "Will Elon tweet 375-399 times November 1-8?",
+      "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+      "slug": "will-elon-tweet-375-399-times-november-1-8",
       "resolutionSource": "",
-      "endDate": "2024-11-07T12:00:00Z",
-      "liquidity": "668704.38517",
-      "startDate": "2024-08-02T19:36:17.448261Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/jerome+powell+glasses1.png",
-      "description": "The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.\n\nThis market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”\n\nThe resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.\n\nThe level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.\n\nThis market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the \"No change\" bracket.",
+      "endDate": "2024-11-08T12:00:00Z",
+      "liquidity": "2739.12237",
+      "startDate": "2024-11-01T17:37:15.627027Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/elon-musk-of-tweets-nov-1-8-XxMUy_Qju74v.jpg",
+      "description": "If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to \"Yes\". Otherwise, this market will resolve to \"No\".\n\nFor the purposes of this market, only main feed posts, quote posts and reposts posts will count.\n\nReplies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.\n\nDeleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).\n\nThe resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking \"Export Data\". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.",
       "outcomes": [
         "Yes",
         "No"
       ],
       "outcomePrices": [
-        "0.0005",
-        "0.9995"
+        "0.463",
+        "0.537"
       ],
-      "volume": "133953369.249666",
+      "volume": "27728.144905",
       "active": true,
       "closed": false,
       "marketMakerAddress": "",
-      "createdAt": "2024-08-02T19:36:17.448261Z",
-      "updatedAt": "2024-11-07T21:16:36.135643Z",
+      "createdAt": "2024-11-01T17:17:18.131353Z",
+      "updatedAt": "2024-11-08T06:30:18.347377Z",
       "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
       "archived": false,
       "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
       "restricted": true,
-      "groupItemTitle": "25+ bps increase",
-      "groupItemThreshold": "4",
-      "questionID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d003",
+      "groupItemTitle": "375-399",
+      "groupItemThreshold": "6",
+      "questionID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af06",
       "enableOrderBook": true,
       "orderPriceMinTickSize": 0.001,
       "orderMinSize": 5,
-      "umaResolutionStatus": "proposed",
-      "volumeNum": 133953369.249666,
-      "liquidityNum": 668704.38517,
-      "endDateIso": "2024-11-07",
-      "startDateIso": "2024-08-02",
+      "volumeNum": 27728.144905,
+      "liquidityNum": 2739.12237,
+      "endDateIso": "2024-11-08",
+      "startDateIso": "2024-11-01",
       "hasReviewedDates": true,
-      "volume24hr": 1125018.709586,
+      "volume24hr": 14930.92158,
       "clobTokenIds": [
-        "37607087749772082751516356212488395841221931637322106913544914381521802317192",
-        "62906346854843026600780466242595591879256731166107167021180309597980343523177"
+        "107471755562416417556629352987082390272273488757365279201891662348078062635605",
+        "69092705566824768051844047845262368252721287712294057753916971399042283148007"
       ],
       "umaBond": "500",
       "umaReward": "5",
-      "volume24hrClob": 1125018.709586,
-      "volumeClob": 133953369.249666,
-      "liquidityClob": 668704.38517,
+      "volume24hrClob": 14930.92158,
+      "volumeClob": 27728.144905,
+      "liquidityClob": 2739.12237,
       "acceptingOrders": true,
       "negRisk": true,
-      "negRiskMarketID": "0x9ce25435a01fa26daec2a3ff4e72b4eada10e08ee416e995f22215e22785d000",
-      "negRiskRequestID": "0x6dd4e02306e433e6c938aa193a46d6e76305be5f3d4c9b535a888f4ef5ae20eb",
+      "negRiskMarketID": "0x4e016912c6a4c865be6210049d7484443c1d7ea90d51fc70079037826284af00",
+      "negRiskRequestID": "0x720a7d1f5637ed642a407b7808f21e3da4bfec3d044680de647fdcd8f6303b00",
       "_sync": false,
       "ready": false,
       "funded": false,
-      "acceptingOrdersTimestamp": "2024-08-02T20:57:40Z",
+      "acceptingOrdersTimestamp": "2024-11-01T17:36:02Z",
       "cyom": false,
-      "competitive": 0.8003199679231757,
+      "competitive": 0.9986328715987813,
       "pagerDutyNotificationEnabled": false,
       "approved": true,
       "clobRewards": [
         {
-          "id": "3923",
-          "conditi
-content.js:1 [Polyteller Content] Main event description: This is a market on the anticipated Federal Reserve interest rate decision for November 2024.
-content.js:1 [Polyteller Content] Market description: The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.
+          "id": "9820",
+          "conditionId": "0x97f9e1713d058b8ea7fa84a535bd27128a1334aa5329c7b60ce73ff1ec673e5e",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 50,
+          "startD
+content.js:1 [Polyteller Content] Main event description: This is a market on predicting the number of tweets posted by Elon Musk from November 1 to November 8.
+content.js:1 [Polyteller Content] Market description: If Elon Musk (@elonmusk), posts between 375 (inclusive) and 399 (inclusive) times on X between November 1, 2024, 12:00 PM ET and November 8, 2024, 12:00 PM ET this market will resolve to "Yes". Otherwise, this market will resolve to "No".
 
-This market will resolve to “Yes” if following the Federal Reserve's November 2024 meeting the upper bound of the target federal funds rate is increased by 25 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No.”
+For the purposes of this market, only main feed posts, quote posts and reposts posts will count.
 
-The resolution source for this market is the FOMC’s statement after its meeting scheduled for November 6 - 7, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.
+Replies will NOT count towards the total - however, replies on the main feed such as https://x.com/elonmusk/status/1786073478711353576 will be counted by the tracker.
 
-The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.
+Deleted posts will count as long as they remain available long enough to be captured by the tracker (~5 minutes).
 
-This market may resolve as soon as the FOMC’s statement for their November meeting with relevant data is issued. If no statement is released by December 18, 2024, 11:59 PM ET, this market will resolve to the "No change" bracket.
-content.js:1 [Polyteller Content] Matched pattern in market description: UNTIL_TIME_FORMAT (5) ['by December 18, 2024, 11:59 PM ET', 'December 18, 2024', '11:59', 'PM', 'ET', index: 1014, input: 'The FED interest rates are defined in this market …s market will resolve to the "No change" bracket.', groups: undefined]
-content.js:1 [Polyteller Content] Using UNTIL_TIME_FORMAT from market description: {endDateValue: 'December 18, 2024, 11:59:00 PM', timezone: 'ET'}
-content.js:1 [Polyteller Content] Original end date: December 18, 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Thu Dec 19 2024 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Thu, 19 Dec 2024 04:59:00 GMT
+The resolution source for this market is the ‘Post Counter’ figure for posts found at https://www.xtracker.io/. Individual posts can be viewed by clicking "Export Data". If the tracker does not update correctly in accordance with the rules, X itself may be used as a secondary resolution source.
+content.js:1 [Polyteller Content] Matched pattern in market description: DATE_RANGE_FORMAT (6) ['between 375  and 399  times on X between November …24, 12:00 PM ET and November 8, 2024, 12:00 PM ET', 'November 8, 2024', '12', '00', 'PM', 'ET', index: 21, input: 'If Elon Musk , posts between 375  and 399  times o…elf may be used as a secondary resolution source.', groups: undefined]
+content.js:1 [Polyteller Content] Date range components: {datePart: 'November 8, 2024', hour: '12', minute: '00', ampm: 'PM', tz: 'ET'}
+content.js:1 [Polyteller Content] Using DATE_RANGE_FORMAT from market description: {endDateValue: 'November 8, 2024, 12:00:00 PM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Original end date: November 8, 2024, 12:00:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Fri Nov 08 2024 22:30:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Fri, 08 Nov 2024 17:00:00 GMT
 content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "11827",
-  "title": "Fed Interest Rates: November 2024",
-  "endTime": 1734584340000,
-  "endDate": "December 18, 2024, 11:59:00 PM",
+  "id": "13993",
+  "title": "Elon Musk # of tweets Nov 1-8?",
+  "endTime": 1731085200000,
+  "endDate": "November 8, 2024, 12:00:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/fed-interest-rates-december-2024?tid=1731014355559"
+  "url": "https://polymarket.com/event/elon-musk-of-tweets-nov-1-8?tid=1730567265025"
 }
-content.js:1 [Polyteller Content] Event info extracted: {id: '11827', title: 'Fed Interest Rates: November 2024', endTime: 1734584340000, endDate: 'December 18, 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '11827', title: 'Fed Interest Rates: November 2024', endTime: 1734584340000, endDate: 'December 18, 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 44s
+content.js:1 [Polyteller Content] Event info extracted: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 17s
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
+embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+23Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
 framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
 _ @ framework-a667dbba83e63e79.js:9
 (anonymous) @ framework-a667dbba83e63e79.js:9
@@ -509,13 +417,157 @@ oO @ framework-a667dbba83e63e79.js:9
 ox @ framework-a667dbba83e63e79.js:9
 x @ framework-a667dbba83e63e79.js:17
 T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: {id: '11827', title: 'Fed Interest Rates: November 2024', endTime: 1734584340000, endDate: 'December 18, 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 43s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 42s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 41s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 40s
 content.js:1 [Polyteller Content] Received trade confirmation update: true
 content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 39s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 38s
-content.js:1 [Polyteller Content] Updated countdown text: 41d 7h 39m 37s
+content.js:1 [Polyteller Content] Sending event info to background: {id: '13993', title: 'Elon Musk # of tweets Nov 1-8?', endTime: 1731085200000, endDate: 'November 8, 2024, 12:00:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 16s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 15s
+content.js:1 [Polyteller Content] Received trade confirmation update: true
+content.js:1 [Polyteller Content] Updated trade confirmation setting: true
+9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+(anonymous) @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+connect @ 9635.7df19093a14523ab.js:1
+subscribe @ 9635.7df19093a14523ab.js:1
+d @ 9635.7df19093a14523ab.js:1
+p @ 9635.7df19093a14523ab.js:1
+getProvider @ _app-1df8d973d846d167.js:1975
+await in getProvider
+i @ _app-1df8d973d846d167.js:1975Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 14s
+_app-1df8d973d846d167.js:578 initializing client with geoblock token two 
+_app-1df8d973d846d167.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-1df8d973d846d167.js:611:8580)
+    at _app-1df8d973d846d167.js:611:16320
+postMessage @ _app-1df8d973d846d167.js:611
+(anonymous) @ _app-1df8d973d846d167.js:611
+Promise.then
+(anonymous) @ _app-1df8d973d846d167.js:611
+Promise.then
+eS @ _app-1df8d973d846d167.js:611
+postMessage @ _app-1df8d973d846d167.js:611
+(anonymous) @ _app-1df8d973d846d167.js:611
+(anonymous) @ _app-1df8d973d846d167.js:1975
+(anonymous) @ _app-1df8d973d846d167.js:1975
+batch @ _app-1df8d973d846d167.js:1975
+notify @ _app-1df8d973d846d167.js:1975
+(anonymous) @ _app-1df8d973d846d167.js:1975
+batch @ _app-1df8d973d846d167.js:1975
+#s @ _app-1df8d973d846d167.js:1975
+setData @ _app-1df8d973d846d167.js:1975
+onSuccess @ _app-1df8d973d846d167.js:1975
+y @ _app-1df8d973d846d167.js:1975
+Promise.then
+b @ _app-1df8d973d846d167.js:1975
+start @ _app-1df8d973d846d167.js:1975
+fetch @ _app-1df8d973d846d167.js:1975
+#L @ _app-1df8d973d846d167.js:1975
+setOptions @ _app-1df8d973d846d167.js:1975
+(anonymous) @ _app-1df8d973d846d167.js:1975
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9Understand this errorAI
+_app-1df8d973d846d167.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
+    at Object.postMessage (_app-1df8d973d846d167.js:611:8580)
+    at _app-1df8d973d846d167.js:611:16320
+postMessage @ _app-1df8d973d846d167.js:611
+(anonymous) @ _app-1df8d973d846d167.js:611Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 13s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 12s
+_app-1df8d973d846d167.js:1928 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Abeacon%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=a65b2585-57f8-4a22-8230-8a3dde4ef50f' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+Lm @ _app-1df8d973d846d167.js:1928
+sendOnExit @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+finish @ _app-1df8d973d846d167.js:1928
+d @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+e.notify @ _app-1df8d973d846d167.js:1928
+f @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+e.notify @ _app-1df8d973d846d167.js:1928
+O8.capture @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+Oo @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+n @ _app-1df8d973d846d167.js:575Understand this errorAI
+_app-1df8d973d846d167.js:1928 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Abeacon%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=a65b2585-57f8-4a22-8230-8a3dde4ef50f' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
+
+Lm @ _app-1df8d973d846d167.js:1928
+sendOnExit @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+finish @ _app-1df8d973d846d167.js:1928
+d @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+e.notify @ _app-1df8d973d846d167.js:1928
+f @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+e.notify @ _app-1df8d973d846d167.js:1928
+O8.capture @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+Oo @ _app-1df8d973d846d167.js:1928
+(anonymous) @ _app-1df8d973d846d167.js:1928
+n @ _app-1df8d973d846d167.js:575Understand this errorAI
+_app-1df8d973d846d167.js:581 
+        
+        
+       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
+i @ _app-1df8d973d846d167.js:581
+l @ _app-1df8d973d846d167.js:581
+i @ _app-1df8d973d846d167.js:581
+a @ _app-1df8d973d846d167.js:581
+dU @ _app-1df8d973d846d167.js:586
+await in dU
+d$ @ _app-1df8d973d846d167.js:586
+_runFlush @ _app-1df8d973d846d167.js:586
+await in _runFlush
+_flush @ _app-1df8d973d846d167.js:586
+_debouncedFlush.dR.maxWait @ _app-1df8d973d846d167.js:586
+s @ _app-1df8d973d846d167.js:585
+u @ _app-1df8d973d846d167.js:585
+flushImmediate @ _app-1df8d973d846d167.js:586
+conditionalFlush @ _app-1df8d973d846d167.js:586
+_doChangeToBackgroundTasks @ _app-1df8d973d846d167.js:586
+_handleVisibilityChange @ _app-1df8d973d846d167.js:586
+n @ _app-1df8d973d846d167.js:575Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 10s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 8s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 6s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 4s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 2s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 28m 0s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 58s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 56s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 54s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 52s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 50s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 48s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 46s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 44s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 42s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 40s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 38s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 36s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 34s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 32s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 30s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 28s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 26s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 24s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 22s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 20s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 18s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 16s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 14s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 12s
+2content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 10s
+content.js:1 [Polyteller Content] Updated countdown text: 0d 10h 27m 9s

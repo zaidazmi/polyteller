@@ -46,41 +46,37 @@ export function validateCustomTime() {
     minutes * 60000 +
     seconds * 1000;
 
+  // Handle no time entered case
+  if (totalMilliseconds === 0) {
+    setNotificationButton.disabled = true;
+    errorMessage.style.display = 'none';
+    inputs.forEach(input => {
+      input.style.borderColor = '';
+    });
+    return;
+  }
+
   const isTotalTimeValid = totalMilliseconds > 0 && totalMilliseconds < remainingTime;
 
   // Show appropriate error messages
   let errorText = '';
-  if (!isTotalTimeValid) {
-    if (totalMilliseconds === 0) {
-      errorText = 'Please enter a notification time.';
-    } else if (totalMilliseconds >= remainingTime) {
-      errorText = 'Total notification time cannot exceed the remaining time.';
-    }
-  } else if (!isValid.days) {
-    errorText = `Days cannot exceed ${remainingDays}`;
-  } else if (!isValid.hours) {
-    errorText = 'Hours must be between 0 and 24';
-  } else if (!isValid.minutes) {
-    errorText = 'Minutes must be between 0 and 60';
-  } else if (!isValid.seconds) {
-    errorText = 'Seconds must be between 0 and 60';
+  if (!isTotalTimeValid && totalMilliseconds >= remainingTime) {
+    errorText = 'Notification time cannot exceed the remaining time.';
+    // Set all inputs to red when total time exceeds remaining time
+    inputs.forEach(input => {
+      input.style.borderColor = 'red';
+    });
+  } else {
+    // Only set individual border colors based on field validation
+    inputs.forEach((input, index) => {
+      const fieldName = ['days', 'hours', 'minutes', 'seconds'][index] as ValidationFields;
+      input.style.borderColor = isValid[fieldName] ? '' : 'red';
+    });
   }
 
   // Update UI
   const isAllValid = isTotalTimeValid && Object.values(isValid).every(v => v);
-  
-  inputs.forEach((input, index) => {
-    const fieldName = ['days', 'hours', 'minutes', 'seconds'][index] as ValidationFields;
-    // More explicit border handling
-    if (isValid[fieldName]) {
-      input.style.removeProperty('border-color');  // Remove the border color completely
-      input.style.border = '1px solid #e2e8f0';  // Reset to default border
-    } else {
-      input.style.border = '1px solid red';
-    }
-  });
-
-  setNotificationButton.disabled = !isAllValid || totalMilliseconds === 0;
+  setNotificationButton.disabled = !isAllValid;
   errorMessage.textContent = errorText;
   errorMessage.style.display = errorText ? 'block' : 'none';
 }
