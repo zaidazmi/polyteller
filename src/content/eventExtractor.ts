@@ -19,20 +19,6 @@ interface DatePattern {
 // Define our organized patterns
 const DATE_PATTERNS: DatePattern[] = [
   {
-    name: 'RESOLUTION_DEADLINE_FORMAT',
-    pattern: /If.*?no final data available by ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
-    priority: 140, // Highest priority to ensure it's checked first
-    format: "If no final data available by Month DD, YYYY, HH:mm AM/PM TZ",
-    handler: (match: RegExpMatchArray) => {
-      const [, datePart, hour, minute, ampm, tz] = match;
-      log('Content', 'Matched resolution deadline format:', { datePart, hour, minute, ampm, tz });
-      return {
-        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
-        timezone: tz
-      };
-    }
-  },
-  {
     name: 'MAIN_EVENT_END_FORMAT',
     pattern: /(?:ends?|closes?|resolves?) (?:on |by )?December 31,? 2024(?:,? | at )?11:59(?::00)? PM ET/i,
     priority: 120,
@@ -206,6 +192,19 @@ const DATE_PATTERNS: DatePattern[] = [
         timezone: 'ET'
       };
     }
+  },
+  {
+    name: 'FINAL_DATA_DEADLINE',
+    pattern: /no final data available by ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+    priority: 135, // Higher than EXACT_ET_NOON_FORMAT
+    format: "final data deadline format",
+    handler: (match: RegExpMatchArray) => {
+      const [, datePart, hour, minute, ampm, tz] = match;
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: tz
+      };
+    }
   }
 ].sort((a, b) => b.priority - a.priority);
 
@@ -232,8 +231,9 @@ function verifyEventDataMatchesUrl(eventData: any): boolean {
  * @returns The extracted event information, or null if extraction fails
  */
 export function extractEventInfo(): PolymarketEvent | null {
-  // Keep URL path check
   const currentPath = window.location.pathname;
+  log('Content', 'Checking path:', currentPath);
+
   if (!currentPath.startsWith('/event/')) {
     log('Content', 'Not an event page, skipping countdown');
     return null;
@@ -247,36 +247,68 @@ export function extractEventInfo(): PolymarketEvent | null {
 
   try {
     const jsonData = JSON.parse(scriptElement.textContent || '');
+    log('Content', 'Found JSON data:', jsonData);
+
     const eventData = jsonData.props?.pageProps?.dehydratedState?.queries[0]?.state?.data;
+    log('Content', 'Extracted event data:', eventData);
+
+    // Add logging for markets data
+    if (eventData?.markets?.length > 0) {
+      log('Content', 'Market rules:', eventData.markets[0].description);
+    }
 
     if (eventData && eventData.title) {
+      if (!verifyEventDataMatchesUrl(eventData)) {
+        log('Content', 'Event data does not match current URL');
+        return null;
+      }
+
       log('Content', 'Event data found:', JSON.stringify(eventData, null, 2));
 
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
       let matchFound = false;
 
-      // Try to find resolution deadline in market description first
+      // Try to get end date from market description first
       if (eventData.markets?.[0]?.description) {
         const marketDescription = eventData.markets[0].description;
         log('Content', 'Market description:', marketDescription);
 
-        // Try resolution deadline pattern first
-        const resolutionMatch = marketDescription.match(DATE_PATTERNS[0].pattern);
-        if (resolutionMatch) {
-          const result = DATE_PATTERNS[0].handler(resolutionMatch);
-          if (result) {
-            endDateValue = result.endDateValue;
-            timezone = result.timezone;
-            matchFound = true;
-            log('Content', 'Using resolution deadline:', { endDateValue, timezone });
+        // Try each pattern in priority order
+        for (const pattern of DATE_PATTERNS) {
+          const match = marketDescription.match(pattern.pattern);
+          if (match) {
+            log('Content', `Matched pattern in market description: ${pattern.name}`, match);
+            
+            const result = pattern.handler(match);
+            if (result) {
+              endDateValue = result.endDateValue;
+              timezone = result.timezone;
+              matchFound = true;
+              log('Content', `Using ${pattern.name} from market description:`, { endDateValue, timezone });
+              break;
+            }
           }
         }
       }
 
-      // Only try other patterns if resolution deadline not found
       if (!matchFound) {
-        // ... rest of the pattern matching logic
+        // Handle Z suffix dates explicitly
+        if (endDateValue.endsWith('Z')) {
+          timezone = 'ET';
+          const utcDate = new Date(endDateValue);
+          const year = utcDate.getUTCFullYear();
+          const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
+          const day = utcDate.getUTCDate().toString().padStart(2, '0');
+          // Always set to 23:59:59 ET
+          endDateValue = `${year}-${month}-${day}T23:59:59-05:00`;
+          log('Content', 'Converted UTC date to ET end of day:', endDateValue);
+        }
+      }
+
+      if (!matchFound && !endDateValue) {
+        log('Content', 'No end date found in market description or event data');
+        return null;
       }
 
       // Parse the end date
@@ -301,6 +333,10 @@ export function extractEventInfo(): PolymarketEvent | null {
       
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));
       return eventInfo;
+    } else {
+      log('Content', 'Missing required event data fields:', { 
+        hasTitle: !!eventData?.title
+      });
     }
   } catch (error) {
     log('Content', 'Error processing event data:', error);
