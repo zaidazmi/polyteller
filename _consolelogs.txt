@@ -1,175 +1,126 @@
+10The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 lockdown-install.js:1 Removing unpermitted intrinsics
-13The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-b9e263835e1a5642.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+388Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+_app-8e4343c775e4a141.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
 
-(anonymous) @ _app-b9e263835e1a5642.js:618Understand this errorAI
-static.ads-twitter.com/uwt.js:1 
+(anonymous) @ _app-8e4343c775e4a141.js:618
+391 @ _app-8e4343c775e4a141.js:618
+s @ _app-8e4343c775e4a141.js:618
+584 @ _app-8e4343c775e4a141.js:618
+s @ _app-8e4343c775e4a141.js:618
+177 @ _app-8e4343c775e4a141.js:618
+s @ _app-8e4343c775e4a141.js:618
+545 @ _app-8e4343c775e4a141.js:613
+s @ _app-8e4343c775e4a141.js:618
+167 @ _app-8e4343c775e4a141.js:613
+s @ _app-8e4343c775e4a141.js:618
+(anonymous) @ _app-8e4343c775e4a141.js:618
+27596 @ _app-8e4343c775e4a141.js:618
+f @ webpack-52e4ea32f2db78a8.js:1
+48670 @ _app-8e4343c775e4a141.js:330
+f @ webpack-52e4ea32f2db78a8.js:1
+22751 @ _app-8e4343c775e4a141.js:330
+f @ webpack-52e4ea32f2db78a8.js:1
+70442 @ _app-8e4343c775e4a141.js:6
+f @ webpack-52e4ea32f2db78a8.js:1
+12112 @ _app-8e4343c775e4a141.js:564
+f @ webpack-52e4ea32f2db78a8.js:1
+4684 @ _app-8e4343c775e4a141.js:564
+f @ webpack-52e4ea32f2db78a8.js:1
+47243 @ _app-8e4343c775e4a141.js:330
+f @ webpack-52e4ea32f2db78a8.js:1
+35998 @ _app-8e4343c775e4a141.js:613
+f @ webpack-52e4ea32f2db78a8.js:1
+45796 @ _app-8e4343c775e4a141.js:613
+f @ webpack-52e4ea32f2db78a8.js:1
+90498 @ _app-8e4343c775e4a141.js:564
+f @ webpack-52e4ea32f2db78a8.js:1
+53198 @ _app-8e4343c775e4a141.js:568
+f @ webpack-52e4ea32f2db78a8.js:1
+88743 @ _app-8e4343c775e4a141.js:330
+f @ webpack-52e4ea32f2db78a8.js:1
+29665 @ _app-8e4343c775e4a141.js:611
+f @ webpack-52e4ea32f2db78a8.js:1
+(anonymous) @ _app-8e4343c775e4a141.js:330
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+Promise.then
+onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
+s @ main-6b4b235ae1bf0bb2.js:1
+6840 @ _app-8e4343c775e4a141.js:330
+f @ webpack-52e4ea32f2db78a8.js:1
+t @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ webpack-52e4ea32f2db78a8.js:1
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+_ @ webpack-52e4ea32f2db78a8.js:1
+(anonymous) @ _app-8e4343c775e4a141.js:1Understand this errorAI
+VM269:1 
         
         
-       Failed to load resource: net::ERR_BLOCKED_BY_CLIENTUnderstand this errorAI
-_app-b9e263835e1a5642.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
-
-(anonymous) @ _app-b9e263835e1a5642.js:640Understand this errorAI
-frame-modern.6b2e1eb9.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+       GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
+(anonymous) @ VM269:1
+(anonymous) @ VM269:1
+m @ main-6b4b235ae1bf0bb2.js:1
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+o @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-lockdown-install.js:1 Removing unpermitted intrinsics
+_app-8e4343c775e4a141.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+
+(anonymous) @ _app-8e4343c775e4a141.js:640
+(anonymous) @ _app-8e4343c775e4a141.js:640
+initializeAdapter @ _app-8e4343c775e4a141.js:564
+(anonymous) @ _app-8e4343c775e4a141.js:613
+(anonymous) @ _app-8e4343c775e4a141.js:613
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
 Understand this errorAI
-content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Verifying event data match: Object
-content.js:1 [Polyteller Content] Event data found: {
-  "id": "903378",
-  "ticker": "highest-grossing-movie-in-2024",
-  "slug": "highest-grossing-movie-in-2024",
-  "title": "Highest grossing movie in 2024?",
-  "description": "This is a market on predicting which film will have the highest box office earnings in 2024.",
-  "resolutionSource": "https://www.boxofficemojo.com/year/2024/?grossesOption=calendarGrosses",
-  "startDate": "2024-01-31T23:47:00Z",
-  "creationDate": "2024-01-31T23:49:53.257Z",
-  "endDate": "2024-12-30T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
-  "active": true,
-  "closed": false,
-  "archived": false,
-  "new": false,
-  "featured": false,
-  "restricted": true,
-  "liquidity": 1606195.57411,
-  "volume": 41575364.404187,
-  "openInterest": 0,
-  "sortBy": "price",
-  "published_at": "2024-01-31 22:05:51.564+00",
-  "updatedBy": "15",
-  "createdAt": "2024-01-31T22:05:51.752Z",
-  "updatedAt": "2024-11-08T14:09:00.845454Z",
-  "commentsEnabled": false,
-  "competitive": 0.8470089994706194,
-  "volume24hr": 597294.951836,
-  "featuredImage": "https://polymarket-upload.s3.us-east-2.amazonaws.com/cinema.png",
-  "enableOrderBook": true,
-  "liquidityClob": 1606195.57411,
-  "_sync": false,
-  "negRisk": true,
-  "negRiskMarketID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459200",
-  "negRiskFeeBips": 0,
-  "commentCount": 675,
-  "markets": [
-    {
-      "id": "254248",
-      "question": "Will 'Deadpool 3' gross most in 2024?",
-      "conditionId": "0xbce0ff6f8ee396ec39e76c8b60d747272e8bf4bd65f31d0e131b64aceb0be3b5",
-      "slug": "will-deadpool-3-gross-most-in-2024",
-      "resolutionSource": "",
-      "endDate": "2024-12-29T00:00:00Z",
-      "liquidity": "193531.34011",
-      "startDate": "2024-01-31T23:47:00Z",
-      "fee": "20000000000000000",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/deadpool.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/deadpool.png",
-      "description": "This market will resolve to \"Yes\" if the \"Gross\" column on https://www.boxofficemojo.com/year/2024/?grossesOption=calendarGrosses shows 'Deadpool 3' (2024) as the film with the highest 2024 gross once data for December 31 is made available. Otherwise, this market will resolve to \"No\".\n\nNote: This market is about the movie's domestic calendar gross in 2024 - dates outside of 2024 will not count toward this movie's gross. \n\nIn the event of an exact tie the film that comes first alphabetically will be considered the winner.\n\nIf there is no final data available by January 7, 2025, 11:59 PM ET, another credible resolution source will be chosen.",
-      "outcomes": [
-        "Yes",
-        "No"
-      ],
-      "outcomePrices": [
-        "0.003",
-        "0.997"
-      ],
-      "volume": "1562448.960259",
-      "active": true,
-      "marketType": "normal",
-      "closed": false,
-      "marketMakerAddress": "",
-      "createdAt": "2024-01-31T22:05:51.691Z",
-      "updatedAt": "2024-11-08T14:08:13.295234Z",
-      "wideFormat": false,
-      "new": false,
-      "featured": false,
-      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
-      "archived": false,
-      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
-      "restricted": true,
-      "groupItemTitle": "Deadpool 3",
-      "groupItemThreshold": "3",
-      "questionID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459202",
-      "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.001,
-      "orderMinSize": 5,
-      "volumeNum": 1562448.960259,
-      "liquidityNum": 193531.34011,
-      "endDateIso": "2024-12-29",
-      "startDateIso": "2024-01-31",
-      "hasReviewedDates": true,
-      "commentsEnabled": false,
-      "volume24hr": 27821.20175,
-      "secondsDelay": 0,
-      "clobTokenIds": [
-        "10121150820228421248893179951676281814158596154979528998074907576296371458438",
-        "61111845596144826019799073782298606899058648885167941219160994016138099600108"
-      ],
-      "umaBond": "500.0",
-      "umaReward": "5.0",
-      "fpmmLive": true,
-      "volume24hrClob": 27821.20175,
-      "volumeClob": 1562448.960259,
-      "liquidityClob": 193531.34011,
-      "makerBaseFee": 0,
-      "takerBaseFee": 0,
-      "customLiveness": 0,
-      "acceptingOrders": true,
-      "negRisk": true,
-      "negRiskMarketID": "0x3f3ae07223492f5ba2e46adba8c64c98df1995a1002d78f96434611a4b459200",
-      "negRiskRequestID": "0x4387722600154f2e4903295cd6d2a1f3ad0475420dbc791d7a7dad2e4f3045cf",
-      "notificationsEnabled": true,
-      "_sync": false,
-      "creator": "",
-      "ready": false,
-      "funded": false,
-      "cyom": false,
-      "competitive": 0.8019188313797254,
-      "pagerDutyNotificationEnabled": false,
-      "approved": true,
-      "clobRewards": [
-        {
-          "id": "300",
-          "conditionId": "0xbce0ff6f8ee396ec39e76c8b60d747272e8bf4bd65f31d0e131b64aceb0be3b5",
-          "assetAddress":
-content.js:1 [Polyteller Content] Using year end date: Object
-content.js:1 [Polyteller Content] Original end date: December 31, 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Wed Jan 01 2025 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Wed, 01 Jan 2025 04:59:00 GMT
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "903378",
-  "title": "Highest grossing movie in 2024?",
-  "endTime": 1735707540000,
-  "endDate": "December 31, 2024, 11:59:00 PM",
-  "timezone": "ET",
-  "url": "https://polymarket.com/event/highest-grossing-movie-in-2024"
-}
-content.js:1 [Polyteller Content] Event info extracted: Object
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: Object
-content.js:1 [Polyteller Content] Creating new countdown element
-content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 49m 1s
-content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-lockdown-install.js:1 Removing unpermitted intrinsics
-content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
-privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
-embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
-25Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
-framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
-_ @ framework-a667dbba83e63e79.js:9Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: Object
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 49m 0s
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 59s
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 58s
-270Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+_app-8e4343c775e4a141.js:578 
+        
+        
+       GET https://gamma-api.polymarket.com/is-logged-in 422 (Unprocessable Content)
+(anonymous) @ _app-8e4343c775e4a141.js:578
+(anonymous) @ _app-8e4343c775e4a141.js:578
+(anonymous) @ _app-8e4343c775e4a141.js:613
+a @ _app-8e4343c775e4a141.js:613
+(anonymous) @ _app-8e4343c775e4a141.js:302
+e.exports @ _app-8e4343c775e4a141.js:302
+e.exports @ _app-8e4343c775e4a141.js:302
+c.request @ _app-8e4343c775e4a141.js:302
+c.<computed> @ _app-8e4343c775e4a141.js:302
+(anonymous) @ _app-8e4343c775e4a141.js:302
+execute @ _app-8e4343c775e4a141.js:1987
+av @ _app-8e4343c775e4a141.js:568
+o @ _app-8e4343c775e4a141.js:1975
+b @ _app-8e4343c775e4a141.js:1975
+start @ _app-8e4343c775e4a141.js:1975
+fetch @ _app-8e4343c775e4a141.js:1975
+#L @ _app-8e4343c775e4a141.js:1975
+onSubscribe @ _app-8e4343c775e4a141.js:1975
+subscribe @ _app-8e4343c775e4a141.js:1975
+(anonymous) @ _app-8e4343c775e4a141.js:1975
+aL @ framework-a667dbba83e63e79.js:9
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
 
 (anonymous) @ 9635.7df19093a14523ab.js:1
@@ -178,13 +129,386 @@ connect @ 9635.7df19093a14523ab.js:1
 subscribe @ 9635.7df19093a14523ab.js:1
 d @ 9635.7df19093a14523ab.js:1
 p @ 9635.7df19093a14523ab.js:1
-getProvider @ _app-b9e263835e1a5642.js:1975
+getProvider @ _app-8e4343c775e4a141.js:1975
 await in getProvider
-i @ _app-b9e263835e1a5642.js:1975
-setTimeout
-(anonymous) @ _app-b9e263835e1a5642.js:578
-(anonymous) @ inpage.js:12
-write @ inpage.js:12
+i @ _app-8e4343c775e4a141.js:1975
+await in i
+onMount @ _app-8e4343c775e4a141.js:2009
+await in onMount
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+o @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/popular-vote-margin-of-victory-0pt25-ranges
+content.js:1 [Polyteller Content] Found JSON data: {props: {…}, page: '/event/[...slug]', query: {…}, buildId: 'CHegxzn7SdX5xTn1aRi4X', isFallback: false, …}
+content.js:1 [Polyteller Content] Extracted event data: {id: '14231', ticker: 'popular-vote-margin-of-victory-0pt25-ranges', slug: 'popular-vote-margin-of-victory-0pt25-ranges', title: 'Popular vote margin of victory (0.25% ranges)?', description: 'This is a market on the margin of victory in the popular vote, categorized into 0.25% ranges.', …}
+content.js:1 [Polyteller Content] Market rules: This market will resolve to "Yes” if the Republican Party wins the popular vote in the 2024 U.S. Presidential Election by 2.25% or more of the popular vote when compared with the second place party. Otherwise, this market will resolve to "No".
+
+For the purpose of resolving this market, the 'margin of victory' is defined as the absolute difference between the percentages of votes received by the Republican Party and the second-place party. Percentages of the votes received by each party will be determined by dividing the total number of votes each of the two parties receives by the sum of all votes cast in the election.
+
+This market will resolve based off the official vote count once all States and D.C. have certified their votes.
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'popular-vote-margin-of-victory-0pt25-ranges', eventSlug: 'popular-vote-margin-of-victory-0pt25-ranges', urlPath: '/event/popular-vote-margin-of-victory-0pt25-ranges'}
+content.js:1 [Polyteller Content] Event data found: {
+  "id": "14231",
+  "ticker": "popular-vote-margin-of-victory-0pt25-ranges",
+  "slug": "popular-vote-margin-of-victory-0pt25-ranges",
+  "title": "Popular vote margin of victory (0.25% ranges)?",
+  "description": "This is a market on the margin of victory in the popular vote, categorized into 0.25% ranges.",
+  "resolutionSource": "",
+  "startDate": "2024-11-08T16:04:58.059088Z",
+  "creationDate": "2024-11-08T16:04:58.059085Z",
+  "endDate": "2025-01-31T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/popular-vote-margin-of-victory-0pt25-ranges-O1-TZMS2w7xh.jpg",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/popular-vote-margin-of-victory-0pt25-ranges-O1-TZMS2w7xh.jpg",
+  "active": true,
+  "closed": false,
+  "archived": false,
+  "new": false,
+  "featured": false,
+  "restricted": true,
+  "liquidity": 60919.47522,
+  "volume": 175844.586585,
+  "openInterest": 0,
+  "createdAt": "2024-11-08T15:32:48.066365Z",
+  "updatedAt": "2024-11-09T09:08:52.850413Z",
+  "competitive": 0.9975062344139651,
+  "volume24hr": 175844.586585,
+  "enableOrderBook": true,
+  "liquidityClob": 60919.47522,
+  "_sync": false,
+  "negRisk": true,
+  "negRiskMarketID": "0x334a34733db575c08be323da9f680e2a93f752499442fa793a85a18fec97e700",
+  "commentCount": 17,
+  "markets": [
+    {
+      "id": "512346",
+      "question": "GOP wins popular vote by 2.25% or more?",
+      "conditionId": "0x61688b20d65af6b5d476ba6f10679b64b3373a0e2c59fd0959b38758a8e43a99",
+      "slug": "gop-wins-popular-vote-by-2pt25-or-more",
+      "resolutionSource": "",
+      "endDate": "2025-01-31T12:00:00Z",
+      "liquidity": "21710.58271",
+      "startDate": "2024-11-08T16:04:50.535527Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/popular-vote-margin-of-victory-0pt25-ranges-O1-TZMS2w7xh.jpg",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/popular-vote-margin-of-victory-0pt25-ranges-O1-TZMS2w7xh.jpg",
+      "description": "This market will resolve to \"Yes” if the Republican Party wins the popular vote in the 2024 U.S. Presidential Election by 2.25% or more of the popular vote when compared with the second place party. Otherwise, this market will resolve to \"No\".\n\nFor the purpose of resolving this market, the 'margin of victory' is defined as the absolute difference between the percentages of votes received by the Republican Party and the second-place party. Percentages of the votes received by each party will be determined by dividing the total number of votes each of the two parties receives by the sum of all votes cast in the election.\n\nThis market will resolve based off the official vote count once all States and D.C. have certified their votes.",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "outcomePrices": [
+        "0.0155",
+        "0.9845"
+      ],
+      "volume": "45381.723923",
+      "active": true,
+      "closed": false,
+      "marketMakerAddress": "",
+      "createdAt": "2024-11-08T15:36:19.574528Z",
+      "updatedAt": "2024-11-09T09:08:07.316214Z",
+      "new": false,
+      "featured": false,
+      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
+      "archived": false,
+      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "restricted": true,
+      "groupItemTitle": "GOP by 2.25% or more",
+      "groupItemThreshold": "4",
+      "questionID": "0x334a34733db575c08be323da9f680e2a93f752499442fa793a85a18fec97e704",
+      "enableOrderBook": true,
+      "orderPriceMinTickSize": 0.001,
+      "orderMinSize": 5,
+      "volumeNum": 45381.723923,
+      "liquidityNum": 21710.58271,
+      "endDateIso": "2025-01-31",
+      "startDateIso": "2024-11-08",
+      "hasReviewedDates": true,
+      "volume24hr": 45381.723923,
+      "clobTokenIds": [
+        "6555328771789420320974173038459211529231452215521767026953940448582022703112",
+        "86118545776564580817549473002962072930461122345174201747382649226800192347908"
+      ],
+      "umaBond": "500",
+      "umaReward": "5",
+      "volume24hrClob": 45381.723923,
+      "volumeClob": 45381.723923,
+      "liquidityClob": 21710.58271,
+      "acceptingOrders": true,
+      "negRisk": true,
+      "negRiskMarketID": "0x334a34733db575c08be323da9f680e2a93f752499442fa793a85a18fec97e700",
+      "negRiskRequestID": "0x360ddf87bf8961a30777272cb5c765962b8291e2b44bf3b47654978e7aa08d78",
+      "_sync": false,
+      "ready": false,
+      "funded": false,
+      "acceptingOrdersTimestamp": "2024-11-08T16:03:40Z",
+      "cyom": false,
+      "competitive": 0.8098869377587715,
+      "pagerDutyNotificationEnabled": false,
+      "approved": true,
+      "clobRewards": [
+        {
+          "id": "10231",
+          "conditionId": "0x61688b20d65af6b5d476ba6f10679b64b3373a0e2c59fd0959b38758a8e43a99",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 70,
+          "startDate": "2024-11-08",
+          "endDate": "2500-12-31"
+        }
+     
+content.js:1 [Polyteller Content] Market description: This market will resolve to "Yes” if the Republican Party wins the popular vote in the 2024 U.S. Presidential Election by 2.25% or more of the popular vote when compared with the second place party. Otherwise, this market will resolve to "No".
+
+For the purpose of resolving this market, the 'margin of victory' is defined as the absolute difference between the percentages of votes received by the Republican Party and the second-place party. Percentages of the votes received by each party will be determined by dividing the total number of votes each of the two parties receives by the sum of all votes cast in the election.
+
+This market will resolve based off the official vote count once all States and D.C. have certified their votes.
+content.js:1 [Polyteller Content] Converted UTC date to ET end of day: 2025-01-31T23:59:59-05:00
+content.js:1 [Polyteller Content] Original end date: 2025-01-31T23:59:59-05:00
+content.js:1 [Polyteller Content] Parsed end date (local): Sat Feb 01 2025 10:29:59 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Sat, 01 Feb 2025 04:59:59 GMT
+content.js:1 [Polyteller Content] Extracted event info: {
+  "id": "14231",
+  "title": "Popular vote margin of victory (0.25% ranges)?",
+  "endTime": 1738385999000,
+  "endDate": "2025-01-31T23:59:59-05:00",
+  "timezone": "ET",
+  "url": "https://polymarket.com/event/popular-vote-margin-of-victory-0pt25-ranges?tid=1731099378560"
+}
+content.js:1 [Polyteller Content] Event info extracted: {id: '14231', title: 'Popular vote margin of victory (0.25% ranges)?', endTime: 1738385999000, endDate: '2025-01-31T23:59:59-05:00', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '14231', title: 'Popular vote margin of victory (0.25% ranges)?', endTime: 1738385999000, endDate: '2025-01-31T23:59:59-05:00', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating new countdown element
+content.js:1 [Polyteller Content] Countdown element appended to body
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 49m 4s
+content.js:1 [Polyteller Content] Polyteller content script loaded
+content.js:1 [Polyteller DOMManipulator] Buy button interception set up
+content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
+privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
+lockdown-install.js:1 Removing unpermitted intrinsics
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+21Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
+framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
+_ @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oI @ framework-a667dbba83e63e79.js:9
+oD @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oO @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+frame-modern.c67d31be.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
+embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+content.js:1 [Polyteller Content] Sending event info to background: {id: '14231', title: 'Popular vote margin of victory (0.25% ranges)?', endTime: 1738385999000, endDate: '2025-01-31T23:59:59-05:00', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 49m 3s
+content.js:1 [Polyteller Content] Received trade confirmation update: true
+content.js:1 [Polyteller Content] Updated trade confirmation setting: true
+48825-1e51df409deb4a3c.js:1 
+        
+        
+       POST https://api.magic.link/v1/auth/user/session/refresh 403 (Forbidden)
+a @ 48825-1e51df409deb4a3c.js:1
+s @ 48825-1e51df409deb4a3c.js:1
+Post @ 4667-823645c421bfd260.js:1
+mutationFn @ 22400-9d14ee474a488113.js:1
+fn @ 67791-fc31989de18bc970.js:1
+g @ 36070-7b8dab9b70afe0ae.js:1
+start @ 36070-7b8dab9b70afe0ae.js:1
+execute @ 67791-fc31989de18bc970.js:1
+await in execute
+mutate @ 25313-dc0655b79d89b094.js:6
+e @ 22400-9d14ee474a488113.js:1
+await in e
+(anonymous) @ 22400-9d14ee474a488113.js:1
+aW @ 412051b1-3b0b01b0ee913b56.js:1
+oe @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+e @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+or @ 412051b1-3b0b01b0ee913b56.js:1
+ol @ 412051b1-3b0b01b0ee913b56.js:1
+id @ 412051b1-3b0b01b0ee913b56.js:1
+o @ 412051b1-3b0b01b0ee913b56.js:1
+T @ 74806-4f60e6583381f545.js:1Understand this errorAI
+2_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at c (2100.8122e555f0442292.js:14:94398)
+    at n (_app-8e4343c775e4a141.js:575:2949)
+c @ 2100.8122e555f0442292.js:14
+n @ _app-8e4343c775e4a141.js:575Understand this errorAI
+_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at c (2100.8122e555f0442292.js:14:94398)
+    at n (_app-8e4343c775e4a141.js:575:2949)
+c @ 2100.8122e555f0442292.js:14
+n @ _app-8e4343c775e4a141.js:575
+postMessage
+_postMessage @ inpage.js:1
+_write @ inpage.js:1
 M @ inpage.js:12
 (anonymous) @ inpage.js:12
 I.write @ inpage.js:12
@@ -202,8 +526,57 @@ a.emit @ inpage.js:10
 R @ inpage.js:12
 M @ inpage.js:12
 I.push @ inpage.js:12
-_onData @ inpage.js:1
-_onMessage @ inpage.js:1
+o @ inpage.js:12
+middleware @ inpage.js:12
+(anonymous) @ inpage.js:1
+(anonymous) @ inpage.js:1
+(anonymous) @ inpage.js:1
+m @ inpage.js:1
+h @ inpage.js:1
+(anonymous) @ inpage.js:1
+o @ inpage.js:1
+Promise.then
+c @ inpage.js:1
+o @ inpage.js:1
+Promise.then
+c @ inpage.js:1
+o @ inpage.js:1
+Promise.then
+c @ inpage.js:1
+(anonymous) @ inpage.js:1
+m @ inpage.js:1
+d @ inpage.js:1
+(anonymous) @ inpage.js:1
+(anonymous) @ inpage.js:1
+m @ inpage.js:1
+f @ inpage.js:1
+(anonymous) @ inpage.js:1
+(anonymous) @ inpage.js:1
+m @ inpage.js:1
+l @ inpage.js:1
+handle @ inpage.js:1
+_rpcRequest @ inpage.js:1
+(anonymous) @ inpage.js:1
+request @ inpage.js:1
+getAccounts @ _app-8e4343c775e4a141.js:1975
+await in getAccounts
+timeout @ _app-8e4343c775e4a141.js:1975
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+n @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ _app-8e4343c775e4a141.js:1975
+s @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ _app-8e4343c775e4a141.js:2009
+i @ _app-8e4343c775e4a141.js:2009
+isAuthorized @ _app-8e4343c775e4a141.js:1975
+await in isAuthorized
+i @ _app-8e4343c775e4a141.js:1975Understand this errorAI
+_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at c (2100.8122e555f0442292.js:14:94398)
+    at n (_app-8e4343c775e4a141.js:575:2949)
+c @ 2100.8122e555f0442292.js:14
+n @ _app-8e4343c775e4a141.js:575
 postMessage
 _postMessage @ contentscript.js:1
 _write @ contentscript.js:1
@@ -237,32 +610,107 @@ _onMessage @ contentscript.js:37
 (anonymous) @ contentscript.js:37
 Show 30 more frames
 Show lessUnderstand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 57s
-_app-b9e263835e1a5642.js:578 initializing client with geoblock token two 
-_app-b9e263835e1a5642.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
-    at Object.postMessage (_app-b9e263835e1a5642.js:611:8580)
-    at _app-b9e263835e1a5642.js:611:16320
-postMessage @ _app-b9e263835e1a5642.js:611
-(anonymous) @ _app-b9e263835e1a5642.js:611
-Promise.then
-(anonymous) @ _app-b9e263835e1a5642.js:611
-Promise.then
-eS @ _app-b9e263835e1a5642.js:611
-postMessage @ _app-b9e263835e1a5642.js:611
-(anonymous) @ _app-b9e263835e1a5642.js:611
-(anonymous) @ _app-b9e263835e1a5642.js:1975
-(anonymous) @ _app-b9e263835e1a5642.js:1975
-batch @ _app-b9e263835e1a5642.js:1975
-notify @ _app-b9e263835e1a5642.js:1975
-(anonymous) @ _app-b9e263835e1a5642.js:1975
-batch @ _app-b9e263835e1a5642.js:1975
-#s @ _app-b9e263835e1a5642.js:1975
-setData @ _app-b9e263835e1a5642.js:1975
-onSuccess @ _app-b9e263835e1a5642.js:1975
-y @ _app-b9e263835e1a5642.js:1975Understand this errorAI
-_app-b9e263835e1a5642.js:611 Uncaught (in promise) DataCloneError: Failed to execute 'postMessage' on 'BroadcastChannel': async(r,l={})=>{let{dedupe:f=!1,retryDelay:p=150,retryCount:m=3,uid:y}={...t,...l},g=f?(0,s.w)((0,o.$G)(`${y}.$...<omitted>...)} could not be cloned.
-    at Object.postMessage (_app-b9e263835e1a5642.js:611:8580)
-    at _app-b9e263835e1a5642.js:611:16320
-postMessage @ _app-b9e263835e1a5642.js:611
-(anonymous) @ _app-b9e263835e1a5642.js:611Understand this errorAI
-content.js:1 [Polyteller Content] Updated countdown text: 53d 14h 48m 56s
+_app-8e4343c775e4a141.js:581 
+        
+        
+       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
+i @ _app-8e4343c775e4a141.js:581
+l @ _app-8e4343c775e4a141.js:581
+i @ _app-8e4343c775e4a141.js:581
+a @ _app-8e4343c775e4a141.js:581
+_sendEnvelope @ _app-8e4343c775e4a141.js:581
+sendEvent @ _app-8e4343c775e4a141.js:580
+(anonymous) @ _app-8e4343c775e4a141.js:580
+(anonymous) @ _app-8e4343c775e4a141.js:10
+(anonymous) @ _app-8e4343c775e4a141.js:10
+_executeHandlers @ _app-8e4343c775e4a141.js:10
+(anonymous) @ _app-8e4343c775e4a141.js:10
+s @ _app-8e4343c775e4a141.js:10
+then @ _app-8e4343c775e4a141.js:10
+_processEvent @ _app-8e4343c775e4a141.js:580
+_captureEvent @ _app-8e4343c775e4a141.js:580
+(anonymous) @ _app-8e4343c775e4a141.js:580
+(anonymous) @ _app-8e4343c775e4a141.js:10
+(anonymous) @ _app-8e4343c775e4a141.js:10
+_executeHandlers @ _app-8e4343c775e4a141.js:10
+(anonymous) @ _app-8e4343c775e4a141.js:10
+s @ _app-8e4343c775e4a141.js:10
+then @ _app-8e4343c775e4a141.js:10
+captureException @ _app-8e4343c775e4a141.js:580
+captureException @ _app-8e4343c775e4a141.js:10
+captureException @ _app-8e4343c775e4a141.js:6
+c @ _app-8e4343c775e4a141.js:6
+(anonymous) @ _app-8e4343c775e4a141.js:575
+withScope @ _app-8e4343c775e4a141.js:6
+m @ _app-8e4343c775e4a141.js:6
+n @ _app-8e4343c775e4a141.js:575Understand this errorAI
+_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at c (2100.8122e555f0442292.js:14:94398)
+    at n (_app-8e4343c775e4a141.js:575:2949)
+c @ 2100.8122e555f0442292.js:14
+n @ _app-8e4343c775e4a141.js:575
+postMessage
+_postMessage @ contentscript.js:1
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+h @ contentscript.js:61
+a.emit @ contentscript.js:37
+T @ contentscript.js:61
+k @ contentscript.js:61
+A.push @ contentscript.js:61
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+h @ contentscript.js:61
+a.emit @ contentscript.js:37
+T @ contentscript.js:61
+k @ contentscript.js:61
+A.push @ contentscript.js:61
+_write @ contentscript.js:1
+k @ contentscript.js:61
+(anonymous) @ contentscript.js:61
+A.write @ contentscript.js:61
+d @ contentscript.js:37
+a.emit @ contentscript.js:37
+$ @ contentscript.js:37
+F @ contentscript.js:37
+D.push @ contentscript.js:37
+_onMessage @ contentscript.js:37
+(anonymous) @ contentscript.js:37
+Show 30 more frames
+Show lessUnderstand this errorAI
+_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at c (2100.8122e555f0442292.js:14:94398)
+    at n (_app-8e4343c775e4a141.js:575:2949)
+c @ 2100.8122e555f0442292.js:14
+n @ _app-8e4343c775e4a141.js:575Understand this errorAI
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 49m 2s
+lockdown-install.js:1 Removing unpermitted intrinsics
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 49m 1s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 49m 0s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 59s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 58s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 57s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 56s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 55s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 54s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 53s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 52s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 51s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 50s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 49s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 48s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 47s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 46s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 45s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 44s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 43s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 42s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 41s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 40s
+content.js:1 [Polyteller Content] Updated countdown text: 83d 19h 48m 39s
