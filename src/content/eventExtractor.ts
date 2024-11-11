@@ -19,6 +19,38 @@ interface DatePattern {
 // Define our organized patterns
 const DATE_PATTERNS: DatePattern[] = [
   {
+    name: 'BETWEEN_DATES_WITH_DIFFERENT_FORMATS',
+    pattern: /between\s+([A-Za-z]+\s+\d{1,2},?\s*\d{4}),?\s*(\d{1,2}:\d{2})\s*([AP]M)\s*([A-Z]{2,3})?(?:\s*\(inclusive\))?\s*and\s+([A-Za-z]+\s+\d{1,2}),?\s*(\d{1,2}:\d{2})\s*([AP]M)\s*([A-Z]{2,3})?/i,
+    priority: 160,
+    format: "between Date1, Time1 AMPM TZ and Date2, Time2 AMPM TZ",
+    handler: (match: RegExpMatchArray) => {
+      const [
+        ,
+        startDateFull,    // Full first date including year
+        startTime, startAMPM, startTZ,
+        endDatePart,      // Just month and day for end date
+        endTime, endAMPM, endTZ
+      ] = match;
+
+      // Extract year from start date
+      const yearMatch = startDateFull.match(/\d{4}/);
+      const year = yearMatch ? yearMatch[0] : new Date().getFullYear().toString();
+
+      log('Content', 'Matched date parts:', {
+        startDateFull,
+        startTime, startAMPM, startTZ,
+        endDatePart, endTime, endAMPM, endTZ,
+        extractedYear: year
+      });
+
+      // Construct end date using year from start date
+      return {
+        endDateValue: `${endDatePart}, ${year}, ${endTime}:00 ${endAMPM}`,
+        timezone: endTZ || startTZ || 'ET'
+      };
+    }
+  },
+  {
     name: 'MAIN_EVENT_END_FORMAT',
     pattern: /(?:ends?|closes?|resolves?) (?:on |by )?December 31,? 2024(?:,? | at )?11:59(?::00)? PM ET/i,
     priority: 120,
@@ -203,6 +235,55 @@ const DATE_PATTERNS: DatePattern[] = [
       return {
         endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
         timezone: tz
+      };
+    }
+  },
+
+  {
+    name: 'BETWEEN_DATES_WITH_INCLUSIVE_END',
+    // Updated pattern to specifically match after "and"
+    pattern: /between.*?and\s+([A-Za-z]+ \d{1,2},?\s*\d{4}),?\s*(\d{1,2}):(\d{2})\s*([AP]M)\s*ET(?=\.|\s|$)/i,
+    priority: 150, // Highest priority
+    format: "between ... and Month DD, YYYY, HH:mm AM/PM ET",
+    handler: (match: RegExpMatchArray) => {
+      const [, datePart, hour, minute, ampm] = match;
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: 'ET'
+      };
+    }
+  },
+  {
+    name: 'BETWEEN_DATES_WITH_END',
+    // Backup pattern for cases without "inclusive"
+    pattern: /between.*?and\s+([A-Za-z]+ \d{1,2},?\s*\d{4}),?\s*(\d{1,2}):(\d{2})\s*([AP]M)\s*ET(?!\s*\(inclusive\))/i,
+    priority: 145,
+    format: "between ... and Month DD, YYYY, HH:mm AM/PM ET",
+    handler: (match: RegExpMatchArray) => {
+      const [, datePart, hour, minute, ampm] = match;
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: 'ET'
+      };
+    }
+  },
+  {
+    name: 'SHORT_DATE_TIME_FORMAT',
+    // Pattern to match "Dec 1, 3 AM ET" format
+    pattern: /([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{1,2})\s*([AP]M)\s*([A-Z]{2,3})/i,
+    priority: 165,  // Higher than BETWEEN_DATES pattern
+    format: "Month DD, HH AM/PM TZ",
+    handler: (match: RegExpMatchArray) => {
+      const [, month, day, hour, ampm, tz] = match;
+      const year = new Date().getFullYear() + 1; // Next year since these are future dates
+      
+      log('Content', 'Matched short date format:', {
+        month, day, hour, ampm, tz, year
+      });
+      
+      return {
+        endDateValue: `${month} ${day}, ${year}, ${hour}:00:00 ${ampm}`,
+        timezone: tz || 'ET'
       };
     }
   }
