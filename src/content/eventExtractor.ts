@@ -269,21 +269,88 @@ const DATE_PATTERNS: DatePattern[] = [
   },
   {
     name: 'SHORT_DATE_TIME_FORMAT',
-    // Pattern to match "Dec 1, 3 AM ET" format
     pattern: /([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{1,2})\s*([AP]M)\s*([A-Z]{2,3})/i,
-    priority: 165,  // Higher than BETWEEN_DATES pattern
+    priority: 165,
     format: "Month DD, HH AM/PM TZ",
     handler: (match: RegExpMatchArray) => {
       const [, month, day, hour, ampm, tz] = match;
-      const year = new Date().getFullYear() + 1; // Next year since these are future dates
+      
+      // Get the description text
+      const description = document.querySelector('[data-rbd-draggable-context-id]')?.textContent || '';
+      
+      // Multiple patterns to find year context
+      const yearContextPatterns = [
+        /(\d{4})\s+Atlantic\s+hurricane\s+season/i,  // "2024 Atlantic hurricane season"
+        /season\s+(\d{4})/i,                         // "season 2024"
+        /during\s+(\d{4})/i,                         // "during 2024"
+        /in\s+(\d{4})/i,                            // "in 2024"
+        /by\s+.*?(\d{4})/i,                         // "by ... 2024"
+        /\b(202\d)\b/                               // any 202x year as fallback
+      ];
+      
+      // Try each pattern to find year context
+      let yearFromContext = null;
+      for (const pattern of yearContextPatterns) {
+        const contextMatch = description.match(pattern);
+        if (contextMatch) {
+          yearFromContext = contextMatch[1];
+          break;
+        }
+      }
+      
+      // If no context year found, use current year + 1
+      const currentYear = new Date().getFullYear();
+      const year = yearFromContext || (currentYear + 1).toString();
       
       log('Content', 'Matched short date format:', {
-        month, day, hour, ampm, tz, year
+        month, day, hour, ampm, tz,
+        yearFromContext,
+        finalYear: year,
+        description: description.substring(0, 100) + '...' // Log first 100 chars
       });
+      
+      // For hurricane season specifically, ensure we use 2024
+      if (description.toLowerCase().includes('hurricane season') && 
+          description.toLowerCase().includes('2024')) {
+        return {
+          endDateValue: `${month} ${day}, 2024, ${hour}:00:00 ${ampm}`,
+          timezone: tz || 'ET'
+        };
+      }
       
       return {
         endDateValue: `${month} ${day}, ${year}, ${hour}:00:00 ${ampm}`,
         timezone: tz || 'ET'
+      };
+    }
+  },
+  {
+    name: 'BETWEEN_DATES_WITH_TIMEZONE_SUFFIX',
+    pattern: /between\s+([A-Za-z]+\s+\d{1,2},\s*\d{4}),\s*(\d{1,2}):(\d{2})\s*and\s+([A-Za-z]+\s+\d{1,2},\s*\d{4}),\s*(\d{1,2}):(\d{2})\s*in\s+the\s+([A-Z]{2})\s+timezone/i,
+    priority: 170, // Higher priority than other patterns
+    format: "between Month1 DD1, YYYY1, HH1:MM1 and Month2 DD2, YYYY2, HH2:MM2 in the TZ timezone",
+    handler: (match: RegExpMatchArray) => {
+      const [
+        ,
+        startDateFull, startHour, startMinute,  // Start date parts
+        endDateFull, endHour, endMinute,        // End date parts
+        timezone                                // Timezone from "in the ET timezone"
+      ] = match;
+
+      log('Content', 'Matched timezone suffix format:', {
+        startDateFull, startTime: `${startHour}:${startMinute}`,
+        endDateFull, endTime: `${endHour}:${endMinute}`,
+        timezone
+      });
+
+      // For 24-hour format times, determine AM/PM
+      const endHourNum = parseInt(endHour);
+      const endAMPM = endHourNum >= 12 ? 'PM' : 'AM';
+      const adjustedEndHour = endHourNum > 12 ? endHourNum - 12 : endHourNum;
+
+      return {
+        endDateValue: `${endDateFull}, ${adjustedEndHour}:${endMinute}:00 ${endAMPM}`,
+        timezone: timezone
       };
     }
   }
