@@ -1,66 +1,65 @@
 10The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-10The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
 lockdown-install.js:1 Removing unpermitted intrinsics
-229Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-_app-8e4343c775e4a141.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+131Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+_app-7732114c87a41608.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
 
-(anonymous) @ _app-8e4343c775e4a141.js:618
-391 @ _app-8e4343c775e4a141.js:618
-s @ _app-8e4343c775e4a141.js:618
-584 @ _app-8e4343c775e4a141.js:618
-s @ _app-8e4343c775e4a141.js:618
-177 @ _app-8e4343c775e4a141.js:618
-s @ _app-8e4343c775e4a141.js:618
-545 @ _app-8e4343c775e4a141.js:613
-s @ _app-8e4343c775e4a141.js:618
-167 @ _app-8e4343c775e4a141.js:613
-s @ _app-8e4343c775e4a141.js:618
-(anonymous) @ _app-8e4343c775e4a141.js:618
-27596 @ _app-8e4343c775e4a141.js:618
+(anonymous) @ _app-7732114c87a41608.js:618
+391 @ _app-7732114c87a41608.js:618
+s @ _app-7732114c87a41608.js:618
+584 @ _app-7732114c87a41608.js:618
+s @ _app-7732114c87a41608.js:618
+177 @ _app-7732114c87a41608.js:618
+s @ _app-7732114c87a41608.js:618
+545 @ _app-7732114c87a41608.js:613
+s @ _app-7732114c87a41608.js:618
+167 @ _app-7732114c87a41608.js:613
+s @ _app-7732114c87a41608.js:618
+(anonymous) @ _app-7732114c87a41608.js:618
+27596 @ _app-7732114c87a41608.js:618
 f @ webpack-52e4ea32f2db78a8.js:1
-48670 @ _app-8e4343c775e4a141.js:330
+48670 @ _app-7732114c87a41608.js:330
 f @ webpack-52e4ea32f2db78a8.js:1
-22751 @ _app-8e4343c775e4a141.js:330
+22751 @ _app-7732114c87a41608.js:330
 f @ webpack-52e4ea32f2db78a8.js:1
-70442 @ _app-8e4343c775e4a141.js:6
+70442 @ _app-7732114c87a41608.js:6
 f @ webpack-52e4ea32f2db78a8.js:1
-12112 @ _app-8e4343c775e4a141.js:564
+12112 @ _app-7732114c87a41608.js:564
 f @ webpack-52e4ea32f2db78a8.js:1
-4684 @ _app-8e4343c775e4a141.js:564
+4684 @ _app-7732114c87a41608.js:564
 f @ webpack-52e4ea32f2db78a8.js:1
-47243 @ _app-8e4343c775e4a141.js:330
+47243 @ _app-7732114c87a41608.js:330
 f @ webpack-52e4ea32f2db78a8.js:1
-35998 @ _app-8e4343c775e4a141.js:613
+35998 @ _app-7732114c87a41608.js:613
 f @ webpack-52e4ea32f2db78a8.js:1
-45796 @ _app-8e4343c775e4a141.js:613
+45796 @ _app-7732114c87a41608.js:613
 f @ webpack-52e4ea32f2db78a8.js:1
-90498 @ _app-8e4343c775e4a141.js:564
+90498 @ _app-7732114c87a41608.js:564
 f @ webpack-52e4ea32f2db78a8.js:1
-53198 @ _app-8e4343c775e4a141.js:568
+53198 @ _app-7732114c87a41608.js:568
 f @ webpack-52e4ea32f2db78a8.js:1
-88743 @ _app-8e4343c775e4a141.js:330
+88743 @ _app-7732114c87a41608.js:330
 f @ webpack-52e4ea32f2db78a8.js:1
-29665 @ _app-8e4343c775e4a141.js:611
+29665 @ _app-7732114c87a41608.js:611
 f @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-8e4343c775e4a141.js:330
+(anonymous) @ _app-7732114c87a41608.js:330
 (anonymous) @ main-6b4b235ae1bf0bb2.js:1
 Promise.then
 onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
 s @ main-6b4b235ae1bf0bb2.js:1
-6840 @ _app-8e4343c775e4a141.js:330
+6840 @ _app-7732114c87a41608.js:330
 f @ webpack-52e4ea32f2db78a8.js:1
-t @ _app-8e4343c775e4a141.js:2009
-(anonymous) @ _app-8e4343c775e4a141.js:2009
+t @ _app-7732114c87a41608.js:2009
+(anonymous) @ _app-7732114c87a41608.js:2009
 (anonymous) @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-8e4343c775e4a141.js:2009
+(anonymous) @ _app-7732114c87a41608.js:2009
 _ @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-8e4343c775e4a141.js:1Understand this errorAI
-VM12756:1 
+(anonymous) @ _app-7732114c87a41608.js:1Understand this errorAI
+VM174:1 
         
         
        GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
-(anonymous) @ VM12756:1
-(anonymous) @ VM12756:1
+(anonymous) @ VM174:1
+(anonymous) @ VM174:1
 m @ main-6b4b235ae1bf0bb2.js:1
 (anonymous) @ main-6b4b235ae1bf0bb2.js:1
 uU @ framework-a667dbba83e63e79.js:9
@@ -68,15 +67,14 @@ oV @ framework-a667dbba83e63e79.js:9
 o @ framework-a667dbba83e63e79.js:9
 x @ framework-a667dbba83e63e79.js:17
 T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-frame-modern.d011f63a.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
 5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-8e4343c775e4a141.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+_app-7732114c87a41608.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
 
-(anonymous) @ _app-8e4343c775e4a141.js:640
-(anonymous) @ _app-8e4343c775e4a141.js:640
-initializeAdapter @ _app-8e4343c775e4a141.js:564
-(anonymous) @ _app-8e4343c775e4a141.js:613
-(anonymous) @ _app-8e4343c775e4a141.js:613
+(anonymous) @ _app-7732114c87a41608.js:640
+(anonymous) @ _app-7732114c87a41608.js:640
+initializeAdapter @ _app-7732114c87a41608.js:564
+(anonymous) @ _app-7732114c87a41608.js:613
+(anonymous) @ _app-7732114c87a41608.js:613
 uU @ framework-a667dbba83e63e79.js:9
 oV @ framework-a667dbba83e63e79.js:9
 oP @ framework-a667dbba83e63e79.js:9
@@ -86,686 +84,191 @@ oU @ framework-a667dbba83e63e79.js:9
 ox @ framework-a667dbba83e63e79.js:9
 x @ framework-a667dbba83e63e79.js:17
 T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+frame-modern.4ea64da0.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
 content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Checking path: /event/when-will-gpt-5-be-announced
-content.js:1 [Polyteller Content] Found JSON data: {props: {…}, page: '/event/[...slug]', query: {…}, buildId: 'CHegxzn7SdX5xTn1aRi4X', isFallback: false, …}
-content.js:1 [Polyteller Content] Extracted event data: {id: '903771', ticker: 'when-will-gpt-5-be-announced', slug: 'when-will-gpt-5-be-announced', title: 'When will GPT-5 be announced?', description: 'This is a market on the predicted announcement date of GPT-5.', …}
-content.js:1 [Polyteller Content] Market rules: This market will resolve to “Yes” if OpenAI announces the completion of ChatGPT-5 and/or GPT-5 between April 1, 2024, 12:00 AM ET, and June 30, 2024, 11:59 PM ET. Otherwise, this market will resolve to “No”.
+content.js:1 [Polyteller Content] Checking path: /event/ufc-309-jones-vs-miocic
+content.js:1 [Polyteller Content] Found JSON data: {props: {…}, page: '/event/[...slug]', query: {…}, buildId: 't08bYx_Kp4xzt_kJsfTI_', isFallback: false, …}
+content.js:1 [Polyteller Content] Extracted event data: {id: '14345', ticker: 'ufc-309-jones-vs-miocic', slug: 'ufc-309-jones-vs-miocic', title: 'UFC 309: Jones vs. Miocic', description: 'This is a market on the outcome of the UFC 309 fight between Jon Jones and Stipe Miocic.', …}
+content.js:1 [Polyteller Content] Market rules: This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.
 
-Only official publicly issued communications from OpenAI will count towards this market's resolution. Unofficial statements or interviews by board members or employees, including Sam Altman, will not suffice for a "Yes" resolution.
+If Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.
 
-If it is announced that GPT-5 is completed before this market's timeframe begins, this market may immediately resolve to "No". Otherwise, it may not resolve to "No" until its end time has passed and the completion of GPT-5 has not been announced.
-
-GPT-5 refers to a product that is explicitly named GPT-5, or is a successor to GPT-4 in the way that GPT-4 was a successor to GPT-3. GPT-4.5 or such products will not count for this market's resolution.
-
-The primary resolution source for this market will be official OpenAI communications from its website https://openai.com/.
-content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'when-will-gpt-5-be-announced', eventSlug: 'when-will-gpt-5-be-announced', urlPath: '/event/when-will-gpt-5-be-announced'}
+If this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'ufc-309-jones-vs-miocic', eventSlug: 'ufc-309-jones-vs-miocic', urlPath: '/event/ufc-309-jones-vs-miocic'}
 content.js:1 [Polyteller Content] Event data found: {
-  "id": "903771",
-  "ticker": "when-will-gpt-5-be-announced",
-  "slug": "when-will-gpt-5-be-announced",
-  "title": "When will GPT-5 be announced?",
-  "description": "This is a market on the predicted announcement date of GPT-5.",
+  "id": "14345",
+  "ticker": "ufc-309-jones-vs-miocic",
+  "slug": "ufc-309-jones-vs-miocic",
+  "title": "UFC 309: Jones vs. Miocic",
+  "description": "This is a market on the outcome of the UFC 309 fight between Jon Jones and Stipe Miocic.",
   "resolutionSource": "",
-  "startDate": "2024-04-02T15:59:34.955661Z",
-  "creationDate": "2024-04-02T15:59:34.955655Z",
-  "endDate": "2024-12-30T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/openai+logo5.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/openai+logo5.png",
+  "startDate": "2024-11-11T21:59:26.232529Z",
+  "creationDate": "2024-11-11T21:59:26.232526Z",
+  "endDate": "2024-11-17T12:00:00Z",
+  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
+  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
   "active": true,
   "closed": false,
   "archived": false,
   "new": false,
   "featured": false,
   "restricted": true,
-  "liquidity": 10512.16717,
-  "volume": 906552.74209,
+  "liquidity": 59666.459,
+  "volume": 47216.138376,
   "openInterest": 0,
-  "sortBy": "ascending",
-  "published_at": "2024-03-08 19:48:33.538+00",
-  "createdAt": "2024-03-08T19:48:33.724Z",
-  "updatedAt": "2024-11-11T16:16:59.096883Z",
-  "commentsEnabled": false,
-  "competitive": 0.8536822731168623,
-  "volume24hr": 29421.931518,
-  "featuredImage": "https://polymarket-upload.s3.us-east-2.amazonaws.com/openai+logo5.png",
+  "createdAt": "2024-11-11T19:03:00.007924Z",
+  "updatedAt": "2024-11-12T20:41:12.563353Z",
+  "competitive": 0.9651578033008397,
+  "volume24hr": 47216.138376,
   "enableOrderBook": true,
-  "liquidityClob": 10512.16717,
+  "liquidityClob": 59666.459,
   "_sync": false,
-  "negRisk": true,
-  "negRiskMarketID": "0x4883b5650ede7fd20baa2230a4356d11cfacccb356dd9e77b5e7330fb4309700",
-  "commentCount": 78,
+  "negRisk": false,
+  "commentCount": 1,
   "markets": [
     {
-      "id": "255390",
-      "question": "GPT-5 announced in Q2 2024?",
-      "conditionId": "0xf9ea84139f0755473c01dd4890d4d95525ba2e5916006cfec37f8a3ad2c5b96d",
-      "slug": "gpt5-announced-in-q2-2024",
+      "id": "512737",
+      "question": "Jones vs. Miocic",
+      "conditionId": "0x97ee3bc5571ed6784a1d60ba65cfe84cbb9d1858135735d1c518ea1e4173ee66",
+      "slug": "jones-vs-miocic",
       "resolutionSource": "",
-      "endDate": "2024-06-30T12:00:00Z",
-      "startDate": "2024-04-02T15:55:17.401Z",
-      "fee": "20000000000000000",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/openai1.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/openai1.png",
-      "description": "This market will resolve to “Yes” if OpenAI announces the completion of ChatGPT-5 and/or GPT-5 between April 1, 2024, 12:00 AM ET, and June 30, 2024, 11:59 PM ET. Otherwise, this market will resolve to “No”.\n\nOnly official publicly issued communications from OpenAI will count towards this market's resolution. Unofficial statements or interviews by board members or employees, including Sam Altman, will not suffice for a \"Yes\" resolution.\n\nIf it is announced that GPT-5 is completed before this market's timeframe begins, this market may immediately resolve to \"No\". Otherwise, it may not resolve to \"No\" until its end time has passed and the completion of GPT-5 has not been announced.\n\nGPT-5 refers to a product that is explicitly named GPT-5, or is a successor to GPT-4 in the way that GPT-4 was a successor to GPT-3. GPT-4.5 or such products will not count for this market's resolution.\n\nThe primary resolution source for this market will be official OpenAI communications from its website https://openai.com/.",
+      "endDate": "2024-11-16T12:00:00Z",
+      "liquidity": "17455.5931",
+      "startDate": "2024-11-11T21:58:34.800876Z",
+      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
+      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
+      "description": "This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.\n\nIf Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.\n\nIf this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.",
       "outcomes": [
-        "Yes",
-        "No"
+        "Jones",
+        "Miocic"
       ],
       "outcomePrices": [
-        "0",
-        "1"
+        "0.84",
+        "0.16"
       ],
-      "volume": "82405.05526",
+      "volume": "12616.321207",
       "active": true,
-      "marketType": "normal",
-      "closed": true,
+      "closed": false,
       "marketMakerAddress": "",
-      "createdAt": "2024-03-08T19:48:33.719Z",
-      "updatedAt": "2024-07-02T12:15:49.486225Z",
-      "closedTime": "2024-07-01 13:21:19+00",
-      "wideFormat": false,
-      "new": true,
+      "createdAt": "2024-11-11T19:05:23.346101Z",
+      "updatedAt": "2024-11-12T20:40:44.60325Z",
+      "new": false,
       "featured": false,
       "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
       "archived": false,
-      "resolvedBy": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "resolvedBy": "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74",
       "restricted": true,
-      "groupItemTitle": "Q2",
+      "groupItemTitle": "Jones vs. Miocic",
       "groupItemThreshold": "0",
-      "questionID": "0x4883b5650ede7fd20baa2230a4356d11cfacccb356dd9e77b5e7330fb4309700",
-      "umaEndDate": "2024-07-01T13:21:19Z",
+      "questionID": "0xb77eb0b5eca80020bdf6d6312ae2b25b850e4d44bfb2444c0509376e2383d17f",
       "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.001,
+      "orderPriceMinTickSize": 0.01,
       "orderMinSize": 5,
-      "umaResolutionStatus": "resolved",
-      "volumeNum": 82405.06,
-      "endDateIso": "2024-06-30",
-      "startDateIso": "2024-04-02",
+      "volumeNum": 12616.321207,
+      "liquidityNum": 17455.5931,
+      "endDateIso": "2024-11-16",
+      "startDateIso": "2024-11-11",
       "hasReviewedDates": true,
-      "commentsEnabled": false,
-      "secondsDelay": 0,
+      "volume24hr": 12616.321207,
       "clobTokenIds": [
-        "34595476807041084520123811820184407522235577566195600529417907160752744400174",
-        "36495905039485267311463863285211838357744932950794920917371317724239270246007"
+        "26273356570896241953034700734887489583504497600769222484918200490947602500667",
+        "52322813256145561352340692238865106396488670654697372703953972611933643221728"
       ],
       "umaBond": "500",
       "umaReward": "5",
-      "fpmmLive": false,
-      "volumeClob": 82405.05526,
-      "makerBaseFee": 0,
-      "takerBaseFee": 0,
-      "customLiveness": 0,
-      "acceptingOrders": false,
-      "negRisk": true,
-      "negRiskMarketID": "0x4883b5650ede7fd20baa2230a4356d11cfacccb356dd9e77b5e7330fb4309700",
-      "negRiskRequestID": "0xdd0e7e1d3a735d5f5581e6c939e1e2de21be73471e251128681812a50099a9ba",
-      "notificationsEnabled": true,
+      "volume24hrClob": 12616.321207,
+      "volumeClob": 12616.321207,
+      "liquidityClob": 17455.5931,
+      "acceptingOrders": true,
+      "negRisk": false,
       "_sync": false,
-      "creator": "",
       "ready": false,
       "funded": false,
+      "acceptingOrdersTimestamp": "2024-11-11T21:57:27Z",
       "cyom": false,
+      "competitive": 0.8963786303334529,
       "pagerDutyNotificationEnabled": false,
       "approved": true,
       "clobRewards": [
         {
-          "id": "9",
-          "condi
-content.js:1 [Polyteller Content] Market description: This market will resolve to “Yes” if OpenAI announces the completion of ChatGPT-5 and/or GPT-5 between April 1, 2024, 12:00 AM ET, and June 30, 2024, 11:59 PM ET. Otherwise, this market will resolve to “No”.
+          "id": "10319",
+          "conditionId": "0x97ee3bc5571ed6784a1d60ba65cfe84cbb9d1858135735d1c518ea1e4173ee66",
+          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "rewardsAmount": 0,
+          "rewardsDailyRate": 20,
+          "startDate": "2024-11-11",
+          "endDate": "2500-12-31"
+        }
+      ],
+      "rewardsMinSize": 50,
+      "rewardsMaxSpread": 3.5,
+      "spread": 0.02,
+      "lastTradePrice": 0.84,
+      "bestBid": 0.83,
+      "bestAsk": 0.85,
+      "automaticallyActive": true,
+      "clearBookOnStart": true,
+      "showGmpSeries": false,
+      "showGmpOutcome": false,
+      "manualActivation": false,
+      "lower_bound_date": null,
+      "upper_bound_date": null,
+      "market_type": null,
+      "resolution_source": "",
+      "end_date": "2024-11-16T12:00:00Z",
+      "amm_type": null,
+      "x_axis_value": null,
+      "y_axis_value": null,
+      "denomination_token": null,
+      "resolved_by": "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74",
+      "upper_bound": null,
+      "lower_bound": null,
+      "created_at": "2024-11-11T19:05:23.346101Z",
+      "updated_at": "2024-11-12T20:40:44.60325Z",
+      "
+content.js:1 [Polyteller Content] Market description: This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.
 
-Only official publicly issued communications from OpenAI will count towards this market's resolution. Unofficial statements or interviews by board members or employees, including Sam Altman, will not suffice for a "Yes" resolution.
+If Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.
 
-If it is announced that GPT-5 is completed before this market's timeframe begins, this market may immediately resolve to "No". Otherwise, it may not resolve to "No" until its end time has passed and the completion of GPT-5 has not been announced.
-
-GPT-5 refers to a product that is explicitly named GPT-5, or is a successor to GPT-4 in the way that GPT-4 was a successor to GPT-3. GPT-4.5 or such products will not count for this market's resolution.
-
-The primary resolution source for this market will be official OpenAI communications from its website https://openai.com/.
-content.js:1 [Polyteller Content] Matched pattern in market description: BETWEEN_DATES_WITH_INCLUSIVE_END (5) ['between April 1, 2024, 12:00 AM ET, and June 30, 2024, 11:59 PM ET', 'June 30, 2024', '11', '59', 'PM', index: 95, input: 'This market will resolve to “Yes” if OpenAI announ…munications from its website https://openai.com/.', groups: undefined]
-content.js:1 [Polyteller Content] Using BETWEEN_DATES_WITH_INCLUSIVE_END from market description: {endDateValue: 'June 30, 2024, 11:59:00 PM', timezone: 'ET'}
-content.js:1 [Polyteller Content] Original end date: June 30, 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Mon Jul 01 2024 09:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Mon, 01 Jul 2024 03:59:00 GMT
+If this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.
+content.js:1 [Polyteller Content] Matched pattern in market description: POSTPONED_AFTER_DATE (6) ['postponed after November 30 2024, 11:59 PM ET', 'November 30 2024', '11', '59', 'PM', 'ET', index: 346, input: 'This is a market on whether Jon Jones or Stipe Mio…ET, or cancelled, this market will resolve 50-50.', groups: undefined]
+content.js:1 [Polyteller Content] Matched postponed after date: {datePart: 'November 30 2024', hour: '11', minute: '59', ampm: 'PM', tz: 'ET'}
+content.js:1 [Polyteller Content] Using POSTPONED_AFTER_DATE from market description: {endDateValue: 'November 30 2024, 11:59:00 PM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Original end date: November 30 2024, 11:59:00 PM
+content.js:1 [Polyteller Content] Parsed end date (local): Sun Dec 01 2024 10:29:00 GMT+0530 (India Standard Time)
+content.js:1 [Polyteller Content] Parsed end date (UTC): Sun, 01 Dec 2024 04:59:00 GMT
 content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "903771",
-  "title": "When will GPT-5 be announced?",
-  "endTime": 1719806340000,
-  "endDate": "June 30, 2024, 11:59:00 PM",
+  "id": "14345",
+  "title": "UFC 309: Jones vs. Miocic",
+  "endTime": 1733029140000,
+  "endDate": "November 30 2024, 11:59:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/when-will-gpt-5-be-announced"
+  "url": "https://polymarket.com/event/ufc-309-jones-vs-miocic"
 }
-content.js:1 [Polyteller Content] Event info extracted: {id: '903771', title: 'When will GPT-5 be announced?', endTime: 1719806340000, endDate: 'June 30, 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '903771', title: 'When will GPT-5 be announced?', endTime: 1719806340000, endDate: 'June 30, 2024, 11:59:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Event info extracted: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
 content.js:1 [Polyteller Content] Creating new countdown element
 content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: Event has ended
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 42s
 content.js:1 [Polyteller Content] Polyteller content script loaded
 content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-lockdown-install.js:1 Removing unpermitted intrinsics
-lockdown-install.js:1 Removing unpermitted intrinsics
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-_app-8e4343c775e4a141.js:578 
-        
-        
-       GET https://gamma-api.polymarket.com/is-logged-in 422 (Unprocessable Content)
-(anonymous) @ _app-8e4343c775e4a141.js:578
-(anonymous) @ _app-8e4343c775e4a141.js:578
-(anonymous) @ _app-8e4343c775e4a141.js:613
-a @ _app-8e4343c775e4a141.js:613
-(anonymous) @ _app-8e4343c775e4a141.js:302
-e.exports @ _app-8e4343c775e4a141.js:302
-e.exports @ _app-8e4343c775e4a141.js:302
-c.request @ _app-8e4343c775e4a141.js:302
-c.<computed> @ _app-8e4343c775e4a141.js:302
-(anonymous) @ _app-8e4343c775e4a141.js:302
-execute @ _app-8e4343c775e4a141.js:1987
-av @ _app-8e4343c775e4a141.js:568
-o @ _app-8e4343c775e4a141.js:1975
-b @ _app-8e4343c775e4a141.js:1975
-start @ _app-8e4343c775e4a141.js:1975
-fetch @ _app-8e4343c775e4a141.js:1975
-#L @ _app-8e4343c775e4a141.js:1975
-onSubscribe @ _app-8e4343c775e4a141.js:1975
-subscribe @ _app-8e4343c775e4a141.js:1975
-(anonymous) @ _app-8e4343c775e4a141.js:1975
-aL @ framework-a667dbba83e63e79.js:9
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-oP @ framework-a667dbba83e63e79.js:9
-r8 @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oU @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
 content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
 privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
-9635.7df19093a14523ab.js:1 [Report Only] Refused to connect to 'wss://www.walletlink.org/rpc' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ 9635.7df19093a14523ab.js:1
-connect @ 9635.7df19093a14523ab.js:1
-connect @ 9635.7df19093a14523ab.js:1
-subscribe @ 9635.7df19093a14523ab.js:1
-d @ 9635.7df19093a14523ab.js:1
-p @ 9635.7df19093a14523ab.js:1
-getProvider @ _app-8e4343c775e4a141.js:1975
-await in getProvider
-i @ _app-8e4343c775e4a141.js:1975
-await in i
-onMount @ _app-8e4343c775e4a141.js:2009
-await in onMount
-(anonymous) @ _app-8e4343c775e4a141.js:2009
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-o @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
 framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
 Understand this errorAI
-embedded-wallets-7187e3aa8e3dae1b.js:1 Warning!
-embedded-wallets-7187e3aa8e3dae1b.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
-20Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
-framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
-_ @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oI @ framework-a667dbba83e63e79.js:9
-oD @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oO @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: {id: '903771', title: 'When will GPT-5 be announced?', endTime: 1719806340000, endDate: 'June 30, 2024, 11:59:00 PM', timezone: 'ET', …}
-2content.js:1 [Polyteller Content] Updated countdown text: Event has ended
-48825-1e51df409deb4a3c.js:1 
-        
-        
-       POST https://api.magic.link/v1/auth/user/session/refresh 403 (Forbidden)
-a @ 48825-1e51df409deb4a3c.js:1
-s @ 48825-1e51df409deb4a3c.js:1
-Post @ 4667-823645c421bfd260.js:1
-mutationFn @ 22400-9d14ee474a488113.js:1
-fn @ 67791-fc31989de18bc970.js:1
-g @ 36070-7b8dab9b70afe0ae.js:1
-start @ 36070-7b8dab9b70afe0ae.js:1
-execute @ 67791-fc31989de18bc970.js:1
-await in execute
-mutate @ 25313-dc0655b79d89b094.js:6
-e @ 22400-9d14ee474a488113.js:1
-await in e
-(anonymous) @ 22400-9d14ee474a488113.js:1
-aW @ 412051b1-3b0b01b0ee913b56.js:1
-oe @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-e @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-or @ 412051b1-3b0b01b0ee913b56.js:1
-ol @ 412051b1-3b0b01b0ee913b56.js:1
-id @ 412051b1-3b0b01b0ee913b56.js:1
-o @ 412051b1-3b0b01b0ee913b56.js:1
-T @ 74806-4f60e6583381f545.js:1Understand this errorAI
-2_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
-    at JSON.parse (<anonymous>)
-    at c (2100.8122e555f0442292.js:14:94398)
-    at n (_app-8e4343c775e4a141.js:575:2949)
-c @ 2100.8122e555f0442292.js:14
-n @ _app-8e4343c775e4a141.js:575Understand this errorAI
-_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
-    at JSON.parse (<anonymous>)
-    at c (2100.8122e555f0442292.js:14:94398)
-    at n (_app-8e4343c775e4a141.js:575:2949)
-c @ 2100.8122e555f0442292.js:14
-n @ _app-8e4343c775e4a141.js:575
-postMessage
-_postMessage @ inpage.js:1
-_write @ inpage.js:1
-M @ inpage.js:12
-(anonymous) @ inpage.js:12
-I.write @ inpage.js:12
-d @ inpage.js:12
-a.emit @ inpage.js:10
-R @ inpage.js:12
-M @ inpage.js:12
-I.push @ inpage.js:12
-_write @ inpage.js:1
-M @ inpage.js:12
-(anonymous) @ inpage.js:12
-I.write @ inpage.js:12
-d @ inpage.js:12
-a.emit @ inpage.js:10
-R @ inpage.js:12
-M @ inpage.js:12
-I.push @ inpage.js:12
-o @ inpage.js:12
-middleware @ inpage.js:12
-(anonymous) @ inpage.js:1
-(anonymous) @ inpage.js:1
-(anonymous) @ inpage.js:1
-m @ inpage.js:1
-h @ inpage.js:1
-(anonymous) @ inpage.js:1
-o @ inpage.js:1
-Promise.then
-c @ inpage.js:1
-o @ inpage.js:1
-Promise.then
-c @ inpage.js:1
-o @ inpage.js:1
-Promise.then
-c @ inpage.js:1
-(anonymous) @ inpage.js:1
-m @ inpage.js:1
-d @ inpage.js:1
-(anonymous) @ inpage.js:1
-(anonymous) @ inpage.js:1
-m @ inpage.js:1
-f @ inpage.js:1
-(anonymous) @ inpage.js:1
-(anonymous) @ inpage.js:1
-m @ inpage.js:1
-l @ inpage.js:1
-handle @ inpage.js:1
-_rpcRequest @ inpage.js:1
-(anonymous) @ inpage.js:1
-request @ inpage.js:1
-getAccounts @ _app-8e4343c775e4a141.js:1975
-await in getAccounts
-timeout @ _app-8e4343c775e4a141.js:1975
-(anonymous) @ _app-8e4343c775e4a141.js:2009
-push.60229.r.d.F @ _app-8e4343c775e4a141.js:2009
-n @ _app-8e4343c775e4a141.js:2009
-(anonymous) @ _app-8e4343c775e4a141.js:1975
-s @ _app-8e4343c775e4a141.js:2009
-(anonymous) @ _app-8e4343c775e4a141.js:2009
-i @ _app-8e4343c775e4a141.js:2009
-isAuthorized @ _app-8e4343c775e4a141.js:1975
-await in isAuthorized
-i @ _app-8e4343c775e4a141.js:1975Understand this errorAI
-_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
-    at JSON.parse (<anonymous>)
-    at c (2100.8122e555f0442292.js:14:94398)
-    at n (_app-8e4343c775e4a141.js:575:2949)
-c @ 2100.8122e555f0442292.js:14
-n @ _app-8e4343c775e4a141.js:575
-postMessage
-_postMessage @ contentscript.js:1
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-d @ contentscript.js:37
-a.emit @ contentscript.js:37
-$ @ contentscript.js:37
-F @ contentscript.js:37
-D.push @ contentscript.js:37
-_onMessage @ contentscript.js:37
-(anonymous) @ contentscript.js:37
-Show 30 more frames
-Show lessUnderstand this errorAI
-_app-8e4343c775e4a141.js:581 
-        
-        
-       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
-i @ _app-8e4343c775e4a141.js:581
-l @ _app-8e4343c775e4a141.js:581
-i @ _app-8e4343c775e4a141.js:581
-a @ _app-8e4343c775e4a141.js:581
-_sendEnvelope @ _app-8e4343c775e4a141.js:581
-sendEvent @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-_executeHandlers @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-s @ _app-8e4343c775e4a141.js:10
-then @ _app-8e4343c775e4a141.js:10
-_processEvent @ _app-8e4343c775e4a141.js:580
-_captureEvent @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-_executeHandlers @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-s @ _app-8e4343c775e4a141.js:10
-then @ _app-8e4343c775e4a141.js:10
-captureException @ _app-8e4343c775e4a141.js:580
-captureException @ _app-8e4343c775e4a141.js:10
-captureException @ _app-8e4343c775e4a141.js:6
-c @ _app-8e4343c775e4a141.js:6
-(anonymous) @ _app-8e4343c775e4a141.js:575
-withScope @ _app-8e4343c775e4a141.js:6
-m @ _app-8e4343c775e4a141.js:6
-n @ _app-8e4343c775e4a141.js:575Understand this errorAI
-_app-8e4343c775e4a141.js:581 
-        
-        
-       POST https://polymarket.com/monitoring?o=462071&p=5464845 429 (Too Many Requests)
-i @ _app-8e4343c775e4a141.js:581
-l @ _app-8e4343c775e4a141.js:581
-i @ _app-8e4343c775e4a141.js:581
-a @ _app-8e4343c775e4a141.js:581
-_sendEnvelope @ _app-8e4343c775e4a141.js:581
-sendEvent @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-_executeHandlers @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-s @ _app-8e4343c775e4a141.js:10
-then @ _app-8e4343c775e4a141.js:10
-_processEvent @ _app-8e4343c775e4a141.js:580
-_captureEvent @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:580
-(anonymous) @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-_executeHandlers @ _app-8e4343c775e4a141.js:10
-(anonymous) @ _app-8e4343c775e4a141.js:10
-s @ _app-8e4343c775e4a141.js:10
-then @ _app-8e4343c775e4a141.js:10
-captureException @ _app-8e4343c775e4a141.js:580
-captureException @ _app-8e4343c775e4a141.js:10
-captureException @ _app-8e4343c775e4a141.js:6
-c @ _app-8e4343c775e4a141.js:6
-(anonymous) @ _app-8e4343c775e4a141.js:575
-withScope @ _app-8e4343c775e4a141.js:6
-m @ _app-8e4343c775e4a141.js:6
-n @ _app-8e4343c775e4a141.js:575
-postMessage
-_postMessage @ contentscript.js:1
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-d @ contentscript.js:37
-a.emit @ contentscript.js:37
-$ @ contentscript.js:37
-F @ contentscript.js:37
-D.push @ contentscript.js:37
-_onMessage @ contentscript.js:37
-(anonymous) @ contentscript.js:37
-Show 30 more frames
-Show lessUnderstand this errorAI
-_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
-    at JSON.parse (<anonymous>)
-    at c (2100.8122e555f0442292.js:14:94398)
-    at n (_app-8e4343c775e4a141.js:575:2949)
-c @ 2100.8122e555f0442292.js:14
-n @ _app-8e4343c775e4a141.js:575Understand this errorAI
-_app-8e4343c775e4a141.js:575 Uncaught SyntaxError: "[object Object]" is not valid JSON
-    at JSON.parse (<anonymous>)
-    at c (2100.8122e555f0442292.js:14:94398)
-    at n (_app-8e4343c775e4a141.js:575:2949)
-c @ 2100.8122e555f0442292.js:14
-n @ _app-8e4343c775e4a141.js:575
-postMessage
-_postMessage @ contentscript.js:1
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-h @ contentscript.js:61
-a.emit @ contentscript.js:37
-T @ contentscript.js:61
-k @ contentscript.js:61
-A.push @ contentscript.js:61
-_write @ contentscript.js:1
-k @ contentscript.js:61
-(anonymous) @ contentscript.js:61
-A.write @ contentscript.js:61
-d @ contentscript.js:37
-a.emit @ contentscript.js:37
-$ @ contentscript.js:37
-F @ contentscript.js:37
-D.push @ contentscript.js:37
-_onMessage @ contentscript.js:37
-(anonymous) @ contentscript.js:37
-Show 30 more frames
-Show lessUnderstand this errorAI
 lockdown-install.js:1 Removing unpermitted intrinsics
-2content.js:1 [Polyteller Content] Updated countdown text: Event has ended
+embedded-wallets-713eee049308bb10.js:1 Warning!
+embedded-wallets-713eee049308bb10.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+content.js:1 [Polyteller Content] Sending event info to background: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 41s
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 40s
+lockdown-install.js:1 Removing unpermitted intrinsics
+content.js:1 [Polyteller Content] Received trade confirmation update: true
+content.js:1 [Polyteller Content] Updated trade confirmation setting: true
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 39s
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 38s
+content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 37s
