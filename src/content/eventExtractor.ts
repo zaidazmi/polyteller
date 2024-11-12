@@ -19,6 +19,62 @@ interface DatePattern {
 // Define our organized patterns
 const DATE_PATTERNS: DatePattern[] = [
   {
+    name: 'FINAL_RESOLUTION_DEADLINE',
+    pattern: /by ([A-Za-z]+ \d{1,2}),? of (\d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+    priority: 180,  // Higher priority than other patterns
+    format: "by Month DD, of YYYY, HH:MM AM/PM ET",
+    handler: (match: RegExpMatchArray) => {
+      const [, monthDay, year, hour, minute, ampm, tz] = match;
+      
+      log('Content', 'Matched resolution deadline:', {
+        monthDay,
+        year,
+        hour,
+        minute,
+        ampm,
+        tz
+      });
+
+      return {
+        endDateValue: `${monthDay}, ${year}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: tz || 'ET'
+      };
+    }
+  },
+  {
+    name: 'BETWEEN_DATES_WITH_COMMA_AND',
+    pattern: /between ([A-Za-z]+ \d{1,2}, \d{4}) (\d{1,2}):(\d{2}) ([AP]M) ET,? and ([A-Za-z]+ \d{1,2}), (\d{1,2}):(\d{2}) ([AP]M) ET/i,
+    priority: 175,  // Higher priority than other patterns
+    format: "between Date1 Time1 ET, and Date2 Time2 ET",
+    handler: (match: RegExpMatchArray) => {
+      const [
+        ,
+        startDateFull,    // "November 11, 2024"
+        startHour, startMinute, startAMPM,  // "12:00 PM"
+        endDatePart,      // "November 30"
+        endHour, endMinute, endAMPM  // "11:59 PM"
+      ] = match;
+
+      // Extract year from start date using a simpler approach
+      const yearMatch = startDateFull.match(/\d{4}/);
+      const year = yearMatch ? yearMatch[0] : new Date().getFullYear().toString();
+
+      log('Content', 'Matched between dates with comma:', {
+        startDateFull, 
+        startTime: `${startHour}:${startMinute} ${startAMPM}`,
+        endDatePart, 
+        endTime: `${endHour}:${endMinute} ${endAMPM}`,
+        extractedYear: year  // Log the extracted year
+      });
+
+      // Construct end date using extracted year
+      return {
+        endDateValue: `${endDatePart}, ${year}, ${endHour}:${endMinute}:00 ${endAMPM}`,
+        timezone: 'ET'
+      };
+    }
+  },
+  {
     name: 'BETWEEN_DATES_WITH_DIFFERENT_FORMATS',
     pattern: /between\s+([A-Za-z]+\s+\d{1,2},?\s*\d{4}),?\s*(\d{1,2}:\d{2})\s*([AP]M)\s*([A-Z]{2,3})?(?:\s*\(inclusive\))?\s*and\s+([A-Za-z]+\s+\d{1,2}),?\s*(\d{1,2}:\d{2})\s*([AP]M)\s*([A-Z]{2,3})?/i,
     priority: 160,
@@ -351,6 +407,28 @@ const DATE_PATTERNS: DatePattern[] = [
       return {
         endDateValue: `${endDateFull}, ${adjustedEndHour}:${endMinute}:00 ${endAMPM}`,
         timezone: timezone
+      };
+    }
+  },
+  {
+    name: 'POSTPONED_AFTER_DATE',
+    pattern: /postponed after ([A-Za-z]+ \d{1,2} \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+    priority: 185,  // Higher than other patterns
+    format: "postponed after Month DD YYYY, HH:MM AM/PM ET",
+    handler: (match: RegExpMatchArray) => {
+      const [, datePart, hour, minute, ampm, tz] = match;
+      
+      log('Content', 'Matched postponed after date:', {
+        datePart,
+        hour,
+        minute,
+        ampm,
+        tz
+      });
+
+      return {
+        endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+        timezone: tz || 'ET'
       };
     }
   }
