@@ -14,33 +14,30 @@ const timezoneAbbreviations: TimezoneMap = {
     'ET': 'EST/EDT',
     'CT': 'CST/CDT',
     'MT': 'MST/MDT',
-    'PT': 'PST/PDT',
-    // Add more as needed
-  };
-  
-  export function getTimezoneAbbreviation(timezone: string): string {
-    return timezoneAbbreviations[timezone] || timezone;
-  }
+    'PT': 'PST/PDT'
+};
+
+export function getTimezoneAbbreviation(timezone: string): string {
+  return timezoneAbbreviations[timezone] || timezone;
+}
 
 export function getLocalTimezone(): string {
   return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
 export function isDST(date: Date): boolean {
-  // Get the first Sunday in November
   const year = date.getFullYear();
   const november = new Date(year, 10, 1);
   const firstSunday = new Date(
     november.setDate(november.getDate() + (7 - november.getDay()))
   );
-  firstSunday.setHours(2, 0, 0, 0); // 2 AM is when DST ends
+  firstSunday.setHours(2, 0, 0, 0);
 
-  // Get second Sunday in March
   const march = new Date(year, 2, 1);
   const secondSunday = new Date(
     march.setDate(march.getDate() + (14 - march.getDay()))
   );
-  secondSunday.setHours(2, 0, 0, 0); // 2 AM is when DST starts
+  secondSunday.setHours(2, 0, 0, 0);
 
   return date >= secondSunday && date < firstSunday;
 }
@@ -50,7 +47,6 @@ export function getETOffset(date: Date): number {
 }
 
 export function isAmbiguousDSTTime(date: Date): boolean {
-  // Check if date is during the DST fallback hour (1-2 AM on first Sunday of November)
   const year = date.getFullYear();
   const november = new Date(year, 10, 1);
   const firstSunday = new Date(
