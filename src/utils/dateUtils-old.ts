@@ -153,39 +153,24 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 
                  'July', 'August', 'September', 'October', 'November', 'December'];
     
-  // Handle ISO format with timezone offset first
-  if (dateString.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:00$/)) {
-    // If it's ET timezone and has EST offset (-05:00), check for DST
-    if (timezone === 'ET' && dateString.endsWith('-05:00')) {
-      // Create temporary date to check DST
-      const tempDate = new Date(dateString);
-      if (isDST(tempDate)) {
-        // If in DST, create new date with EDT offset
-        const [datePart] = dateString.split('-05:00');
-        return new Date(`${datePart}-04:00`);
-      }
-    }
-    return new Date(dateString);
-  }
-    
   // Try 12-hour format first (e.g., "December 17, 2024, 12:00 PM")
-  let parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2})(?::(\d{2}))? ([AP]M)/);
+  let parts = dateString.match(/(\w+) (\d{1,2}),? (\d{4}),? (\d{1,2}):(\d{2}) ([AP]M)/);
   
   if (parts) {
-    const [, month, day, year, hour, minute, second = '00', ampm] = parts;
+    const [, month, day, year, hour, minute, ampm] = parts;
     let parsedHour = parseInt(hour);
     if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
     if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
     
     // Create date in ET
     if (timezone === 'ET') {
-      // Always create with EST offset first
-      const date = new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-05:00`);
+      // Use the correct ET offset (EST = UTC-5, EDT = UTC-4)
+      const date = new Date(`${year}-${months.indexOf(month) + 1}-${day}T${parsedHour.toString().padStart(2, '0')}:${minute}:00-05:00`);
       
       // Check if date is during DST
       if (isDST(date)) {
-        // Create new date with EDT offset
-        return new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-04:00`);
+        // Adjust for EDT
+        date.setHours(date.getHours() + 1);
       }
       return date;
     }
@@ -195,8 +180,7 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
       months.indexOf(month),
       parseInt(day),
       parsedHour,
-      parseInt(minute),
-      parseInt(second)
+      parseInt(minute)
     ));
   }
   
@@ -207,8 +191,7 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
       // For ET timezone, create at 23:59:59 ET
       date = new Date(`${dateString}T23:59:59-05:00`);
       if (isDST(date)) {
-        // If in DST, create with EDT offset
-        return new Date(`${dateString}T23:59:59-04:00`);
+        date.setHours(date.getHours() + 1);
       }
     } else {
       // For UTC/other timezones, create at 23:59:59 UTC
@@ -229,8 +212,7 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
       // Create at 23:59:59 ET with correct offset
       const date = new Date(`${year}-${month}-${day}T23:59:59-05:00`);
       if (isDST(date)) {
-        // If in DST, create with EDT offset
-        return new Date(`${year}-${month}-${day}T23:59:59-04:00`);
+        date.setHours(date.getHours() + 1);
       }
       return date;
     }

@@ -1,274 +1,389 @@
-10The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-lockdown-install.js:1 Removing unpermitted intrinsics
-131Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-_app-7732114c87a41608.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
-
-(anonymous) @ _app-7732114c87a41608.js:618
-391 @ _app-7732114c87a41608.js:618
-s @ _app-7732114c87a41608.js:618
-584 @ _app-7732114c87a41608.js:618
-s @ _app-7732114c87a41608.js:618
-177 @ _app-7732114c87a41608.js:618
-s @ _app-7732114c87a41608.js:618
-545 @ _app-7732114c87a41608.js:613
-s @ _app-7732114c87a41608.js:618
-167 @ _app-7732114c87a41608.js:613
-s @ _app-7732114c87a41608.js:618
-(anonymous) @ _app-7732114c87a41608.js:618
-27596 @ _app-7732114c87a41608.js:618
-f @ webpack-52e4ea32f2db78a8.js:1
-48670 @ _app-7732114c87a41608.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-22751 @ _app-7732114c87a41608.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-70442 @ _app-7732114c87a41608.js:6
-f @ webpack-52e4ea32f2db78a8.js:1
-12112 @ _app-7732114c87a41608.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-4684 @ _app-7732114c87a41608.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-47243 @ _app-7732114c87a41608.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-35998 @ _app-7732114c87a41608.js:613
-f @ webpack-52e4ea32f2db78a8.js:1
-45796 @ _app-7732114c87a41608.js:613
-f @ webpack-52e4ea32f2db78a8.js:1
-90498 @ _app-7732114c87a41608.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-53198 @ _app-7732114c87a41608.js:568
-f @ webpack-52e4ea32f2db78a8.js:1
-88743 @ _app-7732114c87a41608.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-29665 @ _app-7732114c87a41608.js:611
-f @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-7732114c87a41608.js:330
-(anonymous) @ main-6b4b235ae1bf0bb2.js:1
-Promise.then
-onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
-s @ main-6b4b235ae1bf0bb2.js:1
-6840 @ _app-7732114c87a41608.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-t @ _app-7732114c87a41608.js:2009
-(anonymous) @ _app-7732114c87a41608.js:2009
-(anonymous) @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-7732114c87a41608.js:2009
-_ @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-7732114c87a41608.js:1Understand this errorAI
-VM174:1 
-        
-        
-       GET https://static.ads-twitter.com/uwt.js net::ERR_BLOCKED_BY_CLIENT
-(anonymous) @ VM174:1
-(anonymous) @ VM174:1
-m @ main-6b4b235ae1bf0bb2.js:1
-(anonymous) @ main-6b4b235ae1bf0bb2.js:1
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-o @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-7732114c87a41608.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
-
-(anonymous) @ _app-7732114c87a41608.js:640
-(anonymous) @ _app-7732114c87a41608.js:640
-initializeAdapter @ _app-7732114c87a41608.js:564
-(anonymous) @ _app-7732114c87a41608.js:613
-(anonymous) @ _app-7732114c87a41608.js:613
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-oP @ framework-a667dbba83e63e79.js:9
-r8 @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oU @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-frame-modern.4ea64da0.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
 content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Checking path: /event/ufc-309-jones-vs-miocic
-content.js:1 [Polyteller Content] Found JSON data: {props: {…}, page: '/event/[...slug]', query: {…}, buildId: 't08bYx_Kp4xzt_kJsfTI_', isFallback: false, …}
-content.js:1 [Polyteller Content] Extracted event data: {id: '14345', ticker: 'ufc-309-jones-vs-miocic', slug: 'ufc-309-jones-vs-miocic', title: 'UFC 309: Jones vs. Miocic', description: 'This is a market on the outcome of the UFC 309 fight between Jon Jones and Stipe Miocic.', …}
-content.js:1 [Polyteller Content] Market rules: This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
 
-If Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
 
-If this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.
-content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'ufc-309-jones-vs-miocic', eventSlug: 'ufc-309-jones-vs-miocic', urlPath: '/event/ufc-309-jones-vs-miocic'}
-content.js:1 [Polyteller Content] Event data found: {
-  "id": "14345",
-  "ticker": "ufc-309-jones-vs-miocic",
-  "slug": "ufc-309-jones-vs-miocic",
-  "title": "UFC 309: Jones vs. Miocic",
-  "description": "This is a market on the outcome of the UFC 309 fight between Jon Jones and Stipe Miocic.",
-  "resolutionSource": "",
-  "startDate": "2024-11-11T21:59:26.232529Z",
-  "creationDate": "2024-11-11T21:59:26.232526Z",
-  "endDate": "2024-11-17T12:00:00Z",
-  "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
-  "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
-  "active": true,
-  "closed": false,
-  "archived": false,
-  "new": false,
-  "featured": false,
-  "restricted": true,
-  "liquidity": 59666.459,
-  "volume": 47216.138376,
-  "openInterest": 0,
-  "createdAt": "2024-11-11T19:03:00.007924Z",
-  "updatedAt": "2024-11-12T20:41:12.563353Z",
-  "competitive": 0.9651578033008397,
-  "volume24hr": 47216.138376,
-  "enableOrderBook": true,
-  "liquidityClob": 59666.459,
-  "_sync": false,
-  "negRisk": false,
-  "commentCount": 1,
-  "markets": [
-    {
-      "id": "512737",
-      "question": "Jones vs. Miocic",
-      "conditionId": "0x97ee3bc5571ed6784a1d60ba65cfe84cbb9d1858135735d1c518ea1e4173ee66",
-      "slug": "jones-vs-miocic",
-      "resolutionSource": "",
-      "endDate": "2024-11-16T12:00:00Z",
-      "liquidity": "17455.5931",
-      "startDate": "2024-11-11T21:58:34.800876Z",
-      "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
-      "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/Repetitive-markets/ufclogo.png",
-      "description": "This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.\n\nIf Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.\n\nIf this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.",
-      "outcomes": [
-        "Jones",
-        "Miocic"
-      ],
-      "outcomePrices": [
-        "0.84",
-        "0.16"
-      ],
-      "volume": "12616.321207",
-      "active": true,
-      "closed": false,
-      "marketMakerAddress": "",
-      "createdAt": "2024-11-11T19:05:23.346101Z",
-      "updatedAt": "2024-11-12T20:40:44.60325Z",
-      "new": false,
-      "featured": false,
-      "submitted_by": "0x91430CaD2d3975766499717fA0D66A78D814E5c5",
-      "archived": false,
-      "resolvedBy": "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74",
-      "restricted": true,
-      "groupItemTitle": "Jones vs. Miocic",
-      "groupItemThreshold": "0",
-      "questionID": "0xb77eb0b5eca80020bdf6d6312ae2b25b850e4d44bfb2444c0509376e2383d17f",
-      "enableOrderBook": true,
-      "orderPriceMinTickSize": 0.01,
-      "orderMinSize": 5,
-      "volumeNum": 12616.321207,
-      "liquidityNum": 17455.5931,
-      "endDateIso": "2024-11-16",
-      "startDateIso": "2024-11-11",
-      "hasReviewedDates": true,
-      "volume24hr": 12616.321207,
-      "clobTokenIds": [
-        "26273356570896241953034700734887489583504497600769222484918200490947602500667",
-        "52322813256145561352340692238865106396488670654697372703953972611933643221728"
-      ],
-      "umaBond": "500",
-      "umaReward": "5",
-      "volume24hrClob": 12616.321207,
-      "volumeClob": 12616.321207,
-      "liquidityClob": 17455.5931,
-      "acceptingOrders": true,
-      "negRisk": false,
-      "_sync": false,
-      "ready": false,
-      "funded": false,
-      "acceptingOrdersTimestamp": "2024-11-11T21:57:27Z",
-      "cyom": false,
-      "competitive": 0.8963786303334529,
-      "pagerDutyNotificationEnabled": false,
-      "approved": true,
-      "clobRewards": [
-        {
-          "id": "10319",
-          "conditionId": "0x97ee3bc5571ed6784a1d60ba65cfe84cbb9d1858135735d1c518ea1e4173ee66",
-          "assetAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-          "rewardsAmount": 0,
-          "rewardsDailyRate": 20,
-          "startDate": "2024-11-11",
-          "endDate": "2500-12-31"
-        }
-      ],
-      "rewardsMinSize": 50,
-      "rewardsMaxSpread": 3.5,
-      "spread": 0.02,
-      "lastTradePrice": 0.84,
-      "bestBid": 0.83,
-      "bestAsk": 0.85,
-      "automaticallyActive": true,
-      "clearBookOnStart": true,
-      "showGmpSeries": false,
-      "showGmpOutcome": false,
-      "manualActivation": false,
-      "lower_bound_date": null,
-      "upper_bound_date": null,
-      "market_type": null,
-      "resolution_source": "",
-      "end_date": "2024-11-16T12:00:00Z",
-      "amm_type": null,
-      "x_axis_value": null,
-      "y_axis_value": null,
-      "denomination_token": null,
-      "resolved_by": "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74",
-      "upper_bound": null,
-      "lower_bound": null,
-      "created_at": "2024-11-11T19:05:23.346101Z",
-      "updated_at": "2024-11-12T20:40:44.60325Z",
-      "
-content.js:1 [Polyteller Content] Market description: This is a market on whether Jon Jones or Stipe Miocic will win their bout at UFC 309.
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
 
-If Jon Jones is declared the winner of this bout, this market will resolve to “Jones”. If Stipe Miocic is declared the winner of this bout, this market will resolve to “Miocic”.
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
 
-If this fight is declared a draw, or if for any reason the match is not scored, postponed after November 30 2024, 11:59 PM ET, or cancelled, this market will resolve 50-50.
-content.js:1 [Polyteller Content] Matched pattern in market description: POSTPONED_AFTER_DATE (6) ['postponed after November 30 2024, 11:59 PM ET', 'November 30 2024', '11', '59', 'PM', 'ET', index: 346, input: 'This is a market on whether Jon Jones or Stipe Mio…ET, or cancelled, this market will resolve 50-50.', groups: undefined]
-content.js:1 [Polyteller Content] Matched postponed after date: {datePart: 'November 30 2024', hour: '11', minute: '59', ampm: 'PM', tz: 'ET'}
-content.js:1 [Polyteller Content] Using POSTPONED_AFTER_DATE from market description: {endDateValue: 'November 30 2024, 11:59:00 PM', timezone: 'ET'}
-content.js:1 [Polyteller Content] Original end date: November 30 2024, 11:59:00 PM
-content.js:1 [Polyteller Content] Parsed end date (local): Sun Dec 01 2024 10:29:00 GMT+0530 (India Standard Time)
-content.js:1 [Polyteller Content] Parsed end date (UTC): Sun, 01 Dec 2024 04:59:00 GMT
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "14345",
-  "title": "UFC 309: Jones vs. Miocic",
-  "endTime": 1733029140000,
-  "endDate": "November 30 2024, 11:59:00 PM",
-  "timezone": "ET",
-  "url": "https://polymarket.com/event/ufc-309-jones-vs-miocic"
-}
-content.js:1 [Polyteller Content] Event info extracted: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Creating new countdown element
-content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 42s
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at content.js:1:21703
+    at content.js:1:23145
+    at content.js:1:23149
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at content.js:1:21703
+    at content.js:1:23145
+    at content.js:1:23149
+content.js:1 [Polyteller Content] Failed to extract event info
 content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
-lockdown-install.js:1 Removing unpermitted intrinsics
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-lockdown-install.js:1 Removing unpermitted intrinsics
-embedded-wallets-713eee049308bb10.js:1 Warning!
-embedded-wallets-713eee049308bb10.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
-content.js:1 [Polyteller Content] Sending event info to background: {id: '14345', title: 'UFC 309: Jones vs. Miocic', endTime: 1733029140000, endDate: 'November 30 2024, 11:59:00 PM', timezone: 'ET', …}
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 41s
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 40s
-lockdown-install.js:1 Removing unpermitted intrinsics
-content.js:1 [Polyteller Content] Received trade confirmation update: true
-content.js:1 [Polyteller Content] Updated trade confirmation setting: true
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 39s
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 38s
-content.js:1 [Polyteller Content] Updated countdown text: 18d 8h 16m 37s
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}currentSlug: "how-many-named-storms-during-atlantic-hurricane-season-2024"eventSlug: "how-many-named-storms-during-atlantic-hurricane-season-2024"urlPath: "/event/how-many-named-storms-during-atlantic-hurricane-season-2024"[[Prototype]]: Object
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
+content.js:1 [Polyteller Content] Initializing countdown
+content.js:1 [Polyteller Content] Checking path: /event/how-many-named-storms-during-atlantic-hurricane-season-2024
+content.js:1 [Polyteller Content] Market rules: Note: Additional options for the number of named storms can be found here: https://polymarket.com/event/number-of-named-storms-during-atlantic-hurricane-season
+
+This is a market on whether the National Oceanic and Atmospheric Administration (NOAA) will name fewer than 16 storms during the 2024 Atlantic hurricane season, a period lasting from June 1 to November 30.
+
+This market will resolve to “Yes” if NOAA names fewer than 16 storms during the Atlantic hurricane season. Otherwise, this market will resolve to “No.”
+
+If 16 or more storms are named during the Atlantic hurricane season, the market will resolve to "No" immediately. 
+
+Note: Storms that form before the designated period but which are active during it will count towards this market's resolution. 
+
+The resolution source for this market will be NOAA’s list of named storms during the Atlantic hurricane season (https://www.nhc.noaa.gov/data/tcr/) and/or their data on individual storms.
+
+If there is a potential named storm that hasn't been classified yet by Nov 30, 11:59 PM ET, the market may remain open until Dec 1, 3 AM ET to determine if a classification was made prior to midnight.
+
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', eventSlug: 'how-many-named-storms-during-atlantic-hurricane-season-2024', urlPath: '/event/how-many-named-storms-during-atlantic-hurricane-season-2024'}
+content.js:1 [Polyteller Content] Matched hurricane end format: {month: 'Dec', day: '1', hour: '3', ampm: 'AM', tz: 'ET', …}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'Dec 1, 2024, 3:00 AM', timezone: 'ET'}
+content.js:1 [Polyteller Content] Error parsing date: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Error processing event data: RangeError: Invalid time value
+    at Date.toISOString (<anonymous>)
+    at content.js:1:11042
+    at a (content.js:1:11327)
+    at D (content.js:1:19138)
+    at MutationObserver.<anonymous> (content.js:1:21779)
+content.js:1 [Polyteller Content] Failed to extract event info
