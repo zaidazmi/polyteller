@@ -200,9 +200,9 @@ export const DATE_PATTERNS: DatePattern[] = [
    */
   {
     name: 'BITCOIN_NOON_FORMAT' as PatternName,
-    pattern: /(\d{1,2}) Nov '(\d{2}) (\d{1,2}):(\d{2}) in the ([A-Z]{2}) timezone/i,
-    priority: 100,
-    format: "DD Nov 'YY HH:mm in TZ timezone",
+    pattern: /(?:BTCUSDT\s+)?(\d{1,2}) ([A-Za-z]+) '(\d{2}) (\d{1,2}):(\d{2}) in the ([A-Z]{2}) timezone(?:\s+\(noon\))?/i,
+    priority: 195,
+    format: "DD MMM 'YY HH:mm in TZ timezone",
     handler: handlers.handleBitcoinNoon
   },
 
