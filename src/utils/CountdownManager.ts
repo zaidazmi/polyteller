@@ -16,8 +16,13 @@ export class CountdownManager {
   private rafId: number | null = null;
   private lastDisplayUpdate: number = 0;
   private lastBackgroundUpdate: number = 0;
-  private readonly DISPLAY_INTERVAL = 1000;    // 1 second for visual updates
-  private readonly BACKGROUND_INTERVAL = 30000; // 30 seconds for cleanup
+  private readonly INTERVALS = {
+    DISPLAY: 1000,           // Always 1 second for smooth countdown
+    NEAR_END: 1000,         // Every second when < 1 minute
+    SHORT: 5000,            // Every 5 seconds when < 1 hour
+    MEDIUM: 15000,          // Every 15 seconds when < 1 day
+    LONG: 30000            // Every 30 seconds when > 1 day
+  };
   private visibilityState: 'visible' | 'hidden' = 'visible';
 
   private constructor() {
@@ -37,16 +42,19 @@ export class CountdownManager {
   }
 
   private updateLoop = (timestamp: number) => {
-    // Visual updates (every second)
-    if (timestamp - this.lastDisplayUpdate >= this.DISPLAY_INTERVAL) {
+    // Always update display every second for smooth countdown
+    if (timestamp - this.lastDisplayUpdate >= this.INTERVALS.DISPLAY) {
       if (this.visibilityState === 'visible') {
         this.updateDisplays();
       }
       this.lastDisplayUpdate = timestamp;
     }
 
-    // Background tasks (every 30 seconds)
-    if (timestamp - this.lastBackgroundUpdate >= this.BACKGROUND_INTERVAL) {
+    // Dynamic background task frequency
+    const shortestTime = this.getShortestRemainingTime();
+    const backgroundInterval = this.determineBackgroundInterval(shortestTime);
+    
+    if (timestamp - this.lastBackgroundUpdate >= backgroundInterval) {
       this.processBackgroundTasks();
       this.lastBackgroundUpdate = timestamp;
     }
@@ -164,5 +172,30 @@ export class CountdownManager {
   private cleanup(eventId: string) {
     this.eventEndTimes.delete(eventId);
     this.subscribers.delete(eventId);
+  }
+
+  private determineBackgroundInterval(timeRemaining: number): number {
+    if (timeRemaining <= 60000) { // Less than 1 minute
+      return this.INTERVALS.NEAR_END;
+    } else if (timeRemaining <= 3600000) { // Less than 1 hour
+      return this.INTERVALS.SHORT;
+    } else if (timeRemaining <= 86400000) { // Less than 1 day
+      return this.INTERVALS.MEDIUM;
+    }
+    return this.INTERVALS.LONG;
+  }
+
+  private getShortestRemainingTime(): number {
+    const now = Date.now();
+    let shortest = Number.MAX_VALUE;
+
+    this.eventEndTimes.forEach(endTime => {
+      const remaining = Math.max(0, endTime - now);
+      if (remaining < shortest) {
+        shortest = remaining;
+      }
+    });
+
+    return shortest === Number.MAX_VALUE ? 0 : shortest;
   }
 } 
