@@ -294,15 +294,51 @@ export function initializeDOMManipulations() {
   interceptBuyButton();
 }
 
+/**
+ * Initializes the DOM observer with optimized settings.
+ * Only watches necessary DOM changes to reduce overhead.
+ */
 export function initializeDOMObserver(callback: () => void) {
+  // Create observer with performance logging
   const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      if (mutation.type === 'childList') {
-        callback();
-        break;
-      }
+    // Only process if we have relevant changes
+    const hasRelevantChanges = mutations.some(mutation => {
+      // Check if mutation target or its parent has relevant class/id
+      const target = mutation.target as Element;
+      return (
+        target.id === '__next' ||
+        target.closest('[data-rbd-draggable-context-id]') !== null ||
+        target.closest('.market-card') !== null
+      );
+    });
+
+    if (hasRelevantChanges) {
+      log('DOMObserver', 'Processing relevant DOM changes');
+      callback();
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  // Find the most specific parent element to observe
+  const targetNode = document.querySelector('#__next') || document.body;
+
+  // Configure observer with optimized options
+  const config = {
+    childList: true,
+    subtree: false,  // Don't watch entire tree
+    attributes: false,  // Don't watch attributes
+    characterData: false  // Don't watch text changes
+  };
+
+  // Start observing with performance logging
+  observer.observe(targetNode, config);
+  log('DOMObserver', 'Initialized with optimized settings', {
+    target: targetNode.tagName,
+    config
+  });
+
+  // Cleanup on page unload
+  window.addEventListener('unload', () => {
+    observer.disconnect();
+    log('DOMObserver', 'Observer disconnected on unload');
+  });
 }

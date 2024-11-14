@@ -1,29 +1,75 @@
-content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Checking path: /event/israel-action-against-iraq-before-december
-content.js:1 [Polyteller Content] Market rules: This market will resolve to "Yes" if Israel initiates a military action on Iraqi soil, airspace, or maritime territory between November 11, 2024 12:00 PM ET, and November 30, 11:59 PM ET. Otherwise, this market will resolve to "No".
+----------------- Old version tests --------------------------
 
-For the purposes of this market, a "military action" will be considered to be any use of force executed by Israel on Iraqi soil, airspace, or maritime territory (e.g. if a weapons depot on Iraqi soil is hit by an Israeli missile, this market will resolve to "Yes"). This includes, but is not limited to, airstrikes, naval attacks, or ground invasions. Cyber attacks, sanctions, or diplomatic actions will not count towards the resolution of this market.
+Event https://polymarket.com/event/trump-wins-ends-ukraine-war-in-90-days?tid=1731556436057
 
-The primary resolution source for this market will be Israeli government confirmation or reporting confirmed by authentic video and photo evidence including satellite imagery. However an overwhelming consensus of media reporting may also be used.
-content.js:1 [Polyteller Content] Verifying event data match: Object
-content.js:1 [Polyteller Content] Before parseCustomDate: Object
-content.js:1 [Polyteller Content] After parseCustomDate: Object
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "14287",
-  "title": "Israel military action against Iraq before December?",
-  "endTime": 1731387599000,
-  "endDate": "November 11, 2024, 11:59:59 PM",
-  "timezone": "ET",
-  "url": "https://polymarket.com/event/israel-action-against-iraq-before-december"
-}
-content.js:1 [Polyteller Content] Event info extracted: Object
-content.js:1 [Polyteller Content] Creating and inserting countdown for event: Object
-content.js:1 [Polyteller Content] Creating new countdown element
-content.js:1 [Polyteller Content] Countdown element appended to body
-content.js:1 [Polyteller Content] Updated countdown text: Event has ended
-content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-content.js:1 [Polyteller Content] Sending event info to background: Object
-10content.js:1 [Polyteller Content] Updated countdown text: Event has ended
-5content.js:1 [Polyteller Content] Updated countdown text: Event has ended
+VM174:1 Old Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 119.47747993469238 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 2133
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 2133
+12873
+VM174:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 125.27041244506836 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 2134
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 2134
+
+Event https://polymarket.com/event/elon-musk-of-tweets-nov-8-15?tid=1731556536865
+
+VM300:1 Old Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 239.37769603729248 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 2248
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 2248
+895
+ 
+VM300:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 136.24020671844482 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 2248
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 2248
+
+Event https://polymarket.com/event/bitcoin-above-76000-on-november-15?tid=1731556610866
+VM436:1 Old Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 246.6346836090088 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 1450
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 1450
+
+VM436:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 133.98487377166748 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 1450
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 1450
+
+
+----------------- New version tests --------------------------
+Event https://polymarket.com/event/bitcoin-above-76000-on-november-15?tid=1731556610866
+
+VM136:1 New Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 119.55895137786865 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 1457
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 1457
+
+VM136:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 107.97748470306396 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 1457
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 1457
+
+Event https://polymarket.com/event/trump-wins-ends-ukraine-war-in-90-days?tid=1731556436057
+VM258:1 New Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 258.29936504364014 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 2135
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 2135
+
+VM258:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 127.14587593078613 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 2135
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 2135
+
+
+Event https://polymarket.com/event/elon-musk-of-tweets-nov-8-15?tid=1731556536865
+
+VM498:1 New Version Performance Metrics
+_app-f785d1884b27c0ae.js:578 Initial JS Heap: 302.07099628448486 MB
+_app-f785d1884b27c0ae.js:578 Initial DOM Nodes: 2256
+_app-f785d1884b27c0ae.js:578 Initial Mutation Observers: 2256
+
+VM498:9 After 30 Seconds
+_app-f785d1884b27c0ae.js:578 Final JS Heap: 143.6764783859253 MB
+_app-f785d1884b27c0ae.js:578 Final DOM Nodes: 2255
+_app-f785d1884b27c0ae.js:578 Final Mutation Observers: 2255
