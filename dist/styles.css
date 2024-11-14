@@ -1,3 +1,6 @@
+/*!*****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/_variables.css ***!
+  \*****************************************************************************/
 /* Color palette and theme variables */
 :root {
   --primary-color: #4A4FE4;
@@ -10,6 +13,9 @@
   --countdown-background: #E8EAFF;
 }
 
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/_base.css ***!
+  \************************************************************************/
 /* Reset default styles */
 * {
   margin: 0;
@@ -91,6 +97,9 @@ footer {
   color: #EF4444; /* Red color for error messages */
 }
 
+/*!******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/_components.css ***!
+  \******************************************************************************/
 /* Countdown component styles */
 .countdown {
   display: flex;
@@ -455,6 +464,9 @@ button#set-notification.error {
   color: var(--text-light);
 }
 
+/*!************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/popup.css ***!
+  \************************************************************************/
 /* Any additional styles specific to popup that don't fit in the other files */
 
 .event-link {
@@ -734,3 +746,5 @@ input:checked + .slider:before {
   padding: 4px 0;
 }
 
+
+/*# sourceMappingURL=styles.css.map*/

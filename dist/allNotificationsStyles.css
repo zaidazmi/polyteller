@@ -1,3 +1,6 @@
+/*!***********************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/allNotifications.css ***!
+  \***********************************************************************************/
 .all-notifications-list {
   max-width: 1400px;
   margin: 0 auto;
@@ -192,3 +195,5 @@
   }
 }
 
+
+/*# sourceMappingURL=allNotificationsStyles.css.map*/

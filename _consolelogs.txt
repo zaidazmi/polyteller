@@ -1,233 +1,24 @@
-10The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-f785d1884b27c0ae.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
-
-(anonymous) @ _app-f785d1884b27c0ae.js:618
-391 @ _app-f785d1884b27c0ae.js:618
-s @ _app-f785d1884b27c0ae.js:618
-584 @ _app-f785d1884b27c0ae.js:618
-s @ _app-f785d1884b27c0ae.js:618
-177 @ _app-f785d1884b27c0ae.js:618
-s @ _app-f785d1884b27c0ae.js:618
-545 @ _app-f785d1884b27c0ae.js:613
-s @ _app-f785d1884b27c0ae.js:618
-167 @ _app-f785d1884b27c0ae.js:613
-s @ _app-f785d1884b27c0ae.js:618
-(anonymous) @ _app-f785d1884b27c0ae.js:618
-27596 @ _app-f785d1884b27c0ae.js:618
-f @ webpack-52e4ea32f2db78a8.js:1
-48670 @ _app-f785d1884b27c0ae.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-22751 @ _app-f785d1884b27c0ae.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-70442 @ _app-f785d1884b27c0ae.js:6
-f @ webpack-52e4ea32f2db78a8.js:1
-12112 @ _app-f785d1884b27c0ae.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-4684 @ _app-f785d1884b27c0ae.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-47243 @ _app-f785d1884b27c0ae.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-35998 @ _app-f785d1884b27c0ae.js:613
-f @ webpack-52e4ea32f2db78a8.js:1
-45796 @ _app-f785d1884b27c0ae.js:613
-f @ webpack-52e4ea32f2db78a8.js:1
-90498 @ _app-f785d1884b27c0ae.js:564
-f @ webpack-52e4ea32f2db78a8.js:1
-53198 @ _app-f785d1884b27c0ae.js:568
-f @ webpack-52e4ea32f2db78a8.js:1
-88743 @ _app-f785d1884b27c0ae.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-29665 @ _app-f785d1884b27c0ae.js:611
-f @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-f785d1884b27c0ae.js:330
-(anonymous) @ main-6b4b235ae1bf0bb2.js:1
-Promise.then
-onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
-s @ main-6b4b235ae1bf0bb2.js:1
-6840 @ _app-f785d1884b27c0ae.js:330
-f @ webpack-52e4ea32f2db78a8.js:1
-t @ _app-f785d1884b27c0ae.js:2009
-(anonymous) @ _app-f785d1884b27c0ae.js:2009
-(anonymous) @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-f785d1884b27c0ae.js:2009
-_ @ webpack-52e4ea32f2db78a8.js:1
-(anonymous) @ _app-f785d1884b27c0ae.js:1Understand this errorAI
-5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-_app-f785d1884b27c0ae.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
-
-(anonymous) @ _app-f785d1884b27c0ae.js:640
-(anonymous) @ _app-f785d1884b27c0ae.js:640
-initializeAdapter @ _app-f785d1884b27c0ae.js:564
-(anonymous) @ _app-f785d1884b27c0ae.js:613
-(anonymous) @ _app-f785d1884b27c0ae.js:613
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-oP @ framework-a667dbba83e63e79.js:9
-r8 @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oU @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-frame-modern.824d1611.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
-5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
-776Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
-_app-f785d1884b27c0ae.js:578 
-        
-        
-       GET https://gamma-api.polymarket.com/is-logged-in 422 (Unprocessable Content)
-(anonymous) @ _app-f785d1884b27c0ae.js:578
-(anonymous) @ _app-f785d1884b27c0ae.js:578
-(anonymous) @ _app-f785d1884b27c0ae.js:613
-a @ _app-f785d1884b27c0ae.js:613
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-(anonymous) @ _app-f785d1884b27c0ae.js:302
-execute @ _app-f785d1884b27c0ae.js:1987
-av @ _app-f785d1884b27c0ae.js:568
-o @ _app-f785d1884b27c0ae.js:1975
-b @ _app-f785d1884b27c0ae.js:1975
-start @ _app-f785d1884b27c0ae.js:1975
-fetch @ _app-f785d1884b27c0ae.js:1975
-#L @ _app-f785d1884b27c0ae.js:1975
-onSubscribe @ _app-f785d1884b27c0ae.js:1975
-subscribe @ _app-f785d1884b27c0ae.js:1975
-(anonymous) @ _app-f785d1884b27c0ae.js:1975
-aL @ framework-a667dbba83e63e79.js:9
-uU @ framework-a667dbba83e63e79.js:9
-oV @ framework-a667dbba83e63e79.js:9
-oP @ framework-a667dbba83e63e79.js:9
-r8 @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oU @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
 content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Checking path: /event/jake-paul-vs-mike-tyson-who-will-win
-content.js:1 [Polyteller Content] Market rules: The boxing match between Jake Paul and Mike Tyson has been scheduled for Saturday, July 20, 2024 at the AT&T Stadium in Arlington, Texas.
+content.js:1 [Polyteller Content] Checking path: /event/la-liga-winner
+content.js:1 [Polyteller Content] Market rules: This market will resolve to “Yes” if Real Madrid is the 2024-25 La Liga Champion. Otherwise, the market will resolve to “No”.
 
-This market will resolve to "Yes" if Mike Tyson is officially declared the winner of the boxing match against Jake Paul. Otherwise, this market will resolve to "No".
-
-If this fight ends in a draw, is not officially designated as a win for either Jake Paul or Mike Tyson, is canceled permanently, or moved to a date after December 31, 2024, 11:59 PM ET, this market will resolve to "No".
-content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'jake-paul-vs-mike-tyson-who-will-win', eventSlug: 'jake-paul-vs-mike-tyson-who-will-win', urlPath: '/event/jake-paul-vs-mike-tyson-who-will-win'}
-content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: 'December 31, 2024, 11:59:00 PM', timezone: 'ET'}
-content.js:1 [Polyteller Content] After parseCustomDate: {originalDate: 'December 31, 2024, 11:59:00 PM', parsedDate: '2025-01-01T04:59:00.000Z', localDate: 'Wed Jan 01 2025 10:29:00 GMT+0530 (India Standard Time)', timezone: 'ET', isDST: false, …}
+If it is a mathematical certainty Real Madrid will win, this market will immediately resolve to “Yes.” Likewise, if it becomes mathematically impossible for Real Madrid to win, this market will immediately resolve to “No.” Potential retroactive points deductions past these points will have no bearing on this market’s resolution.
+content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'la-liga-winner', eventSlug: 'la-liga-winner', urlPath: '/event/la-liga-winner'}
+content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: '2025-05-25T23:59:59-05:00', timezone: 'ET'}
+content.js:1 [Polyteller Content] After parseCustomDate: {originalDate: '2025-05-25T23:59:59-05:00', parsedDate: '2025-05-26T03:59:59.000Z', localDate: 'Mon May 26 2025 09:29:59 GMT+0530 (India Standard Time)', timezone: 'ET', isDST: true, …}
 content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "903774",
-  "title": "Jake Paul vs. Mike Tyson: Who will win?",
-  "endTime": 1735707540000,
-  "endDate": "December 31, 2024, 11:59:00 PM",
+  "id": "12672",
+  "title": "La Liga Winner",
+  "endTime": 1748231999000,
+  "endDate": "2025-05-25T23:59:59-05:00",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/jake-paul-vs-mike-tyson-who-will-win?tid=1731578496072"
+  "url": "https://polymarket.com/event/la-liga-winner?tid=1731587629158"
 }
-content.js:1 [Polyteller Content] Event info extracted: {id: '903774', title: 'Jake Paul vs. Mike Tyson: Who will win?', endTime: 1735707540000, endDate: 'December 31, 2024, 11:59:00 PM', timezone: 'ET', …}
+content.js:1 [Polyteller Content] Event info extracted: {id: '12672', title: 'La Liga Winner', endTime: 1748231999000, endDate: '2025-05-25T23:59:59-05:00', timezone: 'ET', …}
 content.js:1 [Polyteller DOMObserver] Initialized with optimized settings {target: 'DIV', config: {…}}
 content.js:1 [Polyteller Content] Polyteller content script loaded
 content.js:1 [Polyteller DOMManipulator] Buy button interception set up
 content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
 privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
-embedded-wallets-713eee049308bb10.js:1 Warning!
-embedded-wallets-713eee049308bb10.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
-framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
-Understand this errorAI
-22Error: <g> attribute transform: Expected transform function, "translate(0, 0) undefined".Understand this errorAI
-framework-a667dbba83e63e79.js:9 Error: <g> attribute transform: Expected transform function, "translate(0, 5) undefined".
-_ @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oI @ framework-a667dbba83e63e79.js:9
-oD @ framework-a667dbba83e63e79.js:9
-(anonymous) @ framework-a667dbba83e63e79.js:9
-oO @ framework-a667dbba83e63e79.js:9
-ox @ framework-a667dbba83e63e79.js:9
-x @ framework-a667dbba83e63e79.js:17
-T @ framework-a667dbba83e63e79.js:17Understand this errorAI
-content.js:1 [Polyteller Content] Sending event info to background: {id: '903774', title: 'Jake Paul vs. Mike Tyson: Who will win?', endTime: 1735707540000, endDate: 'December 31, 2024, 11:59:00 PM', timezone: 'ET', …}
-// Performance Test Script
-(() => {
-  console.log('Performance Test Started');
-  const eventSlug = window.location.pathname.split('/').pop()?.split('?')[0];
-  
-  // Initial metrics
-  console.log('Initial Performance Metrics:', {
-    eventSlug,
-    jsHeap: `${(performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
-    domNodes: document.getElementsByTagName('*').length,
-    mutationObservers: performance.getEntriesByType('resource').filter(e => e.initiatorType === 'mutation_observer').length,
-    cpuUsage: window.performance.now()
-  });
-
-  // Record initial time
-  const startTime = Date.now();
-  const initialCPU = window.performance.now();
-
-  // Check after 30 seconds
-  setTimeout(() => {
-    const endTime = Date.now();
-    const finalCPU = window.performance.now();
-    const duration = (endTime - startTime) / 1000;
-    const cpuUsage = ((finalCPU - initialCPU) / (duration * 1000)) * 100;
-
-    console.log(`After ${duration} Seconds:`, {
-      eventSlug,
-      jsHeap: `${(performance.memory.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB`,
-      domNodes: document.getElementsByTagName('*').length,
-      mutationObservers: performance.getEntriesByType('resource').filter(e => e.initiatorType === 'mutation_observer').length,
-      cpuUsage: `${cpuUsage.toFixed(2)}%`,
-      duration: `${duration}s`
-    });
-  }, 30000);
-})();
-_app-f785d1884b27c0ae.js:578 Performance Test Started
-_app-f785d1884b27c0ae.js:578 Initial Performance Metrics: {eventSlug: 'jake-paul-vs-mike-tyson-who-will-win', jsHeap: '193.34 MB', domNodes: 2009, mutationObservers: 0, cpuUsage: 3279.5}cpuUsage: 3279.5domNodes: 2009eventSlug: "jake-paul-vs-mike-tyson-who-will-win"jsHeap: "193.34 MB"mutationObservers: 0[[Prototype]]: Object
-undefined
-_app-f785d1884b27c0ae.js:578 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Afetch%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=8d6392f7-4a1e-4dd6-8fce-222e9b11913c' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ _app-f785d1884b27c0ae.js:578
-s @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:613
-a @ _app-f785d1884b27c0ae.js:613
-Lv @ _app-f785d1884b27c0ae.js:1928
-a @ _app-f785d1884b27c0ae.js:1928
-Ll @ _app-f785d1884b27c0ae.js:1928
-Lo @ _app-f785d1884b27c0ae.js:1928
-send @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-finish @ _app-f785d1884b27c0ae.js:1928
-d @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-f @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-Oo @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-n @ _app-f785d1884b27c0ae.js:575Understand this errorAI
-_app-f785d1884b27c0ae.js:578 [Report Only] Refused to connect to 'https://browser-intake-datadoghq.com/api/v2/logs?ddsource=browser&ddtags=sdk_version%3A5.28.0%2Capi%3Afetch%2Cservice%3Aconnect-sdk&dd-api-key=pub4f86c6be8c792cb48dc156a8c17d9a47&dd-evp-origin-version=5.28.0&dd-evp-origin=browser&dd-request-id=8d6392f7-4a1e-4dd6-8fce-222e9b11913c' because it violates the following Content Security Policy directive: "connect-src 'self' https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://clob.polymarket.com wss://clob.polymarket.com https://*.walletconnect.com wss://*.walletconnect.com wss://*.walletconnect.org https://*.amplitude.com https://*.alchemy.com https://*.alchemyapi.io https://*.socket.tech https://api.goldsky.com https://api.goldsky.io https://assets.vercel.com https://vercel.live https://vercel.com https://vitals.vercel-insights.com https://auth.magic.link https://*.magic.link https://*.intercom.io wss://*.intercom.io https://polymarket-upload.s3.us-east-2.amazonaws.com https://polymarket-next-assets.s3.amazonaws.com https://*.polymarket.io https://*.coinbase.com https://va.vercel-scripts.com https://*.vercel-scripts.com https://va.vercel-scripts.com/v1/script.debug.js https://api.iconify.design https://*.google-analytics.com https://js.intercomcdn.com https://api-iam.intercom.io https://*.facebook.com https://*.facebook.net https://*.redditstatic.com https://*.reddit.com wss://*.pusher.com https://*.pusher.com https://polygon-rpc.com https://api.simplesvg.com/bx.json https://ib.adnxs.com https://d.adroll.com https://s.adroll.com https://acdn.adnxs.com https://api.unisvg.com wss://relay.walletconnect.org https://browser-intake-datadoghq.eu https://static.ads-twitter.com https://sentry.io https://api.moonpay.com https://*.fun.xyz https://*.quiknode.pro https://*.base.org https://*.eth https://*.zksync.io/ data:".
-
-(anonymous) @ _app-f785d1884b27c0ae.js:578
-s @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:613
-a @ _app-f785d1884b27c0ae.js:613
-Lv @ _app-f785d1884b27c0ae.js:1928
-a @ _app-f785d1884b27c0ae.js:1928
-Ll @ _app-f785d1884b27c0ae.js:1928
-Lo @ _app-f785d1884b27c0ae.js:1928
-send @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-finish @ _app-f785d1884b27c0ae.js:1928
-d @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-f @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-Oo @ _app-f785d1884b27c0ae.js:1928
-(anonymous) @ _app-f785d1884b27c0ae.js:1928
-n @ _app-f785d1884b27c0ae.js:575Understand this errorAI
-_app-f785d1884b27c0ae.js:578 After 30.001 Seconds: {eventSlug: 'jake-paul-vs-mike-tyson-who-will-win', jsHeap: '106.19 MB', domNodes: 2009, mutationObservers: 0, cpuUsage: '100.00%', …}cpuUsage: "100.00%"domNodes: 2009duration: "30.001s"eventSlug: "jake-paul-vs-mike-tyson-who-will-win"jsHeap: "106.19 MB"mutationObservers: 0[[Prototype]]: Object
+privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
+content.js:1 [Polyteller Content] Sending event info to background: {id: '12672', title: 'La Liga Winner', endTime: 1748231999000, endDate: '2025-05-25T23:59:59-05:00', timezone: 'ET', …}

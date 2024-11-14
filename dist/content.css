@@ -1,4 +1,10 @@
+/*!**************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/content.css ***!
+  \**************************************************************************/
 @import url(https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap);
+/*!******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/styles/content.css (1) ***!
+  \******************************************************************************/
 #polyteller-confirmation-dialog {
   font-family: 'Plus Jakarta Sans', sans-serif;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -37,3 +43,5 @@
   opacity: 0.8 !important;
 }
 
+
+/*# sourceMappingURL=content.css.map*/

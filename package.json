@@ -3,8 +3,10 @@
     "version": "1.0.0",
     "description": "Chrome extension for Polymarket event countdowns and notifications",
     "scripts": {
-        "build": "npx webpack --mode production",
-        "dev": "npx webpack --mode development --watch",
+        "clean": "rm -rf dist/",
+        "dev": "npm run clean && webpack --mode development --watch",
+        "build": "npm run clean && webpack --mode production",
+        "build:dev": "npm run clean && webpack --mode development",
         "test": "jest"
     },
     "devDependencies": {

@@ -4,7 +4,6 @@
  * and setting up necessary observers and event handlers.
  */
 
-
 import { log } from '../utils/logUtils';
 import { extractEventInfo } from './eventExtractor';
 import { createAndInsertCountdown, clearCountdown } from './countdownManager';
