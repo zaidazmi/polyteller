@@ -10,6 +10,7 @@
     "devDependencies": {
         "@testing-library/dom": "^10.4.0",
         "@testing-library/jest-dom": "^5.16.5",
+        "@types/canvas-confetti": "^1.6.4",
         "@types/chrome": "^0.0.237",
         "@types/jest": "^29.5.5",
         "copy-webpack-plugin": "^11.0.0",
@@ -26,6 +27,7 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
+        "canvas-confetti": "^1.9.3",
         "dayjs": "^1.11.13",
         "zustand": "^5.0.0-rc.2"
     }

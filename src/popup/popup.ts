@@ -14,6 +14,7 @@ import { useStore } from '../store/store';
 import { handleError, PolytellerError } from '../utils/errorUtils';
 import { validateCustomTime } from './components/customTimeValidation';
 import { initPrivacyModeToggle } from './components/privacyModeToggle';
+import { createDonateWidget } from './components/donateWidget';
 
 /**
  * Initializes the popup UI and sets up event listeners.
@@ -173,6 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('unload', () => {
     cleanupCountdown();
   });
+
+  // Add donate widget
+  const container = document.querySelector('.container');
+  if (container) {
+    container.appendChild(createDonateWidget());
+  }
 });
 
 window.addEventListener('error', (event: ErrorEvent) => {
