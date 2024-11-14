@@ -181,13 +181,49 @@ export function handleYearEnd(): DateResult {
 }
 
 /**
- * Handles Bitcoin noon format: "DD Nov 'YY HH:mm in TZ timezone"
- * Example: "15 Nov '24 12:00 in the ET timezone"
+ * Handles Bitcoin noon format: "DD MMM 'YY HH:mm in TZ timezone"
+ * Example: "BTCUSDT 15 Nov '24 12:00 in the ET timezone (noon)"
  */
 export function handleBitcoinNoon(match: RegExpMatchArray): DateResult {
-  const [, day, year, hour, minute, tz] = match;
+  const [, day, month, year, hour, minute, tz] = match;
+
+  // Convert month abbreviation to full name
+  const monthMap: { [key: string]: string } = {
+    'Jan': 'January',
+    'Feb': 'February',
+    'Mar': 'March',
+    'Apr': 'April',
+    'May': 'May',
+    'Jun': 'June',
+    'Jul': 'July',
+    'Aug': 'August',
+    'Sep': 'September',
+    'Oct': 'October',
+    'Nov': 'November',
+    'Dec': 'December'
+  };
+
+  const fullMonth = monthMap[month.substring(0, 3)] || month;
+
+  // Convert to 12-hour format if needed
+  const hourNum = parseInt(hour);
+  const ampm = hourNum >= 12 ? 'PM' : 'AM';
+  const hour12 = hourNum > 12 ? hourNum - 12 : (hourNum === 0 ? 12 : hourNum);
+
+  log('Content', 'Matched bitcoin noon format:', {
+    day,
+    month: fullMonth,
+    year,
+    hour: hour12,
+    minute,
+    tz,
+    ampm,
+    original: match[0]
+  });
+
+  // Format exactly as parseCustomDate expects
   return {
-    endDateValue: `November ${day}, 20${year}, ${hour}:${minute}:00`,
+    endDateValue: `${fullMonth} ${day}, 20${year}, ${hour12}:${minute}:00 ${ampm}`,
     timezone: tz
   };
 }

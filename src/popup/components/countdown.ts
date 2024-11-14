@@ -4,84 +4,66 @@
  */
 
 import { PolymarketEvent } from '../../types';
-import { log } from '../../utils/logUtils';
-import { formatDate, calculateTimeRemaining, formatCountdown, formatLocalEndDate } from '../../utils/dateUtils';
+import { CountdownManager } from '../../utils/CountdownManager';
+import { formatLocalEndDate } from '../../utils/dateUtils';
 import { getLocalTimezone } from '../../utils/timezoneUtils';
+import { formatCountdownDisplay } from '../../utils/countdownFormatters';
 
-let countdownInterval: NodeJS.Timeout | null = null;
+let unsubscribe: (() => void) | null = null;
 
 /**
  * Displays and updates the countdown for an event.
  * @param eventInfo - The event information
  */
 export function displayCountdown(eventInfo: PolymarketEvent): void {
-  // Retrieve necessary DOM elements
+  // Cleanup any existing subscription
+  if (unsubscribe) {
+    unsubscribe();
+    unsubscribe = null;
+  }
+
   const countdownElement = document.getElementById('countdown');
   const localEndTimeElement = document.getElementById('local-end-time');
   const notificationSection = document.getElementById('notify-section');
 
   if (!countdownElement || !localEndTimeElement || !notificationSection) {
-    log('Popup', 'Required DOM elements not found');
     return;
   }
 
-  const endDate = new Date(eventInfo.endTime);
-  const now = new Date();
+  const countdownManager = CountdownManager.getInstance();
+  countdownManager.registerEvent(eventInfo);
 
-  if (endDate <= now) {
-    // Event has already ended
-    countdownElement.textContent = 'Event has ended';
-    localEndTimeElement.innerHTML = `
-      <span class="end-time-label">Ended on</span>
-      <span>${formatDate(endDate)}</span>
-    `;
-    notificationSection.style.display = 'none';
-  } else {
-    // Event is still ongoing
-    function updateCountdown(): void {
-      const now = new Date();
-      const timeLeft = endDate.getTime() - now.getTime();
-
-      if (timeLeft <= 0) {
-        // Event just ended
-        if (countdownElement) {
-          countdownElement.textContent = 'Event has just ended';
-        }
-        if (countdownInterval !== null) {
-          clearInterval(countdownInterval);
-        }
-        if (notificationSection) {
-          notificationSection.style.display = 'none';
-        }
-      } else {
-        // Update countdown display
-        if (countdownElement) {
-          countdownElement.innerHTML = formatCountdown(timeLeft);
-        }
-      }
+  unsubscribe = countdownManager.subscribe(eventInfo.id, (timeLeft) => {
+    if (timeLeft.hasEnded) {
+      countdownElement.textContent = 'Event has ended';
+      const endDate = new Date(eventInfo.endTime);
+      localEndTimeElement.innerHTML = `
+        <span class="end-time-label">Ended on</span>
+        <span>${formatLocalEndDate(endDate, getLocalTimezone())}</span>
+      `;
+      notificationSection.style.display = 'none';
+    } else {
+      countdownElement.innerHTML = formatCountdownDisplay(timeLeft);
     }
+  });
 
-    // Initial update and set interval for continuous updates
-    updateCountdown();
-    countdownInterval = setInterval(updateCountdown, 1000);
+  // Display local end time
+  const endDate = new Date(eventInfo.endTime);
+  const localTimezoneAbbr = getLocalTimezone();
+  const formattedLocalEndDate = formatLocalEndDate(endDate, localTimezoneAbbr);
 
-    // Display local end time
-    const localTimezoneAbbr = getLocalTimezone();
-    const formattedLocalEndDate = formatLocalEndDate(endDate, localTimezoneAbbr);
-
-    localEndTimeElement.innerHTML = `
-      <span class="end-time-label">Ends on</span>
-      <span>${formattedLocalEndDate} ${localTimezoneAbbr}</span>
-    `;
-  }
+  localEndTimeElement.innerHTML = `
+    <span class="end-time-label">Ends on</span>
+    <span>${formattedLocalEndDate} ${localTimezoneAbbr}</span>
+  `;
 }
 
 /**
  * Cleans up the countdown interval when the popup is closed.
  */
 export function cleanupCountdown(): void {
-  if (countdownInterval !== null) {
-    clearInterval(countdownInterval);
-    countdownInterval = null;
+  if (unsubscribe) {
+    unsubscribe();
+    unsubscribe = null;
   }
 }

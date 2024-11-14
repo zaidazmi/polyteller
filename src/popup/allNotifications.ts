@@ -4,6 +4,8 @@ import { formatFullNotificationTime, formatDate } from '../utils/dateUtils';
 import { log } from '../utils/logUtils';
 import { displayStatus } from './utils';
 import { convertToLocalTime, formatLocalTime } from '../utils/timezoneUtils';
+import { CountdownManager } from '../utils/CountdownManager';
+import { formatAllNotificationsCountdown } from '../utils/countdownFormatters';
 
 function displayAllNotifications() {
   const allNotificationsElement = document.getElementById('all-notifications');
@@ -150,57 +152,40 @@ function startCountdowns() {
   const countdownElements = document.querySelectorAll('.event-countdown');
   countdownElements.forEach(element => {
     const endTime = parseInt(element.getAttribute('data-end-time') || '0', 10);
-    updateCountdown(element as HTMLElement, endTime);
-    setInterval(() => updateCountdown(element as HTMLElement, endTime), 1000);
+    const eventId = element.closest('.event-notifications')?.getAttribute('data-event-id') || '';
+    updateCountdown(element as HTMLElement, eventId, endTime);
   });
 }
 
-function updateCountdown(element: HTMLElement, endTime: number) {
-  const now = Date.now();
-  const timeLeft = endTime - now;
+function updateCountdown(element: HTMLElement, eventId: string, endTime: number) {
+  const countdownManager = CountdownManager.getInstance();
+  countdownManager.registerEvent({ id: eventId, endTime } as PolymarketEvent);
 
-  if (timeLeft > 0) {
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-    // Create a more structured countdown display
-    element.innerHTML = `
-      <div class="countdown-segment">
-        <span class="countdown-number">${days.toString().padStart(2, '0')}</span>
-        <span class="countdown-label">days</span>
-      </div>
-      <span class="countdown-separator">:</span>
-      <div class="countdown-segment">
-        <span class="countdown-number">${hours.toString().padStart(2, '0')}</span>
-        <span class="countdown-label">hours</span>
-      </div>
-      <span class="countdown-separator">:</span>
-      <div class="countdown-segment">
-        <span class="countdown-number">${minutes.toString().padStart(2, '0')}</span>
-        <span class="countdown-label">mins</span>
-      </div>
-      <span class="countdown-separator">:</span>
-      <div class="countdown-segment">
-        <span class="countdown-number">${seconds.toString().padStart(2, '0')}</span>
-        <span class="countdown-label">secs</span>
-      </div>
-    `;
-
-    // Add a pulsing effect when time is running low (less than 1 hour)
-    if (timeLeft < 3600000) { // 1 hour in milliseconds
-      element.style.animation = 'pulse 2s infinite';
+  return countdownManager.subscribe(eventId, (timeLeft) => {
+    if (timeLeft.hasEnded) {
+      element.innerHTML = `
+        <div class="countdown-segment" style="background-color: #FEE2E2; color: #991B1B;">
+          <span class="countdown-number" style="color: #991B1B;">00:00</span>
+          <span class="countdown-label">Event ended</span>
+        </div>
+      `;
+    } else {
+      element.innerHTML = formatAllNotificationsCountdown(timeLeft);
     }
-  } else {
-    element.innerHTML = `
-      <div class="countdown-segment" style="background-color: #FEE2E2; color: #991B1B;">
-        <span class="countdown-number" style="color: #991B1B;">00:00</span>
-        <span class="countdown-label">Event ended</span>
-      </div>
-    `;
-  }
+  });
 }
+
+// Store unsubscribe functions
+const countdownUnsubscribes = new Map<string, () => void>();
+
+// Cleanup function
+function cleanupCountdowns() {
+  countdownUnsubscribes.forEach(unsubscribe => unsubscribe());
+  countdownUnsubscribes.clear();
+}
+
+// Add cleanup on page unload
+window.addEventListener('unload', cleanupCountdowns);
 
 // Add this to the existing CSS animations
 const style = document.createElement('style');
