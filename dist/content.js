@@ -65,6 +65,7 @@ let isInitialized = false;
 let currentUrl = window.location.href;
 let lastEventSlug = null;
 let countdownElement = null;
+let marketDataObserver = null;
 /**
  * Initializes the countdown for the current Polymarket event.
  * This function extracts event information, sends it to the background script,
@@ -74,22 +75,20 @@ function initializeCountdown() {
     if (isInitialized)
         return;
     (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Initializing countdown');
-    // Check if it's a sports URL first
     if (window.location.pathname.startsWith('/sports/')) {
         showSportsNotSupported();
         return;
     }
     const eventInfo = (0,_eventExtractor__WEBPACK_IMPORTED_MODULE_1__.extractEventInfo)();
     if (eventInfo) {
-        // Extract current event slug from URL
         const currentSlug = window.location.pathname.split('/').pop()?.split('?')[0];
-        // Check if event data matches current URL
         if (currentSlug && eventInfo.url.includes(currentSlug)) {
             (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Event info extracted:', eventInfo);
             lastEventSlug = currentSlug;
             isInitialized = true;
             (0,_messageHandler__WEBPACK_IMPORTED_MODULE_4__.sendEventInfo)(eventInfo);
             (0,_countdownManager__WEBPACK_IMPORTED_MODULE_2__.createAndInsertCountdown)(eventInfo, false);
+            tryAutoSync();
         }
         else {
             (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Event data mismatch with URL, showing refresh hint');
@@ -100,21 +99,55 @@ function initializeCountdown() {
         (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Failed to extract event info');
     }
 }
+function tryAutoSync() {
+    if (marketDataObserver) {
+        marketDataObserver.disconnect();
+    }
+    marketDataObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.target instanceof Element &&
+                (mutation.target.matches('[data-market-info]') ||
+                    mutation.target.closest('[data-market-info]'))) {
+                (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Market data change detected');
+                const newEventInfo = (0,_eventExtractor__WEBPACK_IMPORTED_MODULE_1__.extractEventInfo)();
+                if (newEventInfo) {
+                    updateCountdownWithoutReload(newEventInfo);
+                }
+            }
+        }
+    });
+    marketDataObserver.observe(document.body, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ['data-market-info']
+    });
+}
+function updateCountdownWithoutReload(newEventInfo) {
+    (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Updating countdown without reload:', newEventInfo);
+    (0,_countdownManager__WEBPACK_IMPORTED_MODULE_2__.clearCountdown)();
+    (0,_countdownManager__WEBPACK_IMPORTED_MODULE_2__.createAndInsertCountdown)(newEventInfo, false);
+    (0,_messageHandler__WEBPACK_IMPORTED_MODULE_4__.sendEventInfo)(newEventInfo);
+}
 // Function to handle URL changes
 function handleUrlChange() {
     const newUrl = window.location.href;
-    if (currentUrl !== newUrl) {
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', `Route changed from ${new URL(currentUrl).pathname} to ${new URL(newUrl).pathname}`);
+    const currentPath = new URL(currentUrl).pathname;
+    const newPath = new URL(newUrl).pathname;
+    // Only trigger on actual path changes, not query params
+    if (currentPath !== newPath) {
+        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', `Route changed from ${currentPath} to ${newPath}`);
         currentUrl = newUrl;
         // Always remove any existing countdown/message elements first
         removeExistingElements();
         // Reset initialization
         isInitialized = false;
-        // Get new path
-        const newPath = new URL(newUrl).pathname;
         // Check if it's a sports URL
         if (newPath.startsWith('/sports/')) {
             showSportsNotSupported();
+            if (marketDataObserver) {
+                marketDataObserver.disconnect();
+            }
         }
         else if (newPath.startsWith('/event/')) {
             // Only show refresh hint if we're navigating between event pages
@@ -124,11 +157,17 @@ function handleUrlChange() {
                 lastEventSlug = null;
                 showRefreshHint();
             }
+            else {
+                tryAutoSync();
+            }
         }
         else {
-            // For non-event pages (like /markets/politics), just cleanup without showing refresh hint
+            // For non-event pages (like /markets/politics), just cleanup
             (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Non-event page detected, cleaning up');
             lastEventSlug = null;
+            if (marketDataObserver) {
+                marketDataObserver.disconnect();
+            }
         }
         // Notify background script to clear current event
         chrome.runtime.sendMessage({
