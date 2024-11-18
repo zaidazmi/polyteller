@@ -9,12 +9,14 @@ import { extractEventInfo } from './eventExtractor';
 import { createAndInsertCountdown, clearCountdown } from './countdownManager';
 import { initializeDOMObserver, initializeDOMManipulations } from './domManipulator';
 import { sendEventInfo } from './messageHandler';
+import { PolymarketEvent } from '../types';
 import '../styles/content.css';
 
 let isInitialized = false;
 let currentUrl = window.location.href;
 let lastEventSlug: string | null = null;
 let countdownElement: HTMLElement | null = null;
+let marketDataObserver: MutationObserver | null = null;
 
 /**
  * Initializes the countdown for the current Polymarket event.
@@ -26,7 +28,6 @@ function initializeCountdown() {
 
   log('Content', 'Initializing countdown');
   
-  // Check if it's a sports URL first
   if (window.location.pathname.startsWith('/sports/')) {
     showSportsNotSupported();
     return;
@@ -35,16 +36,15 @@ function initializeCountdown() {
   const eventInfo = extractEventInfo();
   
   if (eventInfo) {
-    // Extract current event slug from URL
     const currentSlug = window.location.pathname.split('/').pop()?.split('?')[0];
     
-    // Check if event data matches current URL
     if (currentSlug && eventInfo.url.includes(currentSlug)) {
       log('Content', 'Event info extracted:', eventInfo);
       lastEventSlug = currentSlug;
       isInitialized = true;
       sendEventInfo(eventInfo);
       createAndInsertCountdown(eventInfo, false);
+      tryAutoSync();
     } else {
       log('Content', 'Event data mismatch with URL, showing refresh hint');
       clearCountdown();
@@ -54,11 +54,49 @@ function initializeCountdown() {
   }
 }
 
+function tryAutoSync() {
+  if (marketDataObserver) {
+    marketDataObserver.disconnect();
+  }
+
+  marketDataObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.target instanceof Element && 
+          (mutation.target.matches('[data-market-info]') || 
+           mutation.target.closest('[data-market-info]'))) {
+        log('Content', 'Market data change detected');
+        const newEventInfo = extractEventInfo();
+        if (newEventInfo) {
+          updateCountdownWithoutReload(newEventInfo);
+        }
+      }
+    }
+  });
+
+  marketDataObserver.observe(document.body, {
+    subtree: true,
+    childList: true,
+    attributes: true,
+    attributeFilter: ['data-market-info']
+  });
+}
+
+function updateCountdownWithoutReload(newEventInfo: PolymarketEvent) {
+  log('Content', 'Updating countdown without reload:', newEventInfo);
+  clearCountdown();
+  createAndInsertCountdown(newEventInfo, false);
+  sendEventInfo(newEventInfo);
+}
+
 // Function to handle URL changes
 function handleUrlChange() {
   const newUrl = window.location.href;
-  if (currentUrl !== newUrl) {
-    log('Content', `Route changed from ${new URL(currentUrl).pathname} to ${new URL(newUrl).pathname}`);
+  const currentPath = new URL(currentUrl).pathname;
+  const newPath = new URL(newUrl).pathname;
+  
+  // Only trigger on actual path changes, not query params
+  if (currentPath !== newPath) {
+    log('Content', `Route changed from ${currentPath} to ${newPath}`);
     currentUrl = newUrl;
     
     // Always remove any existing countdown/message elements first
@@ -67,12 +105,12 @@ function handleUrlChange() {
     // Reset initialization
     isInitialized = false;
     
-    // Get new path
-    const newPath = new URL(newUrl).pathname;
-    
     // Check if it's a sports URL
     if (newPath.startsWith('/sports/')) {
       showSportsNotSupported();
+      if (marketDataObserver) {
+        marketDataObserver.disconnect();
+      }
     } else if (newPath.startsWith('/event/')) {
       // Only show refresh hint if we're navigating between event pages
       const newSlug = newPath.split('/').pop()?.split('?')[0];
@@ -80,11 +118,16 @@ function handleUrlChange() {
         log('Content', 'Different event detected, showing refresh hint');
         lastEventSlug = null;
         showRefreshHint();
+      } else {
+        tryAutoSync();
       }
     } else {
-      // For non-event pages (like /markets/politics), just cleanup without showing refresh hint
+      // For non-event pages (like /markets/politics), just cleanup
       log('Content', 'Non-event page detected, cleaning up');
       lastEventSlug = null;
+      if (marketDataObserver) {
+        marketDataObserver.disconnect();
+      }
     }
 
     // Notify background script to clear current event
