@@ -67,19 +67,24 @@ function handleUrlChange() {
     // Reset initialization
     isInitialized = false;
     
+    // Get new path
+    const newPath = new URL(newUrl).pathname;
+    
     // Check if it's a sports URL
-    if (newUrl.includes('/sports/')) {
+    if (newPath.startsWith('/sports/')) {
       showSportsNotSupported();
-    } else {
-      // Get new event slug
-      const newSlug = window.location.pathname.split('/').pop()?.split('?')[0];
-      
-      // Show refresh hint if coming from any page
+    } else if (newPath.startsWith('/event/')) {
+      // Only show refresh hint if we're navigating between event pages
+      const newSlug = newPath.split('/').pop()?.split('?')[0];
       if (newSlug && newSlug !== lastEventSlug) {
         log('Content', 'Different event detected, showing refresh hint');
         lastEventSlug = null;
         showRefreshHint();
       }
+    } else {
+      // For non-event pages (like /markets/politics), just cleanup without showing refresh hint
+      log('Content', 'Non-event page detected, cleaning up');
+      lastEventSlug = null;
     }
 
     // Notify background script to clear current event
