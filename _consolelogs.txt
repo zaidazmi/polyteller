@@ -1,24 +1,30 @@
-content.js:1 [Polyteller Content] Initializing countdown
-content.js:1 [Polyteller Content] Checking path: /event/la-liga-winner
-content.js:1 [Polyteller Content] Market rules: This market will resolve to “Yes” if Real Madrid is the 2024-25 La Liga Champion. Otherwise, the market will resolve to “No”.
+content.js:2314 [Polyteller Content] Initializing countdown
+content.js:2314 [Polyteller Content] Checking path: /event/what-price-will-bitcoin-hit-in-november
+content.js:2314 [Polyteller Content] Market rules: This market will immediately resolve to "Yes" if any Binance 1 minute candle for Bitcoin (BTCUSDT) between November 1, 2024, 00:00 and November 30, 2024, 23:59 in the ET timezone has a final "High" price of $85,000.00 or higher. Otherwise, this market will resolve to "No."
 
-If it is a mathematical certainty Real Madrid will win, this market will immediately resolve to “Yes.” Likewise, if it becomes mathematically impossible for Real Madrid to win, this market will immediately resolve to “No.” Potential retroactive points deductions past these points will have no bearing on this market’s resolution.
-content.js:1 [Polyteller Content] Verifying event data match: {currentSlug: 'la-liga-winner', eventSlug: 'la-liga-winner', urlPath: '/event/la-liga-winner'}
-content.js:1 [Polyteller Content] Before parseCustomDate: {dateString: '2025-05-25T23:59:59-05:00', timezone: 'ET'}
-content.js:1 [Polyteller Content] After parseCustomDate: {originalDate: '2025-05-25T23:59:59-05:00', parsedDate: '2025-05-26T03:59:59.000Z', localDate: 'Mon May 26 2025 09:29:59 GMT+0530 (India Standard Time)', timezone: 'ET', isDST: true, …}
-content.js:1 [Polyteller Content] Extracted event info: {
-  "id": "12672",
-  "title": "La Liga Winner",
-  "endTime": 1748231999000,
-  "endDate": "2025-05-25T23:59:59-05:00",
+The resolution source for this market is Binance, specifically the BTCUSDT "High" prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on "1m" for one-minute candles selected on the top bar.
+
+Please note that the outcome of this market depends solely on the price data from the Binance BTCUSDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.
+content.js:2314 [Polyteller Content] Verifying event data match: Object
+content.js:2314 [Polyteller Content] Before parseCustomDate: Object
+content.js:2314 [Polyteller Content] After parseCustomDate: Object
+content.js:2314 [Polyteller Content] Extracted event info: {
+  "id": "13945",
+  "title": "What price will Bitcoin hit in November?",
+  "endTime": 1733029140000,
+  "endDate": "November 30, 2024, 11:59:00 PM",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/la-liga-winner?tid=1731587629158"
+  "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-in-november?tid=1731946696065"
 }
-content.js:1 [Polyteller Content] Event info extracted: {id: '12672', title: 'La Liga Winner', endTime: 1748231999000, endDate: '2025-05-25T23:59:59-05:00', timezone: 'ET', …}
-content.js:1 [Polyteller DOMObserver] Initialized with optimized settings {target: 'DIV', config: {…}}
-content.js:1 [Polyteller Content] Polyteller content script loaded
-content.js:1 [Polyteller DOMManipulator] Buy button interception set up
-content.js:1 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:1 [Polyteller PrivacyMode] Initial state loaded: false
-privacyMode.js:1 [Polyteller PrivacyMode] Toggle icon added
-content.js:1 [Polyteller Content] Sending event info to background: {id: '12672', title: 'La Liga Winner', endTime: 1748231999000, endDate: '2025-05-25T23:59:59-05:00', timezone: 'ET', …}
+content.js:2314 [Polyteller Content] Event info extracted: Object
+content.js:2314 [Polyteller DOMObserver] Initialized with optimized settings Object
+content.js:2314 [Polyteller Content] Polyteller content script loaded
+content.js:2314 [Polyteller DOMManipulator] Buy button interception set up
+content.js:2314 [Polyteller TradeConfirmation] Initial state loaded: true
+privacyMode.js:19 [Polyteller PrivacyMode] Initial state loaded: false
+privacyMode.js:19 [Polyteller PrivacyMode] Toggle icon added
+content.js:2314 [Polyteller Content] Sending event info to background: Object
+content.js:2314 [Polyteller DOMManipulator] Element clicked: SPAN - Sports
+content.js:2314 [Polyteller Content] Route changed from /event/what-price-will-bitcoin-hit-in-november to /sports/nfl/games
+content.js:2314 [Polyteller Content] Received trade confirmation update: true
+content.js:2314 [Polyteller Content] Updated trade confirmation setting: true

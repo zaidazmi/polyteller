@@ -34,7 +34,16 @@ export async function initPopup() {
 
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
       const currentTabId = tabs[0]?.id;
+      const currentUrl = tabs[0]?.url || '';
+      
       log('Current tab ID:', currentTabId);
+      
+      // Check for sports page first
+      if (currentUrl.includes('/sports/')) {
+        updateUI(null); // This will trigger sports message display
+        return;
+      }
+
       if (currentTabId) {
         chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId: currentTabId }, (response: PolymarketEvent | null) => {
           try {

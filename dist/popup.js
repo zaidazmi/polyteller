@@ -924,17 +924,85 @@ __webpack_require__.r(__webpack_exports__);
  * @param eventInfo - The event information to display
  */
 function updateUI(eventInfo) {
-    (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Updating UI with event info:', eventInfo);
-    const titleElement = document.getElementById('event-title');
-    if (titleElement) {
-        titleElement.textContent = eventInfo.title;
+    chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
+        const currentUrl = tabs[0]?.url || '';
+        // Handle sports URLs immediately
+        if (currentUrl.includes('/sports/')) {
+            displaySportsNotSupported();
+            return;
+        }
+        // For non-sports URLs, handle event info
+        if (!eventInfo) {
+            displayError('No event found on this page.');
+            return;
+        }
+        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'Updating UI with event info:', eventInfo);
+        const titleElement = document.getElementById('event-title');
+        if (titleElement) {
+            titleElement.textContent = eventInfo.title;
+        }
+        if (typeof eventInfo.endTime === 'number' && (0,_utils_dateUtils__WEBPACK_IMPORTED_MODULE_2__.isValidTimestamp)(eventInfo.endTime)) {
+            (0,_countdown__WEBPACK_IMPORTED_MODULE_1__.displayCountdown)(eventInfo);
+        }
+        else {
+            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Invalid endTime:', eventInfo.endTime);
+            (0,_utils__WEBPACK_IMPORTED_MODULE_3__.displayStatus)('Invalid event end time');
+        }
+    });
+}
+/**
+ * Displays sports not supported message in the popup.
+ */
+function displaySportsNotSupported() {
+    // Hide all sections first
+    const sectionsToHide = [
+        'countdown',
+        'local-end-time',
+        'notify-section',
+        'set-notifications'
+    ];
+    sectionsToHide.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.style.display = 'none';
+        }
+    });
+    // Clear notifications list
+    const notificationsList = document.getElementById('notifications-list');
+    if (notificationsList) {
+        notificationsList.innerHTML = '';
     }
-    if ((0,_utils_dateUtils__WEBPACK_IMPORTED_MODULE_2__.isValidTimestamp)(eventInfo.endTime)) {
-        (0,_countdown__WEBPACK_IMPORTED_MODULE_1__.displayCountdown)(eventInfo);
+    // Clear any existing content
+    const eventTitle = document.getElementById('event-title');
+    if (eventTitle) {
+        // Clear any existing content first
+        eventTitle.innerHTML = '';
+        // Add sports message
+        const messageDiv = document.createElement('div');
+        messageDiv.style.cssText = `
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-color);
+      background-color: var(--countdown-background);
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 0;
+    `;
+        messageDiv.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <span style="font-weight: 500;">Sports events are not supported yet</span>
+    `;
+        eventTitle.appendChild(messageDiv);
     }
-    else {
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Invalid endTime:', eventInfo.endTime);
-        (0,_utils__WEBPACK_IMPORTED_MODULE_3__.displayStatus)('Invalid event end time');
+    // Force cleanup of any other messages
+    const statusMessage = document.getElementById('notification-status');
+    if (statusMessage) {
+        statusMessage.textContent = '';
     }
 }
 /**
@@ -1026,7 +1094,13 @@ async function initPopup() {
         }
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             const currentTabId = tabs[0]?.id;
+            const currentUrl = tabs[0]?.url || '';
             (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_1__.log)('Current tab ID:', currentTabId);
+            // Check for sports page first
+            if (currentUrl.includes('/sports/')) {
+                (0,_components_uiUpdates__WEBPACK_IMPORTED_MODULE_2__.updateUI)(null); // This will trigger sports message display
+                return;
+            }
             if (currentTabId) {
                 chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId: currentTabId }, (response) => {
                     try {

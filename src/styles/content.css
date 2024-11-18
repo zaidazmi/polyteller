@@ -37,3 +37,16 @@
 .privacy-mode-toggle-icon:hover {
   opacity: 0.8 !important;
 }
+
+#polyteller-countdown.sports-not-supported {
+  background-color: #FEE2E2;
+  color: #991B1B;
+  border-left: 4px solid #DC2626;
+  opacity: 1;
+}
+
+#polyteller-countdown.sports-not-supported svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}

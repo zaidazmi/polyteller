@@ -64,6 +64,7 @@ __webpack_require__.r(__webpack_exports__);
 let isInitialized = false;
 let currentUrl = window.location.href;
 let lastEventSlug = null;
+let countdownElement = null;
 /**
  * Initializes the countdown for the current Polymarket event.
  * This function extracts event information, sends it to the background script,
@@ -73,6 +74,11 @@ function initializeCountdown() {
     if (isInitialized)
         return;
     (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Initializing countdown');
+    // Check if it's a sports URL first
+    if (window.location.pathname.startsWith('/sports/')) {
+        showSportsNotSupported();
+        return;
+    }
     const eventInfo = (0,_eventExtractor__WEBPACK_IMPORTED_MODULE_1__.extractEventInfo)();
     if (eventInfo) {
         // Extract current event slug from URL
@@ -100,21 +106,136 @@ function handleUrlChange() {
     if (currentUrl !== newUrl) {
         (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', `Route changed from ${new URL(currentUrl).pathname} to ${new URL(newUrl).pathname}`);
         currentUrl = newUrl;
-        // Get new event slug
-        const newSlug = window.location.pathname.split('/').pop()?.split('?')[0];
-        // Always clear old countdown and reset initialization
-        (0,_countdownManager__WEBPACK_IMPORTED_MODULE_2__.clearCountdown)();
+        // Always remove any existing countdown/message elements first
+        removeExistingElements();
+        // Reset initialization
         isInitialized = false;
-        // If we're moving to a different event, ensure we show refresh hint
-        if (newSlug && lastEventSlug && newSlug !== lastEventSlug) {
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Different event detected, showing refresh hint');
-            lastEventSlug = null;
+        // Check if it's a sports URL
+        if (newUrl.includes('/sports/')) {
+            showSportsNotSupported();
+        }
+        else {
+            // Get new event slug
+            const newSlug = window.location.pathname.split('/').pop()?.split('?')[0];
+            // Show refresh hint if coming from any page
+            if (newSlug && newSlug !== lastEventSlug) {
+                (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Different event detected, showing refresh hint');
+                lastEventSlug = null;
+                showRefreshHint();
+            }
         }
         // Notify background script to clear current event
         chrome.runtime.sendMessage({
             type: 'CLEAR_CURRENT_EVENT'
         });
     }
+}
+// Add new function to properly clean up existing elements
+function removeExistingElements() {
+    // Remove any existing countdown elements
+    const existingElements = document.querySelectorAll('#polyteller-countdown');
+    existingElements.forEach(element => element.remove());
+    // Reset countdownElement reference
+    countdownElement = null;
+}
+function showSportsNotSupported() {
+    // Ensure clean slate before showing message
+    removeExistingElements();
+    countdownElement = document.createElement('div');
+    countdownElement.id = 'polyteller-countdown';
+    document.body.appendChild(countdownElement);
+    countdownElement.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    z-index: 9999;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.5;
+    transform: scale(1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+  `;
+    countdownElement.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span>Sports events are not supported yet</span>
+  `;
+    // Add hover effects
+    countdownElement.addEventListener('mouseenter', () => {
+        if (countdownElement) {
+            countdownElement.style.opacity = '1';
+            countdownElement.style.transform = 'scale(1.1)';
+        }
+    });
+    countdownElement.addEventListener('mouseleave', () => {
+        if (countdownElement) {
+            countdownElement.style.opacity = '0.5';
+            countdownElement.style.transform = 'scale(1)';
+        }
+    });
+}
+// Add new function for showing refresh hint
+function showRefreshHint() {
+    // Ensure clean slate before showing message
+    removeExistingElements();
+    countdownElement = document.createElement('div');
+    countdownElement.id = 'polyteller-countdown';
+    document.body.appendChild(countdownElement);
+    countdownElement.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    z-index: 9999;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.5;
+    transform: scale(1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  `;
+    countdownElement.innerHTML = `
+    <svg style="width: 14px; height: 14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+    </svg>
+    <div style="color: white; font-size: 14px;">
+      Refresh page to update
+    </div>
+  `;
+    // Add hover effects
+    countdownElement.addEventListener('mouseenter', () => {
+        if (countdownElement) {
+            countdownElement.style.opacity = '1';
+            countdownElement.style.transform = 'scale(1.1)';
+        }
+    });
+    countdownElement.addEventListener('mouseleave', () => {
+        if (countdownElement) {
+            countdownElement.style.opacity = '0.5';
+            countdownElement.style.transform = 'scale(1)';
+        }
+    });
+    // Add click handler for refresh
+    countdownElement.addEventListener('click', () => {
+        window.location.reload();
+    });
 }
 // Initial call to initialize countdown
 initializeCountdown();
