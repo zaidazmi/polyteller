@@ -7,13 +7,16 @@ A Chrome extension for Polymarket that provides real-time countdowns, customizab
 - **Real-time Event Countdowns**
   - Accurate countdown timers for market events
   - Handles timezone conversions and DST changes
-  - Displays in both popup and on-page formats
+  - Auto-sync for minor updates without refresh
+  - Smart refresh hints for major changes
 
 - **Smart Notifications**
   - Customizable notification timing
   - Multiple notifications per event
+  - Chronological sorting (earliest first)
   - Local timezone display
   - Persistent across browser sessions
+  - Grouped by events in all notifications view
 
 - **Privacy Mode**
   - Masks portfolio values and balances
@@ -25,7 +28,13 @@ A Chrome extension for Polymarket that provides real-time countdowns, customizab
   - Optional confirmation dialog for trades
   - Keyboard shortcuts (Enter/Esc)
   - Configurable in settings
+  - Syncs state across all tabs
   - Prevents accidental trades
+
+- **Sports Section**
+  - Clear indication of unsupported features
+  - User-friendly messages
+  - Clean UI state management
 
 ## Installation
 
@@ -42,7 +51,7 @@ npm install
 
 3. Build the extension:
 ```bash
-# For production (no logs)
+# For production (minified, no logs)
 npm run build
 
 # For development (with logs)
@@ -62,7 +71,7 @@ npm run dev
 # Development build with logs and watch mode
 npm run dev
 
-# Production build (no logs)
+# Production build (minified, no logs)
 npm run build
 
 # Development build without watch
@@ -91,10 +100,11 @@ src/
 
 ### Key Technologies
 - TypeScript
-- Webpack
+- Webpack with advanced minification
 - Chrome Extension APIs
 - Zustand (State Management)
 - Jest (Testing)
+- Canvas Confetti
 
 ## Testing
 
@@ -109,6 +119,8 @@ The test suite covers:
 - State management
 - UI components
 - Error handling
+- Notification sorting
+- Trade confirmation sync
 
 ## Browser Support
 - Chrome/Chromium (v110+)
@@ -122,9 +134,9 @@ The test suite covers:
 5. Open a Pull Request
 
 ## License
-MIT License - See LICENSE file for details
+Proprietary - All rights reserved
 
 ## Contact
-Zaid Azmi - zaidazmi27@gmail.com
+Zaid Azmi - hi@polyteller.com
 
 Project Link: [https://github.com/zaidazmi/polyteller](https://github.com/zaidazmi/polyteller)
