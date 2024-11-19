@@ -811,69 +811,47 @@ function setNotification() {
  * Displays the list of current notifications.
  */
 function displayNotifications() {
-    const notificationsList = document.getElementById('notifications-list');
     const currentEvent = _store_store__WEBPACK_IMPORTED_MODULE_3__.useStore.getState().currentEvent;
-    if (!currentEvent) {
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'No current event found');
-        if (notificationsList) {
-            notificationsList.innerHTML = '<li>No event selected.</li>';
-        }
+    const notifications = _store_store__WEBPACK_IMPORTED_MODULE_3__.useStore.getState().notifications;
+    const notificationsList = document.getElementById('notifications-list');
+    if (!notificationsList)
+        return;
+    if (!currentEvent || !notifications.length) {
+        notificationsList.innerHTML = '<li>No notifications set for this event.</li>';
         return;
     }
-    chrome.runtime.sendMessage({ type: 'GET_STORED_NOTIFICATIONS' }, (response) => {
-        if (chrome.runtime.lastError) {
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'Error fetching notifications:', chrome.runtime.lastError);
-            if (notificationsList) {
-                notificationsList.innerHTML = '<li>Error loading notifications. Please try again.</li>';
-            }
-            return;
-        }
-        const allNotifications = response.notifications;
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'All notifications:', allNotifications);
-        // Filter notifications for the current event
-        const currentEventNotifications = allNotifications.filter((notification) => notification.eventId === currentEvent.id);
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'Displaying notifications for current event:', currentEventNotifications);
-        if (notificationsList) {
-            notificationsList.innerHTML = '';
-            if (currentEventNotifications.length === 0) {
-                notificationsList.innerHTML = '<li>No notifications set for this event.</li>';
-            }
-            else {
-                currentEventNotifications.forEach((notification) => {
-                    const li = document.createElement('li');
-                    li.className = 'notification-item';
-                    const notificationTime = currentEvent.endTime - notification.minutesBefore * 60 * 1000;
-                    const localNotificationTime = (0,_utils_timezoneUtils__WEBPACK_IMPORTED_MODULE_5__.convertToLocalTime)(notificationTime);
-                    li.innerHTML = `
-            <div class="notification-info">
-              <span class="notification-time">${(0,_utils_dateUtils__WEBPACK_IMPORTED_MODULE_1__.formatFullNotificationTime)(notification.minutesBefore)}</span>
-              <span class="notification-date">${(0,_utils_timezoneUtils__WEBPACK_IMPORTED_MODULE_5__.formatLocalTime)(localNotificationTime)}</span>
-            </div>
-            <button class="delete-notification" 
-                    data-event-id="${notification.eventId}" 
-                    data-minutes-before="${notification.minutesBefore}" 
-                    aria-label="Delete notification">
-              <span class="delete-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="3 6 5 6 21 6"></polyline>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                  <line x1="10" y1="11" x2="10" y2="17"></line>
-                  <line x1="14" y1="11" x2="14" y2="17"></line>
-                </svg>
-              </span>
-            </button>
-          `;
-                    notificationsList.appendChild(li);
-                });
-                const deleteButtons = document.querySelectorAll('.delete-notification');
-                deleteButtons.forEach(button => {
-                    button.addEventListener('click', deleteNotification);
-                });
-            }
-        }
-        else {
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Popup', 'Unable to display notifications: notificationsList not found');
-        }
+    // Sort notifications by trigger time (earliest first)
+    const sortedNotifications = [...notifications].sort((a, b) => {
+        const aTime = currentEvent.endTime - (a.minutesBefore * 60 * 1000);
+        const bTime = currentEvent.endTime - (b.minutesBefore * 60 * 1000);
+        return aTime - bTime; // Ascending order (earliest first)
+    });
+    // Display sorted notifications
+    notificationsList.innerHTML = sortedNotifications.map(notification => {
+        const triggerTime = currentEvent.endTime - (notification.minutesBefore * 60 * 1000);
+        return `
+      <li class="notification-item">
+        <div class="notification-info">
+          <div class="notification-time">${(0,_utils_dateUtils__WEBPACK_IMPORTED_MODULE_1__.formatFullNotificationTime)(notification.minutesBefore)}</div>
+          <div class="notification-date">${(0,_utils_timezoneUtils__WEBPACK_IMPORTED_MODULE_5__.formatLocalTime)(new Date(triggerTime))}</div>
+        </div>
+        <button class="delete-notification" data-event-id="${notification.eventId}" data-minutes-before="${notification.minutesBefore}">
+          <div class="delete-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          </div>
+        </button>
+      </li>
+    `;
+    }).join('');
+    // Add event listeners for delete buttons
+    const deleteButtons = notificationsList.querySelectorAll('.delete-notification');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', deleteNotification);
     });
 }
 /**

@@ -45,15 +45,20 @@ function displayAllNotifications() {
       sortedEvents.forEach(([eventId, eventNotifications]) => {
         const event = eventMap.get(eventId);
         if (event) {
-          const eventElement = createEventElement(event, eventNotifications);
+          // Sort notifications within each event by trigger time
+          const sortedNotifications = [...eventNotifications].sort((a, b) => {
+            const aTime = event.endTime - (a.minutesBefore * 60 * 1000);
+            const bTime = event.endTime - (b.minutesBefore * 60 * 1000);
+            return aTime - bTime;  // Ascending order (earliest first)
+          });
+
+          const eventElement = createEventElement(event, sortedNotifications);
           allNotificationsElement.appendChild(eventElement);
         }
       });
 
       // After populating the notifications
       addDeleteEventListeners();
-
-      // Start countdown timers
       startCountdowns();
     }
   });
