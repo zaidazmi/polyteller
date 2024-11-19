@@ -1,8 +1,28 @@
 /**
  * Main content script for Polyteller.
- * This file serves as the entry point for the content script, initializing the countdown
- * and setting up necessary observers and event handlers.
+ * 
+ * Key Features:
+ * 1. URL Change Detection: Handles Polymarket's SPA navigation
+ * 2. Refresh Hint: Shows when manual refresh is needed
+ * 3. Sports Page Detection: Shows unsupported message
+ * 4. Auto-sync: Attempts to update data without refresh when possible
+ * 
+ * Why We Built This:
+ * Polymarket is a Single Page Application (SPA) which means when users navigate
+ * between events, the URL changes but the page doesn't fully reload. This causes:
+ * - Old countdown data to persist
+ * - New event data not being automatically loaded
+ * - Users seeing stale information
+ * - Confusion about why the countdown isn't updating
+ * 
+ * Our solution:
+ * 1. Detect actual pathname changes (ignoring query params)
+ * 2. Show a user-friendly refresh hint when needed
+ * 3. Attempt auto-sync for minor updates
+ * 4. Handle special cases like sports pages
  */
+
+
 
 import { log } from '../utils/logUtils';
 import { extractEventInfo } from './eventExtractor';
@@ -88,7 +108,14 @@ function updateCountdownWithoutReload(newEventInfo: PolymarketEvent) {
   sendEventInfo(newEventInfo);
 }
 
-// Function to handle URL changes
+/**
+ * Handles URL changes in Polymarket's SPA environment.
+ * Only triggers on pathname changes, not query params.
+ * Examples:
+ * - /event/bitcoin-price → /event/another-event (triggers refresh hint)
+ * - /event/bitcoin-price → /event/bitcoin-price?tid=123 (no trigger)
+ * - /event/bitcoin-price → /sports/nfl (shows sports message)
+ */
 function handleUrlChange() {
   const newUrl = window.location.href;
   const currentPath = new URL(currentUrl).pathname;
