@@ -9,6 +9,7 @@ class TradeConfirmationState {
   private constructor() {
     this.loadInitialState();
     this.setupMessageListener();
+    this.setupStorageListener();
   }
 
   static getInstance(): TradeConfirmationState {
@@ -38,22 +39,49 @@ class TradeConfirmationState {
     });
   }
 
+  private setupStorageListener(): void {
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+      if (namespace === 'local' && changes.enableTradeConfirmation) {
+        const newValue = changes.enableTradeConfirmation.newValue;
+        if (this._isEnabled !== newValue) {
+          this._isEnabled = newValue;
+          this.notifyStateChange();
+        }
+      }
+    });
+  }
+
   get isEnabled(): boolean {
     return this._isEnabled;
   }
 
   private async setEnabled(value: boolean): Promise<void> {
-    if (this._isEnabled === value) return;
-
-    this._isEnabled = value;
-    log('TradeConfirmation', `State updated: ${value}`);
-
     try {
+      if (this._isEnabled === value) return;
+
+      this._isEnabled = value;
+      log('TradeConfirmation', `State updated: ${value}`);
+
       await chrome.storage.local.set({ enableTradeConfirmation: value });
-      log('TradeConfirmation', `State persisted: ${value}`);
+      
+      chrome.tabs.query({}, (tabs) => {
+        tabs.forEach(tab => {
+          if (tab.id) {
+            chrome.tabs.sendMessage(tab.id, {
+              action: 'updateTradeConfirmation',
+              enabled: value
+            }).catch(error => {
+              log('TradeConfirmation', `Error sending to tab ${tab.id}:`, error);
+            });
+          }
+        });
+      });
+
       this.notifyStateChange();
     } catch (error) {
-      log('TradeConfirmation', 'Error persisting state:', error);
+      log('TradeConfirmation', 'Error updating state:', error);
+      this._isEnabled = !value;
+      throw error;
     }
   }
 
