@@ -1,30 +1,45 @@
-content.js:2314 [Polyteller Content] Initializing countdown
-content.js:2314 [Polyteller Content] Checking path: /event/what-price-will-bitcoin-hit-in-november
-content.js:2314 [Polyteller Content] Market rules: This market will immediately resolve to "Yes" if any Binance 1 minute candle for Bitcoin (BTCUSDT) between November 1, 2024, 00:00 and November 30, 2024, 23:59 in the ET timezone has a final "High" price of $85,000.00 or higher. Otherwise, this market will resolve to "No."
+content.js:2420 [Polyteller Content] Initializing countdown
+content.js:2420 [Polyteller Content] Checking path: /event/fed-interest-rates-december-2024
+content.js:2420 [Polyteller Content] Market rules: The FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.
 
-The resolution source for this market is Binance, specifically the BTCUSDT "High" prices available at https://www.binance.com/en/trade/BTC_USDT, with the chart settings on "1m" for one-minute candles selected on the top bar.
+This market will resolve to “Yes” if following the Federal Reserve's December 2024 meeting the upper bound of the target federal funds rate is decreased by 75 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No”.
 
-Please note that the outcome of this market depends solely on the price data from the Binance BTCUSDT trading pair. Prices from other exchanges, different trading pairs, or spot markets will not be considered for the resolution of this market.
-content.js:2314 [Polyteller Content] Verifying event data match: Object
-content.js:2314 [Polyteller Content] Before parseCustomDate: Object
-content.js:2314 [Polyteller Content] After parseCustomDate: Object
-content.js:2314 [Polyteller Content] Extracted event info: {
-  "id": "13945",
-  "title": "What price will Bitcoin hit in November?",
-  "endTime": 1733029140000,
-  "endDate": "November 30, 2024, 11:59:00 PM",
+The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 17 - 18, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.
+
+The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.
+
+This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the "No change" bracket.
+content.js:2420 [Polyteller Content] Verifying event data match: {currentSlug: 'fed-interest-rates-december-2024', eventSlug: 'fed-interest-rates-december-2024', urlPath: '/event/fed-interest-rates-december-2024'}
+content.js:2420 [Polyteller Content] Before parseCustomDate: {dateString: '2024-12-18T23:59:59-05:00', timezone: 'ET'}
+content.js:2420 [Polyteller Content] After parseCustomDate: {originalDate: '2024-12-18T23:59:59-05:00', parsedDate: '2024-12-19T04:59:59.000Z', localDate: 'Thu Dec 19 2024 10:29:59 GMT+0530 (India Standard Time)', timezone: 'ET', isDST: false, …}
+content.js:2420 [Polyteller Content] Extracted event info: {
+  "id": "11878",
+  "title": "Fed decision in December?",
+  "endTime": 1734584399000,
+  "endDate": "2024-12-18T23:59:59-05:00",
   "timezone": "ET",
-  "url": "https://polymarket.com/event/what-price-will-bitcoin-hit-in-november?tid=1731946696065"
+  "url": "https://polymarket.com/event/fed-interest-rates-december-2024?tid=1732027413817"
 }
-content.js:2314 [Polyteller Content] Event info extracted: Object
-content.js:2314 [Polyteller DOMObserver] Initialized with optimized settings Object
-content.js:2314 [Polyteller Content] Polyteller content script loaded
-content.js:2314 [Polyteller DOMManipulator] Buy button interception set up
-content.js:2314 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:19 [Polyteller PrivacyMode] Initial state loaded: false
-privacyMode.js:19 [Polyteller PrivacyMode] Toggle icon added
-content.js:2314 [Polyteller Content] Sending event info to background: Object
-content.js:2314 [Polyteller DOMManipulator] Element clicked: SPAN - Sports
-content.js:2314 [Polyteller Content] Route changed from /event/what-price-will-bitcoin-hit-in-november to /sports/nfl/games
-content.js:2314 [Polyteller Content] Received trade confirmation update: true
-content.js:2314 [Polyteller Content] Updated trade confirmation setting: true
+content.js:2420 [Polyteller Content] Event info extracted: {id: '11878', title: 'Fed decision in December?', endTime: 1734584399000, endDate: '2024-12-18T23:59:59-05:00', timezone: 'ET', …}
+content.js:2420 [Polyteller DOMObserver] Initialized with optimized settings {target: 'DIV', config: {…}}
+content.js:2420 [Polyteller Content] Polyteller content script loaded
+content.js:2420 [Polyteller DOMManipulator] Buy button interception set up
+content.js:2420 [Polyteller DOMObserver] Processing relevant DOM changes
+content.js:2420 [Polyteller TradeConfirmation] Initial state loaded: false
+privacyMode.js:33 [Polyteller PrivacyMode] Initial state loaded: true
+privacyMode.js:33 [Polyteller PrivacyMode] Toggle icon added
+content.js:2420 [Polyteller Content] Sending event info to background: {id: '11878', title: 'Fed decision in December?', endTime: 1734584399000, endDate: '2024-12-18T23:59:59-05:00', timezone: 'ET', …}
+content.js:2420 [Polyteller Content] Received trade confirmation update: false
+content.js:2420 [Polyteller DOMManipulator] Element clicked: BUTTON - BuySuccess
+content.js:2420 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
+content.js:2420 [Polyteller DOMManipulator] Trade confirmation enabled: false
+content.js:2420 [Polyteller DOMManipulator] Trade confirmation disabled, proceeding with purchase
+content.js:2420 [Polyteller Content] Received trade confirmation update: false
+content.js:2420 [Polyteller Content] Received trade confirmation update: true
+content.js:2420 [Polyteller DOMManipulator] Element clicked: SPAN -  No 99.6¢
+content.js:2420 [Polyteller DOMManipulator] Element clicked: DIV - Outcome Yes 0.7¢ No 99.6¢AmountBalance $155.11MaxBuySuccessAvg price0.0¢Shares0.00Potential return$0.00 (0.00%)By trading, you agree to the Terms of Use.
+content.js:2420 [Polyteller DOMManipulator] Element clicked: svg - 
+content.js:2420 [Polyteller DOMManipulator] Main blue Buy button clicked, checking confirmation setting
+content.js:2420 [Polyteller DOMManipulator] Trade confirmation enabled: true
+content.js:2420 [Polyteller DOMManipulator] Order confirmed, proceeding with purchase
+content.js:2420 [Polyteller DOMManipulator] Element clicked: DIV - Fed decision in December?$17,329,674 Vol.Dec 18, 2024Dec 18Jan 3175+ bps decrease <1%50 bps decrease 1.6%25 bps decrease 64%No Change 35%SepOctNov0%20%40%60%80%Source: Polymarket.com1H6H1D1W1MALLOUTCOME% CHANCE75+ bps decrease$3,702,878 Vol.1%Buy Yes 0.7¢Buy No 99.6¢50 bps decrease$2,195,277 Vol.2%Buy Yes 1.7¢Buy No 98.6¢25 bps decrease$1,668,116 Vol.64%Buy Yes 64¢Buy No 37¢No Change$2,326,433 Vol.35%Buy Yes 35¢Buy No 66¢25+ bps increase$3,926,314 Vol.<1%Buy Yes 0.4¢Buy No 99.7¢Other$3,510,655 Vol.<1%Buy Yes 0.2¢Buy No 99.9¢Market SummaryGenerateRulesThe FED interest rates are defined in this market by the upper bound of the target federal funds range. The decisions on the target federal fund range are made by the Federal Open Market Committee (FOMC) meetings.This market will resolve to “Yes” if following the Federal Reserve's December 2024 meeting the upper bound of the target federal funds rate is decreased by 75 or more basis points below the level it was prior to the meeting. Otherwise, it will resolve to “No”.The resolution source for this market is the FOMC’s statement after its meeting scheduled for December 17 - 18, 2024 according to the official calendar: https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm.The level and change of the target federal funds rate is also published at the official website of the Federal Reserve at https://www.federalreserve.gov/monetarypolicy/openmarket.htm.This market may resolve as soon as the FOMC’s statement for their December meeting with relevant data is issued. If no statement is released by the end date of the next scheduled meeting, this market will resolve to the "No change" bracket.Volume$17,329,674End DateDec 18, 2024Resolver0x2F5e3684cb...Propose resolutionShow moreComments (90)Top Holders Activity Related PostBeware of external links, they may be phishing attacks.newestHoldersLoveicyrolls9.8K Other19m agoWorld War 3 is about to start, and the Fed needs to take unconventional actions. Let's make money!0Replypowellbowel139 No Change19m agoPowell be like betting here with all his money, then make the decision that will win his own bet lol1ReplyItxking2h agoPrecisionPicks PrecisionPicks  21h ago  Tip me just 2$, and ill share valuable insights that I uncover to help YOU find better market positions and get better returns. Why not pay 2$ to get another pair of eyes in the market with the sole purpose of helping you get better gains? Join in and lets make this cheese together!!0Replypriceconnor1d agoyes0Reply0xd0d161f9d094C7...206 No Change1d agoGift me bois2Replyitsari👻2d agoWell fed said action will be based on data and not election results. 25bps cut, but not enough confidence to bet.0ReplyAnimeKid2d agoAyy can someone gift me real quick need to bet on Elon0ReplyShow  6 RepliesBail2d agoSomeone gift me1ReplyHide  2 RepliesBail2d agoSure man here1ReplyCerealLover2d ago@BailDid you gift yourself?3Replysdsad1s1s167 75+ bps decrease3d agoMainnet checker for $ME token is already published! Read post now: x.com/MagicEden/status/1857932890681626977 #PUMP1ReplyHide  1 Replieslonewolverine2d agoReported as scam4ReplyChristopherGauth...20 No Change3d agoNothing ever happens1ReplyRockZ3d agoCan someone tip me I just lost 30 bucks0ReplyShow  3 RepliesJerean1 25+ bps increase4d agoRaising interest rates will be an impossible thing to happen3ReplyHide  1 RepliesStye4d agoIt's impossible to know what is impossible.2Reply0xShallow76.5K 25+ bps increase4d agoYou guys thought you could bet against Larry Fink?1ReplyShow  8 Repliesjhgryrtyeyer2 No Change4d agoHODL now, celebrate later2Replyiiucvbss2 50 bps decrease4d agoResilience brings rewards1Replyttygfada4d ago???????????????0Replyrtyr345ertew3 50 bps decrease4d agoHold strong, and succeed1ReplyHide  2 RepliesBigDaddyMoneyMak...4d agou got like a buck on this bro8ReplyBail2d ago@BigDaddyMone...Bro0Reply0x18d8F47ACdB33f...5d agolooks like no interest cuts on december2Reply0x18d8F47ACdB33f...5d agoThe economy is not sending any signals that we need to be in a hurry to lower rates, Powell said in prepared remarks for an event at the Dallas Regional Chamber. The strength we are currently seeing in the economy gives us the ability to approach our decisions carefully.3ReplyHide  2 Repliesiiucvbss2 50 bps decrease4d agoyes0Replypowellbowel139 No Change2d agoFinger crossed0ReplySacha993252 No Change5d agoPowell just said that they are not likely to increase rates in december, its free money7ReplyHide  2 RepliesBigDaddyMoneyMak...4d agoMisquote2ReplyCerealLover2d agoNo one thinks they are going to increase rates you retard0ReplyCar5d agojobs Lower than est1Replyascce45d agoCeltics0Replysadbois31.5K 50 bps decrease6d ago50 bps decrease. I just spoke with Powell12ReplyHide  1 RepliesCerealLover2d agoBro. Ur down $6k. Why you burning your money on bets like this0ReplyCar6d agoAlright 25bps it is1ReplyAAAAProgrammer6d agoIt is impossible to wait0ReplyCryptoPix7d ago25 decrease0ReplyMaulKris7d ago25+ bps increase no0ReplyMasterMindFul300 No Change7d agoNo change to the moon if inflation goes back up and unemployment remains steady2ReplytverdiNL7d agoall-in-one0ReplyWhoIsMakingThese...8d agoHow does Fedwatch calculate their probabilities? Is it based off the price changes of different treasuries on the secondary market or something?1ReplyShow  4 Replies0xAeacfB0dAb039C...9d agoFedwatch 35% vs 30% here. It doesnt make any sense0ReplyShow  3 RepliesHalande9d ago25 bps decrease0ReplyZvere810d agoOther yes1Replykroksinoksa11d agoyes0Replydongguo06611d agowill no change3Replymuch11d agono nchanges i mean1Replymoneysniper12d agolil powell scared of trump he aint changing shit1Reply0x4b5ebe3fd92312d agohttps://polymarket.com/event/what-will-trump-say-in-speech-after-election-is-called/will-trump-say-crypto-or-bitcoin-in-his-speech-after-the-election-is-called?tid=17310075303370ReplyShow  3 Replies0xAeacfB0dAb039C...12d agoFED REMOVES REFERENCE TO GAINING CONFIDENCE ON INFLATION. There's no way they will cut again in December1Replyromanroy12d ago25bps today, 25bps Dec. Steady as she goes.0Reply75+ bps decreaseBuySellMarketOutcome Yes 0.7¢ No 99.6¢AmountBalance $155.11MaxAmount too lowBuySuccessAvg price0.0¢Shares0.00Potential return$0.00 (0.00%)By trading, you agree to the Terms of Use.More 

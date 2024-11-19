@@ -1,3 +1,17 @@
+
+/*!
+ * Polyteller 
+ * Copyright (C) 2024 Zaid Azmi
+ * All rights reserved
+ * 
+ * This source code is licensed under a proprietary license.
+ * Unauthorized copying, modification, or distribution is strictly prohibited.
+ * 
+ * Author: Zaid Azmi
+ * Website: https://polyteller.com
+ * Email : hi@polyteller.com
+ * Version: 1.0.0
+ */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -239,7 +253,7 @@ function showSportsNotSupported() {
       <line x1="12" y1="8" x2="12" y2="12"></line>
       <line x1="12" y1="16" x2="12.01" y2="16"></line>
     </svg>
-    <span>Sports events are not supported yet</span>
+    <span>Sports not supported yet</span>
   `;
     // Add hover effects
     countdownElement.addEventListener('mouseenter', () => {
@@ -324,14 +338,11 @@ urlObserver.observe(document.body, {
 window.addEventListener('popstate', handleUrlChange);
 // Add this at the end of the file
 (0,_domManipulator__WEBPACK_IMPORTED_MODULE_3__.initializeDOMManipulations)();
-// Handle trade confirmation updates
+// Update the trade confirmation listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'updateTradeConfirmation') {
         (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', `Received trade confirmation update: ${message.enabled}`);
-        chrome.storage.local.set({ enableTradeConfirmation: message.enabled }, () => {
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', `Updated trade confirmation setting: ${message.enabled}`);
-            sendResponse({ received: true });
-        });
+        sendResponse({ received: true });
         return true;
     }
 });
@@ -1865,6 +1876,7 @@ class TradeConfirmationState {
         this.stateChangeCallbacks = [];
         this.loadInitialState();
         this.setupMessageListener();
+        this.setupStorageListener();
     }
     static getInstance() {
         if (!TradeConfirmationState.instance) {
@@ -1891,21 +1903,45 @@ class TradeConfirmationState {
             return true;
         });
     }
+    setupStorageListener() {
+        chrome.storage.onChanged.addListener((changes, namespace) => {
+            if (namespace === 'local' && changes.enableTradeConfirmation) {
+                const newValue = changes.enableTradeConfirmation.newValue;
+                if (this._isEnabled !== newValue) {
+                    this._isEnabled = newValue;
+                    this.notifyStateChange();
+                }
+            }
+        });
+    }
     get isEnabled() {
         return this._isEnabled;
     }
     async setEnabled(value) {
-        if (this._isEnabled === value)
-            return;
-        this._isEnabled = value;
-        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', `State updated: ${value}`);
         try {
+            if (this._isEnabled === value)
+                return;
+            this._isEnabled = value;
+            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', `State updated: ${value}`);
             await chrome.storage.local.set({ enableTradeConfirmation: value });
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', `State persisted: ${value}`);
+            chrome.tabs.query({}, (tabs) => {
+                tabs.forEach(tab => {
+                    if (tab.id) {
+                        chrome.tabs.sendMessage(tab.id, {
+                            action: 'updateTradeConfirmation',
+                            enabled: value
+                        }).catch(error => {
+                            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', `Error sending to tab ${tab.id}:`, error);
+                        });
+                    }
+                });
+            });
             this.notifyStateChange();
         }
         catch (error) {
-            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', 'Error persisting state:', error);
+            (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('TradeConfirmation', 'Error updating state:', error);
+            this._isEnabled = !value;
+            throw error;
         }
     }
     notifyStateChange() {

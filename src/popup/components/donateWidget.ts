@@ -1,6 +1,10 @@
 import confetti from 'canvas-confetti';
 
 export function createDonateWidget(): HTMLElement {
+  const container = document.createElement('div');
+  container.className = 'donate-section';
+  
+  // Existing donate widget
   const widget = document.createElement('div');
   widget.className = 'donate-widget';
   widget.innerHTML = `
@@ -18,25 +22,33 @@ export function createDonateWidget(): HTMLElement {
     </div>
   `;
 
-  // Create full-screen canvas for confetti
-  const canvas = document.createElement('canvas');
-  canvas.id = 'confetti-canvas';
-  canvas.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
+  // Add footer with email and copyright
+  const footer = document.createElement('div');
+  footer.className = 'donate-footer';
+  footer.innerHTML = `
+    <a href="mailto:hi@polyteller.com" class="footer-email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      hi@polyteller.com
+    </a>
+    <div class="footer-copyright">
+      © ${new Date().getFullYear()} Polyteller. All rights reserved.
+    </div>
   `;
-  document.body.appendChild(canvas);
 
   // Add styles
   const style = document.createElement('style');
   style.textContent = `
+    .donate-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
     .donate-widget {
-      margin-top: 16px;
       position: relative;
     }
 
@@ -77,7 +89,7 @@ export function createDonateWidget(): HTMLElement {
     }
 
     .donate-button {
-      background: linear-gradient(45deg, #4A4FE4, #8086FF);
+      background-color: var(--primary-color);
       color: white;
       border: none;
       border-radius: 8px;
@@ -92,8 +104,13 @@ export function createDonateWidget(): HTMLElement {
     }
 
     .donate-button:hover {
+      background-color: var(--secondary-color);
       transform: scale(1.05);
       box-shadow: 0 4px 12px rgba(74, 79, 228, 0.3);
+    }
+
+    .donate-button:active {
+      transform: scale(0.98);
     }
 
     .donate-icon {
@@ -106,8 +123,62 @@ export function createDonateWidget(): HTMLElement {
       50% { transform: scale(1.2); }
       100% { transform: scale(1); }
     }
+
+    .donate-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .footer-email {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-email:hover {
+      color: var(--primary-color);
+    }
+
+    .footer-email svg {
+      transition: stroke 0.2s ease;
+    }
+
+    .footer-email:hover svg {
+      stroke: var(--primary-color);
+    }
+
+    .footer-copyright {
+      color: var(--text-light);
+      font-size: 12px;
+    }
   `;
   document.head.appendChild(style);
+
+  // Combine widget and footer
+  container.appendChild(widget);
+  container.appendChild(footer);
+
+  // Create full-screen canvas for confetti
+  const canvas = document.createElement('canvas');
+  canvas.id = 'confetti-canvas';
+  canvas.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+  `;
+  document.body.appendChild(canvas);
 
   // Add confetti effect on hover
   const button = widget.querySelector('.donate-button');
@@ -159,5 +230,5 @@ export function createDonateWidget(): HTMLElement {
     chrome.tabs.create({ url: 'https://polyteller.com/donate' });
   });
 
-  return widget;
+  return container;
 } 

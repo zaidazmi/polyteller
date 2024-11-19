@@ -208,7 +208,7 @@ function showSportsNotSupported() {
       <line x1="12" y1="8" x2="12" y2="12"></line>
       <line x1="12" y1="16" x2="12.01" y2="16"></line>
     </svg>
-    <span>Sports events are not supported yet</span>
+    <span>Sports not supported yet</span>
   `;
 
   // Add hover effects
@@ -310,14 +310,11 @@ window.addEventListener('popstate', handleUrlChange);
 // Add this at the end of the file
 initializeDOMManipulations();
 
-// Handle trade confirmation updates
+// Update the trade confirmation listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'updateTradeConfirmation') {
     log('Content', `Received trade confirmation update: ${message.enabled}`);
-    chrome.storage.local.set({ enableTradeConfirmation: message.enabled }, () => {
-      log('Content', `Updated trade confirmation setting: ${message.enabled}`);
-      sendResponse({ received: true });
-    });
+    sendResponse({ received: true });
     return true;
   }
 });

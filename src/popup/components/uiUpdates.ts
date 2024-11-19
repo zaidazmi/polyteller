@@ -94,7 +94,7 @@ function displaySportsNotSupported() {
         <line x1="12" y1="8" x2="12" y2="12"></line>
         <line x1="12" y1="16" x2="12.01" y2="16"></line>
       </svg>
-      <span style="font-weight: 500;">Sports events are not supported yet</span>
+      <span style="font-weight: 500;">Currently we dont support Sports section</span>
     `;
     
     eventTitle.appendChild(messageDiv);
