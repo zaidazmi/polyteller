@@ -45,7 +45,7 @@
           "allNotifications.html",
           "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
         ],
-        "matches": ["<all_urls>"]
+        "matches": ["https://*.polymarket.com/*"]
       }
     ],
     "content_security_policy": {
