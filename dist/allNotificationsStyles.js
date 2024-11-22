@@ -8,6 +8,6 @@
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : polyteller@gmail.com
+ * Email : polytellerapp@gmail.com
  * Version: 1.0.0
  */

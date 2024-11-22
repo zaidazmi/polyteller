@@ -8,7 +8,7 @@
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : polyteller@gmail.com
+ * Email : polytellerapp@gmail.com
  * Version: 1.0.0
  */(()=>{var t={211(t,e,n){function i(t,...e){}n.d(e,{R(){return i}})}},e={};function n(i){var s=e[i];if(void 0!==s)return s.exports;var a=e[i]={exports:{}};return t[i](a,a.exports,n),a.exports}n.d=(t,e)=>{for(var i in e)n.o(e,i)&&!n.o(t,i)&&Object.defineProperty(t,i,{enumerable:!0,get:e[i]})},n.o=(t,e)=>({}.hasOwnProperty.call(t,e));var i=n(211);const s="privacyModeEnabled",a=".c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css",o="privacy-mode-toggle-icon";class r{constructor(){this.t=!1,
 this.stateChangeCallbacks=[],this.valueElements=new Set,this.mutationDebounceTimeout=null,this.pendingElements=new Set,this.initialize()}async initialize(){await this.loadInitialState(),function(){const t=()=>{if(document.querySelector(`.${o}`))return!0;const t=document.querySelector('a[href="/portfolio"].c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');if(!(t instanceof HTMLElement))return!1;const e=document.createElement("div");e.className=o,

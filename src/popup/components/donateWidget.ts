@@ -26,12 +26,12 @@ export function createDonateWidget(): HTMLElement {
   const footer = document.createElement('div');
   footer.className = 'donate-footer';
   footer.innerHTML = `
-    <a href="mailto:polyteller@gmail.com" class="footer-email">
+    <a href="mailto:polytellerapp@gmail.com" class="footer-email">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
         <polyline points="22,6 12,13 2,6"/>
       </svg>
-      polyteller@gmail.com
+      polytellerapp@gmail.com
     </a>
     <div class="footer-copyright">
       © ${new Date().getFullYear()} Polyteller. All rights reserved.
@@ -227,7 +227,7 @@ export function createDonateWidget(): HTMLElement {
   });
 
   button?.addEventListener('click', () => {
-    chrome.tabs.create({ url: 'https://polyteller.com/donate' });
+    chrome.tabs.create({ url: 'https://polyteller.web.app' });
   });
 
   return container;

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Polyteller | Donate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A4FE4;
+            --primary-dark: #3A3FD4;
+            --text: #1A1B25;
+            --text-light: #6B7280;
+            --background: #F8F9FD;
+            --card: #FFFFFF;
+            --success: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, #6C63FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .donation-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .address-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .address-box {
+            background: var(--background);
+            border-radius: 12px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .address {
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            height: fit-content;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .donation-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Polyteller Logo" class="logo">
+            <h1>Support Polyteller</h1>
+            <p class="subtitle">
+                Help us keep building awesome features and maintain Polyteller as a free tool for the Polymarket community
+            </p>
+        </div>
+
+        <div class="donation-card">
+            <h2>Donate USDC (Polygon)</h2>
+            <div class="address-container">
+                <div class="address-box">
+                    <div class="address" id="wallet-address">0x182A20386A3b06d1804eB5c94beC9a7c2b3AD3F6</div>
+                </div>
+                <button class="copy-btn" onclick="copyAddress()">Copy</button>
+            </div>
+            <p><strong>Important:</strong> Please only send USDC on the Polygon network.</p>
+        </div>
+
+        <div class="contact">
+            <p>Questions or suggestions? Contact us at <a href="mailto:polytellerapp@gmail.com">polytellerapp@gmail.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        function copyAddress() {
+            const address = document.getElementById('wallet-address').textContent;
+            navigator.clipboard.writeText(address);
+            
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+    </script>
+</body>
+</html> 
