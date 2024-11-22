@@ -16,7 +16,7 @@ const banner = `
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : hi@polyteller.com
+ * Email : polyteller@gmail.com
  * Version: ${process.env.npm_package_version || '1.0.0'}
  */`;
 
@@ -108,7 +108,10 @@ module.exports = (env, argv) => {
           { from: 'manifest.json', to: 'manifest.json' },
           { from: 'src/popup/popup.html', to: 'popup.html' },
           { from: 'src/popup/allNotifications.html', to: 'allNotifications.html' },
-          { from: "src/icon.png", to: "icon.png" },
+          { from: 'src/icon16.png', to: 'icon16.png' },
+          { from: 'src/icon32.png', to: 'icon32.png' },
+          { from: 'src/icon48.png', to: 'icon48.png' },
+          { from: 'src/icon128.png', to: 'icon128.png' },
         ],
       }),
       new MiniCssExtractPlugin({
