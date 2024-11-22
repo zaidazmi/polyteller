@@ -1,7 +1,6 @@
 @import '_variables.css';
 @import '_base.css';
 @import '_components.css';
-
 /* Any additional styles specific to popup that don't fit in the other files */
 
 .event-link {
@@ -280,3 +279,30 @@ input:checked + .slider:before {
   justify-content: space-between;
   padding: 4px 0;
 }
+
+/* Add these styles to popup.css */
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.title-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+header {
+  margin-bottom: 8px;
+}
+
