@@ -8,6 +8,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const banner = `
 /*!
  * Polyteller 
+ * Version: 1.0.1
  * Copyright (C) ${new Date().getFullYear()} Zaid Azmi
  * All rights reserved
  * 
