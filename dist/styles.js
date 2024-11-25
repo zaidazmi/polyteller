@@ -1,5 +1,6 @@
 /*!
  * Polyteller 
+ * Version: 1.0.1
  * Copyright (C) 2024 Zaid Azmi
  * All rights reserved
  * 
@@ -9,5 +10,5 @@
  * Author: Zaid Azmi
  * Website: https://polyteller.com
  * Email : polytellerapp@gmail.com
- * Version: 1.0.0
+ * Version: 1.0.1
  */

@@ -1,5 +1,6 @@
 /*!
  * Polyteller 
+ * Version: 1.0.1
  * Copyright (C) 2024 Zaid Azmi
  * All rights reserved
  * 
@@ -9,7 +10,7 @@
  * Author: Zaid Azmi
  * Website: https://polyteller.com
  * Email : polytellerapp@gmail.com
- * Version: 1.0.0
+ * Version: 1.0.1
  */(()=>{var t={889(t,n,e){e.d(n,{Jk(){return s}});var o=e(211);const i="privacyModeEnabled",r=".c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css",a="privacy-mode-toggle-icon";class s{constructor(){this.t=!1,this.stateChangeCallbacks=[],this.valueElements=new Set,this.mutationDebounceTimeout=null,this.pendingElements=new Set,this.initialize()}async initialize(){await this.loadInitialState(),function(){const t=()=>{if(document.querySelector(`.${a}`))return!0
 ;const t=document.querySelector('a[href="/portfolio"].c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');if(!(t instanceof HTMLElement))return!1;const n=document.createElement("div");n.className=a,
 n.innerHTML='\n      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\n        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>\n        <circle cx="12" cy="12" r="3"></circle>\n      </svg>\n    ',
