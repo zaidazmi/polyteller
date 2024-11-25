@@ -227,7 +227,7 @@ export function createDonateWidget(): HTMLElement {
   });
 
   button?.addEventListener('click', () => {
-    chrome.tabs.create({ url: 'https://polyteller.web.app' });
+    chrome.tabs.create({ url: 'https://polyteller.com/donate' });
   });
 
   return container;
