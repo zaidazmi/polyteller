@@ -23,6 +23,7 @@ describe('Store Management', () => {
       endDate: '2023-05-01',
       timezone: 'UTC',
       url: 'https://example.com',
+      isResolved: false
     };
 
     useStore.getState().addEvent(event);
@@ -38,6 +39,7 @@ describe('Store Management', () => {
       endDate: '2023-05-01',
       timezone: 'UTC',
       url: 'https://example.com',
+      isResolved: false
     };
 
     useStore.getState().addEvent(event);

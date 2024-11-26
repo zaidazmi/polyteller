@@ -111,6 +111,16 @@ function handleEndedEvent(eventInfo: PolymarketEvent, isExtensionPopup: boolean)
 function updateOngoingEvent(timeLeft: TimeRemaining, eventInfo: PolymarketEvent) {
   if (!countdownElement) return;
 
+  if (eventInfo.isResolved) {
+    countdownElement.innerHTML = `
+      <div class="resolved-event">
+        <span class="resolved-label">Event Resolved</span>
+        ${eventInfo.outcome ? `<span class="outcome">Outcome: ${eventInfo.outcome}</span>` : ''}
+      </div>
+    `;
+    return;
+  }
+
   countdownElement.textContent = formatContentCountdown(timeLeft);
   
   // Add timezone info
