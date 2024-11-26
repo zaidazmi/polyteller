@@ -4,6 +4,34 @@ import { verifyEventDataMatchesUrl } from './parsers/contextParser';
 import { parseEventDate } from './parsers/dateParser';
 import { log } from '../utils/logUtils';
 
+/**
+ * Checks if an event has been resolved by looking for outcome widget
+ * @returns Object containing resolution status and outcome if resolved
+ */
+function checkEventResolution(): { isResolved: boolean; outcome?: string } {
+  try {
+    // Look for outcome widget with specific classes
+    const outcomeElement = document.querySelector('.c-dhzjXW.c-jeHDnm.c-dhzjXW-ihLUqJT-css');
+    if (!outcomeElement) return { isResolved: false };
+
+    // Find outcome text element
+    const outcomeText = outcomeElement.querySelector('.c-dqzIym-ihXJvrq-css');
+    if (!outcomeText || !outcomeText.textContent) return { isResolved: false };
+
+    // Extract outcome text
+    const match = outcomeText.textContent.match(/Outcome:\s*(.*)/);
+    if (!match) return { isResolved: false };
+
+    return {
+      isResolved: true,
+      outcome: match[1].trim()
+    };
+  } catch (error) {
+    log('Content', 'Error checking resolution status:', error);
+    return { isResolved: false };
+  }
+}
+
 export function extractEventInfo(): PolymarketEvent | null {
   const currentPath = window.location.pathname;
   log('Content', 'Checking path:', currentPath);
@@ -33,11 +61,16 @@ export function extractEventInfo(): PolymarketEvent | null {
         return null;
       }
 
+      // Check resolution status first
+      const { isResolved, outcome } = checkEventResolution();
+      log('Content', 'Resolution status:', { isResolved, outcome });
+
       let timezone = 'ET';
       let endDateValue = eventData.endDate;
       let matchFound = false;
 
-      if (eventData.markets?.[0]?.description) {
+      // Only parse date patterns if not resolved
+      if (!isResolved && eventData.markets?.[0]?.description) {
         const marketDescription = eventData.markets[0].description;
         
         for (const pattern of DATE_PATTERNS) {
@@ -75,10 +108,12 @@ export function extractEventInfo(): PolymarketEvent | null {
       const eventInfo: PolymarketEvent = {
         id: eventData.id || `event_${Date.now()}`,
         title: eventData.title,
-        endTime: parsedDate.getTime(),
+        endTime: isResolved ? Date.now() : parsedDate.getTime(),
         endDate: endDateValue,
         timezone: timezone,
-        url: window.location.href
+        url: window.location.href,
+        isResolved: isResolved,
+        outcome: outcome
       };
       
       log('Content', 'Extracted event info:', JSON.stringify(eventInfo, null, 2));

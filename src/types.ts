@@ -8,6 +8,8 @@ export interface PolymarketEvent {
   endDate: string;      // Original date string
   timezone: string;     // Timezone identifier
   url: string;
+  isResolved: boolean;  // Whether event has been resolved
+  outcome?: string;     // Optional outcome text if resolved
 }
 
 /**
