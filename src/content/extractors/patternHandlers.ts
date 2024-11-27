@@ -418,4 +418,56 @@ export function handleHurricaneEndFormat(match: RegExpMatchArray): DateResult {
   };
 }
 
+/**
+ * Handles dates in format: "Month DD, YYYY at HH:MM AM/PM ET"
+ * Example: "Dec 2, 2024 at 10:00AM ET"
+ */
+export function handleTimeWithAtFormat(match: RegExpMatchArray): DateResult {
+  const [, originalDatePart, hour, minute, ampmChar, tz] = match;
+  
+  // Normalize whitespace in datePart
+  let datePart = originalDatePart.replace(/\s+/g, ' ').trim();
+  
+  // Convert month abbreviation to full name
+  const monthMap: { [key: string]: string } = {
+    'Jan': 'January',
+    'Feb': 'February',
+    'Mar': 'March',
+    'Apr': 'April',
+    'May': 'May',
+    'Jun': 'June',
+    'Jul': 'July',
+    'Aug': 'August',
+    'Sep': 'September',
+    'Oct': 'October',
+    'Nov': 'November',
+    'Dec': 'December'
+  };
+
+  // Extract month from datePart and convert if it's abbreviated
+  const monthMatch = datePart.match(/^([A-Za-z]+)/);
+  if (monthMatch) {
+    const monthAbbr = monthMatch[1];
+    const fullMonth = monthMap[monthAbbr.substring(0, 3)] || monthAbbr;
+    datePart = datePart.replace(monthAbbr, fullMonth);
+  }
+
+  // Format AM/PM properly
+  const ampm = ampmChar + 'M';
+  
+  log('Content', 'Matched time with at format:', {
+    datePart,
+    hour,
+    minute,
+    ampm,
+    tz,
+    formatted: `${datePart}, ${hour}:${minute}:00 ${ampm}`
+  });
+
+  return {
+    endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+    timezone: tz || 'ET'
+  };
+}
+
 // ... other handlers with same simple string formatting 
