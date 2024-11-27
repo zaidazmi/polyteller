@@ -24,6 +24,25 @@ import { useStore } from '../store/store';
     checkMissedAlarms();
   });
 
+  // Update available listener
+  chrome.runtime.onUpdateAvailable.addListener((details) => {
+    log('Background', `Update available: ${details.version}`);
+    // Save any necessary state
+    chrome.storage.local.set({ updateInProgress: true }, () => {
+      // Reload the extension to apply the update
+      chrome.runtime.reload();
+    });
+  });
+
+  // After update listener
+  chrome.runtime.onInstalled.addListener((details) => {
+    if (details.reason === 'update') {
+      log('Background', `Updated from ${details.previousVersion} to ${chrome.runtime.getManifest().version}`);
+      // Clear the update flag
+      chrome.storage.local.remove('updateInProgress');
+    }
+  });
+
   // Setup message listeners
   chrome.runtime.onMessage.addListener((request: any, sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) => {
     log('Background', 'Background received message:', request);
