@@ -314,5 +314,13 @@ export const DATE_PATTERNS: DatePattern[] = [
     priority: 195,
     format: "until Month DD, HH AM/PM ET",
     handler: handlers.handleHurricaneEndFormat
+  },
+
+  {
+    name: 'TIME_WITH_AT_FORMAT' as PatternName,
+    pattern: /([A-Za-z]+\s+\d{1,2},\s*\d{4})\s*at\s*(\d{1,2}):(\d{2})\s*([AP])M\s*([A-Z]{2})/i,
+    priority: 195,
+    format: "Month DD, YYYY at HH:MM AM/PM ET",
+    handler: handlers.handleTimeWithAtFormat
   }
 ].sort((a, b) => b.priority - a.priority);  // Sort by priority (highest first)
