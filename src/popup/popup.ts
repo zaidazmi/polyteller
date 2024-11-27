@@ -98,6 +98,12 @@ export async function initPopup() {
         log('Popup received NOTIFICATION_TRIGGERED message:', message.data);
         removeTriggeredNotificationFromList(message.data);
       }
+      if (message.type === 'EVENT_INITIALIZED') {
+        log('Popup', 'Received EVENT_INITIALIZED message:', message.data);
+        useStore.getState().addEvent(message.data);
+        updateUI(message.data);
+        loadNotifications();
+      }
     });
 
     await initTradeConfirmationToggle();

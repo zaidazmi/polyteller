@@ -65,6 +65,12 @@ function initializeCountdown() {
       sendEventInfo(eventInfo);
       createAndInsertCountdown(eventInfo, false);
       tryAutoSync();
+      
+      // Add this: Notify popup about successful initialization
+      chrome.runtime.sendMessage({ 
+        type: 'EVENT_INITIALIZED',
+        data: eventInfo 
+      });
     } else {
       log('Content', 'Event data mismatch with URL, showing refresh hint');
       clearCountdown();
@@ -236,6 +242,7 @@ function showRefreshHint() {
   countdownElement.id = 'polyteller-countdown';
   document.body.appendChild(countdownElement);
 
+  // Add base styles with transition
   countdownElement.style.cssText = `
     position: fixed;
     bottom: 20px;
@@ -265,24 +272,73 @@ function showRefreshHint() {
     </div>
   `;
 
+  let isRefreshing = false;
+
+  countdownElement.addEventListener('click', () => {
+    if (isRefreshing || !countdownElement) return;
+    
+    isRefreshing = true;
+    
+    // First animate the hint
+    countdownElement.style.transform = 'scale(0.95)';
+    countdownElement.style.opacity = '1';
+    countdownElement.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    countdownElement.style.cursor = 'default';
+    
+    // Update text and icon
+    countdownElement.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <div class="loading-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>Refreshing page...</div>
+      </div>
+    `;
+
+    // Add loading dots animation
+    const style = document.createElement('style');
+    style.textContent = `
+      .loading-dots {
+        display: flex;
+        gap: 4px;
+      }
+      .loading-dots span {
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        animation: dots 1.5s infinite;
+      }
+      .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+      .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+      @keyframes dots {
+        0%, 100% { opacity: 0; transform: scale(0.8); }
+        50% { opacity: 1; transform: scale(1); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Short delay before actual refresh to show animation
+    setTimeout(() => {
+      window.location.reload();
+    }, 300);
+  });
+
   // Add hover effects
   countdownElement.addEventListener('mouseenter', () => {
-    if (countdownElement) {
+    if (!isRefreshing && countdownElement) {
       countdownElement.style.opacity = '1';
       countdownElement.style.transform = 'scale(1.1)';
     }
   });
 
   countdownElement.addEventListener('mouseleave', () => {
-    if (countdownElement) {
+    if (!isRefreshing && countdownElement) {
       countdownElement.style.opacity = '0.5';
       countdownElement.style.transform = 'scale(1)';
     }
-  });
-
-  // Add click handler for refresh
-  countdownElement.addEventListener('click', () => {
-    window.location.reload();
   });
 }
 
