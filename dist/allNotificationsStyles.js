@@ -10,5 +10,5 @@
  * Author: Zaid Azmi
  * Website: https://polyteller.com
  * Email : polytellerapp@gmail.com
- * Version: 1.0.1
+ * Version: 1.0.2
  */

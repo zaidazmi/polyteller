@@ -10,7 +10,7 @@
  * Author: Zaid Azmi
  * Website: https://polyteller.com
  * Email : polytellerapp@gmail.com
- * Version: 1.0.1
+ * Version: 1.0.2
  */(()=>{var t={211(t,e,n){function i(t,...e){}n.d(e,{R(){return i}})}},e={};function n(i){var s=e[i];if(void 0!==s)return s.exports;var a=e[i]={exports:{}};return t[i](a,a.exports,n),a.exports}n.d=(t,e)=>{for(var i in e)n.o(e,i)&&!n.o(t,i)&&Object.defineProperty(t,i,{enumerable:!0,get:e[i]})},n.o=(t,e)=>({}.hasOwnProperty.call(t,e));var i=n(211);const s="privacyModeEnabled",a=".c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css",o="privacy-mode-toggle-icon";class r{constructor(){this.t=!1,
 this.stateChangeCallbacks=[],this.valueElements=new Set,this.mutationDebounceTimeout=null,this.pendingElements=new Set,this.initialize()}async initialize(){await this.loadInitialState(),function(){const t=()=>{if(document.querySelector(`.${o}`))return!0;const t=document.querySelector('a[href="/portfolio"].c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');if(!(t instanceof HTMLElement))return!1;const e=document.createElement("div");e.className=o,
 e.innerHTML='\n      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\n        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>\n        <circle cx="12" cy="12" r="3"></circle>\n      </svg>\n    ',

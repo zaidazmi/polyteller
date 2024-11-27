@@ -157,12 +157,18 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
   if (dateString.match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:00$/)) {
     // If it's ET timezone and has EST offset (-05:00), check for DST
     if (timezone === 'ET' && dateString.endsWith('-05:00')) {
-      // Create temporary date to check DST
       const tempDate = new Date(dateString);
       if (isDST(tempDate)) {
-        // If in DST, create new date with EDT offset
         const [datePart] = dateString.split('-05:00');
         return new Date(`${datePart}-04:00`);
+      }
+    }
+    // If it's PT timezone and has PST offset (-08:00), check for DST
+    if (timezone === 'PT' && dateString.endsWith('-08:00')) {
+      const tempDate = new Date(dateString);
+      if (isDST(tempDate)) {
+        const [datePart] = dateString.split('-08:00');
+        return new Date(`${datePart}-07:00`);
       }
     }
     return new Date(dateString);
@@ -177,7 +183,7 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
     if (ampm === 'PM' && parsedHour !== 12) parsedHour += 12;
     if (ampm === 'AM' && parsedHour === 12) parsedHour = 0;
     
-    // Create date in ET
+    // Handle ET timezone
     if (timezone === 'ET') {
       // Always create with EST offset first
       const date = new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-05:00`);
@@ -186,6 +192,19 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
       if (isDST(date)) {
         // Create new date with EDT offset
         return new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-04:00`);
+      }
+      return date;
+    }
+    
+    // Handle PT timezone
+    if (timezone === 'PT') {
+      // Always create with PST offset first
+      const date = new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-08:00`);
+      
+      // Check if date is during DST
+      if (isDST(date)) {
+        // Create new date with PDT offset
+        return new Date(`${year}-${(months.indexOf(month) + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T${parsedHour.toString().padStart(2, '0')}:${minute}:${second}-07:00`);
       }
       return date;
     }
@@ -207,9 +226,23 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
       // For ET timezone, create at 23:59:59 ET
       date = new Date(`${dateString}T23:59:59-05:00`);
       if (isDST(date)) {
-        // If in DST, create with EDT offset
         return new Date(`${dateString}T23:59:59-04:00`);
       }
+      return date;
+    } else if (timezone === 'PT') {
+      // For PT timezone, create at 23:59:59 PT
+      const [monthStr, dayStr, yearStr] = dateString.split(/[, ]+/);
+      const month = months.indexOf(monthStr) + 1;
+      const day = parseInt(dayStr);
+      const year = parseInt(yearStr);
+      
+      // Create date string in ISO format
+      const isoDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      date = new Date(`${isoDate}T23:59:59-08:00`);
+      if (isDST(date)) {
+        return new Date(`${isoDate}T23:59:59-07:00`);
+      }
+      return date;
     } else {
       // For UTC/other timezones, create at 23:59:59 UTC
       date = new Date(`${dateString}T23:59:59Z`);
@@ -219,18 +252,29 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
   
   // Handle ISO format with Z (UTC)
   if (dateString.endsWith('Z')) {
-    // If timezone is ET, always treat as ET and set to end of day
+    // Handle ET timezone
     if (timezone === 'ET') {
       const utcDate = new Date(dateString);
       const year = utcDate.getUTCFullYear();
       const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
       const day = utcDate.getUTCDate().toString().padStart(2, '0');
       
-      // Create at 23:59:59 ET with correct offset
       const date = new Date(`${year}-${month}-${day}T23:59:59-05:00`);
       if (isDST(date)) {
-        // If in DST, create with EDT offset
         return new Date(`${year}-${month}-${day}T23:59:59-04:00`);
+      }
+      return date;
+    }
+    // Handle PT timezone
+    if (timezone === 'PT') {
+      const utcDate = new Date(dateString);
+      const year = utcDate.getUTCFullYear();
+      const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
+      const day = utcDate.getUTCDate().toString().padStart(2, '0');
+      
+      const date = new Date(`${year}-${month}-${day}T23:59:59-08:00`);
+      if (isDST(date)) {
+        return new Date(`${year}-${month}-${day}T23:59:59-07:00`);
       }
       return date;
     }

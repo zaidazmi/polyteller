@@ -8,6 +8,7 @@ import { CountdownManager } from '../../utils/CountdownManager';
 import { formatLocalEndDate } from '../../utils/dateUtils';
 import { getLocalTimezone } from '../../utils/timezoneUtils';
 import { formatCountdownDisplay } from '../../utils/countdownFormatters';
+import { log } from '../../utils/logUtils';
 
 let unsubscribe: (() => void) | null = null;
 
@@ -27,13 +28,21 @@ export function displayCountdown(eventInfo: PolymarketEvent): void {
   const notificationSection = document.getElementById('notify-section');
 
   if (!countdownElement || !localEndTimeElement || !notificationSection) {
+    log('Countdown', 'Required elements not found');
     return;
   }
+
+  // Reset display properties
+  countdownElement.style.display = '';
+  localEndTimeElement.style.display = '';
+  notificationSection.style.display = '';
 
   const countdownManager = CountdownManager.getInstance();
   countdownManager.registerEvent(eventInfo);
 
   unsubscribe = countdownManager.subscribe(eventInfo.id, (timeLeft) => {
+    if (!countdownElement) return;
+
     if (timeLeft.hasEnded) {
       countdownElement.textContent = 'Event has ended';
       const endDate = new Date(eventInfo.endTime);

@@ -223,4 +223,27 @@ chrome.tabs.onRemoved.addListener((tabId: number) => {
   cleanupTabEventData(tabId);
 });
 
+// Add to message handling
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+  if (request.type === 'EVENT_INFO' && sender.tab?.id) {
+    // Check if this is a post-refresh update
+    const result = await chrome.storage.local.get('refreshInProgress');
+    if (result.refreshInProgress && 
+        result.refreshInProgress.tabId === sender.tab.id &&
+        Date.now() - result.refreshInProgress.timestamp < 5000) { // Within 5 seconds
+      
+      // Clear the refresh flag
+      await chrome.storage.local.remove('refreshInProgress');
+      
+      // Broadcast to all extension contexts
+      chrome.runtime.sendMessage({
+        type: 'EVENT_INITIALIZED',
+        data: request.data
+      });
+    }
+    
+    // Continue with normal event info handling...
+  }
+});
+
 

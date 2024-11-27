@@ -1,1 +1,113 @@
-<div class="c-hakyQ PJLV"><div class="c-dhzjXW c-dhzjXW-ijzCuUA-css"><div class="c-dhzjXW c-dhzjXW-ifDIKoj-css"><div class="c-dhzjXW c-dhzjXW-ikGMGZo-css"></div><div class="c-dhzjXW c-dhzjXW-igLwFCK-css"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="c-btxRPr" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"></path></svg></div><p class="c-dqzIym c-dqzIym-fxyRaa-color-normal c-dqzIym-cTvRMP-spacing-normal c-dqzIym-jalaKP-weight-normal c-dqzIym-icuujBz-css">Outcome proposed: Yes</p></div><div class="c-dhzjXW c-dhzjXW-ifDIKoj-css"><div class="c-dhzjXW c-dhzjXW-igxzOjO-css"></div><div class="c-dhzjXW c-dhzjXW-ifoRKTU-css"></div><p class="c-dqzIym c-dqzIym-fxyRaa-color-normal c-dqzIym-cTvRMP-spacing-normal c-dqzIym-jalaKP-weight-normal c-dqzIym-icuujBz-css">Dispute window</p><p class="c-dqzIym c-dqzIym-fxyRaa-color-normal c-dqzIym-cTvRMP-spacing-normal c-dqzIym-jalaKP-weight-normal c-dqzIym-iimIear-css">1h 43m 3s</p><a href="https://oracle.uma.xyz/?project=Polymarket&amp;transactionHash=0x048366d8a5cd9e892ead1f7bffd888697c0dd7d5f64aa3d21d96a802bef709ff&amp;eventIndex=490" target="_blank" class="c-fQKxGY"><button class="c-gBrBnR c-gBrBnR-fbCeQT-variant-quaternary c-gBrBnR-iglgKPV-css">Dispute</button></a></div><div class="c-dhzjXW c-dhzjXW-ifDIKoj-css"><div class="c-dhzjXW c-dhzjXW-ikycdOG-css"></div><div class="c-dhzjXW c-dhzjXW-ihFtOuU-css"></div><p class="c-dqzIym c-dqzIym-fxyRaa-color-normal c-dqzIym-cTvRMP-spacing-normal c-dqzIym-jalaKP-weight-normal c-dqzIym-ibiiLdB-css">Final</p></div></div></div>
+
+9The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+_app-e09b5e1738b6a520.js:618 [Report Only] Refused to evaluate a string as JavaScript because 'unsafe-eval' is not an allowed source of script in the following Content Security Policy directive: "script-src 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com".
+
+(anonymous) @ _app-e09b5e1738b6a520.js:618
+391 @ _app-e09b5e1738b6a520.js:618
+s @ _app-e09b5e1738b6a520.js:618
+584 @ _app-e09b5e1738b6a520.js:618
+s @ _app-e09b5e1738b6a520.js:618
+177 @ _app-e09b5e1738b6a520.js:618
+s @ _app-e09b5e1738b6a520.js:618
+545 @ _app-e09b5e1738b6a520.js:613
+s @ _app-e09b5e1738b6a520.js:618
+167 @ _app-e09b5e1738b6a520.js:613
+s @ _app-e09b5e1738b6a520.js:618
+(anonymous) @ _app-e09b5e1738b6a520.js:618
+27596 @ _app-e09b5e1738b6a520.js:618
+f @ webpack-5098b55e5ce826d9.js:1
+48670 @ _app-e09b5e1738b6a520.js:330
+f @ webpack-5098b55e5ce826d9.js:1
+22751 @ _app-e09b5e1738b6a520.js:330
+f @ webpack-5098b55e5ce826d9.js:1
+70442 @ _app-e09b5e1738b6a520.js:6
+f @ webpack-5098b55e5ce826d9.js:1
+12112 @ _app-e09b5e1738b6a520.js:564
+f @ webpack-5098b55e5ce826d9.js:1
+4684 @ _app-e09b5e1738b6a520.js:564
+f @ webpack-5098b55e5ce826d9.js:1
+47243 @ _app-e09b5e1738b6a520.js:330
+f @ webpack-5098b55e5ce826d9.js:1
+35998 @ _app-e09b5e1738b6a520.js:613
+f @ webpack-5098b55e5ce826d9.js:1
+79144 @ _app-e09b5e1738b6a520.js:613
+f @ webpack-5098b55e5ce826d9.js:1
+90498 @ _app-e09b5e1738b6a520.js:564
+f @ webpack-5098b55e5ce826d9.js:1
+53198 @ _app-e09b5e1738b6a520.js:568
+f @ webpack-5098b55e5ce826d9.js:1
+88743 @ _app-e09b5e1738b6a520.js:330
+f @ webpack-5098b55e5ce826d9.js:1
+50418 @ _app-e09b5e1738b6a520.js:611
+f @ webpack-5098b55e5ce826d9.js:1
+(anonymous) @ _app-e09b5e1738b6a520.js:330
+(anonymous) @ main-6b4b235ae1bf0bb2.js:1
+Promise.then
+onEntrypoint @ main-6b4b235ae1bf0bb2.js:1
+s @ main-6b4b235ae1bf0bb2.js:1
+6840 @ _app-e09b5e1738b6a520.js:330
+f @ webpack-5098b55e5ce826d9.js:1
+t @ _app-e09b5e1738b6a520.js:2009
+(anonymous) @ _app-e09b5e1738b6a520.js:2009
+f.O @ webpack-5098b55e5ce826d9.js:1
+(anonymous) @ _app-e09b5e1738b6a520.js:2009
+_ @ webpack-5098b55e5ce826d9.js:1
+(anonymous) @ _app-e09b5e1738b6a520.js:1Understand this errorAI
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+5The Content Security Policy directive 'upgrade-insecure-requests' is ignored when delivered in a report-only policy.Understand this errorAI
+_app-e09b5e1738b6a520.js:640 [Report Only] Refused to load the script 'https://www.googletagmanager.com/gtag/js?id=G-LLH3PPH2FV' because it violates the following Content Security Policy directive: "script-src-elem 'self' https://*.intercom.io https://js.intercomcdn.com https://www.redditstatic.com https://acdn.adnxs.com https://connect.facebook.net https://s.adroll.com https://d.adroll.com https://widget.intercom.io https://va.vercel-scripts.com https://vercel.live https://*.magic.link https://static.moonpay.com https://static.ads-twitter.com 'sha256-FZPlDlMTeqDORmlYE10RC9clHRS4T0hmr3qmUImTEgM=' 'sha256-LpaSOWbberseWm9imoaC+ysCWgKfj1BqQTvkK+3f49U=' 'sha256-VeMw0YWTQ3B/16lvulSWfWmvFDJ6h/Dh0ZlaDcC6Xsg=' 'sha256-v0BM73yv/5GaSIfLVBRC5helX8lhanqdp82VUN86fqY=' 'sha256-HmKQJyc9Oo37hDkYVR0w9K4eR1aaxe18l9d9v+MsRGM=' 'sha256-5mcCoB7D4UCld/T8vawEJRBqmowLOddOT7MoIsyvG1Q='".
+
+(anonymous) @ _app-e09b5e1738b6a520.js:640
+(anonymous) @ _app-e09b5e1738b6a520.js:640
+initializeAdapter @ _app-e09b5e1738b6a520.js:564
+(anonymous) @ _app-e09b5e1738b6a520.js:613
+(anonymous) @ _app-e09b5e1738b6a520.js:613
+uU @ framework-a667dbba83e63e79.js:9
+oV @ framework-a667dbba83e63e79.js:9
+oP @ framework-a667dbba83e63e79.js:9
+r8 @ framework-a667dbba83e63e79.js:9
+(anonymous) @ framework-a667dbba83e63e79.js:9
+oU @ framework-a667dbba83e63e79.js:9
+ox @ framework-a667dbba83e63e79.js:9
+x @ framework-a667dbba83e63e79.js:17
+T @ framework-a667dbba83e63e79.js:17Understand this errorAI
+content.js:2567 [Polyteller Content] Initializing countdown
+content.js:2567 [Polyteller Content] Checking path: /event/will-kendrick-lamar-release-another-album-in-2024
+content.js:2567 [Polyteller Content] Market rules: This market will resolve to “Yes” if Kendrick Lamar officially releases a new album between November 25 and December 31, 2024, 11:59 PM PT (Los Angeles time). Otherwise, this market will resolve to “No”.
+
+Officially released means that a newly released album is officially available for download or streaming (not including live events) by the resolution date.
+
+The resolution source will be any official Kendrick Lamar streaming or download site, e.g. Apple Music or Spotify.
+content.js:2567 [Polyteller Content] Verifying event data match: {currentSlug: 'will-kendrick-lamar-release-another-album-in-2024', eventSlug: 'will-kendrick-lamar-release-another-album-in-2024', urlPath: '/event/will-kendrick-lamar-release-another-album-in-2024'}
+content.js:2567 [Polyteller Content] Resolution status: {isResolved: false, outcome: undefined}
+content.js:2567 [Polyteller Content] Before parseCustomDate: {dateString: 'December 31, 2024, 11:59:00 PM', timezone: 'PT'}
+content.js:2567 [Polyteller Content] After parseCustomDate: {originalDate: 'December 31, 2024, 11:59:00 PM', parsedDate: '2024-12-31T23:59:00.000Z', localDate: 'Wed Jan 01 2025 06:59:00 GMT+0700 (Indochina Time)', timezone: 'PT', isDST: null, …}
+content.js:2567 [Polyteller Content] Extracted event info: {
+  "id": "14829",
+  "title": "Will Kendrick Lamar release another album in 2024?",
+  "endTime": 1735689540000,
+  "endDate": "December 31, 2024, 11:59:00 PM",
+  "timezone": "PT",
+  "url": "https://polymarket.com/event/will-kendrick-lamar-release-another-album-in-2024?tid=1732687806087",
+  "isResolved": false
+}
+content.js:2567 [Polyteller Content] Event info extracted: {id: '14829', title: 'Will Kendrick Lamar release another album in 2024?', endTime: 1735689540000, endDate: 'December 31, 2024, 11:59:00 PM', timezone: 'PT', …}
+content.js:2567 [Polyteller DOMObserver] Initialized with optimized settings {target: 'DIV', config: {…}}
+content.js:2567 [Polyteller Content] Polyteller content script loaded
+content.js:2567 [Polyteller DOMManipulator] Buy button interception set up
+260Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+content.js:2567 [Polyteller DOMObserver] Processing relevant DOM changes
+content.js:2567 [Polyteller TradeConfirmation] Initial state loaded: true
+privacyMode.js:34 [Polyteller PrivacyMode] Initial state loaded: false
+privacyMode.js:34 [Polyteller PrivacyMode] Toggle icon added
+lockdown-install.js:1 Removing unpermitted intrinsics
+frame-modern.e615d37d.js:1 [Intercom] Launcher is disabled in settings or current page does not match display conditions
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+framework-a667dbba83e63e79.js:9 [Report Only] Refused to frame 'https://auth.privy.io/' because it violates the following Content Security Policy directive: "frame-src 'self' https://*.youtube.com https://*.walletconnect.com https://*.walletconnect.org https://*.magic.link https://global.transak.com https://vercel.live https://*.polymarket.com https://*.polymarket.dev wss://*.polymarket.com wss://*.polymarket.dev https://*.meshconnect.com".
+Understand this errorAI
+lockdown-install.js:1 Removing unpermitted intrinsics
+embedded-wallets-bcaa3c2da0430da1.js:1 Warning!
+embedded-wallets-bcaa3c2da0430da1.js:1 You are reading this message because you opened the browser console, a developer tool. Do not enter or paste code you do not understand. Never share your tokens or any other info with anyone. If someone told you to do this, it is very likely a scam.
+content.js:2567 [Polyteller Content] Sending event info to background: {id: '14829', title: 'Will Kendrick Lamar release another album in 2024?', endTime: 1735689540000, endDate: 'December 31, 2024, 11:59:00 PM', timezone: 'PT', …}endDate: "December 31, 2024, 11:59:00 PM"endTime: 1735689540000id: "14829"isResolved: falseoutcome: undefinedtimezone: "PT"title: "Will Kendrick Lamar release another album in 2024?"url: "https://polymarket.com/event/will-kendrick-lamar-release-another-album-in-2024?tid=1732687806087"[[Prototype]]: Object
