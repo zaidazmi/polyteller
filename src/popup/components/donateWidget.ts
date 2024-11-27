@@ -1,4 +1,5 @@
 import confetti from 'canvas-confetti';
+import manifest from '../../../manifest.json';
 
 export function createDonateWidget(): HTMLElement {
   const container = document.createElement('div');
@@ -34,7 +35,7 @@ export function createDonateWidget(): HTMLElement {
       polytellerapp@gmail.com
     </a>
     <div class="footer-copyright">
-      © ${new Date().getFullYear()} Polyteller. All rights reserved.
+      © ${new Date().getFullYear()} Polyteller v${manifest.version}. All rights reserved.
     </div>
   `;
 

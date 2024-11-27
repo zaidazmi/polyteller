@@ -1,6 +1,6 @@
 {
     "name": "polyteller",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Chrome extension for Polymarket event countdowns and notifications",
     "scripts": {
         "clean": "rm -rf dist/",
