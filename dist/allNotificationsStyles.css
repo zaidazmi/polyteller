@@ -1,15 +1,15 @@
 
 /*!
  * Polyteller 
- * Version: 1.0.1
+ * Version: 1.0.3
  * Copyright (C) 2024 Zaid Azmi
  * All rights reserved
- * 
+ *  
  * This source code is licensed under a proprietary license.
  * Unauthorized copying, modification, or distribution is strictly prohibited.
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : polytellerapp@gmail.com
- * Version: 1.0.2
+ * Email : hi@polyteller.com
+ * Version: 1.0.3
  */.all-notifications-list{display:grid;gap:24px;grid-template-columns:repeat(3,minmax(350px,1fr));margin:0 auto;max-width:1400px;padding:20px 40px}.event-notifications{background-color:#f0f0f0;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,.1);box-sizing:border-box;height:fit-content;max-width:100%;min-width:350px;padding:20px}.event-notifications h2{font-size:1.4em;margin-bottom:16px;margin-top:0;text-align:center}.event-notifications h2 a{color:#4a4fe4;display:inline-block;max-width:100%;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:all .2s ease;word-wrap:break-word}.event-notifications h2 a:hover{color:#3a3fd4;opacity:.9;text-decoration-thickness:2px}.event-countdown{align-items:center;background-color:#f8f9fd;border:1px solid rgba(74,79,228,.1);border-radius:8px;box-shadow:0 2px 4px rgba(74,79,228,.05);box-sizing:border-box;color:#4a4fe4;display:flex;font-size:1.2em;font-weight:600;gap:8px;justify-content:center;margin-bottom:20px;padding:16px;transition:all .2s ease;width:100%}.event-countdown:hover{background-color:#f3f4ff;border-color:rgba(74,79,228,.2);box-shadow:0 4px 8px rgba(74,79,228,.1);transform:translateY(-1px)}.countdown-segment{align-items:center;background:none;box-shadow:none;display:flex;flex:1;flex-direction:column;min-width:auto;padding:0}.countdown-number{color:#1a1b25;font-size:1.6em;font-weight:700;line-height:1}.countdown-label{color:#6b7280;font-size:.65em;font-weight:500;letter-spacing:.05em;margin-top:4px;text-transform:uppercase}.countdown-separator{color:#4a4fe4;font-size:1.2em;font-weight:600;padding-bottom:16px}.event-countdown::-webkit-scrollbar{display:none}.event-countdown{-ms-overflow-style:none;scrollbar-width:none}.notifications-list{list-style-type:none;padding:0;width:100%}.notifications-list li{align-items:center;background-color:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1);display:flex;justify-content:space-between;margin-bottom:12px;padding:12px 16px}.notification-info{display:flex;flex-direction:column}.notification-time{font-weight:700;margin-bottom:4px}.notification-date{color:#666}.delete-icon{align-items:center;display:flex;justify-content:center}.event-link{color:#4a4af4;text-decoration:none;transition:color .2s ease}.event-link:hover{color:#3a3ad4;text-decoration:underline}@media (max-width:1200px){.all-notifications-list{grid-template-columns:repeat(2,minmax(350px,1fr));padding:20px}}@media (max-width:768px){.all-notifications-list{grid-template-columns:1fr;padding:10px}.event-notifications{min-width:unset}.notifications-list li{align-items:flex-start;flex-direction:column}.notification-date,.notification-time{margin-bottom:8px}.delete-icon{align-self:flex-end}}

@@ -1,3 +1,8 @@
+/**
+ * Displays a toast message in the popup.
+ * @param message - The message to display
+ * @param isSuccess - Whether this is a success message (green) or error message (red)
+ */
 export function displayStatus(message: string, isSuccess: boolean = true) {
     let toastContainer = document.querySelector('.toast-container');
     
@@ -29,5 +34,5 @@ export function displayStatus(message: string, isSuccess: boolean = true) {
                 toastContainer.removeChild(toast);
             }
         }, 300); // Keep fade out animation time
-    }, 2000); // Changed from 1000 to 2000 to show for 2 seconds
+    }, 2000); // Show for 2 seconds
 }

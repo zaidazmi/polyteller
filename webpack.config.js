@@ -17,7 +17,7 @@ const banner = `
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : polytellerapp@gmail.com
+ * Email : hi@polyteller.com
  * Version: ${process.env.npm_package_version}
  */`;
 

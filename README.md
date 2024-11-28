@@ -137,6 +137,6 @@ The test suite covers:
 Proprietary - All rights reserved
 
 ## Contact
-Zaid Azmi - polytellerapp@gmail.com
+Zaid Azmi - hi@polyteller.com
 
 Project Link: [https://github.com/zaidazmi/polyteller](https://github.com/zaidazmi/polyteller)

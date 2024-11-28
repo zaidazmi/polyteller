@@ -1,16 +1,16 @@
 /*!
  * Polyteller 
- * Version: 1.0.1
+ * Version: 1.0.3
  * Copyright (C) 2024 Zaid Azmi
  * All rights reserved
- * 
+ *  
  * This source code is licensed under a proprietary license.
  * Unauthorized copying, modification, or distribution is strictly prohibited.
  * 
  * Author: Zaid Azmi
  * Website: https://polyteller.com
- * Email : polytellerapp@gmail.com
- * Version: 1.0.2
+ * Email : hi@polyteller.com
+ * Version: 1.0.3
  */(()=>{function n(n){const[,e,t,o,i,r,a]=n,s={Jan:"January",Feb:"February",Mar:"March",Apr:"April",May:"May",Jun:"June",Jul:"July",Aug:"August",Sep:"September",Oct:"October",Nov:"November",Dec:"December"}[t]||t,d=parseInt(i);return{endDateValue:`${s} ${e}, 20${o}, ${d>12?d-12:0===d?12:d}:${r}:00 ${d>=12?"PM":"AM"}`,timezone:a}}function e(n){
 const[,e,t,o,i,r]=n,a=document.querySelector("[data-rbd-draggable-context-id]")?.textContent||"",s=a.match(/(\d{4})\s+Atlantic\s+hurricane\s+season/i),d=s?s[1]:(new Date).getFullYear().toString(),l={Jan:"January",Feb:"February",Mar:"March",Apr:"April",May:"May",Jun:"June",Jul:"July",Aug:"August",Sep:"September",Oct:"October",Nov:"November",Dec:"December"}[e]||e;return a.substring(0,100),{endDateValue:`${l} ${t}, ${d}, ${o}:00:00 ${i}`,timezone:r||"ET"}}const t=[{name:"HURRICANE_END_FORMAT",
 pattern:/(?:until|by) ([A-Za-z]+) (\d{1,2}), (\d{1,2}) ([AP]M) ([A-Z]{2})/i,priority:195,format:"until Month DD, HH AM/PM ET",handler:e},{name:"BITCOIN_END_FORMAT",pattern:/between (?:\d{1,2} [A-Za-z]+ '\d{2} \d{2}:\d{2} and )?(\d{1,2}) ([A-Za-z]+) '(\d{2}) (\d{2}):(\d{2}) in the ([A-Z]{2}) timezone/i,priority:190,format:"DD MMM 'YY HH:mm in the ET timezone",handler:n},{name:"POSTPONED_AFTER_DATE",pattern:/postponed after ([A-Za-z]+ \d{1,2} \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
