@@ -9,6 +9,10 @@ A Chrome extension for Polymarket that provides real-time countdowns, customizab
   - Handles timezone conversions and DST changes
   - Auto-sync for minor updates without refresh
   - Smart refresh hints for major changes
+  - Dynamic update intervals based on remaining time
+  - Performance optimized animation frames
+  - Handles DST edge cases and timezone transitions
+  - Fallback mechanisms for missed updates
 
 - **Smart Notifications**
   - Customizable notification timing
@@ -17,12 +21,20 @@ A Chrome extension for Polymarket that provides real-time countdowns, customizab
   - Local timezone display
   - Persistent across browser sessions
   - Grouped by events in all notifications view
+  - Debounced notification scheduling
+  - Background sync with error recovery
+  - Smart cleanup for expired notifications
+  - Duplicate prevention with 10-second threshold
 
 - **Privacy Mode**
   - Masks portfolio values and balances
   - Quick toggle via popup
   - Early initialization to prevent data leaks
   - Syncs across all Polymarket tabs
+  - Zero-delay initialization via early content script
+  - Mutation observer for dynamic content
+  - Memory-efficient value storage
+  - Automatic cleanup on tab close
 
 - **Trade Confirmation**
   - Optional confirmation dialog for trades
@@ -140,3 +152,73 @@ Proprietary - All rights reserved
 Zaid Azmi - hi@polyteller.com
 
 Project Link: [https://github.com/zaidazmi/polyteller](https://github.com/zaidazmi/polyteller)
+
+## Performance Optimizations
+
+- Debounced DOM updates
+- Efficient mutation observers
+- Memory leak prevention
+- Dynamic update intervals
+- Background task throttling
+- Storage optimization
+
+## Security Features
+
+- No external data transmission
+- Local-only storage
+- Secure value masking
+- Cross-tab state sync
+- Clean data lifecycle
+
+## Development Setup
+
+- Requires Node.js >= 14
+- nvm use 14  # If using nvm
+- npm install
+
+## Build Configuration
+
+- Production build with optimizations
+- npm run build
+- Includes:
+  - Code minification
+  - CSS optimization
+  - Tree shaking
+  - Module concatenation
+  - Chrome API name preservation
+
+## Testing
+
+- Run all tests
+- npm test
+
+- Run specific test suite
+- npm test -- --testPathPattern=datePatterns
+
+- Run tests with coverage
+- npm test -- --coverage
+
+## Debugging
+
+- Enable development logs
+- npm run dev
+
+- View background logs
+- chrome://extensions
+- Click "background page" under Polyteller
+
+- Monitor performance
+- See TEST_PLAN.md for detailed metrics
+
+## Known Issues
+
+- Sports section currently unsupported
+- Some timezone edge cases in specific regions
+- Minor UI glitches during rapid tab switching
+
+## Roadmap
+
+- Sports section support
+- Additional notification options
+- Enhanced privacy features
+- Mobile browser support

@@ -8,6 +8,10 @@ Polyteller Extension Comprehensive Testing Plan
    - Test extraction of event details (title, description, odds, etc.)
    - Verify handling of events with no end date or "TBA" end dates
    - Test with events that have been updated or modified on Polymarket
+   - Test with different market types (binary, scalar, multiple choice)
+   - Test extraction during market state changes (resolved, paused, etc.)
+   - Verify handling of markets with multiple resolution dates
+   - Test with markets having conditional resolution dates
 
 2. Countdown Functionality
    - Verify accuracy of countdown on page and in popup (compare with system time)
@@ -18,6 +22,10 @@ Polyteller Extension Comprehensive Testing Plan
    - Test countdown display formatting (days, hours, minutes, seconds)
    - Verify countdown behavior when switching between tabs/windows
    - Test countdown accuracy after system sleep/hibernate
+   - Test countdown behavior during browser minimize/maximize
+   - Verify countdown accuracy with different performance.now() precision
+   - Test countdown sync between popup and content view
+   - Verify memory usage during long-running countdowns
 
 3. Notification Scheduling
    - Test scheduling notifications at various intervals (minutes, hours, days before event)
@@ -39,6 +47,10 @@ Polyteller Extension Comprehensive Testing Plan
    - Test alarm behavior when multiple events end simultaneously
    - Verify alarm cleanup for expired or cancelled events
    - Test alarm rescheduling when event times are updated
+   - Test alarm behavior during system hibernation/resume
+   - Verify alarm priority handling when multiple alarms trigger simultaneously
+   - Test alarm persistence during extension updates
+   - Verify alarm cleanup during tab/window closure
 
 5. State Persistence
    - Verify event data and notifications persist after browser restart
@@ -57,6 +69,10 @@ Polyteller Extension Comprehensive Testing Plan
    - Verify handling of events in timezones with fractional hour offsets
    - Test display of multiple events from different timezones
    - Verify timezone abbreviation display and accuracy
+   - Test behavior during rare timezone changes (e.g., Venezuela, North Korea)
+   - Verify handling of ambiguous times during DST transitions
+   - Test with markets spanning DST changes
+   - Verify timezone abbreviation display accuracy
 
 7. User Interface
    - Test responsiveness of popup UI on various screen sizes
@@ -76,15 +92,23 @@ Polyteller Extension Comprehensive Testing Plan
    - Test trade confirmation with various trade amounts and types
    - Verify proper handling of cancelled confirmations
    - Test confirmation popup on different Polymarket page layouts
+   - Test confirmation dialog positioning on different screen sizes
+   - Verify keyboard focus management in dialog
+   - Test dialog behavior during rapid market price updates
+   - Verify dialog cleanup after trade execution/cancellation
 
 9. Performance
-   - Test with multiple Polymarket tabs open (10+)
+   - Test with multiple Polymarket tabs open (20+)
    - Verify extension performance with many scheduled notifications (100+)
    - Edge case: Test CPU and memory usage over extended periods (24+ hours)
    - Measure and optimize extension load time
    - Profile background script performance
    - Test impact on Polymarket website loading and rendering times
    - Verify performance on low-end devices
+   - Test CPU usage during rapid tab switching
+   - Monitor memory usage patterns during extended use
+   - Verify performance impact of privacy mode
+   - Test performance with large notification queues
 
 10. Error Handling
     - Test behavior with network errors (timeout, disconnection)
@@ -125,6 +149,10 @@ Polyteller Extension Comprehensive Testing Plan
     - Test for potential CSRF vulnerabilities
     - Verify secure communication between extension components
     - Test permission usage and potential privilege escalation
+    - Test content script isolation
+    - Verify secure handling of masked values
+    - Test for potential memory leaks in privacy mode
+    - Verify cleanup of sensitive data
 
 15. Update Process
     - Test extension update process (minor and major versions)
@@ -170,6 +198,10 @@ Polyteller Extension Comprehensive Testing Plan
     - Continuous use over extended periods (48+ hours)
     - Test with maximum allowed storage usage
     - Verify behavior under high CPU/memory pressure
+    - Test with maximum Chrome storage quota
+    - Rapid privacy mode toggles (100+ times)
+    - Multiple simultaneous trade confirmations
+    - Concurrent notification scheduling/deletion
 
 21. User Settings and Preferences
     - Test saving and loading of user preferences
@@ -183,6 +215,10 @@ Polyteller Extension Comprehensive Testing Plan
     - Test notification sound and vibration (if applicable)
     - Verify grouping of multiple notifications
     - Test notification behavior when Polymarket tab is already open
+    - Test notification grouping behavior
+    - Verify notification priority handling
+    - Test notification sound throttling
+    - Verify notification cleanup after interaction
 
 23. Data Management
     - Test clearing extension data (partial and complete)
