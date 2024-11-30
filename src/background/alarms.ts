@@ -89,8 +89,8 @@ export async function handleAlarm(alarm: chrome.alarms.Alarm) {
     // Create and show the notification with updated text
     await chrome.notifications.create(notification.id, {
       type: 'basic',
-      iconUrl: 'icon.png',
-      title: 'Event Reminder',
+      iconUrl: 'icon128.png',
+      title: '🚨Polyteller Alert🚨',
       message: `${notification.eventTitle} ends in ${formatRemainingTime(notification.minutesBefore * 60 * 1000)}`,
     });
 
@@ -160,15 +160,37 @@ export function checkAlarms() {
  * Checks for and handles any alarms that were missed during browser downtime.
  */
 export async function checkMissedAlarms() {
-  const now = Date.now();
-  const alarms = await chrome.alarms.getAll();
-  
-  for (const alarm of alarms) {
-    if (alarm.scheduledTime <= now) {
-      log('Background', `Missed alarm detected: ${alarm.name}`);
-      await handleAlarm(alarm);
-      await chrome.alarms.clear(alarm.name);
+  try {
+    // First load stored notifications
+    storedNotifications = await getStoredNotifications();
+    
+    const now = Date.now();
+    const alarms = await chrome.alarms.getAll();
+    
+    for (const alarm of alarms) {
+      if (alarm.scheduledTime <= now) {
+        log('Background', `Missed alarm detected: ${alarm.name}`);
+        const notification = storedNotifications.find(n => n.id === alarm.name);
+        
+        if (notification) {
+          // Create and show the notification even if we can't get current event
+          await chrome.notifications.create(notification.id, {
+            type: 'basic',
+            iconUrl: 'icon128.png',
+            title: '🚨 Polyteller Alert 🚨',
+            message: `${notification.eventTitle} ends in ${formatRemainingTime(notification.minutesBefore * 60 * 1000)}`,
+          });
+          
+          // Cleanup after showing notification
+          await removeTriggeredNotification(alarm.name);
+        }
+        
+        // Clear the alarm regardless
+        await chrome.alarms.clear(alarm.name);
+      }
     }
+  } catch (error) {
+    log('Background', 'Error checking missed alarms:', error);
   }
 }
 
