@@ -1,6 +1,6 @@
 /*!
  * Polyteller 
- * Version: 1.0.4
+ * Version: 1.0.5
  * Copyright (C) 2024 Zaid Azmi
  * All rights reserved
  *  
@@ -10,7 +10,7 @@
  * Author: Zaid Azmi
  * Website: https://polyteller.com
  * Email : hi@polyteller.com
- * Version: 1.0.4
+ * Version: 1.0.5
  */(()=>{var e={585(e,t){function n(e,t){let storage;try{storage=e()}catch(n){return}return{getItem(e){var n;const r=e=>null===e?null:JSON.parse(e,null==t?void 0:t.reviver),o=null!=(n=storage.getItem(e))?n:null;return o instanceof Promise?o.then(r):r(o)},setItem(e,n){return storage.setItem(e,JSON.stringify(n,null==t?void 0:t.replacer))},removeItem(e){return storage.removeItem(e)}}}const r=e=>t=>{try{const n=e(t);return n instanceof Promise?n:{then:e=>r(e)(n),catch(e){return this}}}catch(n){
 return{then(e){return this},catch:e=>r(e)(n)}}};t.Zr=(e,t)=>(set,get,o)=>{let c={storage:n((()=>localStorage)),partialize(e){return e},version:0,merge(e,t){return{...t,...e}},...t},a=!1;const i=new Set,s=new Set;let storage=c.storage;if(!storage)return e(((...e)=>{set(...e)}),get,o);const u=()=>{const e=c.partialize({...get()});return storage.setItem(c.name,{state:e,version:c.version})},h=o.setState;o.setState=(e,t)=>{h(e,t),u()};const l=e(((...e)=>{set(...e),u()}),get,o);let m
 ;o.getInitialState=()=>l;const f=()=>{var e,t;if(!storage)return;a=!1,i.forEach((e=>{var t;return e(null!=(t=get())?t:l)}));const n=(null==(t=c.onRehydrateStorage)?void 0:t.call(c,null!=(e=get())?e:l))||void 0;return r(storage.getItem.bind(storage))(c.name).then((e=>{if(e){if("number"!=typeof e.version||e.version===c.version)return[!1,e.state];if(c.migrate)return[!0,c.migrate(e.state,e.version)]}return[!1,void 0]})).then((e=>{var t;const[n,r]=e;if(m=c.merge(r,null!=(t=get())?t:l),set(m,!0),

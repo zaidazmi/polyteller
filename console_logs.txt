@@ -1,0 +1,15 @@
+content.js:2777 [Polyteller Content] Initializing countdown
+content.js:2777 [Polyteller Content] Checking path: /
+content.js:2777 [Polyteller Content] Not an event page, skipping countdown
+content.js:2777 [Polyteller Content] Failed to extract event info
+content.js:2777 [Polyteller DOMObserver] Initialized with optimized settings Object
+content.js:2777 [Polyteller Content] Polyteller content script loaded
+content.js:2777 [Polyteller DOMManipulator] Buy button interception set up
+content.js:2777 [Polyteller TradeConfirmation] Initial state loaded: true
+privacyMode.js:34 [Polyteller PrivacyMode] Initial state loaded: false
+content.js:2777 [Polyteller DOMManipulator] Element clicked: A - Will Bitcoin hit $100k in 2024?
+content.js:2777 [Polyteller Content] Route changed from / to /event/will-bitcoin-hit-100k-in-2024
+2content.js:2777 [Polyteller Content] Error waiting for market info: Error: Timeout waiting for market info
+    at content.js:229:64
+2content.js:2777 [Polyteller Content] Error waiting for market info: Error: Timeout waiting for market info
+    at content.js:229:64
