@@ -1,5 +1,6 @@
 import { log } from '../utils/logUtils';
 import { getPrivacyModeState, setPrivacyModeState, maskValue } from '../utils/privacyUtils';
+import { MessageType } from '../types/messages';
 
 // Constants
 export const PRIVACY_MODE_KEY = 'privacyModeEnabled';
@@ -61,8 +62,10 @@ function addToggleIcon() {
       }, 100);
 
       chrome.runtime.sendMessage({
-        action: 'broadcastPrivacyMode',
-        enabled: privacyModeState.isEnabled
+        type: MessageType.BROADCAST_PRIVACY_MODE,
+        data: { enabled: privacyModeState.isEnabled },
+        requestId: Date.now().toString(),
+        timestamp: Date.now()
       });
     });
 
@@ -176,8 +179,10 @@ export class PrivacyModeState {
       this.notifyStateChange();
 
       chrome.runtime.sendMessage({
-        action: 'updatePrivacyMode',
-        enabled: value
+        type: MessageType.UPDATE_PRIVACY_MODE,
+        data: { enabled: value },
+        requestId: Date.now().toString(),
+        timestamp: Date.now()
       });
 
     } catch (error) {
@@ -198,10 +203,10 @@ export class PrivacyModeState {
 
   private setupMessageListener(): void {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      if (message.action === 'updatePrivacyMode') {
-        this.setEnabled(message.enabled);
+      if (message.type === MessageType.UPDATE_PRIVACY_MODE) {
+        this.setEnabled(message.data.enabled);
         if (sendResponse) {
-          sendResponse({ received: true });
+          sendResponse({ success: true });
         }
       }
       return true;

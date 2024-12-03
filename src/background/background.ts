@@ -9,6 +9,7 @@ import { cleanupNotifications, checkAlarms, triggerAlarmsManually, handleAlarm, 
 import { log } from '../utils/logUtils';
 import { NotificationSetting, Notification, PolymarketEvent } from '../types';
 import { useStore } from '../store/store';
+import { MessageType } from '../types/messages';
 
 (() => {
   "use strict";
@@ -48,35 +49,66 @@ import { useStore } from '../store/store';
     log('Background', 'Background received message:', request);
 
     try {
+      // Handle legacy message formats
+      if (request.action === 'updatePrivacyMode') {
+        handleUpdatePrivacyMode({ 
+          type: MessageType.UPDATE_PRIVACY_MODE, 
+          data: { enabled: request.enabled },
+          requestId: Date.now().toString(),
+          timestamp: Date.now()
+        }, sendResponse);
+        return true;
+      }
+
+      if (request.action === 'broadcastPrivacyMode') {
+        handleBroadcastPrivacyMode({
+          type: MessageType.BROADCAST_PRIVACY_MODE,
+          data: { enabled: request.enabled },
+          requestId: Date.now().toString(),
+          timestamp: Date.now()
+        }, sendResponse);
+        return true;
+      }
+
+      // Handle new message format
       switch (request.type) {
-        case 'EVENT_INFO':
+        case MessageType.EVENT_INFO:
           handleEventInfo(request, sender);
           break;
-        case 'GET_EVENT_INFO':
+        case MessageType.GET_EVENT_INFO:
           handleGetEventInfo(request, sendResponse);
           return true;
-        case 'REMOVE_NOTIFICATION_ALARM':
+        case MessageType.REMOVE_NOTIFICATION_ALARM:
           handleRemoveNotificationAlarm(request, sendResponse);
           return true;
-        case 'SCHEDULE_NOTIFICATION':
+        case MessageType.SCHEDULE_NOTIFICATION:
           handleScheduleNotification(request, sendResponse);
           return true;
-        case 'GET_STORED_NOTIFICATIONS':
+        case MessageType.GET_STORED_NOTIFICATIONS:
           handleGetStoredNotifications(sendResponse);
           return true;
-        case 'UPDATE_TRADE_CONFIRMATION':
+        case MessageType.UPDATE_TRADE_CONFIRMATION:
           handleUpdateTradeConfirmation(request, sendResponse);
           return true;
-        case 'CLEAR_CURRENT_EVENT':
+        case MessageType.CLEAR_CURRENT_EVENT:
           if (sender.tab?.id) {
             cleanupTabEventData(sender.tab.id);
             // Notify popup to update its display
             chrome.runtime.sendMessage({ 
-              type: 'EVENT_CLEARED',
+              type: MessageType.EVENT_CLEARED,
               data: { tabId: sender.tab.id }
             });
           }
           break;
+        case MessageType.EVENT_INITIALIZED:
+          handleEventInitialized(request, sender, sendResponse);
+          return true;
+        case MessageType.UPDATE_PRIVACY_MODE:
+          handleUpdatePrivacyMode(request, sendResponse);
+          return true;
+        case MessageType.BROADCAST_PRIVACY_MODE:
+          handleBroadcastPrivacyMode(request, sendResponse);
+          return true;
         default:
           throw new Error(`Unknown message type: ${request.type}`);
       }
@@ -264,5 +296,54 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
     // Continue with normal event info handling...
   }
 });
+
+// Add new handler functions
+function handleEventInitialized(request: any, sender: chrome.runtime.MessageSender, sendResponse: (response?: any) => void) {
+  if (sender.tab?.id) {
+    log('Background', `Event initialized for tab ${sender.tab.id}:`, request.data);
+    chrome.storage.local.set({ [`currentEvent_${sender.tab.id}`]: request.data });
+    useStore.getState().addEvent(request.data);
+    sendResponse({ success: true });
+  } else {
+    sendResponse({ success: false, error: 'No tab ID found' });
+  }
+}
+
+function handleUpdatePrivacyMode(request: any, sendResponse: (response?: any) => void) {
+  const { enabled } = request.data;
+  chrome.storage.local.set({ privacyModeEnabled: enabled }, () => {
+    log('Background', `Privacy mode ${enabled ? 'enabled' : 'disabled'}`);
+    sendResponse({ success: true });
+    // Notify all tabs about the change
+    chrome.tabs.query({ url: "https://*.polymarket.com/*" }, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id) {
+          chrome.tabs.sendMessage(tab.id, { 
+            type: MessageType.UPDATE_PRIVACY_MODE,
+            data: { enabled }
+          });
+        }
+      });
+    });
+  });
+}
+
+function handleBroadcastPrivacyMode(request: any, sendResponse: (response?: any) => void) {
+  const { enabled } = request.data;
+  // Broadcast to all Polymarket tabs except sender
+  chrome.tabs.query({ url: "https://*.polymarket.com/*" }, (tabs) => {
+    tabs.forEach(tab => {
+      if (tab.id && tab.id !== request.sender?.tab?.id) {
+        chrome.tabs.sendMessage(tab.id, {
+          type: MessageType.UPDATE_PRIVACY_MODE,
+          data: { enabled }
+        }).catch(error => {
+          log('Background', 'Error sending privacy mode update to tab:', error);
+        });
+      }
+    });
+  });
+  sendResponse({ success: true });
+}
 
 
