@@ -3,6 +3,18 @@ import * as handlers from '../patternHandlers';
 import { DatePattern, DateResult } from '../patternTypes';
 
 describe('Date Patterns', () => {
+  // Mock document.querySelector for context tests
+  const mockRulesText = (text: string) => {
+    document.querySelector = jest.fn().mockImplementation(() => ({
+      textContent: text
+    }));
+  };
+
+  beforeEach(() => {
+    // Reset document.querySelector mock before each test
+    document.querySelector = jest.fn().mockReturnValue(null);
+  });
+
   // Helper function to test a pattern
   const testPattern = (
     pattern: DatePattern,
@@ -123,16 +135,42 @@ describe('Date Patterns', () => {
     });
   });
 
-  describe('SHORT_DATE_TIME_FORMAT', () => {
+  describe('SHORT_DATE_TIME_FORMAT with context', () => {
     const pattern = DATE_PATTERNS.find(p => p.name === 'SHORT_DATE_TIME_FORMAT')!;
 
-    test('matches basic format', () => {
+    test('extracts year from context', () => {
+      mockRulesText('Some event happening in 2025. Date: July 3, 11:59 PM GMT');
       testPattern(
         pattern,
-        'January 15, 3 PM ET',
+        'July 3, 11:59 PM GMT',
         {
-          endDateValue: `January 15, ${new Date().getFullYear() + 1}, 3:00:00 PM`,
-          timezone: 'ET'
+          endDateValue: 'July 3, 2025, 11:59:00 PM',
+          timezone: 'GMT'
+        }
+      );
+    });
+
+    test('uses latest year when multiple years present', () => {
+      mockRulesText('Event starts in 2024 and ends in 2025. Date: July 3, 11:59 PM GMT');
+      testPattern(
+        pattern,
+        'July 3, 11:59 PM GMT',
+        {
+          endDateValue: 'July 3, 2025, 11:59:00 PM',
+          timezone: 'GMT'
+        }
+      );
+    });
+
+    test('falls back to next year when no year in context', () => {
+      mockRulesText('Some event with no year mentioned. Date: July 3, 11:59 PM GMT');
+      const nextYear = new Date().getFullYear() + 1;
+      testPattern(
+        pattern,
+        'July 3, 11:59 PM GMT',
+        {
+          endDateValue: `July 3, ${nextYear}, 11:59:00 PM`,
+          timezone: 'GMT'
         }
       );
     });
@@ -198,11 +236,12 @@ describe('Date Patterns', () => {
     const pattern = DATE_PATTERNS.find(p => p.name === 'UNTIL_TIME_FORMAT')!;
 
     test('matches format without year', () => {
+      mockRulesText('Event happening in 2025. Until November 30, 11:59 PM ET');
       testPattern(
         pattern,
         'until November 30, 11:59 PM ET',
         {
-          endDateValue: 'November 30, 2024, 11:59:00 PM',
+          endDateValue: 'November 30, 2025, 11:59:00 PM',
           timezone: 'ET'
         }
       );
@@ -211,9 +250,35 @@ describe('Date Patterns', () => {
     test('matches format with year', () => {
       testPattern(
         pattern,
-        'until January 15, 2024, 11:59 PM ET',
+        'until November 30, 2024, 11:59 PM ET',
         {
-          endDateValue: 'January 15, 2024, 11:59:00 PM',
+          endDateValue: 'November 30, 2024, 11:59:00 PM',
+          timezone: 'ET'
+        }
+      );
+    });
+  });
+
+  describe('MARKET_TIMEFRAME_SPAN', () => {
+    const pattern = DATE_PATTERNS.find(p => p.name === 'MARKET_TIMEFRAME_SPAN')!;
+
+    test('matches market timeframe span format', () => {
+      testPattern(
+        pattern,
+        'This market\'s timeframe spans from December 2, 2024, 12:00 PM ET, to December 31, 2024, 11:59 PM ET',
+        {
+          endDateValue: 'December 31, 2024, 11:59:00 PM',
+          timezone: 'ET'
+        }
+      );
+    });
+
+    test('handles different AM/PM combinations', () => {
+      testPattern(
+        pattern,
+        'This market\'s timeframe spans from December 2, 2024, 12:00 AM ET, to December 31, 2024, 11:59 PM ET',
+        {
+          endDateValue: 'December 31, 2024, 11:59:00 PM',
           timezone: 'ET'
         }
       );
