@@ -1,5 +1,6 @@
 import { PrivacyModeState, privacyModeState } from '../../content/privacyMode';
 import { log } from '../../utils/logUtils';
+import { MessageType } from '../../types/messages';
 
 /**
  * Initializes the privacy mode toggle in the extension popup.
@@ -22,15 +23,11 @@ export async function initPrivacyModeToggle(): Promise<void> {
     await privacyMode.toggle();
     
     // Notify all tabs
-    chrome.tabs.query({}, (tabs) => {
-      tabs.forEach(tab => {
-        if (tab.id) {
-          chrome.tabs.sendMessage(tab.id, { 
-            action: 'updatePrivacyMode', 
-            enabled: privacyMode.isEnabled 
-          });
-        }
-      });
+    chrome.runtime.sendMessage({
+      type: MessageType.BROADCAST_PRIVACY_MODE,
+      data: { enabled: privacyMode.isEnabled },
+      requestId: Date.now().toString(),
+      timestamp: Date.now()
     });
   });
 

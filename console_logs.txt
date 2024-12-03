@@ -1,15 +1,309 @@
-content.js:2777 [Polyteller Content] Initializing countdown
-content.js:2777 [Polyteller Content] Checking path: /
-content.js:2777 [Polyteller Content] Not an event page, skipping countdown
-content.js:2777 [Polyteller Content] Failed to extract event info
-content.js:2777 [Polyteller DOMObserver] Initialized with optimized settings Object
-content.js:2777 [Polyteller Content] Polyteller content script loaded
-content.js:2777 [Polyteller DOMManipulator] Buy button interception set up
-content.js:2777 [Polyteller TradeConfirmation] Initial state loaded: true
-privacyMode.js:34 [Polyteller PrivacyMode] Initial state loaded: false
-content.js:2777 [Polyteller DOMManipulator] Element clicked: A - Will Bitcoin hit $100k in 2024?
-content.js:2777 [Polyteller Content] Route changed from / to /event/will-bitcoin-hit-100k-in-2024
-2content.js:2777 [Polyteller Content] Error waiting for market info: Error: Timeout waiting for market info
-    at content.js:229:64
-2content.js:2777 [Polyteller Content] Error waiting for market info: Error: Timeout waiting for market info
-    at content.js:229:64
+logUtils.ts:8 [17:42:17:706] [Polyteller Background] Background script initialized with new notification handling
+logUtils.ts:8 [17:42:17:715] [Polyteller Background] Extension installed
+logUtils.ts:8 [17:42:17:715] [Polyteller Background] Updated from 1.0.5 to 1.0.5
+logUtils.ts:8 [17:42:20:872] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:20:872] [Polyteller Background] Event initialized for tab 1129375645: Object
+logUtils.ts:8 [17:42:21:873] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:21:873] [Polyteller Background] Storing event info for tab 1129375645: Object
+logUtils.ts:8 [17:42:21:874] [Polyteller Background] Updated events in store: Array(20)
+logUtils.ts:8 [17:42:24:363] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:363] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:364] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:24:775] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:775] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:775] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:24:957] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:957] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:24:958] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:25:136] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:25:136] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:25:136] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:25:312] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:25:312] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:25:312] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:31:216] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:31:227] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:743] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:743] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:743] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:33:745] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:745] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:33:900] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:900] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:900] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:33:902] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:33:903] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:060] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:061] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:061] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:062] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:063] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:226] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:226] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:226] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:228] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:228] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:384] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:384] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:385] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:386] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:386] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:552] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:552] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:552] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:614] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:614] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:724] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:724] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:724] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:727] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:727] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:34:900] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:900] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:901] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:34:902] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:34:902] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:35:077] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:078] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:078] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:35:080] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:080] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:35:250] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:250] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:251] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:35:253] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:253] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:35:593] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:594] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:594] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:35:596] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:597] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:35:761] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:761] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:761] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:35:763] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:35:764] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:38:796] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:38:796] [Polyteller Background] Cleaned up event data for tab 1129375645
+logUtils.ts:8 [17:42:41:892] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:41:892] [Polyteller Background] Event initialized for tab 1129375666: Object
+logUtils.ts:8 [17:42:42:171] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:42:171] [Polyteller Background] Event initialized for tab 1129375669: Object
+logUtils.ts:8 [17:42:43:158] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:43:158] [Polyteller Background] Event initialized for tab 1129375672: Object
+logUtils.ts:8 [17:42:43:387] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:43:387] [Polyteller Background] Storing event info for tab 1129375666: Object
+logUtils.ts:8 [17:42:43:387] [Polyteller Background] Updated events in store: Array(23)
+logUtils.ts:8 [17:42:43:618] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:43:618] [Polyteller Background] Storing event info for tab 1129375669: Object
+logUtils.ts:8 [17:42:43:619] [Polyteller Background] Updated events in store: Array(23)
+logUtils.ts:8 [17:42:43:693] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:43:693] [Polyteller Background] Event initialized for tab 1129375675: Object
+logUtils.ts:8 [17:42:44:332] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:44:332] [Polyteller Background] Event initialized for tab 1129375678: Object
+logUtils.ts:8 [17:42:44:649] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:44:649] [Polyteller Background] Storing event info for tab 1129375672: Object
+logUtils.ts:8 [17:42:44:649] [Polyteller Background] Updated events in store: Array(25)
+logUtils.ts:8 [17:42:45:133] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:45:133] [Polyteller Background] Event initialized for tab 1129375681: Object
+logUtils.ts:8 [17:42:45:389] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:45:389] [Polyteller Background] Storing event info for tab 1129375678: Object
+logUtils.ts:8 [17:42:45:389] [Polyteller Background] Updated events in store: Array(26)
+logUtils.ts:8 [17:42:45:645] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:45:645] [Polyteller Background] Storing event info for tab 1129375675: Object
+logUtils.ts:8 [17:42:45:645] [Polyteller Background] Updated events in store: Array(26)
+logUtils.ts:8 [17:42:46:454] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:454] [Polyteller Background] Storing event info for tab 1129375681: Object
+logUtils.ts:8 [17:42:46:454] [Polyteller Background] Updated events in store: Array(26)
+logUtils.ts:8 [17:42:46:821] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:821] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:821] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:46:843] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:843] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:844] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:844] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:46:845] [Polyteller Background] Background received message: Object
+2logUtils.ts:8 [17:42:46:845] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:46:846] [Polyteller Background] Background received message: Object
+3logUtils.ts:8 [17:42:46:846] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:46:848] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:48:648] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:648] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:648] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:652] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:653] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:653] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:653] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:653] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:654] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:654] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:654] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:48:655] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:656] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:657] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:48:658] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:42:49:562] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:563] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:563] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:49:567] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:567] [Polyteller Background] Background received message: Object
+2logUtils.ts:8 [17:42:49:568] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:49:571] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:571] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:571] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:49:572] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:49:585] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:585] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:49:585] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:49:586] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:42:51:636] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:42:51:642] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:07:978] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:07:982] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:12:855] [Polyteller Background] Cleaned up event data for tab 1129375678
+logUtils.ts:8 [17:43:13:324] [Polyteller Background] Cleaned up event data for tab 1129375681
+logUtils.ts:8 [17:43:13:537] [Polyteller Background] Cleaned up event data for tab 1129375675
+logUtils.ts:8 [17:43:13:741] [Polyteller Background] Cleaned up event data for tab 1129375672
+logUtils.ts:8 [17:43:14:230] [Polyteller Background] Cleaned up event data for tab 1129375669
+logUtils.ts:8 [17:43:14:873] [Polyteller Background] Cleaned up event data for tab 1129375666
+logUtils.ts:8 [17:43:15:811] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:17:713] [Polyteller Current alarms:] Array(9)
+logUtils.ts:8 [17:43:17:714] [Polyteller Alarms] Updated stored notifications: Array(0)
+logUtils.ts:8 [17:43:17:715] [Polyteller Background] Notifications cleanup: 0 removed, 0 remaining
+logUtils.ts:8 [17:43:17:717] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:43:17:717] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:17:719] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:17:719] [Polyteller Background] Background received message: Object
+2logUtils.ts:8 [17:43:18:111] [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+logUtils.ts:8 [17:43:18:618] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:18:618] [Polyteller Background] Cleaned up event data for tab 1129375645
+logUtils.ts:8 [17:43:20:798] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:20:798] [Polyteller Background] Event initialized for tab 1129375645: Object
+logUtils.ts:8 [17:43:21:799] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:21:799] [Polyteller Background] Storing event info for tab 1129375645: Object
+logUtils.ts:8 [17:43:21:800] [Polyteller Background] Updated events in store: Array(26)
+logUtils.ts:8 [17:43:22:669] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:22:717] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:23:825] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:23:826] [Polyteller Current event for scheduling:] Object
+logUtils.ts:8 [17:43:23:826] [Polyteller Notification scheduled for Tue Jul 01 2025 09:59:00 GMT+0700 (Indochina Time), alarm name: notification_15036_60_1733222603826]
+logUtils.ts:8 [17:43:23:827] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:23:827] [Polyteller Total scheduled notifications: 1]
+logUtils.ts:8 [17:43:23:827] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:23:828] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:27:708] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:43:29:333] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:29:334] [Polyteller Current event for scheduling:] Object
+logUtils.ts:8 [17:43:29:335] [Polyteller Notification scheduled for Tue Dec 03 2024 17:44:00 GMT+0700 (Indochina Time), alarm name: notification_15036_301995_1733222609335]
+logUtils.ts:8 [17:43:29:335] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:29:336] [Polyteller Total scheduled notifications: 2]
+logUtils.ts:8 [17:43:29:336] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:29:337] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:30:342] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:30:343] [Polyteller Current event for scheduling:] Object
+logUtils.ts:8 [17:43:30:343] [Polyteller Alarms] Notification too close to existing one. Time difference: 0 seconds
+logUtils.ts:8 [17:43:31:909] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:31:910] [Polyteller Current event for scheduling:] Object
+logUtils.ts:8 [17:43:31:910] [Polyteller Notification scheduled for Tue Dec 03 2024 17:43:50 GMT+0700 (Indochina Time), alarm name: notification_15036_301995.1666666667_1733222611910]
+logUtils.ts:8 [17:43:31:911] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:31:911] [Polyteller Total scheduled notifications: 3]
+logUtils.ts:8 [17:43:31:912] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:31:912] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:32:710] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:43:34:101] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:34:101] [Polyteller Current event for scheduling:] Object
+logUtils.ts:8 [17:43:34:102] [Polyteller Notification scheduled for Tue Dec 03 2024 17:43:40 GMT+0700 (Indochina Time), alarm name: notification_15036_301995.3333333333_1733222614101]
+logUtils.ts:8 [17:43:34:102] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:34:102] [Polyteller Total scheduled notifications: 4]
+logUtils.ts:8 [17:43:34:103] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:34:103] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:37:708] [Polyteller Background] Synced store notifications with background
+4logUtils.ts:8 [17:43:38:469] [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+logUtils.ts:8 [17:43:38:489] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:41:002] [Polyteller Alarm triggered in background:] Object
+logUtils.ts:8 [17:43:41:004] [Polyteller Alarm triggered:] Object
+logUtils.ts:8 [17:43:41:018] [Polyteller Alarms] Updated stored notifications: Array(4)
+logUtils.ts:8 [17:43:41:021] [Polyteller Background] Popup is not open to receive message: Object
+logUtils.ts:8 [17:43:41:021] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:41:022] [Polyteller Alarms] Updated stored notifications: Array(3)
+logUtils.ts:8 [17:43:41:022] [Polyteller Triggered notification removed: notification_15036_301995.3333333333_1733222614101]
+logUtils.ts:8 [17:43:41:025] [Polyteller Background] Popup is not open to receive message: Object
+logUtils.ts:8 [17:43:41:025] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:42:717] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:43:50:002] [Polyteller Alarm triggered in background:] Object
+logUtils.ts:8 [17:43:50:004] [Polyteller Alarm triggered:] Object
+logUtils.ts:8 [17:43:50:015] [Polyteller Alarms] Updated stored notifications: Array(3)
+logUtils.ts:8 [17:43:50:017] [Polyteller Background] Popup is not open to receive message: Object
+logUtils.ts:8 [17:43:50:018] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:50:018] [Polyteller Alarms] Updated stored notifications: Array(2)
+logUtils.ts:8 [17:43:50:019] [Polyteller Triggered notification removed: notification_15036_301995.1666666667_1733222611910]
+logUtils.ts:8 [17:43:50:020] [Polyteller Background] Popup is not open to receive message: Object
+logUtils.ts:8 [17:43:50:020] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:52:717] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:43:54:722] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:54:724] [Polyteller Alarms] Updated stored notifications: Array(1)
+logUtils.ts:8 [17:43:54:724] [Polyteller Triggered notification removed: notification_15036_60_1733222603826]
+logUtils.ts:8 [17:43:54:726] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:54:726] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:43:54:726] [Polyteller Background] Popup is not open to receive message: Object
+logUtils.ts:8 [17:43:57:713] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:44:00:260] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:00:264] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:01:000] [Polyteller Alarm triggered in background:] Object
+logUtils.ts:8 [17:44:01:001] [Polyteller Alarm triggered:] Object
+logUtils.ts:8 [17:44:01:006] [Polyteller Alarms] Updated stored notifications: Array(1)
+logUtils.ts:8 [17:44:01:008] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:01:008] [Polyteller Alarms] Updated stored notifications: Array(0)
+logUtils.ts:8 [17:44:01:008] [Polyteller Triggered notification removed: notification_15036_301995_1733222609335]
+logUtils.ts:8 [17:44:01:008] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:01:009] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:01:009] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:02:708] [Polyteller Background] Synced store notifications with background
+logUtils.ts:8 [17:44:03:291] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:291] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:291] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:03:294] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:294] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:03:460] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:460] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:460] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:03:463] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:463] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:03:635] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:635] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:635] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:03:637] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:638] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:03:816] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:817] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:817] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:03:819] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:819] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:03:984] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:984] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:984] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:03:986] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:03:987] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:04:152] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:152] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:152] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:04:154] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:155] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:04:326] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:326] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:327] [Polyteller Background] Privacy mode disabled
+2logUtils.ts:8 [17:44:04:328] [Polyteller Background] Error sending message to popup: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+logUtils.ts:8 [17:44:04:329] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:330] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:04:501] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:501] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:502] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:04:503] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:504] [Polyteller Background] Privacy mode enabled
+logUtils.ts:8 [17:44:04:676] [Polyteller Background] Background received message: Objectdata: {enabled: false}requestId: "1733222644675"timestamp: 1733222644675type: "UPDATE_PRIVACY_MODE"[[Prototype]]: Object
+logUtils.ts:8 [17:44:04:676] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:677] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:04:678] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:04:679] [Polyteller Background] Privacy mode disabled
+logUtils.ts:8 [17:44:05:632] [Polyteller Background] Background received message: Object
+logUtils.ts:8 [17:44:06:824] [Polyteller Background] Cleaned up event data for tab 1129375690
