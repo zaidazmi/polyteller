@@ -12,6 +12,19 @@ import * as handlers from './patternHandlers';
  */
 export const DATE_PATTERNS: DatePattern[] = [
   /**
+   * Matches: "timeframe spans from December 2, 2024, 12:00 PM ET, to December 31, 2024, 11:59 PM ET"
+   * Priority: 200 (Highest)
+   * Used in: Market timeframe spans
+   */
+  {
+    name: 'MARKET_TIMEFRAME_SPAN' as PatternName,
+    pattern: /timeframe spans from ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2}), to ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+    priority: 200,
+    format: "timeframe spans from Date1, Time1 TZ, to Date2, Time2 TZ",
+    handler: handlers.handleMarketTimeframeSpan
+  },
+
+  /**
    * Matches: "until Dec 1, 3 AM ET"
    * Priority: 195 (Highest)
    * Used in: Hurricane season events
@@ -90,15 +103,15 @@ export const DATE_PATTERNS: DatePattern[] = [
   },
 
   /**
-   * Matches: "January 15, 3 PM ET"
+   * Matches: "July 3, 11:59 PM GMT"
    * Priority: 165
    * Used in: Short date formats without year
    */
   {
     name: 'SHORT_DATE_TIME_FORMAT' as PatternName,
-    pattern: /([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{1,2})\s*([AP]M)\s*([A-Z]{2,3})/i,
+    pattern: /([A-Za-z]+)\s+(\d{1,2}),\s*(\d{1,2}):(\d{2})\s*([AP]M)\s*([A-Z]{2,3})/i,
     priority: 165,
-    format: "Month DD, HH AM/PM TZ",
+    format: "Month DD, HH:MM AM/PM TZ",
     handler: handlers.handleShortDateTime
   },
 

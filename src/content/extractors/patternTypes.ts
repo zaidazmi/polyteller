@@ -14,6 +14,7 @@ export interface DateResult {
 export type PatternHandler = (match: RegExpMatchArray) => DateResult | null;
 
 export type PatternName = 
+  | 'MARKET_TIMEFRAME_SPAN'
   | 'TIME_WITH_AT_FORMAT'
   | 'POSTPONED_AFTER_DATE'
   | 'FINAL_RESOLUTION_DEADLINE'

@@ -1110,6 +1110,18 @@ __webpack_require__.r(__webpack_exports__);
  */
 const DATE_PATTERNS = [
     /**
+     * Matches: "timeframe spans from December 2, 2024, 12:00 PM ET, to December 31, 2024, 11:59 PM ET"
+     * Priority: 200 (Highest)
+     * Used in: Market timeframe spans
+     */
+    {
+        name: 'MARKET_TIMEFRAME_SPAN',
+        pattern: /timeframe spans from ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2}), to ([A-Za-z]+ \d{1,2}, \d{4}), (\d{1,2}):(\d{2}) ([AP]M) ([A-Z]{2})/i,
+        priority: 200,
+        format: "timeframe spans from Date1, Time1 TZ, to Date2, Time2 TZ",
+        handler: _patternHandlers__WEBPACK_IMPORTED_MODULE_0__.handleMarketTimeframeSpan
+    },
+    /**
      * Matches: "until Dec 1, 3 AM ET"
      * Priority: 195 (Highest)
      * Used in: Hurricane season events
@@ -1182,15 +1194,15 @@ const DATE_PATTERNS = [
         handler: _patternHandlers__WEBPACK_IMPORTED_MODULE_0__.handleBetweenDatesWithTimezoneSuffix
     },
     /**
-     * Matches: "January 15, 3 PM ET"
+     * Matches: "July 3, 11:59 PM GMT"
      * Priority: 165
      * Used in: Short date formats without year
      */
     {
         name: 'SHORT_DATE_TIME_FORMAT',
-        pattern: /([A-Za-z]{3,})\s+(\d{1,2}),\s*(\d{1,2})\s*([AP]M)\s*([A-Z]{2,3})/i,
+        pattern: /([A-Za-z]+)\s+(\d{1,2}),\s*(\d{1,2}):(\d{2})\s*([AP]M)\s*([A-Z]{2,3})/i,
         priority: 165,
-        format: "Month DD, HH AM/PM TZ",
+        format: "Month DD, HH:MM AM/PM TZ",
         handler: _patternHandlers__WEBPACK_IMPORTED_MODULE_0__.handleShortDateTime
     },
     /**
@@ -1425,6 +1437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   handleHurricaneEndFormat: () => (/* binding */ handleHurricaneEndFormat),
 /* harmony export */   handleInaugurationDate: () => (/* binding */ handleInaugurationDate),
 /* harmony export */   handleMainEventEnd: () => (/* binding */ handleMainEventEnd),
+/* harmony export */   handleMarketTimeframeSpan: () => (/* binding */ handleMarketTimeframeSpan),
 /* harmony export */   handlePostponedAfterDate: () => (/* binding */ handlePostponedAfterDate),
 /* harmony export */   handleResolutionDateTime: () => (/* binding */ handleResolutionDateTime),
 /* harmony export */   handleShortDateTime: () => (/* binding */ handleShortDateTime),
@@ -1436,6 +1449,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _utils_logUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/logUtils */ "./src/utils/logUtils.ts");
 
+/**
+ * Extracts year from market rules context
+ * Looks for any mention of year (YYYY) in the text
+ * Returns the found year or current year + 1 as fallback
+ */
+function extractYearFromContext() {
+    // Get market rules text
+    const rulesText = document.querySelector('[data-rbd-draggable-context-id]')?.textContent || '';
+    // Look for year patterns (2024, 2025, etc.)
+    const yearMatches = rulesText.match(/\b(202\d)\b/g);
+    if (yearMatches && yearMatches.length > 0) {
+        // If multiple years found, use the latest one
+        const years = yearMatches.map(y => parseInt(y));
+        const latestYear = Math.max(...years);
+        (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Found year in context:', { years, latestYear, rulesText: rulesText.substring(0, 100) });
+        return latestYear.toString();
+    }
+    // Fallback to next year if no year found
+    const nextYear = new Date().getFullYear() + 1;
+    (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'No year found in context, using next year:', nextYear);
+    return nextYear.toString();
+}
 /**
  * Handles dates in format: "postponed after Month DD YYYY, HH:MM AM/PM ET"
  * Example: "postponed after January 15 2024, 3:00 PM ET"
@@ -1509,14 +1544,15 @@ function handleBetweenDatesWithTimezoneSuffix(match) {
 /**
  * Handles short date format: "Month DD, HH AM/PM TZ"
  * Example: "January 15, 3 PM ET"
- * Assumes next year if year not provided
+ * Uses context to determine year
  */
 function handleShortDateTime(match) {
-    const [, month, day, hour, ampm, tz] = match;
-    const year = new Date().getFullYear() + 1;
+    const [, month, day, hour, minute, ampm, timezone] = match;
+    const year = extractYearFromContext();
+    const formattedDate = `${month} ${day}, ${year}, ${hour}:${minute}:00 ${ampm}`;
     return {
-        endDateValue: `${month} ${day}, ${year}, ${hour}:00:00 ${ampm}`,
-        timezone: tz || 'ET'
+        endDateValue: formattedDate,
+        timezone: timezone || 'ET'
     };
 }
 /**
@@ -1670,7 +1706,7 @@ function handleUntilTime(match) {
     const [, datePart, hour, minute, ampm, tz] = match;
     // Check if year is in datePart
     const hasYear = datePart.match(/\d{4}/);
-    const year = hasYear ? '' : ', 2024'; // Add 2024 if no year present
+    const year = hasYear ? '' : `, ${extractYearFromContext()}`; // Add extracted year if no year present
     return {
         endDateValue: `${datePart}${year}, ${hour}:${minute}:00 ${ampm}`,
         timezone: tz || 'ET'
@@ -1847,6 +1883,34 @@ function handleTimeWithAtFormat(match) {
     return {
         endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
         timezone: tz || 'ET'
+    };
+}
+/**
+ * Handles market timeframe spans with start and end dates
+ * Example: "timeframe spans from December 2, 2024, 12:00 PM ET, to December 31, 2024, 11:59 PM ET"
+ */
+function handleMarketTimeframeSpan(match) {
+    const [, startDatePart, // December 2, 2024
+    startHour, // 12
+    startMinute, // 00
+    startAMPM, // PM
+    startTZ, // ET
+    endDatePart, // December 31, 2024
+    endHour, // 11
+    endMinute, // 59
+    endAMPM, // PM
+    endTZ // ET
+    ] = match;
+    (0,_utils_logUtils__WEBPACK_IMPORTED_MODULE_0__.log)('Content', 'Matched market timeframe span:', {
+        startDate: `${startDatePart}, ${startHour}:${startMinute} ${startAMPM}`,
+        endDate: `${endDatePart}, ${endHour}:${endMinute} ${endAMPM}`,
+        startTZ,
+        endTZ
+    });
+    // Return the end date as this is what we use for countdown
+    return {
+        endDateValue: `${endDatePart}, ${endHour}:${endMinute}:00 ${endAMPM}`,
+        timezone: endTZ || 'ET'
     };
 }
 // ... other handlers with same simple string formatting 

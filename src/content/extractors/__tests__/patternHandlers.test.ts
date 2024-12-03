@@ -83,7 +83,11 @@ describe('Pattern Handlers', () => {
 
   describe('handleShortDateTime', () => {
     test('adds next year to date', () => {
-      const match = ['January 15, 3 PM ET', 'January', '15', '3', 'PM', 'ET'] as RegExpMatchArray;
+      const match = Object.assign(['January 15, 3:00 PM ET', 'January', '15', '3', '00', 'PM', 'ET'], {
+        index: 0,
+        input: 'January 15, 3:00 PM ET',
+        groups: undefined
+      }) as RegExpMatchArray;
       const result = handlers.handleShortDateTime(match);
       const nextYear = new Date().getFullYear() + 1;
       expect(result).toEqual({
