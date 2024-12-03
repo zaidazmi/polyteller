@@ -147,7 +147,7 @@ export function displayError(message: string) {
       
       if (!currentUrl.includes('polymarket.com')) {
         errorMessage = 'Visit Polymarket to use this extension';
-        subMessage = 'This extension only works on polymarket.com';
+        subMessage = 'This extension only works on <a href="https://polymarket.com" target="_blank" style="color: #4A4FE4; text-decoration: none; font-weight: 700;">polymarket.com</a>';
       } else if (!currentUrl.includes('/event/')) {
         errorMessage = 'No event found on this page';
         subMessage = 'Navigate to a Polymarket event page to use this extension';
