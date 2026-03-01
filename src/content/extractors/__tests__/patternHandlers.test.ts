@@ -1,6 +1,10 @@
 import * as handlers from '../patternHandlers';
 
 describe('Pattern Handlers', () => {
+  beforeEach(() => {
+    document.querySelector = jest.fn().mockReturnValue(null);
+  });
+
   describe('handleTimeWithAtFormat', () => {
     test('handles AM time correctly', () => {
       const match = ['December 2, 2024 at 10:00AM ET', 'December 2, 2024', '10', '00', 'A', 'ET'] as RegExpMatchArray;
@@ -32,6 +36,9 @@ describe('Pattern Handlers', () => {
 
   describe('handleHurricaneEndFormat', () => {
     test('handles basic format', () => {
+      document.querySelector = jest.fn().mockImplementation(() => ({
+        textContent: '2024 Atlantic hurricane season'
+      }));
       const match = ['until Dec 1, 3 AM ET', 'Dec', '1', '3', 'AM', 'ET'] as RegExpMatchArray;
       const result = handlers.handleHurricaneEndFormat(match);
       expect(result).toEqual({

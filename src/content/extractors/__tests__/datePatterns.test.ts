@@ -79,10 +79,26 @@ describe('Date Patterns', () => {
     });
   });
 
+  describe('FROM_TO_DATE_RANGE', () => {
+    const pattern = DATE_PATTERNS.find(p => p.name === 'FROM_TO_DATE_RANGE')!;
+
+    test('matches explicit from-to windows and returns the end datetime', () => {
+      testPattern(
+        pattern,
+        'from February 27 12:00 PM ET to March 6, 2026 12:00 PM ET',
+        {
+          endDateValue: 'March 6, 2026, 12:00:00 PM',
+          timezone: 'ET'
+        }
+      );
+    });
+  });
+
   describe('HURRICANE_END_FORMAT', () => {
     const pattern = DATE_PATTERNS.find(p => p.name === 'HURRICANE_END_FORMAT')!;
 
     test('matches basic format', () => {
+      mockRulesText('2024 Atlantic hurricane season');
       testPattern(
         pattern,
         'until Dec 1, 3 AM ET',
@@ -94,6 +110,7 @@ describe('Date Patterns', () => {
     });
 
     test('matches with "by" prefix', () => {
+      mockRulesText('2024 Atlantic hurricane season');
       testPattern(
         pattern,
         'by Dec 1, 3 PM ET',

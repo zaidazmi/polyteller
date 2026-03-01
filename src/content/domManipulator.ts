@@ -299,23 +299,32 @@ export function initializeDOMManipulations() {
  * Only watches necessary DOM changes to reduce overhead.
  */
 export function initializeDOMObserver(callback: () => void) {
+  let callbackScheduled = false;
+
   // Create observer with performance logging
   const observer = new MutationObserver((mutations) => {
-    // Only process if we have relevant changes
-    const hasRelevantChanges = mutations.some(mutation => {
-      // Check if mutation target or its parent has relevant class/id
+    if (!window.location.pathname.startsWith('/event/')) return;
+    if (callbackScheduled) return;
+
+    const hasRelevantChanges = mutations.some((mutation) => {
       const target = mutation.target as Element;
       return (
+        mutation.addedNodes.length > 0 ||
         target.id === '__next' ||
-        target.closest('[data-rbd-draggable-context-id]') !== null ||
+        target.closest('main') !== null ||
+        target.closest('[role="main"]') !== null ||
         target.closest('.market-card') !== null
       );
     });
 
-    if (hasRelevantChanges) {
+    if (!hasRelevantChanges) return;
+
+    callbackScheduled = true;
+    window.setTimeout(() => {
+      callbackScheduled = false;
       log('DOMObserver', 'Processing relevant DOM changes');
       callback();
-    }
+    }, 200);
   });
 
   // Find the most specific parent element to observe
@@ -324,9 +333,9 @@ export function initializeDOMObserver(callback: () => void) {
   // Configure observer with optimized options
   const config = {
     childList: true,
-    subtree: false,  // Don't watch entire tree
-    attributes: false,  // Don't watch attributes
-    characterData: false  // Don't watch text changes
+    subtree: true,
+    attributes: true,
+    characterData: true
   };
 
   // Start observing with performance logging

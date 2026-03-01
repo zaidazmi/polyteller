@@ -1,25 +1,25 @@
 {
     "manifest_version": 3,
     "name": "Polyteller: Essential Tools for Polymarket Traders",
-    "version": "1.0.5",
-    "version_name": "1.0.5",
+    "version": "1.0.6",
+    "version_name": "1.0.6",
     "minimum_chrome_version": "110",
     "description": "Real-time countdowns, customizable notifications, and privacy features for Polymarket traders.",
     "author": "hi@polyteller.com",
-    "permissions": ["storage", "alarms", "notifications", "tabs"],
-    "host_permissions": ["https://*.polymarket.com/*"],
+    "permissions": ["storage", "alarms", "notifications", "tabs", "scripting", "activeTab"],
+    "host_permissions": ["https://polymarket.com/*", "https://*.polymarket.com/*"],
     "background": {
       "service_worker": "background.js"
     },
     "content_scripts": [
       {
-        "matches": ["https://*.polymarket.com/*"],
+        "matches": ["https://polymarket.com/*", "https://*.polymarket.com/*"],
         "js": ["privacyModeEarly.js"],
         "run_at": "document_start",
         "all_frames": true
       },
       {
-        "matches": ["https://*.polymarket.com/*"],
+        "matches": ["https://polymarket.com/*", "https://*.polymarket.com/*"],
         "js": ["content.js", "privacyMode.js"],
         "css": ["content.css"]
       }
@@ -46,7 +46,7 @@
           "allNotifications.html",
           "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
         ],
-        "matches": ["https://*.polymarket.com/*"]
+        "matches": ["https://polymarket.com/*", "https://*.polymarket.com/*"]
       }
     ],
     "content_security_policy": {

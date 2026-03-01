@@ -1,6 +1,15 @@
 import { DateResult } from './patternTypes';
 import { log } from '../../utils/logUtils';
 
+function getContextText(): string {
+  return (
+    document.querySelector('[data-rbd-draggable-context-id]')?.textContent ||
+    document.querySelector('main')?.textContent ||
+    document.body?.innerText ||
+    ''
+  );
+}
+
 /**
  * Extracts year from market rules context
  * Looks for any mention of year (YYYY) in the text
@@ -8,7 +17,7 @@ import { log } from '../../utils/logUtils';
  */
 function extractYearFromContext(): string {
   // Get market rules text
-  const rulesText = document.querySelector('[data-rbd-draggable-context-id]')?.textContent || '';
+  const rulesText = getContextText();
   
   // Look for year patterns (2024, 2025, etc.)
   const yearMatches = rulesText.match(/\b(202\d)\b/g);
@@ -187,6 +196,19 @@ export function handleMainEventEnd(): DateResult {
 }
 
 /**
+ * Handles main event end format with dynamic year
+ * Example: "resolves by Dec 31, 2027 11:59 PM ET"
+ */
+export function handleMainEventEndWithYear(match: RegExpMatchArray): DateResult {
+  const [, monthRaw, year] = match;
+  const month = monthRaw.toLowerCase().startsWith('dec') ? 'December' : monthRaw;
+  return {
+    endDateValue: `${month} 31, ${year}, 11:59:00 PM`,
+    timezone: "ET"
+  };
+}
+
+/**
  * Handles time before date format: "HH:MM AM/PM ET on Date"
  * Example: "3:00 PM ET on January 15, 2024"
  */
@@ -205,6 +227,19 @@ export function handleTimeBeforeDate(match: RegExpMatchArray): DateResult {
 export function handleYearEnd(): DateResult {
   return {
     endDateValue: "December 31, 2024, 11:59:00 PM",
+    timezone: "ET"
+  };
+}
+
+/**
+ * Handles year end format with dynamic year
+ * Example: "ends ... Dec 31, 2027, 11:59 PM ET"
+ */
+export function handleYearEndWithYear(match: RegExpMatchArray): DateResult {
+  const [, monthRaw, year] = match;
+  const month = monthRaw.toLowerCase().startsWith('dec') ? 'December' : monthRaw;
+  return {
+    endDateValue: `${month} 31, ${year}, 11:59:00 PM`,
     timezone: "ET"
   };
 }
@@ -405,7 +440,7 @@ export function handleHurricaneEndFormat(match: RegExpMatchArray): DateResult {
   const [, month, day, hour, ampm, tz] = match;
   
   // Get description text for context
-  const description = document.querySelector('[data-rbd-draggable-context-id]')?.textContent || '';
+  const description = getContextText();
   
   // Extract year from context (e.g., "2024 Atlantic hurricane season")
   const yearMatch = description.match(/(\d{4})\s+Atlantic\s+hurricane\s+season/i);
@@ -529,6 +564,55 @@ export function handleMarketTimeframeSpan(match: RegExpMatchArray): DateResult {
   return {
     endDateValue: `${endDatePart}, ${endHour}:${endMinute}:00 ${endAMPM}`,
     timezone: endTZ || 'ET'
+  };
+}
+
+/**
+ * Handles date windows in this format:
+ * "from February 27 12:00 PM ET to March 6, 2026 12:00 PM ET"
+ * Returns the end date/time for countdown purposes.
+ */
+export function handleFromToDateRange(match: RegExpMatchArray): DateResult {
+  const [
+    ,
+    startMonth,
+    startDay,
+    startYear,
+    startHour,
+    startMinute,
+    startAMPM,
+    startTZ,
+    endMonth,
+    endDay,
+    endYear,
+    endHour,
+    endMinute,
+    endAMPM,
+    endTZ
+  ] = match;
+
+  const resolvedEndYear = endYear || startYear || extractYearFromContext();
+
+  log('Content', 'Matched from-to date range:', {
+    start: `${startMonth} ${startDay}${startYear ? `, ${startYear}` : ''} ${startHour}:${startMinute} ${startAMPM} ${startTZ}`,
+    end: `${endMonth} ${endDay}${resolvedEndYear ? `, ${resolvedEndYear}` : ''} ${endHour}:${endMinute} ${endAMPM} ${endTZ || startTZ}`
+  });
+
+  return {
+    endDateValue: `${endMonth} ${endDay}, ${resolvedEndYear}, ${endHour}:${endMinute}:00 ${endAMPM}`,
+    timezone: endTZ || startTZ || 'ET'
+  };
+}
+
+/**
+ * Handles phrasing like:
+ * "between this market's creation and February 28, 2026, 11:59 PM ET"
+ */
+export function handleBetweenCreationAndDate(match: RegExpMatchArray): DateResult {
+  const [, datePart, hour, minute, ampm, tz] = match;
+  return {
+    endDateValue: `${datePart}, ${hour}:${minute}:00 ${ampm}`,
+    timezone: tz || 'ET'
   };
 }
 

@@ -252,32 +252,7 @@ export function parseCustomDate(dateString: string, timezone: string): Date {
   
   // Handle ISO format with Z (UTC)
   if (dateString.endsWith('Z')) {
-    // Handle ET timezone
-    if (timezone === 'ET') {
-      const utcDate = new Date(dateString);
-      const year = utcDate.getUTCFullYear();
-      const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
-      const day = utcDate.getUTCDate().toString().padStart(2, '0');
-      
-      const date = new Date(`${year}-${month}-${day}T23:59:59-05:00`);
-      if (isDST(date)) {
-        return new Date(`${year}-${month}-${day}T23:59:59-04:00`);
-      }
-      return date;
-    }
-    // Handle PT timezone
-    if (timezone === 'PT') {
-      const utcDate = new Date(dateString);
-      const year = utcDate.getUTCFullYear();
-      const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0');
-      const day = utcDate.getUTCDate().toString().padStart(2, '0');
-      
-      const date = new Date(`${year}-${month}-${day}T23:59:59-08:00`);
-      if (isDST(date)) {
-        return new Date(`${year}-${month}-${day}T23:59:59-07:00`);
-      }
-      return date;
-    }
+    // Keep absolute UTC timestamp as-is.
     return new Date(dateString);
   }
   

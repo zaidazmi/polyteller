@@ -28,14 +28,26 @@ export function extractYearFromContext(description: string): string | null {
 }
 
 export function verifyEventDataMatchesUrl(eventData: any): boolean {
-  const currentSlug = window.location.pathname.split('/').pop()?.split('?')[0];
-  const eventSlug = eventData.slug;
+  const pathSegments = window.location.pathname
+    .split('/')
+    .filter(Boolean)
+    .map(segment => segment.split('?')[0]);
+  const currentSlug = pathSegments[pathSegments.length - 1];
+  const eventSlug = eventData?.slug;
+  const eventUrl = eventData?.url || eventData?.canonicalUrl || eventData?.shareUrl;
   
   log('Content', 'Verifying event data match:', { 
     currentSlug, 
+    pathSegments,
     eventSlug, 
+    eventUrl,
     urlPath: window.location.pathname 
   });
 
-  return currentSlug === eventSlug;
+  if (!currentSlug) return false;
+  if (eventSlug) return pathSegments.includes(eventSlug);
+  if (typeof eventUrl === 'string') return eventUrl.includes(`/${currentSlug}`);
+
+  // If slug/url fields are absent in a newer payload shape, don't block extraction.
+  return true;
 } 

@@ -12,6 +12,31 @@ import * as handlers from './patternHandlers';
  */
 export const DATE_PATTERNS: DatePattern[] = [
   /**
+   * Matches: "from February 27 12:00 PM ET to March 6, 2026 12:00 PM ET"
+   * Priority: 205
+   * Used in: ranged windows where the end time is explicitly provided after "to"
+   */
+  {
+    name: 'FROM_TO_DATE_RANGE' as PatternName,
+    pattern: /from\s+([A-Za-z]+)\s+(\d{1,2})(?:,\s*(\d{4}))?\s+(\d{1,2}):(\d{2})\s*([AP]M)\s*([A-Z]{2,4})\s+to\s+([A-Za-z]+)\s+(\d{1,2})(?:,\s*(\d{4}))?\s+(\d{1,2}):(\d{2})\s*([AP]M)\s*([A-Z]{2,4})/i,
+    priority: 205,
+    format: "from Month DD[, YYYY] HH:mm AM/PM TZ to Month DD[, YYYY] HH:mm AM/PM TZ",
+    handler: handlers.handleFromToDateRange
+  },
+
+  /**
+   * Matches: "between this market's creation and February 28, 2026, 11:59 PM ET"
+   * Priority: 210 (Highest)
+   */
+  {
+    name: 'BETWEEN_CREATION_AND_DATE' as PatternName,
+    pattern: /between\s+(?:this market'?s\s+creation|market creation|creation)\s+and\s+([A-Za-z]+ \d{1,2}, \d{4}),\s*(\d{1,2}):(\d{2})\s*([AP]M)\s*([A-Z]{2,3})/i,
+    priority: 210,
+    format: "between ... creation and Month DD, YYYY, HH:mm AM/PM TZ",
+    handler: handlers.handleBetweenCreationAndDate
+  },
+
+  /**
    * Matches: "timeframe spans from December 2, 2024, 12:00 PM ET, to December 31, 2024, 11:59 PM ET"
    * Priority: 200 (Highest)
    * Used in: Market timeframe spans
@@ -174,10 +199,10 @@ export const DATE_PATTERNS: DatePattern[] = [
    */
   {
     name: 'MAIN_EVENT_END_FORMAT' as PatternName,
-    pattern: /(?:ends?|closes?|resolves?) (?:on |by )?December 31,? 2024(?:,? | at )?11:59(?::00)? PM ET/i,
+    pattern: /(?:ends?|closes?|resolves?) (?:on |by )?(December|Dec)\.?\s*31,?\s*(\d{4})(?:,? | at )?11:59(?::00)?\s*PM\s*ET/i,
     priority: 120,
-    format: "December 31, 2024, 11:59 PM ET",
-    handler: handlers.handleMainEventEnd
+    format: "December 31, YYYY, 11:59 PM ET",
+    handler: handlers.handleMainEventEndWithYear
   },
 
   /**
@@ -200,10 +225,10 @@ export const DATE_PATTERNS: DatePattern[] = [
    */
   {
     name: 'YEAR_END_FORMAT' as PatternName,
-    pattern: /(?:ends?|closes?|resolves?|by).*?(?:December|Dec)\.?\s*31,?\s*2024,?\s*(?:at\s*)?11:59(?::00)?\s*PM\s*ET/i,
+    pattern: /(?:ends?|closes?|resolves?|by).*?(December|Dec)\.?\s*31,?\s*(\d{4}),?\s*(?:at\s*)?11:59(?::00)?\s*PM\s*ET/i,
     priority: 110,
-    format: "December 31, 2024, 11:59 PM ET",
-    handler: handlers.handleYearEnd
+    format: "December 31, YYYY, 11:59 PM ET",
+    handler: handlers.handleYearEndWithYear
   },
 
   /**
@@ -311,22 +336,6 @@ export const DATE_PATTERNS: DatePattern[] = [
     priority: 65,
     format: "inauguration date (Month DD, YYYY)",
     handler: handlers.handleInaugurationDate
-  },
-
-  {
-    name: 'BITCOIN_END_FORMAT' as PatternName,
-    pattern: /between (?:\d{1,2} [A-Za-z]+ '\d{2} \d{2}:\d{2} and )?(\d{1,2}) ([A-Za-z]+) '(\d{2}) (\d{2}):(\d{2}) in the ([A-Z]{2}) timezone/i,
-    priority: 190,
-    format: "DD MMM 'YY HH:mm in the ET timezone",
-    handler: handlers.handleBitcoinEndFormat
-  },
-
-  {
-    name: 'HURRICANE_END_FORMAT' as PatternName,
-    pattern: /(?:until|by) ([A-Za-z]+) (\d{1,2}), (\d{1,2}) ([AP]M) ([A-Z]{2})/i,
-    priority: 195,
-    format: "until Month DD, HH AM/PM ET",
-    handler: handlers.handleHurricaneEndFormat
   },
 
   {

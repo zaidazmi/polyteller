@@ -37,6 +37,29 @@ let currentUrl = window.location.href;
 let lastEventSlug: string | null = null;
 let countdownElement: HTMLElement | null = null;
 let marketDataObserver: MutationObserver | null = null;
+let initRetryTimeout: number | null = null;
+let initRetryCount = 0;
+const MAX_INIT_RETRIES = 30;
+const INIT_RETRY_DELAY_MS = 800;
+
+function clearInitRetryTimer() {
+  if (initRetryTimeout !== null) {
+    window.clearTimeout(initRetryTimeout);
+    initRetryTimeout = null;
+  }
+}
+
+function scheduleInitializeRetry() {
+  if (isInitialized || initRetryCount >= MAX_INIT_RETRIES) return;
+  if (!window.location.pathname.startsWith('/event/')) return;
+  if (initRetryTimeout !== null) return;
+
+  initRetryTimeout = window.setTimeout(() => {
+    initRetryTimeout = null;
+    initRetryCount += 1;
+    initializeCountdown();
+  }, INIT_RETRY_DELAY_MS);
+}
 
 /**
  * Initializes the countdown for the current Polymarket event.
@@ -62,6 +85,8 @@ function initializeCountdown() {
       log('Content', 'Event info extracted:', eventInfo);
       lastEventSlug = currentSlug;
       isInitialized = true;
+      clearInitRetryTimer();
+      initRetryCount = 0;
       sendEventInfo(eventInfo);
       createAndInsertCountdown(eventInfo, false);
       tryAutoSync();
@@ -77,6 +102,7 @@ function initializeCountdown() {
     }
   } else {
     log('Content', 'Failed to extract event info');
+    scheduleInitializeRetry();
   }
 }
 
@@ -137,6 +163,8 @@ function handleUrlChange() {
     
     // Reset initialization
     isInitialized = false;
+    clearInitRetryTimer();
+    initRetryCount = 0;
     
     // Check if it's a sports URL
     if (newPath.startsWith('/sports/')) {
@@ -368,6 +396,20 @@ initializeDOMManipulations();
 
 // Update the trade confirmation listener
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'PING_CONTENT') {
+    sendResponse({ alive: true, url: window.location.href });
+    return true;
+  }
+
+  if (message.type === 'FORCE_REINIT') {
+    isInitialized = false;
+    clearInitRetryTimer();
+    initRetryCount = 0;
+    initializeCountdown();
+    sendResponse({ reinitialized: true });
+    return true;
+  }
+
   if (message.action === 'updateTradeConfirmation') {
     log('Content', `Received trade confirmation update: ${message.enabled}`);
     sendResponse({ received: true });

@@ -39,5 +39,17 @@ describe('parseCustomDate', () => {
       // July 1, 2024, 11:59 PM EDT = July 2, 2024, 03:59 AM UTC
       expect(date.toISOString()).toBe('2024-07-02T03:59:00.000Z');
     });
+
+    test('preserves explicit ISO UTC timestamps without shifting to end-of-day', () => {
+      const date = parseCustomDate('2026-03-06T17:00:00Z', 'ET');
+      expect(date.toISOString()).toBe('2026-03-06T17:00:00.000Z');
+    });
   });
-}); 
+
+  describe('ISO UTC handling across timezones', () => {
+    test('preserves explicit ISO UTC timestamps for PT context as well', () => {
+      const date = parseCustomDate('2026-03-06T17:00:00Z', 'PT');
+      expect(date.toISOString()).toBe('2026-03-06T17:00:00.000Z');
+    });
+  });
+});

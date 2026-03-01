@@ -16,6 +16,75 @@ import { validateCustomTime } from './components/customTimeValidation';
 import { initPrivacyModeToggle } from './components/privacyModeToggle';
 import { createDonateWidget } from './components/donateWidget';
 
+function getEventInfo(tabId: number): Promise<PolymarketEvent | null> {
+  return new Promise((resolve) => {
+    chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId }, (response: PolymarketEvent | null) => {
+      if (chrome.runtime.lastError) {
+        resolve(null);
+        return;
+      }
+      resolve(response || null);
+    });
+  });
+}
+
+async function recoverContentScript(tabId: number): Promise<boolean> {
+  if (!chrome.tabs || !chrome.tabs.sendMessage) return false;
+
+  try {
+    log('Popup', 'Attempting content ping before recovery', { tabId });
+    await new Promise<void>((resolve, reject) => {
+      chrome.tabs.sendMessage(tabId, { type: 'PING_CONTENT' }, () => {
+        if (chrome.runtime.lastError) {
+          reject(new Error(chrome.runtime.lastError.message));
+          return;
+        }
+        resolve();
+      });
+    });
+
+    // Content script is already alive.
+    log('Popup', 'Content script is alive; requesting FORCE_REINIT', { tabId });
+    await new Promise<void>((resolve) => {
+      chrome.tabs.sendMessage(tabId, { type: 'FORCE_REINIT' }, () => resolve());
+    });
+    return true;
+  } catch (pingError) {
+    log('Popup', 'Content ping failed, attempting runtime injection', {
+      tabId,
+      error: pingError instanceof Error ? pingError.message : String(pingError)
+    });
+    if (!chrome.scripting) return false;
+
+    await new Promise<void>((resolve) => {
+      chrome.scripting.insertCSS(
+        { target: { tabId }, files: ['content.css'] },
+        () => resolve()
+      );
+    });
+
+    await new Promise<void>((resolve, reject) => {
+      chrome.scripting.executeScript(
+        { target: { tabId }, files: ['content.js', 'privacyMode.js'] },
+        () => {
+          if (chrome.runtime.lastError) {
+            reject(new Error(chrome.runtime.lastError.message));
+            return;
+          }
+          resolve();
+        }
+      );
+    });
+    log('Popup', 'Runtime injection completed; requesting FORCE_REINIT', { tabId });
+
+    await new Promise<void>((resolve) => {
+      chrome.tabs.sendMessage(tabId, { type: 'FORCE_REINIT' }, () => resolve());
+    });
+
+    return true;
+  }
+}
+
 /**
  * Initializes the popup UI and sets up event listeners.
  */
@@ -45,12 +114,26 @@ export async function initPopup() {
       }
 
       if (currentTabId) {
-        chrome.runtime.sendMessage({ type: 'GET_EVENT_INFO', tabId: currentTabId }, (response: PolymarketEvent | null) => {
+        (async () => {
           try {
+            let response = await getEventInfo(currentTabId);
             log('Popup received response:', response);
-            if (chrome.runtime.lastError) {
-              throw new PolytellerError('GET_EVENT_INFO_ERROR', 'Failed to retrieve event information. Please try again.');
-            } else if (response) {
+
+            if (!response && currentUrl.includes('polymarket.com') && currentUrl.includes('/event/')) {
+              const recovered = await recoverContentScript(currentTabId).catch((error) => {
+                log('Popup', 'Recovery attempt failed', error);
+                return false;
+              });
+              if (recovered) {
+                await new Promise(resolve => setTimeout(resolve, 1200));
+                response = await getEventInfo(currentTabId);
+                log('Popup received response after recovery:', response);
+              } else {
+                log('Popup', 'Recovery was not successful', { tabId: currentTabId, currentUrl });
+              }
+            }
+
+            if (response) {
               useStore.getState().addEvent(response);
               updateUI(response);
               loadNotifications();
@@ -63,7 +146,7 @@ export async function initPopup() {
               displayError(error instanceof PolytellerError ? error.message : 'An unexpected error occurred.');
             }
           }
-        });
+        })();
       } else {
         throw new PolytellerError('TAB_ID_ERROR', 'Unable to determine current tab.');
       }
