@@ -1,12 +1,22 @@
 # Polyteller
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/dellhbjknongjplfapahjibjcpoboapb)](https://chromewebstore.google.com/detail/polyteller-essential-tool/dellhbjknongjplfapahjibjcpoboapb)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Polyteller is an open-source Chrome extension for Polymarket traders. It adds
 countdowns, local reminders, privacy masking, and trade confirmations directly
 to Polymarket pages.
 
-The extension is built to stay lightweight, local-first, and practical: it does
-not require a backend, does not collect analytics, and keeps user preferences in
-browser storage.
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/polyteller-essential-tool/dellhbjknongjplfapahjibjcpoboapb)**
+
+## Why I Built This
+
+I trade on Polymarket from outside the US, and I kept running into the same
+problems: missing market deadlines because event times were in a different
+timezone, accidentally placing trades without a second look, and having my
+portfolio visible on screen when I didn't want it to be. None of the existing
+tools solved these small but annoying issues, so I built Polyteller to fix them
+for myself. It turned out useful enough to open source.
 
 ## Features
 
