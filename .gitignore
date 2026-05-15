@@ -1,0 +1,50 @@
+# Dependencies and package-manager state
+node_modules/
+.pnp/
+.pnp.*
+
+# Build output
+dist/
+build/
+web-ext-artifacts/
+*.crx
+*.zip
+
+# Test and coverage output
+coverage/
+.nyc_output/
+
+# Logs and local diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*_logs.txt
+*logs.txt
+console_logs.txt
+consolelogs.txt
+_consolelogs.txt
+weblogs.txt
+repopack-output.txt
+dist/repopack-output.txt
+
+# Tool caches
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+*.tsbuildinfo
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment files and local signing material
+.env
+.env.*
+!.env.example
+*.pem

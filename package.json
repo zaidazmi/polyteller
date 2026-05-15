@@ -1,7 +1,29 @@
 {
   "name": "polyteller",
   "version": "1.0.6",
-  "description": "Chrome extension for Polymarket event countdowns and notifications",
+  "description": "Open-source Chrome extension for Polymarket countdowns, local reminders, privacy masking, and trade confirmations",
+  "license": "MIT",
+  "author": "Zaid Azmi <hi@polyteller.com>",
+  "homepage": "https://github.com/zaidazmi/polyteller#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaidazmi/polyteller.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zaidazmi/polyteller/issues"
+  },
+  "keywords": [
+    "chrome-extension",
+    "polymarket",
+    "prediction-markets",
+    "notifications",
+    "privacy",
+    "typescript",
+    "webextension"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "clean": "rm -rf dist/",
     "sync-version": "node -e \"const manifest=require('./manifest.json');const pkg=require('./package.json');if(pkg.version!==manifest.version){pkg.version=manifest.version;require('fs').writeFileSync('package.json',JSON.stringify(pkg,null,2))}\"",

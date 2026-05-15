@@ -56,6 +56,7 @@ describe('Popup Functionality', () => {
           callback([{ id: 1 }]);
         }),
         create: jest.fn(),
+        sendMessage: jest.fn(),
       },
       runtime: {
         sendMessage: jest.fn((message, responseCallback) => {
@@ -127,6 +128,7 @@ describe('Popup Functionality', () => {
           callback([{ id: 1 }]);
         }),
         create: jest.fn(),
+        sendMessage: jest.fn(),
       },
       runtime: {
         sendMessage: jest.fn((message, responseCallback) => {
@@ -143,6 +145,10 @@ describe('Popup Functionality', () => {
         }),
         getURL: jest.fn((path) => `chrome-extension://fake-id/${path}`),
         lastError: null,
+        onMessage: {
+          addListener: jest.fn(),
+          removeListener: jest.fn(),
+        },
       },
       storage: {
         local: {

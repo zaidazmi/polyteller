@@ -1,224 +1,134 @@
 # Polyteller
 
-A Chrome extension for Polymarket that provides real-time countdowns, customizable notifications, and privacy features for traders.
+Polyteller is an open-source Chrome extension for Polymarket traders. It adds
+countdowns, local reminders, privacy masking, and trade confirmations directly
+to Polymarket pages.
+
+The extension is built to stay lightweight, local-first, and practical: it does
+not require a backend, does not collect analytics, and keeps user preferences in
+browser storage.
 
 ## Features
 
-- **Real-time Event Countdowns**
-  - Accurate countdown timers for market events
-  - Handles timezone conversions and DST changes
-  - Auto-sync for minor updates without refresh
-  - Smart refresh hints for major changes
-  - Dynamic update intervals based on remaining time
-  - Performance optimized animation frames
-  - Handles DST edge cases and timezone transitions
-  - Fallback mechanisms for missed updates
+- Real-time event countdowns on Polymarket event pages.
+- Custom local reminders before market events.
+- Privacy mode for masking balances and portfolio values.
+- Optional trade confirmation prompts to reduce accidental actions.
+- Cross-tab sync for extension settings and privacy state.
+- Production and development builds for Chrome Extension Manifest V3.
 
-- **Smart Notifications**
-  - Customizable notification timing
-  - Multiple notifications per event
-  - Chronological sorting (earliest first)
-  - Local timezone display
-  - Persistent across browser sessions
-  - Grouped by events in all notifications view
-  - Debounced notification scheduling
-  - Background sync with error recovery
-  - Smart cleanup for expired notifications
-  - Duplicate prevention with 10-second threshold
+## Privacy
 
-- **Privacy Mode**
-  - Masks portfolio values and balances
-  - Quick toggle via popup
-  - Early initialization to prevent data leaks
-  - Syncs across all Polymarket tabs
-  - Zero-delay initialization via early content script
-  - Mutation observer for dynamic content
-  - Memory-efficient value storage
-  - Automatic cleanup on tab close
+Polyteller is designed as a local-first browser extension.
 
-- **Trade Confirmation**
-  - Optional confirmation dialog for trades
-  - Keyboard shortcuts (Enter/Esc)
-  - Configurable in settings
-  - Syncs state across all tabs
-  - Prevents accidental trades
+- No backend service is required.
+- No analytics SDK is included.
+- No personal data is sold or shared.
+- Extension preferences are stored locally through Chrome extension storage.
+- Host permissions are scoped to `polymarket.com`.
 
-- **Sports Section**
-  - Clear indication of unsupported features
-  - User-friendly messages
-  - Clean UI state management
+## Requirements
 
-## Installation
+- Node.js 20 or newer.
+- npm.
+- Chrome or another Chromium-based browser, version 110 or newer.
 
-1. Clone the repository:
+## Installation From Source
+
 ```bash
 git clone https://github.com/zaidazmi/polyteller.git
-```
-
-2. Install dependencies:
-```bash
 cd polyteller
 npm install
-```
-
-3. Build the extension:
-```bash
-# For production (minified, no logs)
 npm run build
-
-# For development (with logs)
-npm run dev
 ```
 
-4. Load in Chrome:
-- Go to `chrome://extensions/`
-- Enable "Developer mode"
-- Click "Load unpacked"
-- Select the `dist` folder
+Then load the extension in Chrome:
+
+1. Open `chrome://extensions/`.
+2. Enable Developer mode.
+3. Click Load unpacked.
+4. Select the generated `dist/` folder.
 
 ## Development
 
-### Available Scripts
 ```bash
-# Development build with logs and watch mode
-npm run dev
-
-# Production build (minified, no logs)
-npm run build
-
-# Development build without watch
-npm run build:dev
-
-# Clean dist folder
-npm run clean
-
-# Run tests
-npm test
+npm run dev        # development build with watch mode
+npm run build      # production build
+npm run build:dev  # one-off development build
+npm run clean      # remove dist/
+npm test           # run Jest tests
 ```
 
-### Project Structure
-```
+The current extension version is `1.0.6`. The build scripts keep
+`package.json` aligned with `manifest.json`.
+
+## Project Structure
+
+```text
 src/
-├── background/     # Background service worker
-├── content/        # Content scripts
-│   ├── extractors/  # Date pattern matching
+├── background/      # Manifest V3 service worker logic
+├── content/         # Polymarket page integration
+│   ├── extractors/  # Date and event extraction
 │   └── parsers/     # Event data parsing
-├── popup/          # Extension popup UI
-│   └── components/  # UI components
-├── utils/          # Shared utilities
-├── store/          # State management
-└── styles/         # CSS styles
+├── popup/           # Extension popup UI
+│   └── components/  # Popup components
+├── store/           # Shared state management
+├── styles/          # Extension styles
+└── utils/           # Shared utilities
 ```
 
-### Key Technologies
-- TypeScript
-- Webpack with advanced minification
-- Chrome Extension APIs
-- Zustand (State Management)
-- Jest (Testing)
-- Canvas Confetti
+## Technology
+
+- TypeScript.
+- Chrome Extension Manifest V3.
+- Webpack.
+- Zustand.
+- Jest.
+- Day.js.
 
 ## Testing
 
-Run the test suite:
 ```bash
 npm test
 ```
 
-The test suite covers:
-- Date pattern matching
-- Timezone handling
-- State management
-- UI components
-- Error handling
-- Notification sorting
-- Trade confirmation sync
+The test suite covers date extraction, timezone handling, state management,
+popup behavior, privacy mode behavior, and notification logic.
+
+## Build
+
+```bash
+npm run build
+```
+
+Production builds are generated into `dist/` and include JavaScript
+minification, CSS optimization, and static asset copying for extension loading.
+Generated artifacts are intentionally ignored by git.
 
 ## Browser Support
-- Chrome/Chromium (v110+)
-- Other Chromium-based browsers (Edge, Brave, etc.)
+
+- Chrome 110 or newer.
+- Chromium-based browsers such as Edge and Brave.
 
 ## Contributing
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md)
+before opening a pull request.
+
+Good areas for contribution include:
+
+- Additional date and event format coverage.
+- Popup accessibility improvements.
+- Browser compatibility checks.
+- Smaller permission surface area.
+- Documentation improvements.
+
+## Disclaimer
+
+Polyteller is an independent open-source project and is not affiliated with,
+endorsed by, or sponsored by Polymarket. It does not provide financial advice
+or execute trades.
 
 ## License
-Proprietary - All rights reserved
 
-## Contact
-Zaid Azmi - hi@polyteller.com
-
-Project Link: [https://github.com/zaidazmi/polyteller](https://github.com/zaidazmi/polyteller)
-
-## Performance Optimizations
-
-- Debounced DOM updates
-- Efficient mutation observers
-- Memory leak prevention
-- Dynamic update intervals
-- Background task throttling
-- Storage optimization
-
-## Security Features
-
-- No external data transmission
-- Local-only storage
-- Secure value masking
-- Cross-tab state sync
-- Clean data lifecycle
-
-## Development Setup
-
-- Requires Node.js >= 14
-- nvm use 14  # If using nvm
-- npm install
-
-## Build Configuration
-
-- Production build with optimizations
-- npm run build
-- Includes:
-  - Code minification
-  - CSS optimization
-  - Tree shaking
-  - Module concatenation
-  - Chrome API name preservation
-
-## Testing
-
-- Run all tests
-- npm test
-
-- Run specific test suite
-- npm test -- --testPathPattern=datePatterns
-
-- Run tests with coverage
-- npm test -- --coverage
-
-## Debugging
-
-- Enable development logs
-- npm run dev
-
-- View background logs
-- chrome://extensions
-- Click "background page" under Polyteller
-
-- Monitor performance
-- See TEST_PLAN.md for detailed metrics
-
-## Known Issues
-
-- Sports section currently unsupported
-- Some timezone edge cases in specific regions
-- Minor UI glitches during rapid tab switching
-
-## Roadmap
-
-- Sports section support
-- Additional notification options
-- Enhanced privacy features
-- Mobile browser support
+MIT License. See [LICENSE](LICENSE).

@@ -7,18 +7,14 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const banner = `
 /*!
- * Polyteller 
+ * Polyteller
  * Version: ${process.env.npm_package_version}
- * Copyright (C) ${new Date().getFullYear()} Zaid Azmi
- * All rights reserved
- *  
- * This source code is licensed under a proprietary license.
- * Unauthorized copying, modification, or distribution is strictly prohibited.
- * 
+ * Copyright (c) 2024-${new Date().getFullYear()} Zaid Azmi
+ * Licensed under the MIT License.
+ *
  * Author: Zaid Azmi
- * Website: https://polyteller.com
- * Email : hi@polyteller.com
- * Version: ${process.env.npm_package_version}
+ * Repository: https://github.com/zaidazmi/polyteller
+ * Contact: hi@polyteller.com
  */`;
 
 module.exports = (env, argv) => {
