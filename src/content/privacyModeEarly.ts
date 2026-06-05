@@ -8,7 +8,7 @@
     const style = document.createElement('style');
     style.id = 'polyteller-privacy-early';
     style.textContent = `
-        /* Initially hide all value elements */
+        /* Initially hide legacy balance elements to prevent value flashes. */
         .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         [class*="jaFKlk"],
         [class*="ibdakYG"] {
@@ -25,13 +25,25 @@
             /* No text-shadow override */
         }
 
-        /* When privacy mode is ON - mask values */
+        /* When privacy mode is ON - mask known account/balance containers. */
         body.privacy-enabled .c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css,
         body.privacy-enabled [class*="jaFKlk"],
-        body.privacy-enabled [class*="ibdakYG"] {
+        body.privacy-enabled [class*="ibdakYG"],
+        body.privacy-enabled [data-testid*="portfolio" i],
+        body.privacy-enabled [data-testid*="balance" i],
+        body.privacy-enabled [data-testid*="cash" i],
+        body.privacy-enabled [data-testid*="account" i],
+        body.privacy-enabled [aria-label*="portfolio" i],
+        body.privacy-enabled [aria-label*="balance" i],
+        body.privacy-enabled [aria-label*="cash" i],
+        body.privacy-enabled a[href*="/portfolio"] {
             opacity: 1;
             color: transparent !important;
             text-shadow: 0 0 8px rgba(0,0,0,0.5) !important;
+        }
+
+        body .polyteller-privacy-masked {
+            letter-spacing: 0.03em;
         }
     `;
 

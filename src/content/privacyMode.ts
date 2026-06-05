@@ -1,12 +1,164 @@
 import { log } from '../utils/logUtils';
-import { getPrivacyModeState, setPrivacyModeState, maskValue } from '../utils/privacyUtils';
+import { maskValue } from '../utils/privacyUtils';
 import { MessageType } from '../types/messages';
 
 // Constants
 export const PRIVACY_MODE_KEY = 'privacyModeEnabled';
 export const VALUE_SELECTOR = '.c-PJLV.c-jaFKlk.c-PJLV-ibdakYG-css';
 const TOGGLE_ICON_CLASS = 'privacy-mode-toggle-icon';
+const TOGGLE_CONTAINER_CLASS = 'privacy-mode-toggle-container';
+const FALLBACK_TOGGLE_CLASS = 'privacy-mode-toggle-fallback';
+const MASKED_VALUE_CLASS = 'polyteller-privacy-masked';
 const MUTATION_DEBOUNCE_TIME = 100;
+const VALUE_SELECTORS = [
+  VALUE_SELECTOR,
+  '[class*="jaFKlk"]',
+  '[class*="ibdakYG"]',
+  '[data-testid*="portfolio" i]',
+  '[data-testid*="balance" i]',
+  '[data-testid*="cash" i]',
+  '[data-testid*="account" i]',
+  '[aria-label*="portfolio" i]',
+  '[aria-label*="balance" i]',
+  '[aria-label*="cash" i]'
+];
+const SENSITIVE_CONTEXT_SELECTOR = [
+  'a[href*="/portfolio"]',
+  'header',
+  'nav',
+  '[data-testid*="portfolio" i]',
+  '[data-testid*="balance" i]',
+  '[data-testid*="cash" i]',
+  '[data-testid*="account" i]',
+  '[aria-label*="portfolio" i]',
+  '[aria-label*="balance" i]',
+  '[aria-label*="cash" i]'
+].join(',');
+const VALUE_TEXT_PATTERN = /(?:[$€£]\s*[\d,.]+|[\d,.]+\s*(?:USDC|USD|USDT)\b)/i;
+const SENSITIVE_LABEL_PATTERN = /\b(portfolio|balance|cash|available|account|wallet|buying power)\b/i;
+
+function safeMatches(element: Element, selector: string): boolean {
+  try {
+    return element.matches(selector);
+  } catch {
+    return false;
+  }
+}
+
+function safeClosest(element: Element, selector: string): Element | null {
+  try {
+    return element.closest(selector);
+  } catch {
+    return null;
+  }
+}
+
+function queryPrivacyValueCandidates(): HTMLElement[] {
+  const elements = new Set<HTMLElement>();
+
+  for (const selector of VALUE_SELECTORS) {
+    try {
+      document.querySelectorAll(selector).forEach(element => {
+        if (element instanceof HTMLElement) {
+          elements.add(element);
+        }
+      });
+    } catch {
+      // Ignore selectors unsupported by older engines.
+    }
+  }
+
+  return Array.from(elements).filter(isSensitiveValueElement);
+}
+
+function isSensitiveValueElement(element: HTMLElement): boolean {
+  if (element.closest(`.${TOGGLE_CONTAINER_CLASS}, .${TOGGLE_ICON_CLASS}, .${FALLBACK_TOGGLE_CLASS}, #polyteller-countdown`)) {
+    return false;
+  }
+
+  const text = (element.textContent || '').trim();
+  if (!text || text.length > 120) return false;
+
+  if (safeMatches(element, VALUE_SELECTOR) || safeMatches(element, '[class*="jaFKlk"], [class*="ibdakYG"]')) {
+    return true;
+  }
+
+  const context = safeClosest(element, SENSITIVE_CONTEXT_SELECTOR);
+  if (!context) return false;
+
+  const contextText = (context.textContent || '').trim();
+  return VALUE_TEXT_PATTERN.test(text) || (VALUE_TEXT_PATTERN.test(contextText) && SENSITIVE_LABEL_PATTERN.test(contextText));
+}
+
+function createToggleIcon(): HTMLElement {
+  const toggleIcon = document.createElement('button');
+  toggleIcon.type = 'button';
+  toggleIcon.className = TOGGLE_ICON_CLASS;
+  toggleIcon.setAttribute('aria-label', 'Toggle Polyteller privacy mode');
+  toggleIcon.title = 'Toggle Polyteller privacy mode';
+  toggleIcon.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+  `;
+
+  toggleIcon.style.cssText = `
+    border: 0;
+    background: rgba(255, 255, 255, 0.94);
+    color: #666666;
+    cursor: pointer;
+    z-index: 2147483647;
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    pointer-events: auto;
+    opacity: 0.72;
+  `;
+
+  toggleIcon.addEventListener('mouseenter', () => {
+    toggleIcon.style.transform = 'scale(1.08)';
+    toggleIcon.style.opacity = '1';
+  });
+
+  toggleIcon.addEventListener('mouseleave', () => {
+    toggleIcon.style.transform = 'scale(1)';
+    toggleIcon.style.opacity = '0.72';
+  });
+
+  toggleIcon.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    await privacyModeState.toggle();
+
+    toggleIcon.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      toggleIcon.style.transform = 'scale(1)';
+    }, 100);
+
+    chrome.runtime.sendMessage({
+      type: MessageType.BROADCAST_PRIVACY_MODE,
+      data: { enabled: privacyModeState.isEnabled },
+      requestId: Date.now().toString(),
+      timestamp: Date.now()
+    });
+  });
+
+  const updateIconColor = (enabled: boolean) => {
+    toggleIcon.style.color = enabled ? '#4A4FE4' : '#666666';
+  };
+
+  updateIconColor(privacyModeState.isEnabled);
+  privacyModeState.onStateChange(updateIconColor);
+
+  return toggleIcon;
+}
 
 /**
  * Adds the privacy mode toggle icon to the page.
@@ -15,82 +167,41 @@ function addToggleIcon() {
   const findAndAddIcon = () => {
     if (document.querySelector(`.${TOGGLE_ICON_CLASS}`)) return true;
 
-    const portfolioElement = document.querySelector('a[href="/portfolio"].c-gBrBnR.c-dNAgLP.c-gBrBnR-gDWzxt-variant-primary.c-gBrBnR-gFoOfa-cv');
-    if (!(portfolioElement instanceof HTMLElement)) return false;
-
-    const toggleIcon = document.createElement('div');
-    toggleIcon.className = TOGGLE_ICON_CLASS;
-    toggleIcon.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-        <circle cx="12" cy="12" r="3"></circle>
-      </svg>
-    `;
-
-    toggleIcon.style.cssText = `
-      position: absolute;
-      top: calc(100% + 5px);
-      left: 50%;
-      transform: translateX(-50%);
-      cursor: pointer;
-      z-index: 1000;
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease-in-out;
-    `;
-
-    toggleIcon.addEventListener('mouseenter', () => {
-      toggleIcon.style.transform = 'translateX(-50%) scale(1.1)';
-      toggleIcon.style.opacity = '1';
-    });
-
-    toggleIcon.addEventListener('mouseleave', () => {
-      toggleIcon.style.transform = 'translateX(-50%) scale(1)';
-      toggleIcon.style.opacity = '0.25';
-    });
-
-    toggleIcon.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      await privacyModeState.toggle();
-
-      toggleIcon.style.transform = 'translateX(-50%) scale(0.95)';
-      setTimeout(() => {
-        toggleIcon.style.transform = 'translateX(-50%) scale(1)';
-      }, 100);
-
-      chrome.runtime.sendMessage({
-        type: MessageType.BROADCAST_PRIVACY_MODE,
-        data: { enabled: privacyModeState.isEnabled },
-        requestId: Date.now().toString(),
-        timestamp: Date.now()
-      });
-    });
+    const portfolioElement = document.querySelector('a[href*="/portfolio"], [data-testid*="portfolio" i], [aria-label*="portfolio" i]');
+    const toggleIcon = createToggleIcon();
 
     const container = document.createElement('div');
-    container.style.cssText = `
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      height: 0;
-      overflow: visible;
-      pointer-events: none;
-    `;
+    container.className = TOGGLE_CONTAINER_CLASS;
     container.appendChild(toggleIcon);
 
-    portfolioElement.style.position = 'relative';
-    portfolioElement.appendChild(container);
-    
-    const updateIconColor = (enabled: boolean) => {
-      toggleIcon.style.color = enabled ? '#4A4FE4' : '#666666';
-      toggleIcon.style.opacity = '0.25';
-    };
+    if (portfolioElement instanceof HTMLElement) {
+      container.style.cssText = `
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 34px;
+        height: 34px;
+        overflow: visible;
+        pointer-events: auto;
+        z-index: 2147483647;
+      `;
 
-    updateIconColor(privacyModeState.isEnabled);
-    privacyModeState.onStateChange(updateIconColor);
+      portfolioElement.style.position = 'relative';
+      portfolioElement.appendChild(container);
+    } else {
+      container.classList.add(FALLBACK_TOGGLE_CLASS);
+      container.style.cssText = `
+        position: fixed;
+        top: 78px;
+        right: 16px;
+        width: 34px;
+        height: 34px;
+        pointer-events: auto;
+        z-index: 2147483647;
+      `;
+      document.body.appendChild(container);
+    }
 
     log('PrivacyMode', 'Toggle icon added');
     return true;
@@ -134,12 +245,7 @@ export class PrivacyModeState {
   private async initialize(): Promise<void> {
     await this.loadInitialState();
     addToggleIcon();
-    document.querySelectorAll(VALUE_SELECTOR).forEach(element => {
-      if (element instanceof HTMLElement) {
-        element.style.visibility = 'visible';
-        this.updateElement(element);
-      }
-    });
+    this.findAndUpdateElements();
     this.setupMessageListener();
     this.setupMutationObserver();
   }
@@ -245,21 +351,15 @@ export class PrivacyModeState {
 
   private isMutationRelevant(mutation: MutationRecord): boolean {
     if (mutation.type === 'childList') {
-      return Array.from(mutation.addedNodes).some(node => 
-        node instanceof HTMLElement && 
-        (node.matches(VALUE_SELECTOR) || node.querySelector(VALUE_SELECTOR))
-      );
+      return Array.from(mutation.addedNodes).some(node => node instanceof HTMLElement);
     }
-    return false;
+    return mutation.type === 'attributes';
   }
 
   private findAndUpdateElements(): void {
-    const elements = document.querySelectorAll(VALUE_SELECTOR);
-    elements.forEach(element => {
-      if (element instanceof HTMLElement) {
-        this.valueElements.add(element);
-        this.updateElement(element);
-      }
+    queryPrivacyValueCandidates().forEach(element => {
+      this.valueElements.add(element);
+      this.updateElement(element);
     });
   }
 
@@ -268,11 +368,17 @@ export class PrivacyModeState {
       if (!element.dataset.originalValue) {
         element.dataset.originalValue = element.textContent || '';
       }
+      const originalValue = element.dataset.originalValue || '';
+      element.textContent = maskValue(originalValue || element.textContent || '');
+      element.classList.add(MASKED_VALUE_CLASS);
+      element.setAttribute('aria-label', 'Hidden by Polyteller privacy mode');
     } else {
       if (element.dataset.originalValue) {
         element.textContent = element.dataset.originalValue;
         delete element.dataset.originalValue;
       }
+      element.classList.remove(MASKED_VALUE_CLASS);
+      element.removeAttribute('aria-label');
     }
   }
 

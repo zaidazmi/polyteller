@@ -12,6 +12,23 @@ let confirmationDialog: HTMLDivElement | null = null;
 
 let countdownInterval: number | null = null;
 
+function isTradeActionButton(element: HTMLElement): element is HTMLButtonElement {
+  if (element.tagName !== 'BUTTON') return false;
+
+  const button = element as HTMLButtonElement;
+  if (button.disabled) return false;
+
+  const text = (button.textContent || '').replace(/\s+/g, ' ').trim();
+  const isLegacyBuyButton =
+    button.classList.contains('c-hDtDII') &&
+    button.classList.contains('c-hDtDII-fcAbGk-color-blue');
+  const isCurrentTradeButton =
+    text === 'Trade' ||
+    Boolean(button.getAttribute('data-testid')?.toLowerCase().includes('trade'));
+
+  return isLegacyBuyButton || isCurrentTradeButton;
+}
+
 function createConfirmationDialog(): HTMLDivElement {
   const dialog = document.createElement('div');
   dialog.id = 'polyteller-confirmation-dialog';
@@ -251,13 +268,10 @@ export function interceptBuyButton() {
     
     let currentElement: HTMLElement | null = target;
     while (currentElement) {
-      // Check for the specific blue button using its unique classes
-      if (currentElement.tagName === 'BUTTON' && 
-          currentElement.classList.contains('c-hDtDII') && 
-          currentElement.classList.contains('c-hDtDII-fcAbGk-color-blue')) {
+      if (isTradeActionButton(currentElement)) {
         
         isProcessingClick = true;
-        log('DOMManipulator', 'Main blue Buy button clicked, checking confirmation setting');
+        log('DOMManipulator', 'Trade action button clicked, checking confirmation setting');
         event.preventDefault();
         event.stopPropagation();
 
@@ -307,7 +321,11 @@ export function initializeDOMObserver(callback: () => void) {
     if (callbackScheduled) return;
 
     const hasRelevantChanges = mutations.some((mutation) => {
-      const target = mutation.target as Element;
+      const target = mutation.target;
+      if (!(target instanceof Element)) {
+        return mutation.addedNodes.length > 0;
+      }
+
       return (
         mutation.addedNodes.length > 0 ||
         target.id === '__next' ||

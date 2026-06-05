@@ -1,6 +1,6 @@
 {
   "name": "polyteller",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Open-source Chrome extension for Polymarket countdowns, local reminders, privacy masking, and trade confirmations",
   "license": "MIT",
   "author": "Zaid Azmi <hi@polyteller.com>",
